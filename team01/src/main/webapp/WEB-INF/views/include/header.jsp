@@ -22,7 +22,7 @@
 </head>
 <body>
 	<!-- Responsive navbar-->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="#">SooYoungShoes</a>
 			<button class="navbar-toggler" type="button"
