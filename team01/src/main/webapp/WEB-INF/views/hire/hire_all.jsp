@@ -3,5 +3,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 
-전체고옥
+전체공고
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
