@@ -25,14 +25,14 @@
 						</div>
 						<div class="form-group">
 							 <br>
-							<label for="inquiry">
+							<label for="content">
 								문의 내용
 							</label><br>
-							<textarea class="form-control" rows="12" name="inquiry" required></textarea>
+							<textarea class="form-control" rows="12" name="content" required></textarea>
 						</div>
 						<Br>
 						<button type="submit" class="btn btn-outline-primary flex-shrink-0">
-							지원하기
+							문의하기
 						</button>
 					</form>
                     </div>
