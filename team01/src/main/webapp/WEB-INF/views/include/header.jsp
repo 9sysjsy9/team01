@@ -5,8 +5,8 @@
 <head>
 
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
 <meta charset="utf-8" />
@@ -34,7 +34,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">홈</a></li>
+						aria-current="page" href="/">홈</a></li>
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
@@ -49,24 +49,24 @@
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">채용안내</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#">채용공고</a></li>
-							<li><a class="dropdown-item" href="#">채용지원/조회</a></li>
+							<li><a class="dropdown-item" href="/hire/hire_home">채용공고</a></li>
+							<li><a class="dropdown-item" href="/hire/hire_regist">채용지원/조회</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">매장안내</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#">매장찾기</a></li>
-							<li><a class="dropdown-item" href="#">가맹점 문의</a></li>
+							<li><a class="dropdown-item" href="/store/findStore">매장찾기</a></li>
+							<li><a class="dropdown-item" href="/store/applyFranchise">가맹점 문의</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">제품안내</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#">제품정보</a></li>
-							<li><a class="dropdown-item" href="#">제품문의</a></li>
+							<li><a class="dropdown-item" href="/product/product_index">제품정보</a></li>
+							<li><a class="dropdown-item" href="/product/product_ask">제품문의</a></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#">사원 메뉴</a></li>
 				</ul>

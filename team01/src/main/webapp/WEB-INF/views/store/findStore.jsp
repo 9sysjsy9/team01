@@ -17,6 +17,7 @@
                         <div class="fs-5 mb-5">
                         </div>
                         <p class="lead">울산 수영슈즈 1호점은 남구 남부경찰서 근처에 위치해 있습니다.</p>
+                        <p class="lead">주소 : 울산 남구 삼산로35번길 19</p>
                         <div class="d-flex">
                         
                             <button class="btn btn-outline-dark flex-shrink-0" type="button">
@@ -39,13 +40,19 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed58432865ca847558cf89e98a614bb3"></script>
 <script>
 var mapContainer = document.getElementById('maps'), 
-    mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), 
+    mapOption = {
+        center: new kakao.maps.LatLng(35.535020788165546,  129.31083000438102), 
         level: 3
     };
 
 // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 var map = new kakao.maps.Map(mapContainer, mapOption); 
+var marker = new kakao.maps.Marker({ 
+    // 지도 중심좌표에 마커를 생성합니다 
+    position: map.getCenter() 
+}); 
+// 지도에 마커를 표시합니다
+marker.setMap(map);
 </script>
 
         

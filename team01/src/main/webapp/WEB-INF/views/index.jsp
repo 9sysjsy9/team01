@@ -5,9 +5,9 @@
         <!-- Page content-->
         <div class="container">
             <div class="text-center mt-5">
-                <h1>메인 페이지</h1>
-                <p class="lead">메인 페이지2</p>
-                <p>메인 페이지3</p>
+                <h1>A Bootstrap 5 Starter Template</h1>
+                <p class="lead">A complete project boilerplate built with Bootstrap</p>
+                <p>Bootstrap v5.1.3</p>
             </div>
         </div>
         
