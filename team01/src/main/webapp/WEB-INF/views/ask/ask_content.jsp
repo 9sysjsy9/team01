@@ -19,8 +19,8 @@ function changeDateString(timestamp){
 };
 $(function() {
 	$("#btnDelete").click(function() {
-		var sno = $(this).attr("data-sno");
-		location.href = "/student/delete_run?sno="+sno;
+		var ano = $(this).attr("data-ano");
+		location.href = "/ask/ask_delete_run?ano="+ano;
 	});
 	$("#btnModify").click(function() {
 		$(".modify").prop("readonly", false);
@@ -87,7 +87,7 @@ $(function() {
 				<button type="submit" class="btn btn-success"
 				id="btnModifyOk" style="display:none">수정완료</button>
 				<button type="button" class="btn btn-danger"
-				id="btnDelete" data-sno="${studentVo.sno}">삭제</button>
+				id="btnDelete" data-ano="${askProductVo.ano}">삭제</button>
 			</form>
 		</div>
 	</div>

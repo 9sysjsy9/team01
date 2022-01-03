@@ -26,6 +26,11 @@ public class AskProductService {
 	public void modifyContent(AskProductVo askProductVo) {
 		askProductDao.modifyContent(askProductVo);
 	}
-	
+	public void insertContent(AskProductVo askProductVo) {
+		askProductDao.insertContent(askProductVo);
+	}
+	public void deleteContent(int ano) {
+		askProductDao.deleteContent(ano);
+	}
 	
 }

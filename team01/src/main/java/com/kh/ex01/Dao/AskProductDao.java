@@ -27,4 +27,12 @@ public class AskProductDao {
 	public void modifyContent(AskProductVo askProductVo) {
 		sqlSession.update(NAMESAPCE+"modifyContent", askProductVo);
 	}
+	public void insertContent(AskProductVo askProductVo) {
+		sqlSession.insert(NAMESAPCE+"insertContent", askProductVo);
+	}
+	public void deleteContent(int ano) {
+		sqlSession.delete(NAMESAPCE+"deleteContent", ano);
+	}
+	
+	
 }

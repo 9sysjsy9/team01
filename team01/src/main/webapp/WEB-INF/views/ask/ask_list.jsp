@@ -38,7 +38,7 @@
 	<a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
 	<!-- Sidebar Toggle-->
 	<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
-		id="sidebarToggle" href="#!">
+		id="sidebarToggle" href="#">
 		<i class="fas fa-bars"></i>
 	</button>
 </nav>
@@ -52,8 +52,21 @@
 		</ol>
 		<div class="row">
 			<div class="col-xl-3 col-md-6">
-				<div class="card bg-primary text-white mb-4">
-					<div class="card-body">Primary Card</div>
+				<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+					<div class="card-body">문의하기</div>
+					<div
+						class="card-footer d-flex align-items-center justify-content-between">
+						<a class="small text-white stretched-link" href="/ask/ask_regist_form">View
+							Details</a>
+						<div class="small text-white">
+							<i class="fas fa-angle-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-3 col-md-6">
+				<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+					<div class="card-body">자주하는 질문</div>
 					<div
 						class="card-footer d-flex align-items-center justify-content-between">
 						<a class="small text-white stretched-link" href="#">View
@@ -65,8 +78,8 @@
 				</div>
 			</div>
 			<div class="col-xl-3 col-md-6">
-				<div class="card bg-warning text-white mb-4">
-					<div class="card-body">Warning Card</div>
+				<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+					<div class="card-body">나의 문의</div>
 					<div
 						class="card-footer d-flex align-items-center justify-content-between">
 						<a class="small text-white stretched-link" href="#">View
@@ -78,21 +91,8 @@
 				</div>
 			</div>
 			<div class="col-xl-3 col-md-6">
-				<div class="card bg-success text-white mb-4">
-					<div class="card-body">Success Card</div>
-					<div
-						class="card-footer d-flex align-items-center justify-content-between">
-						<a class="small text-white stretched-link" href="#">View
-							Details</a>
-						<div class="small text-white">
-							<i class="fas fa-angle-right"></i>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xl-3 col-md-6">
-				<div class="card bg-danger text-white mb-4">
-					<div class="card-body">Danger Card</div>
+				<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+					<div class="card-body">고객센터</div>
 					<div
 						class="card-footer d-flex align-items-center justify-content-between">
 						<a class="small text-white stretched-link" href="#">View
