@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper			
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"			
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.ex01.mappers.hire">
+
+	<select id="listAll" resultType="HireVo">
+		select * from tbl_hire
+		order by bno desc
+	</select>
+	
+	<select id="listNew" resultType="HireVo">
+		select * from tbl_hire
+		where cate = '[신입]'
+		order by bno desc
+	</select>
+	
+	<select id="listExperience" resultType="HireVo">
+		select * from tbl_hire
+		where cate = '[경력]'
+		order by bno desc
+	</select>
+	
+	<select id="listIntern" resultType="HireVo">
+		select * from tbl_hire
+		where cate = '[인턴]'
+		order by bno desc
+	</select>
+	
+</mapper>
