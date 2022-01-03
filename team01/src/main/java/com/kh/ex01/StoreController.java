@@ -1,12 +1,20 @@
 package com.kh.ex01;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.ex01.service.StoreService;
+import com.kh.ex01.vo.FranApplyVo;
+
 @Controller
 
-@RequestMapping(value="/store")
+@RequestMapping(value="/store/")
 public class StoreController {
+	
+	@Inject
+	private StoreService storeService;
 	
 	//매장 찾기 페이지
 	@RequestMapping(value="/findStore")
@@ -23,8 +31,10 @@ public class StoreController {
 	}
 	
 	//가맹점 문의서 제출
-	@RequestMapping(value="/applyRegist")
-	public String applyRegist() {
+	@RequestMapping(value="/applyRegistRun")
+	public String applyRegistRun(FranApplyVo franApplyVo) {
+		System.out.println("StoreController, applyRegistRun, franApplyVo : " + franApplyVo);
+		storeService.applyRegistRun(franApplyVo);
 		
 		return "/store/applyFranchise";
 	}
