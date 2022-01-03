@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kh.ex01.service.HireService;
 import com.kh.ex01.vo.HireVo;
+import com.kh.ex01.vo.PagingDto;
 
 @Controller
 @RequestMapping("/hire")
@@ -27,9 +28,12 @@ public class HireController {
 	  
 	 // 전체 공고 보기
 	 @RequestMapping(value = "/hire_all", method = RequestMethod.GET)
-	 public String hireAll(Model model) {
-		 List<HireVo> list = hireService.listAll();
+	 public String hireAll(Model model, PagingDto pagingDto) {
+		 pagingDto.setCount(hireService.getCount());
+		 pagingDto.setPage(pagingDto.getPage());
+		 List<HireVo> list = hireService.listAll(pagingDto);
 		 model.addAttribute("list" , list);
+		 model.addAttribute("pagingDto", pagingDto);
 		 return "hire/hire_all";
 	 }
 	 
