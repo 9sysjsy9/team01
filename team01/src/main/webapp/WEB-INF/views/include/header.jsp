@@ -38,10 +38,10 @@
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">회사소개</a>
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">알림판</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#">회사소개</a></li>
+							<li><a class="dropdown-item" href="/notice/noticeList">공지사항</a></li>
 							<li><a class="dropdown-item" href="#">인사말</a></li>
 							<li><a class="dropdown-item" href="#">연혁</a></li>
 						</ul></li>
