@@ -20,10 +20,7 @@
 		$(".page-link").click(function(e) {
 			e.preventDefault();
 			var page = $(this).attr("href");
-			var perpage = $("#frmPaging>input[name=perPage]").val();
-			console.log("perpage: "+perpage);
-			$("#frmPaging>input[name=perPage]").val(perpage);
-			location.href = "/ask/ask_list?page=" + page+"&perpage="+perpage;
+			location.href = "/ask/ask_list?page=" + page;
 		});
 		$("#perPage").change(function() {
 			var perPage = $(this).val();
