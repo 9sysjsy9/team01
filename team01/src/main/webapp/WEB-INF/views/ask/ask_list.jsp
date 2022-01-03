@@ -16,6 +16,12 @@
 			var ano = $(this).attr("data-ano");
 			location.href = "/ask/ask_content?ano="+ano;
 		});
+		
+		$(".page-link").click(function(e) {
+			e.preventDefault();
+			var page = $(this).attr("href");
+			location.href = "/ask/ask_list?page=" + page;
+		});
 
 	});
 
@@ -46,18 +52,17 @@
 	<div class="container-fluid px-4">
 		<h1 class="mt-4">고객문의</h1>
 		<ol class="breadcrumb mb-4">
-			<li class="breadcrumb-item active">
-				원하는 기능를 선택하세요
-			</li>
+			<li class="breadcrumb-item active">원하는 기능를 선택하세요</li>
 		</ol>
 		<div class="row">
 			<div class="col-xl-3 col-md-6">
-				<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+				<div
+					class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
 					<div class="card-body">문의하기</div>
 					<div
 						class="card-footer d-flex align-items-center justify-content-between">
-						<a class="small text-white stretched-link" href="/ask/ask_regist_form">View
-							Details</a>
+						<a class="small text-white stretched-link"
+							href="/ask/ask_regist_form">View Details</a>
 						<div class="small text-white">
 							<i class="fas fa-angle-right"></i>
 						</div>
@@ -65,7 +70,8 @@
 				</div>
 			</div>
 			<div class="col-xl-3 col-md-6">
-				<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+				<div
+					class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
 					<div class="card-body">자주하는 질문</div>
 					<div
 						class="card-footer d-flex align-items-center justify-content-between">
@@ -78,7 +84,8 @@
 				</div>
 			</div>
 			<div class="col-xl-3 col-md-6">
-				<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+				<div
+					class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
 					<div class="card-body">나의 문의</div>
 					<div
 						class="card-footer d-flex align-items-center justify-content-between">
@@ -91,7 +98,8 @@
 				</div>
 			</div>
 			<div class="col-xl-3 col-md-6">
-				<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+				<div
+					class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
 					<div class="card-body">고객센터</div>
 					<div
 						class="card-footer d-flex align-items-center justify-content-between">
@@ -104,7 +112,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="card-body">
 			<table id="datatablesSimple" class="table">
 				<thead>
@@ -146,8 +154,27 @@
 			</table>
 		</div>
 	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<nav>
+					<ul class="pagination">
+						<c:if test="${pt.startPage!=1}">
+							<li class="page-item"><a class="page-link"
+								href="${pt.startPage-10}">이전</a></li>
+						</c:if>
+						<c:forEach var="v" begin="${pt.startPage}" end="${pt.endPage}">
+							<li class="page-item"><a class="page-link" href="${v}">${v}</a>
+							<li class="page-item">
+						</c:forEach>
+						<li><a class="page-link" href="${pt.endPage+1}">다음</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
 </div>
-</main>
+
 <footer class="py-4 bg-light mt-auto">
 	<div class="container-fluid px-4">
 		<div class="d-flex align-items-center justify-content-between small">
@@ -159,7 +186,7 @@
 		</div>
 	</div>
 </footer>
-</div>
-</div>
+
+
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
