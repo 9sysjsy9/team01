@@ -20,4 +20,11 @@ public class AskProductDao {
 		List<AskProductVo> list = sqlSession.selectList(NAMESAPCE+"selectAll");
 		return list;
 	}
+	public AskProductVo getContent(int ano) {
+		AskProductVo askProductVo = sqlSession.selectOne(NAMESAPCE+"getContent", ano);
+		return askProductVo;
+	}
+	public void modifyContent(AskProductVo askProductVo) {
+		sqlSession.update(NAMESAPCE+"modifyContent", askProductVo);
+	}
 }
