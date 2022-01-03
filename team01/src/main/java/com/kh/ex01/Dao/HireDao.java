@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ex01.vo.HireVo;
+import com.kh.ex01.vo.PagingDto;
 
 
 
@@ -19,8 +20,8 @@ public class HireDao {
 	
 	private static final String NAMESPACE = "com.kh.ex01.mappers.hire.";
 	
-	public List<HireVo> listAll() {
-		List<HireVo> list = sqlSession.selectList(NAMESPACE + "listAll");
+	public List<HireVo> listAll(PagingDto pagingDto) {
+		List<HireVo> list = sqlSession.selectList(NAMESPACE + "listAll", pagingDto);
 		return list;
 	}
 	
@@ -37,5 +38,10 @@ public class HireDao {
 	public List<HireVo> listIntern() {
 		List<HireVo> list = sqlSession.selectList(NAMESPACE + "listIntern");
 		return list;
+	}
+	
+	public int getCount() {
+		int count = sqlSession.selectOne(NAMESPACE+"getCount");
+		return count;
 	}
 }
