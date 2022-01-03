@@ -17,8 +17,13 @@ public class StoreService {
 		storeDao.applyRegistRun(franApplyVo);
 	}
 	
-	public FranApplyVo applyInquir(String email) {
-		FranApplyVo franApplyVo = storeDao.applyInquir(email);
+	public FranApplyVo applyInquiry(String email) {
+		FranApplyVo franApplyVo = storeDao.applyInquiry(email);
 		return franApplyVo;
+	}
+	
+	public int checkApply(String email) {
+		int result = storeDao.checkApply(email);
+		return result;
 	}
 }

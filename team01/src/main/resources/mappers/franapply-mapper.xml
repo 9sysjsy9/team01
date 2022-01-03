@@ -12,9 +12,15 @@
 
 
 <!-- 지원 내용 조회 -->
-<select id="applyInquir" resultType="FranApplyVo">
+<select id="applyInquiry" resultType="FranApplyVo">
 	SELECT * FROM tbl_franapply 
-	WHERE email = #{email}
+	WHERE email = #{email} AND replystate = 'n'
+</select>
+
+<!-- 지원 여부 조회 -->
+<select id="checkApply" resultType="int">
+	SELECT COUNT(*) FROM tbl_franapply
+	WHERE email = #{email} and replystate = 'n'
 </select>
 
 <!-- 지원 내용 수정 -->

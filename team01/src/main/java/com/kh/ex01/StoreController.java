@@ -13,7 +13,7 @@ import com.kh.ex01.vo.FranApplyVo;
 
 @Controller
 
-@RequestMapping(value="/store/")
+@RequestMapping(value="/store")
 public class StoreController {
 	
 	@Inject
@@ -33,9 +33,27 @@ public class StoreController {
 		return "/store/applyFranchise";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/checkApply", method=RequestMethod.POST)
+	public String checkInquiry(String email) {
+		System.out.println("StoreController, checkApply, email : " + email);
+		int result = storeService.checkApply(email);
+		if(result > 0) {
+			return "impossible";
+		} else {
+			return "possible";
+		}
+	}
+	
 	//가맹점 문의서 제출
 	@RequestMapping(value="/applyRegistRun")
 	public String applyRegistRun(FranApplyVo franApplyVo, RedirectAttributes rttr) {
+		String email = franApplyVo.getEmail();
+		
+//		if(result > 0) {
+//			rttr.addFlashAttribute("msg", "already");
+//			return "redirect:/store/applyFranchise";
+//		}
 		System.out.println("StoreController, applyRegistRun, franApplyVo : " + franApplyVo);
 		storeService.applyRegistRun(franApplyVo);
 		rttr.addFlashAttribute("msg", "success");
@@ -47,7 +65,7 @@ public class StoreController {
 	@RequestMapping(value="/applyInquiry", method=RequestMethod.POST)
 	public FranApplyVo applyInquiry(String email) {
 		System.out.println("StoreController, applyInquiry, email : " + email);
-		FranApplyVo franApplyVo = storeService.applyInquir(email);
+		FranApplyVo franApplyVo = storeService.applyInquiry(email);
 		System.out.println("StoreController, applyInquiry, franApplyVo : " + franApplyVo);
 		if(franApplyVo != null) {
 			return franApplyVo;
@@ -56,8 +74,5 @@ public class StoreController {
 		}
 		
 	}
-	
-	
-	
 
 }
