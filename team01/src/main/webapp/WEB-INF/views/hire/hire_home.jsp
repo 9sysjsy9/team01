@@ -9,7 +9,7 @@
 			<div class="col-lg-5">
 				<h1 class="font-weight-light">진행 중인 채용공고</h1>
 				<p></p>
-				<a class="btn btn-primary" href="hire_all">전체 공고 보기</a>
+				<a class="btn btn-outline-dark flex-shrink-0" href="hire_all">전체 공고 보기</a>
 			</div>
 		</div>
 		<!-- Call to Action-->
@@ -26,7 +26,7 @@
 						<h2 class="card-title">신입 채용</h2>
 					</div>
 					<div class="card-footer">
-						<a class="btn btn-primary btn-sm" href="#!">신입채용공고 보기</a>
+						<a class="btn btn-outline-dark flex-shrink-0" href="#!">신입채용공고 보기</a>
 					</div>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 						<h2 class="card-title">경력 채용</h2>
 					</div>
 					<div class="card-footer">
-						<a class="btn btn-primary btn-sm" href="#!">경력채용공고 보기</a>
+						<a class="btn btn-outline-dark flex-shrink-0" href="#!">경력채용공고 보기</a>
 					</div>
 				</div>
 			</div>
@@ -46,12 +46,12 @@
 						<h2 class="card-title">인턴 채용</h2>
 					</div>
 					<div class="card-footer">
-						<a class="btn btn-primary btn-sm" href="#!">인턴채용공고 보기</a>
+						<a class="btn btn-outline-dark flex-shrink-0" href="#!">인턴채용공고 보기</a>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-5">
-				<a class="btn btn-primary" href="hire_board" button>채용 지원하기</a>
+				<a class="btn btn-outline-dark flex-shrink-0" href="hire_regist">채용 지원하기</a>
 			</div>
 		</div>
 	</div>

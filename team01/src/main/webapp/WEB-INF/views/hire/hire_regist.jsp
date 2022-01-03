@@ -26,8 +26,8 @@
 							</div>
 						</div>
 						<div>
-							<button class="btn btn-outline-dark flex-shrink-0" type="button">
-								<i class="bi-cart-fill me-1"></i> 지원
+							<button class="btn btn-outline-dark flex-shrink-0" type="button"
+								style="margin-top:15px;"> 신청
 							</button>
 						</div>
 					</div>

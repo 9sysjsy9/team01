@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController {
+@RequestMapping("/ask")
+public class AskController {
 
-   @RequestMapping(value = "/", method = RequestMethod.GET)
-   public String index() {
-      return "index";
-
+   @RequestMapping(value = "/ask_list", method = RequestMethod.GET)
+   public String askList() {
+      return "/ask/ask_list";
    }
-}
    
+}
