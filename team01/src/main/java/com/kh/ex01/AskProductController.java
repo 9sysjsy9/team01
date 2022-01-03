@@ -45,5 +45,20 @@ public class AskProductController {
 	   System.out.println("업데이트 완료");
 	   return "redirect:/ask/ask_content?ano="+askProductVo.getAno();
    }
+   @RequestMapping(value = "/ask_regist_form", method = RequestMethod.GET)
+   public String askRegistForm() {
+	   return "/ask/ask_regist_form";
+   }
+   @RequestMapping(value = "/ask_regist_run", method = RequestMethod.POST)
+   public String askRegistRun(AskProductVo askProductVo) {
+	   System.out.println("askProductVo: "+askProductVo);
+	   askProductService.insertContent(askProductVo);
+	   return "redirect:/ask/ask_list";
+   }
+   @RequestMapping(value = "/ask_delete_run", method = RequestMethod.GET)
+   public String askDeleteRun(int ano) {
+	   askProductService.deleteContent(ano);
+	   return "redirect:/ask/ask_list";
+   }
    
 }
