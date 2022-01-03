@@ -19,9 +19,17 @@ public class StoreDao {
 		sqlSession.insert(NAMESPACE + "applyRegistRun", franApplyVo);
 	}
 	
-	public FranApplyVo applyInquir(String email) {
-		FranApplyVo franApplyVo = sqlSession.selectOne(NAMESPACE + "applyInquir", email);
+	public FranApplyVo applyInquiry(String email) {
+		FranApplyVo franApplyVo = sqlSession.selectOne(NAMESPACE + "applyInquiry", email);
 		return franApplyVo;
+	}
+	
+	public int checkApply(String email) {
+		System.out.println("StoreDao, checkApply, email : " + email);
+		int result = sqlSession.selectOne(NAMESPACE + "checkApply", email);
+		System.out.println("StoreDao, checkApply, result : " + result);
+		
+		return result;
 	}
 
 }

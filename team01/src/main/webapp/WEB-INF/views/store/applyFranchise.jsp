@@ -17,7 +17,7 @@
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
-			<form role="form" action="/store/applyRegistRun" method="get">
+			<form role="form" action="/store/applyRegistRun" method="get" id="applyForm"> <!-- form 시작 -->
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="phone"> 연락처 </label> <input type="text"
@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-outline-primary flex-shrink-0">
+					<button type="button" class="btn btn-outline-primary flex-shrink-0" id="applyModalSubmitBtn">
 						제출</button>
 					<button type="button"
 						class="btn btn-outline-secondary flex-shrink-0"
@@ -153,6 +153,23 @@
 
 		$(".inquiryModalCloseBtn").click(function(e) {
 			$(".hidden").hide();
+		});
+		//지원 모달 창 제출 버튼 시 중복 체크
+		$("#applyModalSubmitBtn").click(function(e){
+			e.preventDefault();
+			var url = "/store/checkApply";
+			var sData = {
+					"email" : $("#modal-container-apply").find("#email").val()
+				};
+			$.post(url, sData, function(rData){
+				console.log(rData);
+				if(rData == "impossible"){
+					alert("이미 문의한 내용이 있습니다.");
+				} else {
+					$("#applyForm").submit();
+				}
+			});
+
 		});
 	});
 </script>
