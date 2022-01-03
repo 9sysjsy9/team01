@@ -14,7 +14,7 @@
 <!-- 지원 내용 조회 -->
 <select id="applyInquiry" resultType="FranApplyVo">
 	SELECT * FROM tbl_franapply 
-	WHERE email = #{email}
+	WHERE email = #{email} AND replystate = 'n'
 </select>
 
 <!-- 지원 여부 조회 -->
