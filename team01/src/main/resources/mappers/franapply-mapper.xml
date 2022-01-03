@@ -12,6 +12,10 @@
 
 
 <!-- 지원 내용 조회 -->
+<select id="applyInquir" resultType="FranApplyVo">
+	SELECT * FROM tbl_franapply 
+	WHERE email = #{email}
+</select>
 
 <!-- 지원 내용 수정 -->
 

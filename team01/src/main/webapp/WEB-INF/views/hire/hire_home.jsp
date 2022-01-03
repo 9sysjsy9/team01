@@ -26,7 +26,7 @@
 						<h2 class="card-title">신입 채용</h2>
 					</div>
 					<div class="card-footer">
-						<a class="btn btn-outline-dark flex-shrink-0" href="#!">신입채용공고 보기</a>
+						<a class="btn btn-outline-dark flex-shrink-0" href="hire_new">신입채용공고 보기</a>
 					</div>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 						<h2 class="card-title">경력 채용</h2>
 					</div>
 					<div class="card-footer">
-						<a class="btn btn-outline-dark flex-shrink-0" href="#!">경력채용공고 보기</a>
+						<a class="btn btn-outline-dark flex-shrink-0" href="hire_experience">경력채용공고 보기</a>
 					</div>
 				</div>
 			</div>
@@ -46,7 +46,7 @@
 						<h2 class="card-title">인턴 채용</h2>
 					</div>
 					<div class="card-footer">
-						<a class="btn btn-outline-dark flex-shrink-0" href="#!">인턴채용공고 보기</a>
+						<a class="btn btn-outline-dark flex-shrink-0" href="hire_intern">인턴채용공고 보기</a>
 					</div>
 				</div>
 			</div>

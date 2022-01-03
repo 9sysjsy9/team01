@@ -18,4 +18,15 @@
 		content = #{content}
 		where ano = #{ano}
 	</update>
+	
+	<insert id="insertContent">
+		insert into tbl_askproduct(ano,title,content,name,email)
+		values(seq_askano.nextval,#{title},#{content},#{name},#{email})
+	</insert>
+	
+	<delete id="deleteContent">
+		delete from tbl_askproduct
+		where ano = #{ano}
+	</delete>
+	
 </mapper>
