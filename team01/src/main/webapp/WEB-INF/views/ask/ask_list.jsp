@@ -20,7 +20,26 @@
 		$(".page-link").click(function(e) {
 			e.preventDefault();
 			var page = $(this).attr("href");
-			location.href = "/ask/ask_list?page=" + page;
+			var perpage = $("#frmPaging>input[name=perPage]").val();
+			console.log("perpage: "+perpage);
+			$("#frmPaging>input[name=perPage]").val(perpage);
+			location.href = "/ask/ask_list?page=" + page+"&perpage="+perpage;
+		});
+		$("#perPage").change(function() {
+			var perPage = $(this).val();
+			console.log("perPage: "+perPage);
+			$("#frmPaging>input[name=page]").val("${pt.page}");
+			$("#frmPaging>input[name=perPage]").val(perPage);
+			$("#frmPaging").submit();
+			//location.href = "/board3/list_all?page=${pt.page}&perPage="+perPage;
+		});
+		$("#btnSearch").click(function() {
+			var searchType = $("#searchType").val();
+			var keyword = $("#keyword").val();
+			$("#frmPaging>input[name=page]").val("1");
+			$("#frmPaging>input[name=searchType]").val(searchType);
+			$("#frmPaging>input[name=keyword]").val(keyword);
+			//$("#frmPaging").submit();
 		});
 
 	});
@@ -38,7 +57,7 @@
 		return dateString;
 	};
 </script>
-
+<%@include file="/WEB-INF/views/ask/include/paging_form.jsp" %>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 	<!-- Navbar Brand-->
 	<a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
@@ -112,6 +131,28 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="row">
+				<div class="col-md-12">
+					<select id="perPage">
+						<c:forEach var="v" begin="5" end="30" step="5">
+							<option <c:if test="${v == pt.perPage}"> 
+							selected
+						</c:if> value="${v}">								
+								${v}줄씩 보기</option>
+						</c:forEach>
+					</select>
+					<select id="searchType" name="searchType">
+						<option value="t">제목</option>
+						<option value="c">내용</option>
+						<option value="w">작성자</option>
+						<option value="tc">제목 + 내용</option>
+					</select>
+					<input type="text" placeholder="검색어 입력" name="keyword" id="keyword">
+					<button type="button" class="btn btn-sm btn-success" 
+					id="btnSearch">검색</button>
+				</div>
+			</div>
 
 		<div class="card-body">
 			<table id="datatablesSimple" class="table">

@@ -31,11 +31,11 @@ public class PagingDto {
 	
 	public void setPage(int page) {
 		this.page = page;
-		System.out.println("setPage 실행됨");
+		//System.out.println("setPage 실행됨");
 		// 1 : 1 ~ 10
 		// 2 : 11 ~ 20
 		// 3 : 21 ~ 30
-		System.out.println("perPage: "+perPage);
+		//System.out.println("perPage: "+perPage);
 		this.endRow = this.page * perPage;
 		this.startRow = this.endRow - (perPage-1);
 		// p : s ~ e
