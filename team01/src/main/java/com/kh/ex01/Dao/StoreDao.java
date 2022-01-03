@@ -19,7 +19,9 @@ public class StoreDao {
 		sqlSession.insert(NAMESPACE + "applyRegistRun", franApplyVo);
 	}
 	
-
-	
+	public FranApplyVo applyInquir(String email) {
+		FranApplyVo franApplyVo = sqlSession.selectOne(NAMESPACE + "applyInquir", email);
+		return franApplyVo;
+	}
 
 }
