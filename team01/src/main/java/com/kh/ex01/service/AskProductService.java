@@ -18,4 +18,14 @@ public class AskProductService {
 		List<AskProductVo> list = askProductDao.selectAll();
 		return list;
 	}
+	
+	public AskProductVo getContent(int ano) {
+		AskProductVo askProductVo = askProductDao.getContent(ano);
+		return askProductVo;
+	}
+	public void modifyContent(AskProductVo askProductVo) {
+		askProductDao.modifyContent(askProductVo);
+	}
+	
+	
 }

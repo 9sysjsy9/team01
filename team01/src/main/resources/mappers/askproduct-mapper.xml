@@ -6,4 +6,16 @@
 	<select id="selectAll" resultType="AskProductVo">
 		select * from tbl_askproduct
 	</select>
+	
+	<select id="getContent" resultType="AskProductVo">
+		select * from tbl_askproduct 
+		where ano = #{ano}
+	</select>
+	
+	<update id="modifyContent">
+		update tbl_askproduct set
+		title = #{title},
+		content = #{content}
+		where ano = #{ano}
+	</update>
 </mapper>

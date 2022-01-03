@@ -9,26 +9,26 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/images/applyFranchise.png"/></div>
                     <div class="col-md-6">
-						<form role="form" action="/store/applyRegist">
+						<form role="form" action="/store/applyRegistRun" method="get">
 						<div class="form-group">
-							<label for="contact">
+							<label for="phone">
 								연락처
 							</label>
-							<input type="text" class="form-control" id="contact" name="contact" required/>
+							<input type="text" class="form-control" id="phone" name="phone" placeholder="010-1234-5678" required/>
 						</div>
 						
 						<div class="form-group">
 							<label for="email">
 								이메일
 							</label>
-							<input type="email" class="form-control" id="email" name="email" required/>
+							<input type="email" class="form-control" id="email" name="email" placeholder="example@shoese.com" required/>
 						</div>
 						<div class="form-group">
 							 <br>
-							<label for="content">
+							<label for="applyContent">
 								문의 내용
 							</label><br>
-							<textarea class="form-control" rows="12" name="content" required></textarea>
+							<textarea class="form-control" rows="12" id="applyContent" name="applyContent" placeholder="가맹 문의 사항을 입력해주세요." required></textarea>
 						</div>
 						<Br>
 						<button type="submit" class="btn btn-outline-primary flex-shrink-0">

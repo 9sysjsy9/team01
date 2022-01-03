@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper			
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"			
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.ex01.mappers.franapply">
+
+<!-- 지원자 지원 -->
+<insert id="applyRegistRun">
+	INSERT INTO tbl_franapply (fno, email, phone, applycontent)
+	VALUES (seq_fno.nextval, #{email}, #{phone}, #{applyContent}) 
+</insert>
+
+
+<!-- 지원 내용 조회 -->
+
+<!-- 지원 내용 수정 -->
+
+<!-- 지원 내용 답변 -->
+
+</mapper>
