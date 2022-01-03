@@ -11,7 +11,7 @@
 				<div id="maps" style="width: 100%; height: 700px;"></div>
 			</div>
 			<div class="col-md-6">
-				<br>
+				
 				<div class="small mb-1" id="phone">TEL : 052-123-4567</div>
 				<h1 class="display-5 fw-bolder" id="store">울산 1호점</h1>
 				<div class="fs-5 mb-5"></div>
@@ -67,8 +67,9 @@ $(function(){
 		marker.setMap(map);
 		
 		$("#phone").text("TEL : 02-123-4567");
-		$("#store").text("강남 1호점");
-		$("#explain").text("수영슈즈 2호점은 남구 남부경찰서 근처에 위치해 있습니다.");
+		$("#store").text("강남 2호점");
+		$("#explain").text("수영슈즈 2호점은 서울 강남 역삼역 근처에 위치해 있습니다.");
+		
 		$("#address").text("주소 : 서울특별시 강남구 강남구 테헤란로14길 6");
 	});
 	
@@ -81,7 +82,7 @@ $(function(){
 		map.panTo(moveLatLon);
 		$("#phone").text("TEL : 052-123-4567");
 		$("#store").text("울산 1호점");
-		$("#explain").text("수영슈즈 1호점은 서울 강남 역삼역 근처에 위치해 있습니다.");
+		$("#explain").text("수영슈즈 2호점은 남구 남부경찰서 근처에 위치해 있습니다.");
 		$("#address").text("주소 : 울산 남구 삼산로35번길 19");
 	});
 });
