@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kh.ex01.service.ProductService;
+import com.kh.ex01.vo.PagingDto;
 import com.kh.ex01.vo.ProductVo;
 
 /**
@@ -23,7 +24,8 @@ public class ProductController {
 	ProductService productService;
 	
    @RequestMapping(value = "/product_index", method = RequestMethod.GET)
-   public String productIndex(Model model) {
+   public String productIndex(Model model, PagingDto pt) {
+	   System.out.println("pt: "+pt);
 	   List<ProductVo> list = productService.selectAll();
 	   model.addAttribute("list", list);
 	   System.out.println("list: "+list);

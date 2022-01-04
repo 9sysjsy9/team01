@@ -68,10 +68,8 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/customer/customerNotice">공지사항</a></li>
-							<li><a class="dropdown-item" href="/customer/customerFaq">자주하는 질문</a></li>
-							<li><a class="dropdown-item" href="/customer/personelAsk">1:1 문의</a></li>
-							<li><a class="dropdown-item" href="/customer/ExchangeReturn">교환 및 반품</a></li>
-							<li><a class="dropdown-item" href="/customer/Refund">환불 관련</a></li>
+							<li><a class="dropdown-item" href="/customer/customerQna">자주하는 질문</a></li>
+							<li><a class="dropdown-item" href="/customer/customerService">CS센터</a></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="/company/main">사원 메뉴</a></li>
 				</ul>
