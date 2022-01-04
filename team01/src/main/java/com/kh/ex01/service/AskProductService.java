@@ -8,14 +8,15 @@ import org.springframework.stereotype.Service;
 
 import com.kh.ex01.Dao.AskProductDao;
 import com.kh.ex01.vo.AskProductVo;
+import com.kh.ex01.vo.PagingDto;
 
 @Service
 public class AskProductService {
 	@Inject
 	AskProductDao askProductDao;
 	
-	public List<AskProductVo> selectAll() {
-		List<AskProductVo> list = askProductDao.selectAll();
+	public List<AskProductVo> selectAll(PagingDto pt) {
+		List<AskProductVo> list = askProductDao.selectAll(pt);
 		return list;
 	}
 	
@@ -31,6 +32,10 @@ public class AskProductService {
 	}
 	public void deleteContent(int ano) {
 		askProductDao.deleteContent(ano);
+	}
+	public int getCount() {
+		int count = askProductDao.getCount();
+		return count;
 	}
 	
 }

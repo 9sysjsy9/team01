@@ -6,13 +6,12 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.ex01.service.AskProductService;
 import com.kh.ex01.vo.AskProductVo;
+import com.kh.ex01.vo.PagingDto;
 
 /**
  * Handles requests for the application home page.
@@ -24,9 +23,16 @@ public class AskProductController {
 	AskProductService askProductService;
 	
    @RequestMapping(value = "/ask_list", method = RequestMethod.GET)
-   public String askList(Model model) {
-	  List<AskProductVo> list = askProductService.selectAll();
+   public String askList(Model model, PagingDto pt) {
+	  pt.setCount(askProductService.getCount());
+	  int perPage = pt.getPerPage();
+	  System.out.println("perPage: "+perPage);
+	  pt.setPerPage(perPage);
+	  pt.setPage(pt.getPage());
+	  System.out.println("pt: "+pt);
+	  List<AskProductVo> list = askProductService.selectAll(pt);
 	  model.addAttribute("list",list);
+	  model.addAttribute("pt", pt);
       return "/ask/ask_list";
    }
    
