@@ -1,5 +1,7 @@
 package com.kh.ex01.Dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,7 +15,7 @@ public class StoreDao {
 	@Inject
 	private SqlSession sqlSession;
 	
-	private static final String NAMESPACE = "com.kh.ex01.mappers.franapply.";
+	private static final String NAMESPACE = "com.kh.ex01.mappers.applyfran.";
 	
 	public void applyRegistRun(FranApplyVo franApplyVo) {
 		sqlSession.insert(NAMESPACE + "applyRegistRun", franApplyVo);
@@ -30,6 +32,12 @@ public class StoreDao {
 		System.out.println("StoreDao, checkApply, result : " + result);
 		
 		return result;
+	}
+	
+	public List<FranApplyVo> applyFranList() {
+		List<FranApplyVo> list = sqlSession.selectList(NAMESPACE + "applyFranList");
+		return list;
+		
 	}
 
 }

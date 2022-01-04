@@ -1,5 +1,7 @@
 package com.kh.ex01.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -25,5 +27,10 @@ public class StoreService {
 	public int checkApply(String email) {
 		int result = storeDao.checkApply(email);
 		return result;
+	}
+	
+	public List<FranApplyVo> applyFranList(){
+		List<FranApplyVo> list = storeDao.applyFranList();
+		return list;
 	}
 }
