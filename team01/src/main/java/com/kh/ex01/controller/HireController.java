@@ -80,7 +80,6 @@ public class HireController {
 	 // 지원 등록하기
 	 @RequestMapping(value = "/regist_run", method = RequestMethod.GET)
 	 public String registRun(HireVo hireVo) {
-		 System.out.println("controller" + hireVo);
 		 hireService.registRun(hireVo);
 		 return "redirect:/hire/hire_regist";
 	 }
@@ -99,4 +98,14 @@ public class HireController {
 		 hireService.deleteBoard(hno);
 		 return "redirect:/hire/regist_list";
 	 }
+	 
+	 // 합격 불합격
+	 @RequestMapping(value = "/modify_success", method = RequestMethod.GET)
+	 public String modifyRun(int hno,Model model) {
+		 HireVo hireVo = hireService.getBoard(hno);
+		 hireService.modifySuccess(hno);
+		 model.addAttribute("hireVo",hireVo);
+		 return "/company/hire/regist_content";
+	 }
+	 
 }

@@ -59,4 +59,8 @@ public class HireService {
 	public void deleteBoard(int hno) {
 		hireDao.deleteBoard(hno);
 	}
+	
+	public void modifySuccess(int hno) {
+		hireDao.modifySuccess(hno);
+	}
 }
