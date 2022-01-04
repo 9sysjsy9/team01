@@ -50,4 +50,13 @@ public class HireService {
 	public void registRun(HireVo hireVo) {
 		hireDao.registRun(hireVo);
 	}
+	
+	public HireVo getBoard(int hno) {
+		HireVo hireVo = hireDao.getBoard(hno);
+		return hireVo;
+	}
+	
+	public void deleteBoard(int hno) {
+		hireDao.deleteBoard(hno);
+	}
 }

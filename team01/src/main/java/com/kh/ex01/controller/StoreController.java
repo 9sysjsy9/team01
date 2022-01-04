@@ -81,7 +81,21 @@ public class StoreController {
 	@RequestMapping(value = "/applyFranList", method = RequestMethod.GET)
 	public String applyFranList(Model model) {
 		List<FranApplyVo> list = storeService.applyFranList();
-		model.addAttribute("applyList" , list);
-		return "/company/store//applyFranList";
+		model.addAttribute("applyList", list);
+		return "/company/store/applyFranList";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/applyInquiry", method = RequestMethod.POST)
+	public FranApplyVo applyInquiry(String fno) {
+		FranApplyVo franApplyVo = storeService.applyInquiry(fno);
+		return franApplyVo;
+	}
+	
+	@RequestMapping(value="/replyRegistRun", method = RequestMethod.POST)
+	public String replyRegistRun(FranApplyVo franApplyVo) {
+		System.out.println("StoreController, applyRegistRun, franApplyVo : " + franApplyVo);
+		storeService.replyRegistRun(franApplyVo);
+		return "redirect:/store/applyFranList";
 	}
 }

@@ -41,4 +41,12 @@
 	WHERE fno = #{fno}
 </select>
 
+<!--  지원 문의 답변 수징 및 등록-->
+<update id="replyRegistRun">
+	UPDATE tbl_franapply
+	SET replyContent = #{replyContent}, replyState = 'y', replyDate = sysdate
+	WHERE fno = #{fno}
+</update>
+
+
 </mapper>

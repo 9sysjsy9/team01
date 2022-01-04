@@ -73,7 +73,6 @@
 							<li><a class="dropdown-item" href="/customer/ExchangeReturn">교환 및 반품</a></li>
 							<li><a class="dropdown-item" href="/customer/Refund">환불 관련</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="#">사원 메뉴</a></li>
 					<li class="nav-item"><a class="nav-link" href="/company/main">사원 메뉴</a></li>
 				</ul>
 			</div>
