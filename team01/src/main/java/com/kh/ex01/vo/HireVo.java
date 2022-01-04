@@ -1,48 +1,54 @@
 package com.kh.ex01.vo;
 
-import java.sql.Timestamp;
 
 public class HireVo {
 
-	private int bno;
-	private String cate;
-	private String title;
-	private String writer;
-	private Timestamp regdate;
-	public int getBno() {
-		return bno;
+	private int hno;
+	private String name;
+	private String email;
+	private String phonnum;
+	private String career;
+	private String content;
+	public int getHno() {
+		return hno;
 	}
-	public void setBno(int bno) {
-		this.bno = bno;
+	public void setHno(int hno) {
+		this.hno = hno;
 	}
-	public String getCate() {
-		return cate;
+	public String getName() {
+		return name;
 	}
-	public void setCate(String cate) {
-		this.cate = cate;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getTitle() {
-		return title;
+	public String getEmail() {
+		return email;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getWriter() {
-		return writer;
+	public String getPhonnum() {
+		return phonnum;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setPhonnum(String phonnum) {
+		this.phonnum = phonnum;
 	}
-	public Timestamp getRegdate() {
-		return regdate;
+	public String getCareer() {
+		return career;
 	}
-	public void setRegdate(Timestamp regdate) {
-		this.regdate = regdate;
+	public void setCareer(String career) {
+		this.career = career;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	@Override
 	public String toString() {
-		return "HireVo [bno=" + bno + ", cate=" + cate + ", title=" + title + ", writer=" + writer + ", regdate="
-				+ regdate + "]";
+		return "HireVo [hno=" + hno + ", name=" + name + ", email=" + email + ", phonnum=" + phonnum + ", career="
+				+ career + ", content=" + content + "]";
 	}
 	
 }

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.kh.ex01.Dao.HireDao;
+import com.kh.ex01.vo.HireBoardVo;
 import com.kh.ex01.vo.HireVo;
 import com.kh.ex01.vo.PagingDto;
 
@@ -16,23 +17,23 @@ public class HireService {
 	@Inject
 	HireDao hireDao;
 	
-	public List<HireVo> listAll(PagingDto pagingDto) {
-		List<HireVo> list = hireDao.listAll(pagingDto);
+	public List<HireBoardVo> listAll(PagingDto pagingDto) {
+		List<HireBoardVo> list = hireDao.listAll(pagingDto);
 		return list;
 	}
 	
-	public List<HireVo> listNew() {
-		List<HireVo> list = hireDao.listNew();
+	public List<HireBoardVo> listNew() {
+		List<HireBoardVo> list = hireDao.listNew();
 		return list;
 	}
 	
-	public List<HireVo> listExperience() {
-		List<HireVo> list = hireDao.listExperience();
+	public List<HireBoardVo> listExperience() {
+		List<HireBoardVo> list = hireDao.listExperience();
 		return list;
 	}
 	
-	public List<HireVo> listIntern() {
-		List<HireVo> list = hireDao.listIntern();
+	public List<HireBoardVo> listIntern() {
+		List<HireBoardVo> list = hireDao.listIntern();
 		return list;
 	}
 	
@@ -40,5 +41,18 @@ public class HireService {
 		int count = hireDao.getCount();
 		return count;
 	}
-
+	
+	public List<HireVo> registList() {
+		List<HireVo> list = hireDao.registList();
+		return list;
+	}
+	
+	public void registRun(HireVo hireVo) {
+		hireDao.registRun(hireVo);
+	}
+	
+	public HireVo getBoard(int hno) {
+		HireVo hireVo = hireDao.getBoard(hno);
+		return hireVo;
+	}
 }

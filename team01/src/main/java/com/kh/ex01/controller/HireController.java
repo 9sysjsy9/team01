@@ -1,4 +1,4 @@
-package com.kh.ex01;
+package com.kh.ex01.controller;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kh.ex01.service.HireService;
+import com.kh.ex01.vo.HireBoardVo;
 import com.kh.ex01.vo.HireVo;
 import com.kh.ex01.vo.PagingDto;
 
@@ -31,7 +32,7 @@ public class HireController {
 	 public String hireAll(Model model, PagingDto pagingDto) {
 		 pagingDto.setCount(hireService.getCount());
 		 pagingDto.setPage(pagingDto.getPage());
-		 List<HireVo> list = hireService.listAll(pagingDto);
+		 List<HireBoardVo> list = hireService.listAll(pagingDto);
 		 model.addAttribute("list" , list);
 		 model.addAttribute("pagingDto", pagingDto);
 		 return "hire/hire_all";
@@ -46,7 +47,7 @@ public class HireController {
 	 // 신입 채용공고
 	 @RequestMapping(value = "/hire_new", method = RequestMethod.GET)
 	 public String hireNew(Model model) {
-		 List<HireVo> list = hireService.listNew();
+		 List<HireBoardVo> list = hireService.listNew();
 		 model.addAttribute("list", list);
 		 return "hire/hire_new";
 	 }
@@ -54,7 +55,7 @@ public class HireController {
 	 // 경력 채용공고
 	 @RequestMapping(value = "/hire_experience", method = RequestMethod.GET)
 	 public String hireExperience(Model model) {
-		 List<HireVo> list = hireService.listExperience();
+		 List<HireBoardVo> list = hireService.listExperience();
 		 model.addAttribute("list", list);
 		 return "hire/hire_experience";
 	 }
@@ -62,8 +63,42 @@ public class HireController {
 	 // 인턴 채용공고
 	 @RequestMapping(value = "/hire_intern", method = RequestMethod.GET)
 	 public String hireIntern(Model model) {
-		 List<HireVo> list = hireService.listIntern();
+		 List<HireBoardVo> list = hireService.listIntern();
 		 model.addAttribute("list", list);
 		 return "hire/hire_intern";
+	 }
+	 
+	 // 지원자 보기
+	 @RequestMapping(value = "/regist_list", method = RequestMethod.GET)
+	 public String registList(Model model) {
+		 List<HireVo> list = hireService.registList();
+		 model.addAttribute("list",list);
+		 return "/company/hire/regist_list";
+		 
+	 }
+	 
+	 // 지원 등록하기
+	 @RequestMapping(value = "/regist_run", method = RequestMethod.GET)
+	 public String registRun(HireVo hireVo) {
+		 System.out.println("controller" + hireVo);
+		 hireService.registRun(hireVo);
+		 return "redirect:/hire/hire_regist";
+	 }
+	 
+	 // 지원자 상세내용
+//	 @RequestMapping(value = "/regist_content", method = RequestMethod.GET)
+//	 public String registRun2(Model model, int hno) {
+//		 List<HireVo> list = hireService.registList();
+//		 HireVo hireVo = hireService.getBoard(hno);
+//		 model.addAttribute("list",list);
+//		 model.addAttribute("hireVo",hireVo);
+//		 return "/company/hire/regist_content";
+//	 }
+	 
+	 @RequestMapping(value = "/regist_content", method = RequestMethod.GET)
+	 public String registBoard(Model model, int hno) {
+		 HireVo hireVo = hireService.getBoard(hno);
+		 model.addAttribute("hireVo",hireVo);
+		 return "/company/hire/regist_content";
 	 }
 }

@@ -37,28 +37,44 @@ $(function(){
 					<div class="col-md-8">
 						<table class="table">
 							<thead>
-								<c:forEach  items="${list}" var="hireVo">
+								<c:forEach  items="${list}" var="hireboardVo">
 									<tr>
-										<td>${hireVo.bno }</td>
-										<td>${hireVo.cate }</td>
-										<td><a href="${hireVo.title }">${hireVo.title }</a></td>
-										<td>${hireVo.regdate }</td>
-										<td>${hireVo.writer }</td>
+										<td>${hireboardVo.bno }</td>
+										<td>${hireboardVo.cate }</td>
+										<td><a href="${hireboardVo.title }">${hireboardVo.title }</a></td>
+										<td>${hireboardVo.regdate }</td>
+										<td>${hireboardVo.writer }</td>
 									</tr>
 								</c:forEach>
 							</thead>
 						</table>
 					<nav>
-						<ul class="pagination">
-							<c:if test="${pagingDto.startPage!=1}">
-								<li class="page-item"><a class="page-link"
-									href="${pagingDto.startPage-10}">이전</a></li>
+						<ul class="pagination justify-content-center">
+							<c:if test="${pagingDto.startPage != 1}">
+							<li class="page-item">
+								<a class="page-link" href="${pagingDto.startPage - 1}">이전</a>
+							</li>
 							</c:if>
-							<c:forEach var="v" begin="${pagingDto.startPage}" end="${pagingDto.endPage}">
-								<li class="page-item"><a class="page-link" href="${v}">${v}</a>
-								<li class="page-item">
+							<c:forEach var="v" begin="${pagingDto.startPage}" 
+											   end="${pagingDto.endPage}">
+							<li 
+								<c:choose>
+									<c:when test="${pagingDto.page == v}">
+										class="page-item active"
+									</c:when>
+									<c:otherwise>
+										class="page-item"
+									</c:otherwise>
+								</c:choose>
+							>
+								<a class="page-link" href="${v}">${v}</a>
+							</li>
 							</c:forEach>
-							<li><a class="page-link" href="${pagingDto.endPage+1}">다음</a></li>
+							<c:if test="${pagingDto.endPage < pagingDto.totalPage}">
+							<li class="page-item">
+								<a class="page-link" href="${pagingDto.endPage + 1}">다음</a>
+							</li>
+							</c:if>
 						</ul>
 					</nav>
 				</div>

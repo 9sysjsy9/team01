@@ -15,6 +15,7 @@
 	</properties>
 	<dependencies>
 	
+	
 <!-- ojdbc6 -->
 <dependency>
     <groupId>com.oracle.database.jdbc</groupId>
