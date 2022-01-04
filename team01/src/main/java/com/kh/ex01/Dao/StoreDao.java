@@ -42,9 +42,12 @@ public class StoreDao {
 		
 	}
 	
-	public FranApplyVo applyInquiry() {
-		FranApplyVo franApplyVo = sqlSession.selectOne(NAMESPACE + "applyInquiry");
+	public FranApplyVo applyInquiry(String fno) {
+		FranApplyVo franApplyVo = sqlSession.selectOne(NAMESPACE + "applyInquiry", fno);
 		return franApplyVo;
 	}
-
+	
+	public void replyRegistRun(FranApplyVo franApplyVo) {
+		sqlSession.update(NAMESPACE + "replyRegistRun",franApplyVo);
+	}
 }
