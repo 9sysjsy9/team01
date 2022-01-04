@@ -55,4 +55,8 @@ public class HireService {
 		HireVo hireVo = hireDao.getBoard(hno);
 		return hireVo;
 	}
+	
+	public void deleteBoard(int hno) {
+		hireDao.deleteBoard(hno);
+	}
 }

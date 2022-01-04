@@ -60,4 +60,8 @@ public class HireDao {
 		return hireVo;
 	}
 	
+	public void deleteBoard(int hno) {
+		sqlSession.delete(NAMESPACE + "deleteBoard", hno);
+	}
+	
 }
