@@ -10,5 +10,4 @@
                 <p>Bootstrap v5.1.3</p>
             </div>
         </div>
-        
 <%@ include file="/WEB-INF/views/company/include/footer.jsp"%>
