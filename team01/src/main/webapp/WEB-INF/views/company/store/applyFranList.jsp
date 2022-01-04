@@ -6,6 +6,10 @@
 
 <script>
 	$(function() {
+		
+		$("th").click(function(){
+			alert("test");
+		});
 		// 조회버튼 (메일 주소 버튼) 클릭시 내용 modal창 표시 
 		$(".applyInquiryLink").click(function(e) {
 			e.preventDefault();

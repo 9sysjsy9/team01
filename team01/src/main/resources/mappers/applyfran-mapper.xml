@@ -16,6 +16,7 @@
 <select id="applyStateInquiry" resultType="FranApplyVo">
 	SELECT * FROM tbl_franapply 
 	WHERE email = #{email} AND replystate = 'n'
+	ORDER BY fno DESC
 </select> 
 
 <!-- 지원 여부 조회 -->
