@@ -34,8 +34,12 @@ public class StoreService {
 		return list;
 	}
 	
-	public FranApplyVo applyInquiry() {
-		FranApplyVo franApplyVo = storeDao.applyInquiry();
+	public FranApplyVo applyInquiry(String fno) {
+		FranApplyVo franApplyVo = storeDao.applyInquiry(fno);
 		return franApplyVo;
+	}
+	
+	public void replyRegistRun(FranApplyVo franApplyVo) {
+		storeDao.replyRegistRun(franApplyVo);
 	}
 }
