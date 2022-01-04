@@ -54,4 +54,14 @@ public class HireDao {
 	public void registRun(HireVo hireVo) {
 		sqlSession.insert(NAMESPACE + "registRun", hireVo);
 	}
+	
+	public HireVo getBoard(int hno) {
+		HireVo hireVo = sqlSession.selectOne(NAMESPACE + "getBoard",hno);
+		return hireVo;
+	}
+	
+	public void deleteBoard(int hno) {
+		sqlSession.delete(NAMESPACE + "deleteBoard", hno);
+	}
+	
 }

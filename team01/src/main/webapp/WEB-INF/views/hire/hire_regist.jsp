@@ -16,39 +16,39 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<label for="exampleInputEmail1"> 이름 </label> <input
-										type="text" class="form-control" id="exampleInputEmail1" name="name"/>
+									<label for="exampleInputEmail1"> 이름 </label> 
+									<input type="text" class="form-control" name="name" required/>
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1"> 이메일 </label> 
-									<input type="email" class="form-control" id="exampleInputPassword1" name="email"/>
+									<input type="email" class="form-control" name="email" required/>
 								</div>
 								
 								<div class="form-group">
 									<label for="exampleInputPassword1"> 전화번호 </label> 
-									<input type="text" class="form-control" id="exampleInputPassword1" name="phonnum"/>
+									<input type="text" class="form-control" name="phonnum" required/>
 								</div>
 								
 								<div class="form-group">
 									<label for="exampleInputPassword1"> 경력 </label><br>
 										<input type="radio" style="margin-left:5px; margin-right: 10px;" 
-											value="신입" name="career">신입
+											value="신입" name="career" required>신입
 										<input type="radio" style="margin-left:20px; margin-right: 10px;" 
-											value="경력" name="career">경력
+											value="경력" name="career" required>경력
 										<input type="radio" style="margin-left:20px; margin-right: 10px;" 
-										 	value="인턴" name="career">인턴
+										 	value="인턴" name="career" required>인턴
 								</div>
 								
 								<div class="form-group">
 									<label for="exampleInputPassword1"> 자기소개 </label> 
-									<textarea rows="8" cols="50" class="form-control" id="exampleInputPassword1" name="content"></textarea>
+									<textarea rows="8" cols="50" class="form-control" id="exampleInputPassword1" 
+										name="content" placeholder="간략한 자기소개 작성 바랍니다."></textarea>
 								</div>
 								
 							</div>
 							<div>
 								<button class="btn btn-outline-dark flex-shrink-0" type="submit"
-									style="margin-top:15px;"> 신청
-								</button>
+									style="margin-top:15px;"> 신청 </button>
 							</div>
 						</div>
 					</div>

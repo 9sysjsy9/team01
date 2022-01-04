@@ -37,13 +37,13 @@ $(function(){
 					<div class="col-md-8">
 						<table class="table">
 							<thead>
-								<c:forEach  items="${list}" var="hireVo">
+								<c:forEach  items="${list}" var="hireboardVo">
 									<tr>
-										<td>${hireVo.bno }</td>
-										<td>${hireVo.cate }</td>
-										<td><a href="${hireVo.title }">${hireVo.title }</a></td>
-										<td>${hireVo.regdate }</td>
-										<td>${hireVo.writer }</td>
+										<td>${hireboardVo.bno }</td>
+										<td>${hireboardVo.cate }</td>
+										<td><a href="${hireboardVo.title }">${hireboardVo.title }</a></td>
+										<td>${hireboardVo.regdate }</td>
+										<td>${hireboardVo.writer }</td>
 									</tr>
 								</c:forEach>
 							</thead>
