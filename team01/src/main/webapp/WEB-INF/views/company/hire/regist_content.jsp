@@ -21,9 +21,11 @@
 					<input type="text" class="form-control" id="exampleInputPassword1" readonly value="${hireVo.content }"/>
 				</div>
 				
-				<button type="submit" class="btn btn-primary">
-					Submit
-				</button>
+				<div>
+					<a class="btn btn-outline-dark flex-shrink-0" href="regist_list">이전</a>
+					<a class="btnDelete btn btn-outline-dark flex-shrink-0" 
+						href="/hire/delete_list?hno=${hireVo.hno}">삭제</a>
+				</div>
 			</form>
 		</div>
 		<div class="col-md-3">

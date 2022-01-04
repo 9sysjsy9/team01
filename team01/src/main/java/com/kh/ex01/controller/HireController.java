@@ -85,20 +85,18 @@ public class HireController {
 		 return "redirect:/hire/hire_regist";
 	 }
 	 
-	 // 지원자 상세내용
-//	 @RequestMapping(value = "/regist_content", method = RequestMethod.GET)
-//	 public String registRun2(Model model, int hno) {
-//		 List<HireVo> list = hireService.registList();
-//		 HireVo hireVo = hireService.getBoard(hno);
-//		 model.addAttribute("list",list);
-//		 model.addAttribute("hireVo",hireVo);
-//		 return "/company/hire/regist_content";
-//	 }
-	 
+	// 지원자 상세내용
 	 @RequestMapping(value = "/regist_content", method = RequestMethod.GET)
 	 public String registBoard(Model model, int hno) {
 		 HireVo hireVo = hireService.getBoard(hno);
 		 model.addAttribute("hireVo",hireVo);
 		 return "/company/hire/regist_content";
+	 }
+	 
+	 // 지원자 삭제
+	 @RequestMapping(value = "/delete_list", method = RequestMethod.GET)
+	 public String deleteBoard(int hno) {
+		 hireService.deleteBoard(hno);
+		 return "redirect:/hire/regist_list";
 	 }
 }

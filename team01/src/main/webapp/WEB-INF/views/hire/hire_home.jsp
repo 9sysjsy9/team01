@@ -12,13 +12,11 @@
 				<a class="btn btn-outline-dark flex-shrink-0" href="hire_all">전체 공고 보기</a>
 			</div>
 		</div>
-		<!-- Call to Action-->
 		<div class="card text-white bg-secondary my-5 py-4 text-center">
 			<div class="card-body">
 				<p class="text-white m-0">여러분들을 언제든지 환영합니다!</p>
 			</div>
 		</div>
-		<!-- Content Row-->
 		<div class="row gx-4 gx-lg-5">
 			<div class="col-md-4 mb-5">
 				<div class="card h-100">

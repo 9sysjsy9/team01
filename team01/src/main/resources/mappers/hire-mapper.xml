@@ -48,5 +48,8 @@
 		where hno = #{hno}
 	</select>
 	
-	
+	<delete id="deleteBoard">
+		delete from tbl_hire
+		where hno = #{hno}
+	</delete>
 </mapper>
