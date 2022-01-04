@@ -5,8 +5,10 @@
 <mapper namespace="com.kh.ex01.mappers.hire">
 
 	<select id="listAll" resultType="HireVo">
-		select * from tbl_hire
-		order by bno desc
+		select * from
+			(select rownum rnum, a.* from
+			(select * from tbl_hire) a)
+		where rnum between #{startRow} and #{endRow}
 	</select>
 	
 	<select id="listNew" resultType="HireVo">
@@ -25,6 +27,10 @@
 		select * from tbl_hire
 		where cate = '[인턴]'
 		order by bno desc
+	</select>
+	
+	<select id="getCount" resultType="int">
+		select count(*) from tbl_hire
 	</select>
 	
 </mapper>

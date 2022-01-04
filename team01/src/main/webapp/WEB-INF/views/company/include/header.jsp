@@ -14,7 +14,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>SooyounhShoese</title>
+<title>사내 홈페이지</title>
 <!-- Favicon-->
 <link rel="icon" type="/image/x-icon" href="/assets/favicon.ico" />
 <!-- Core theme CSS (includes Bootstrap)-->
@@ -22,9 +22,9 @@
 </head>
 <body>
 	<!-- Responsive navbar-->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="#">SooYoungShoese</a>
+			<a class="navbar-brand" href="#">직원 전용</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -35,48 +35,38 @@
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/">홈</a></li>
-
+					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">사원찾기</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">게시판</a>
+						<ul class="dropdown-menu dropdown-menu-end"
+							aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="#">건의 사항</a></li>
+							<li><a class="dropdown-item" href="#">대나무 숲</a></li>
+							<li><a class="dropdown-item" href="#">자료실</a></li>
+						</ul></li>
 					
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">채용안내</a>
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">고객관리</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/hire/hire_home">채용공고</a></li>
-							<li><a class="dropdown-item" href="/hire/hire_regist">채용지원/조회</a></li>
+							<li><a class="dropdown-item" href="#">채용문의 관리</a></li>
+							<li><a class="dropdown-item" href="#">가맹문의 관리</a></li>
+							<li><a class="dropdown-item" href="#">제품문의 관리</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">매장안내</a>
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">관리자메뉴</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/store/findStore">매장찾기</a></li>
-							<li><a class="dropdown-item" href="/store/applyFranchise">가맹점 문의</a></li>
+							<li><a class="dropdown-item" href="#">가입 승인</a></li>
+							<li><a class="dropdown-item" href="#">사원 관리</a></li>
 						</ul></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">제품안내</a>
-						<ul class="dropdown-menu dropdown-menu-end"
-							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/product/product_index">제품정보</a></li>
-							<li><a class="dropdown-item" href="/product/product_ask">제품문의</a></li>
-						</ul></li>
-<<<<<<< HEAD
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">고객센터</a>
-						<ul class="dropdown-menu dropdown-menu-end"
-							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/customer/customerNotice">공지사항</a></li>
-							<li><a class="dropdown-item" href="/customer/customerFaq">자주하는 질문</a></li>
-							<li><a class="dropdown-item" href="/customer/personelAsk">1:1 문의</a></li>
-							<li><a class="dropdown-item" href="/customer/ExchangeReturn">교환 및 반품</a></li>
-							<li><a class="dropdown-item" href="/customer/Refund">환불 관련</a></li>
-						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="#">사원 메뉴</a></li>
-=======
-					<li class="nav-item"><a class="nav-link" href="/company/main">사원 메뉴</a></li>
->>>>>>> branch 'master' of https://github.com/9sysjsy9/team01.git
+					<li class="nav-item"><a class="nav-link" href="#">회사 일정</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">마이 페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="/">로그아웃</a></li>
 				</ul>
 			</div>
 		</div>
