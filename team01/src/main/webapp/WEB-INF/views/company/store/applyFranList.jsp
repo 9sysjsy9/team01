@@ -33,7 +33,7 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th>문의번호</th>
+									<th>#</th>
 									<th>이메일</th>
 									<th>연락처</th>
 									<th>문의 일시</th>
@@ -45,7 +45,7 @@
 								<c:forEach var="list" items="${applyList}">
 									<tr>
 										<td>${list.fno}</td>
-										<td>${list.email}</td>
+										<td><a href="${list.fno}" id="applyInquiry">${list.email}</a></td>
 										<td>${list.phone}</td>
 										<td>${list.regDate}</td>
 										<td>${list.replyState}</td>

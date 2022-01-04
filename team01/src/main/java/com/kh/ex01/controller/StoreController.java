@@ -65,10 +65,10 @@ public class StoreController {
 
 	// 가맹점 문의서 조회
 	@ResponseBody
-	@RequestMapping(value = "/applyInquiry", method = RequestMethod.POST)
-	public FranApplyVo applyInquiry(String email) {
+	@RequestMapping(value = "/applyStateInquiry", method = RequestMethod.POST)
+	public FranApplyVo applyStateInquiry(String email) {
 		System.out.println("StoreController, applyInquiry, email : " + email);
-		FranApplyVo franApplyVo = storeService.applyInquiry(email);
+		FranApplyVo franApplyVo = storeService.applyStateInquiry(email);
 		System.out.println("StoreController, applyInquiry, franApplyVo : " + franApplyVo);
 		if (franApplyVo != null) {
 			return franApplyVo;

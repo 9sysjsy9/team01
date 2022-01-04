@@ -21,8 +21,8 @@ public class StoreDao {
 		sqlSession.insert(NAMESPACE + "applyRegistRun", franApplyVo);
 	}
 	
-	public FranApplyVo applyInquiry(String email) {
-		FranApplyVo franApplyVo = sqlSession.selectOne(NAMESPACE + "applyInquiry", email);
+	public FranApplyVo applyStateInquiry(String email) {
+		FranApplyVo franApplyVo = sqlSession.selectOne(NAMESPACE + "applyStateInquiry", email);
 		return franApplyVo;
 	}
 	
@@ -34,10 +34,17 @@ public class StoreDao {
 		return result;
 	}
 	
+//사내페이지
+	
 	public List<FranApplyVo> applyFranList() {
 		List<FranApplyVo> list = sqlSession.selectList(NAMESPACE + "applyFranList");
 		return list;
 		
+	}
+	
+	public FranApplyVo applyInquiry() {
+		FranApplyVo franApplyVo = sqlSession.selectOne(NAMESPACE + "applyInquiry");
+		return franApplyVo;
 	}
 
 }

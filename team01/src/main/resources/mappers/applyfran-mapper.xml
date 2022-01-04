@@ -13,7 +13,7 @@
 
 <!-- 지원 내용 조회 -->
 <!-- 미답변 내용 조회 기능 추가 필요 -->
-<select id="applyInquiry" resultType="FranApplyVo">
+<select id="applyStateInquiry" resultType="FranApplyVo">
 	SELECT * FROM tbl_franapply 
 	WHERE email = #{email} AND replystate = 'n'
 </select> 
@@ -33,6 +33,12 @@
 <select id="applyFranList" resultType="FranApplyVo">
 	SELECT * FROM tbl_franapply
 	ORDER BY fno desc
+</select>
+
+<!--  지원내용 조회 -->
+<select id="applyInquiry" resultType="FranApplyVo">
+	SELECT * FROM tbl_franapply
+	WHERE fno = #{fno}
 </select>
 
 </mapper>

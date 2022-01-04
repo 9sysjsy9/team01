@@ -19,8 +19,8 @@ public class StoreService {
 		storeDao.applyRegistRun(franApplyVo);
 	}
 	
-	public FranApplyVo applyInquiry(String email) {
-		FranApplyVo franApplyVo = storeDao.applyInquiry(email);
+	public FranApplyVo applyStateInquiry(String email) {
+		FranApplyVo franApplyVo = storeDao.applyStateInquiry(email);
 		return franApplyVo;
 	}
 	
@@ -28,9 +28,14 @@ public class StoreService {
 		int result = storeDao.checkApply(email);
 		return result;
 	}
-	
+//사내 페이지	
 	public List<FranApplyVo> applyFranList(){
 		List<FranApplyVo> list = storeDao.applyFranList();
 		return list;
+	}
+	
+	public FranApplyVo applyInquiry() {
+		FranApplyVo franApplyVo = storeDao.applyInquiry();
+		return franApplyVo;
 	}
 }
