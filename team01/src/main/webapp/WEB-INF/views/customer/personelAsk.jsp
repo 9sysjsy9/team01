@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
         <!-- Page content-->
         <div class="container">
-            공지사항
+            ㅁㅁㅁㅁ
         </div>
         
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
