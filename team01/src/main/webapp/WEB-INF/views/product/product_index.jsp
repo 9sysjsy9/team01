@@ -11,6 +11,18 @@
 		</div>
 	</div>
 </header>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script>
+$(function() {
+	$(".page-link").click(function(e) {
+		e.preventDefault();
+		var page = $(this).attr("href");
+		location.href = "/produck/produck_index?page=" + page;
+	});
+	
+});
+
+</script>
 <!-- Section-->
 <section class="py-5">
 
@@ -130,6 +142,27 @@
 			</c:forEach>
 			
 		</div>
+		
+		<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<nav>
+					<ul class="pagination">
+<%-- 						<c:if test="${pt.startPage!=1}"> --%>
+							<li class="page-item"><a class="page-link"
+								href="#">이전</a></li>
+<%-- 						</c:if> --%>
+						<c:forEach var="v" begin="1" end="10">
+							<li class="page-item"><a class="page-link" href="${v}">${v}</a>
+							<li class="page-item">
+						</c:forEach>
+						<li><a class="page-link" href="#">다음</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+		
 	</div>
 </section>
 
