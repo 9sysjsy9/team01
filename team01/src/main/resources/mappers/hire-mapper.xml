@@ -4,33 +4,43 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.ex01.mappers.hire">
 
-	<select id="listAll" resultType="HireVo">
+	<select id="listAll" resultType="HireBoardVo">
 		select * from
 			(select rownum rnum, a.* from
-			(select * from tbl_hire) a)
+			(select * from tbl_hireboard) a)
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	
-	<select id="listNew" resultType="HireVo">
-		select * from tbl_hire
+	<select id="listNew" resultType="HireBoardVo">
+		select * from tbl_hireboard
 		where cate = '[신입]'
 		order by bno desc
 	</select>
 	
-	<select id="listExperience" resultType="HireVo">
-		select * from tbl_hire
+	<select id="listExperience" resultType="HireBoardVo">
+		select * from tbl_hireboard
 		where cate = '[경력]'
 		order by bno desc
 	</select>
 	
-	<select id="listIntern" resultType="HireVo">
-		select * from tbl_hire
+	<select id="listIntern" resultType="HireBoardVo">
+		select * from tbl_hireboard
 		where cate = '[인턴]'
 		order by bno desc
 	</select>
 	
 	<select id="getCount" resultType="int">
-		select count(*) from tbl_hire
+		select count(*) from tbl_hireboard
 	</select>
+	
+	<select id="registList" resultType="HireVo">
+		select * from tbl_hire
+		order by hno desc
+	</select>
+	
+	<insert id="registRun">
+		insert into tbl_hire(hno, name, email, phonnum, career, content)
+		values(seq_hno.nextval, #{name}, #{email}, #{phonnum}, #{career}, #{content})
+	</insert>
 	
 </mapper>
