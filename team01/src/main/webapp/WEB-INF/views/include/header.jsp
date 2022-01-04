@@ -36,15 +36,7 @@
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/">홈</a></li>
 
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">알림판</a>
-						<ul class="dropdown-menu dropdown-menu-end"
-							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/notice/noticeList">공지사항</a></li>
-							<li><a class="dropdown-item" href="#">인사말</a></li>
-							<li><a class="dropdown-item" href="#">연혁</a></li>
-						</ul></li>
+					
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">채용안내</a>
@@ -68,6 +60,17 @@
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/product/product_index">제품정보</a></li>
 							<li><a class="dropdown-item" href="/product/product_ask">제품문의</a></li>
+						</ul></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">고객센터</a>
+						<ul class="dropdown-menu dropdown-menu-end"
+							aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="/customer/customerNotice">공지사항</a></li>
+							<li><a class="dropdown-item" href="/customer/customerFaq">자주하는 질문</a></li>
+							<li><a class="dropdown-item" href="/customer/personelAsk">1:1 문의</a></li>
+							<li><a class="dropdown-item" href="/customer/ExchangeReturn">교환 및 반품</a></li>
+							<li><a class="dropdown-item" href="/customer/Refund">환불 관련</a></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#">사원 메뉴</a></li>
 				</ul>
