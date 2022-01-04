@@ -15,7 +15,7 @@
 <section class="py-5">
 
 	<div class="container px-4 px-lg-5 mt-5">
-		
+
 		<div class="xans-element- xans-product xans-product-normalmenu">
 			<div class="sort">
 				<select id="selArray" name="selArray"
@@ -38,7 +38,7 @@
 		</div>
 
 		<div class="container px-2 px-lg-2 mt-4"></div>
-		
+
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
@@ -53,10 +53,10 @@
 						<div class="collapse navbar-collapse"
 							id="bs-example-navbar-collapse-1">
 							<ul class="navbar-nav">
-								<li class="nav-item active"><a class="nav-link" href="#">Link
+								<li class="nav-item active"><a class="nav-link" href="#">Man
 										<span class="sr-only">(current)</span>
 								</a></li>
-								<li class="nav-item"><a class="nav-link" href="#">Link</a>
+								<li class="nav-item"><a class="nav-link" href="#">Woman</a>
 								</li>
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="http://example.com"
@@ -104,8 +104,8 @@
 			<div class="col mb-5">
 				<div class="card h-100">
 					<!-- Product image-->
-					<img class="card-img-top"
-						src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+					<img class="card-img-top" src="..views/product_images/shoes1.jpg"
+						alt="..." />
 					<!-- Product details-->
 					<div class="card-body p-4">
 						<div class="text-center">
@@ -118,13 +118,14 @@
 					<!-- Product actions-->
 					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 						<div class="text-center">
-							<a class="btn btn-outline-dark mt-auto" href="#">정보보기</a>
-							<a class="btn btn-outline-dark mt-auto" href="#">장바구니</a>
+							<a class="btn btn-outline-dark mt-auto" href="/product/product_detail">정보보기</a> <a
+								class="btn btn-outline-dark mt-auto" href="#">장바구니</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			</div>
+		</div>
+	</div>
 </section>
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
