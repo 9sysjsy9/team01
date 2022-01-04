@@ -61,7 +61,7 @@
 							<li><a class="dropdown-item" href="/product/product_index">제품정보</a></li>
 							<li><a class="dropdown-item" href="/product/product_ask">제품문의</a></li>
 						</ul></li>
-<<<<<<< HEAD
+
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">고객센터</a>
@@ -74,9 +74,7 @@
 							<li><a class="dropdown-item" href="/customer/Refund">환불 관련</a></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#">사원 메뉴</a></li>
-=======
 					<li class="nav-item"><a class="nav-link" href="/company/main">사원 메뉴</a></li>
->>>>>>> branch 'master' of https://github.com/9sysjsy9/team01.git
 				</ul>
 			</div>
 		</div>
