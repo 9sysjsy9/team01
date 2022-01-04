@@ -7,11 +7,8 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="jumbotron">
-				<h2>
-					고객 센터 공지<br>
-				</h2>
-				<p>
-					수영 슈즈에 오신 것을 환영합니다.<br>
+				<h2>고객 센터 공지<br></h2>
+				<p>수영 슈즈에 오신 것을 환영합니다.<br>
 					아래의 공지사항을 확인해주세요.</p>
 				<p>
 					<a class="btn btn-primary btn-large" href="#">지난 공지 확인</a>
@@ -20,92 +17,21 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>
-							No.
-						</th>
-						<th>
-							항목
-						</th>
-						<th>
-							제목
-						</th>
-						<th>
-							날짜
-						</th>
+						<th>No.</th>
+						<th>항목</th>
+						<th>제목</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-					</tr>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Approved
-						</td>
-					</tr>
-					<tr>
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-					</tr>
-					<tr>
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-					</tr>
-					<tr>
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-					</tr>
+					<c:forEach items="${list}" var="noticeVo">
+						<tr>
+							<td>${noticeVo.notice_no}</td>
+							<td>${noticeVo.notice_title}</td>
+							<td>${noticeVo.notice_content}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
+				
 			</table>
 			<nav>
 				<ul class="pagination">
