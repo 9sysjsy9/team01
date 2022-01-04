@@ -1,5 +1,7 @@
 package com.kh.ex01.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -17,13 +19,23 @@ public class StoreService {
 		storeDao.applyRegistRun(franApplyVo);
 	}
 	
-	public FranApplyVo applyInquiry(String email) {
-		FranApplyVo franApplyVo = storeDao.applyInquiry(email);
+	public FranApplyVo applyStateInquiry(String email) {
+		FranApplyVo franApplyVo = storeDao.applyStateInquiry(email);
 		return franApplyVo;
 	}
 	
 	public int checkApply(String email) {
 		int result = storeDao.checkApply(email);
 		return result;
+	}
+//사내 페이지	
+	public List<FranApplyVo> applyFranList(){
+		List<FranApplyVo> list = storeDao.applyFranList();
+		return list;
+	}
+	
+	public FranApplyVo applyInquiry() {
+		FranApplyVo franApplyVo = storeDao.applyInquiry();
+		return franApplyVo;
 	}
 }

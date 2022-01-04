@@ -129,7 +129,7 @@
 		$("#inquiryBtn").click(function(e) {
 			e.preventDefault();
 
-			var url = "/store/applyInquiry";
+			var url = "/store/applyStateInquiry";
 			//email 로 DB조회
 			var sData = {
 				"email" : $("#modal-container-inquiry").find("#email").val()

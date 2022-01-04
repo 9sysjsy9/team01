@@ -66,7 +66,7 @@
 </nav>
 <div id="layoutSidenav_content">
 	<div class="container-fluid px-4">
-		<h1 class="mt-4">고객문의</h1>
+		<h1 class="mt-4">고객문의 게시판</h1>
 		<ol class="breadcrumb mb-4">
 			<li class="breadcrumb-item active">원하는 기능를 선택하세요</li>
 		</ol>

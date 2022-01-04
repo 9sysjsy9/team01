@@ -19,6 +19,14 @@ public class ProductController {
    public String productAsk() {
 	   return "/product/product_ask";
    }
+   @RequestMapping(value = "/product_detail", method = RequestMethod.GET)
+   public String productDetail() {
+	   return "/product/product_detail";
+   }
+   @RequestMapping(value = "/product_list", method = RequestMethod.GET)
+   public String productList() {
+	   return "/product/product_list";
+   }
    
    
 }

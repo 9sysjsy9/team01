@@ -25,9 +25,6 @@ public class AskProductController {
    @RequestMapping(value = "/ask_list", method = RequestMethod.GET)
    public String askList(Model model, PagingDto pt) {
 	  pt.setCount(askProductService.getCount());
-	  int perPage = pt.getPerPage();
-	  System.out.println("perPage: "+perPage);
-	  pt.setPerPage(perPage);
 	  pt.setPage(pt.getPage());
 	  System.out.println("pt: "+pt);
 	  List<AskProductVo> list = askProductService.selectAll(pt);
