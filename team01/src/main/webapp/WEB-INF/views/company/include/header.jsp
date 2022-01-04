@@ -53,7 +53,7 @@
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">고객관리</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#">채용문의 관리</a></li>
+							<li><a class="dropdown-item" href="/hire/regist_list">채용문의 관리</a></li>
 							<li><a class="dropdown-item" href="/store/applyFranList">가맹문의 관리</a></li>
 							<li><a class="dropdown-item" href="#">제품문의 관리</a></li>
 						</ul></li>
