@@ -1,4 +1,4 @@
-package com.kh.ex01;
+package com.kh.ex01.controller;
 
 import java.util.List;
 
@@ -73,7 +73,7 @@ public class HireController {
 	 public String registList(Model model) {
 		 List<HireVo> list = hireService.registList();
 		 model.addAttribute("list",list);
-		 return "hire/regist_list";
+		 return "/company/hire/regist_list";
 		 
 	 }
 	 
@@ -85,4 +85,20 @@ public class HireController {
 		 return "redirect:/hire/hire_regist";
 	 }
 	 
+	 // 지원자 상세내용
+//	 @RequestMapping(value = "/regist_content", method = RequestMethod.GET)
+//	 public String registRun2(Model model, int hno) {
+//		 List<HireVo> list = hireService.registList();
+//		 HireVo hireVo = hireService.getBoard(hno);
+//		 model.addAttribute("list",list);
+//		 model.addAttribute("hireVo",hireVo);
+//		 return "/company/hire/regist_content";
+//	 }
+	 
+	 @RequestMapping(value = "/regist_content", method = RequestMethod.GET)
+	 public String registBoard(Model model, int hno) {
+		 HireVo hireVo = hireService.getBoard(hno);
+		 model.addAttribute("hireVo",hireVo);
+		 return "/company/hire/regist_content";
+	 }
 }

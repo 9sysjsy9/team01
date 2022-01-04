@@ -7,7 +7,7 @@
 	<select id="listAll" resultType="HireBoardVo">
 		select * from
 			(select rownum rnum, a.* from
-			(select * from tbl_hireboard) a)
+			(select * from tbl_hireboard order by bno desc) a) 
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	
@@ -42,5 +42,11 @@
 		insert into tbl_hire(hno, name, email, phonnum, career, content)
 		values(seq_hno.nextval, #{name}, #{email}, #{phonnum}, #{career}, #{content})
 	</insert>
+	
+	<select id="getBoard" resultType="HireVo">
+		select * from tbl_hire
+		where hno = #{hno}
+	</select>
+	
 	
 </mapper>
