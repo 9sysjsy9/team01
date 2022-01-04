@@ -10,7 +10,7 @@
 				<h1>자주하는 질문</h1>
 			</div>
 
-			<p>1:1 문의 전에 자주 하는 질문들을 확인해주세요</p>
+			<p><br>1:1 문의 전에 자주 하는 질문들을 확인해주세요</p>
 			<thead>
 				<tr>
 					<th><br></th>
@@ -21,28 +21,12 @@
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#bs-example-navbar-collapse-1">
-				<span class="navbar-toggler-icon"></span>
 			</button>
-			<a class="navbar-brand" href="#">Brand</a>
+			<a class="navbar-brand" href="#" >키워드를입력하세요.</a>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="navbar-nav">
-					<li class="nav-item active"><a class="nav-link" href="#">Link
-							<span class="sr-only">(current)</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="http://example.com"
-						id="navbarDropdownMenuLink" data-toggle="dropdown">Dropdown
-							link</a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">Action</a> <a
-								class="dropdown-item" href="#">Another action</a> <a
-								class="dropdown-item" href="#">Something else here</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Separated link</a>
-						</div></li>
+										
 				</ul>
 				<form class="form-inline">
 					<input class="form-control mr-sm-2" type="text" />
@@ -67,7 +51,7 @@
 						확인이 가능한 상품에 한하여 안내 받으실 수 있습니다.
 					</td>
 				</tr>
-				<tr class="table-active">
+				<tr class="table-warning">
 					<th>배송 가능한 지역은 어떻게 되나요?</th>
 				</tr>
 				<tr>
@@ -75,7 +59,7 @@
 						외 지역까지 가능하도록 최선을 다하겠습니다.
 					</td>
 				</tr>
-				<tr class="table-danger">
+				<tr class="table-warning">
 					<th>배송 정책은 어떻게 되나요?</th>
 				</tr>
 				<tr>
@@ -105,7 +89,7 @@
 						 - 3일이 지날 경우 교환 신청은 자동으로 취소됩니다.
 					</td>
 				</tr>
-				<tr class="table-danger">
+				<tr class="table-warning">
 					<th>취소는 언제까지 가능한가요?</th>
 				</tr>
 				<tr>
