@@ -43,6 +43,7 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="#">건의 사항</a></li>
+							<li><a class="dropdown-item" href="#">자유 게시판</a></li>
 							<li><a class="dropdown-item" href="#">대나무 숲</a></li>
 							<li><a class="dropdown-item" href="#">자료실</a></li>
 						</ul></li>
@@ -53,7 +54,7 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="#">채용문의 관리</a></li>
-							<li><a class="dropdown-item" href="#">가맹문의 관리</a></li>
+							<li><a class="dropdown-item" href="/store/applyFranList">가맹문의 관리</a></li>
 							<li><a class="dropdown-item" href="#">제품문의 관리</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
@@ -64,8 +65,8 @@
 							<li><a class="dropdown-item" href="#">가입 승인</a></li>
 							<li><a class="dropdown-item" href="#">사원 관리</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="#">회사 일정</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">마이 페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">회사일정</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
 					<li class="nav-item"><a class="nav-link" href="/">로그아웃</a></li>
 				</ul>
 			</div>

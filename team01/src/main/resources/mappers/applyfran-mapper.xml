@@ -2,7 +2,7 @@
 <!DOCTYPE mapper			
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"			
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.ex01.mappers.franapply">
+<mapper namespace="com.kh.ex01.mappers.applyfran">
 
 <!-- 지원자 지원 -->
 <insert id="applyRegistRun">
@@ -13,11 +13,10 @@
 
 <!-- 지원 내용 조회 -->
 <!-- 미답변 내용 조회 기능 추가 필요 -->
-<select id="applyInquiry" resultType="FranApplyVo">
+<select id="applyStateInquiry" resultType="FranApplyVo">
 	SELECT * FROM tbl_franapply 
 	WHERE email = #{email} AND replystate = 'n'
 </select> 
-
 
 <!-- 지원 여부 조회 -->
 <select id="checkApply" resultType="int">
@@ -28,5 +27,18 @@
 <!-- 지원 내용 수정 -->
 
 <!-- 지원 내용 답변 -->
+<!-- 사내페이지 지원 관리 메뉴 -->
+
+<!-- 지원리스트 뷰 -->
+<select id="applyFranList" resultType="FranApplyVo">
+	SELECT * FROM tbl_franapply
+	ORDER BY fno desc
+</select>
+
+<!--  지원내용 조회 -->
+<select id="applyInquiry" resultType="FranApplyVo">
+	SELECT * FROM tbl_franapply
+	WHERE fno = #{fno}
+</select>
 
 </mapper>
