@@ -6,8 +6,10 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.ex01.service.HireService;
 import com.kh.ex01.vo.HireBoardVo;
@@ -123,5 +125,21 @@ public class HireController {
 		 return "redirect:/hire/regist_content?hno="+hno;
 	 }
 	 
-	
+	 // 합격 확인
+	 @ResponseBody
+	 @RequestMapping(value = "/search_success", method = RequestMethod.GET)
+	 public String searchSuccess(String name, String email) {
+		 System.out.println("contoller : " + name + email);
+		 HireVo hireVo = hireService.searchSuccess(name, email);
+		 System.out.println("controllor hireVo :" + hireVo);
+		 String state = hireVo.getState();
+		 System.out.println("state:" + state);
+		 if(state.equals("success")) {
+			 return "success";
+		 } else if(state.equals("fail")){
+			 return "fail";
+		 } else {
+			 return "stay";
+		 }
+	 }
 }

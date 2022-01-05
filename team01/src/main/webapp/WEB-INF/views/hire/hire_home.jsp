@@ -4,7 +4,6 @@
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 	<div class="container px-4 px-lg-5">
-		<!-- Heading Row-->
 		<div class="row gx-4 gx-lg-5 align-items-center my-5">
 			<div class="col-lg-5">
 				<h1 class="font-weight-light">진행 중인 채용공고</h1>
