@@ -63,4 +63,8 @@ public class HireService {
 	public void modifySuccess(int hno) {
 		hireDao.modifySuccess(hno);
 	}
+	
+	public void modifyFail(int hno) {
+		hireDao.modifyFail(hno);
+	}
 }

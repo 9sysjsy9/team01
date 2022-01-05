@@ -68,4 +68,7 @@ public class HireDao {
 		sqlSession.update(NAMESPACE + "modifySuccess", hno);
 	}
 	
+	public void modifyFail(int hno) {
+		sqlSession.update(NAMESPACE + "modifyFail", hno);
+	}
 }
