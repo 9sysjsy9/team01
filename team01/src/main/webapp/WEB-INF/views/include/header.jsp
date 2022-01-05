@@ -2,12 +2,17 @@
 	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
+<html>
 <head>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <meta charset="utf-8" />
 <meta name="viewport"
@@ -36,7 +41,7 @@
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/">홈</a></li>
 
-					
+
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">채용안내</a>
@@ -52,7 +57,8 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/store/findStore">매장찾기</a></li>
-							<li><a class="dropdown-item" href="/store/applyFranchise">가맹점 문의</a></li>
+							<li><a class="dropdown-item" href="/store/applyFranchise">가맹점
+									문의</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
@@ -69,10 +75,13 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/customer/customerNotice">공지사항</a></li>
-							<li><a class="dropdown-item" href="/customer/customerQna">자주하는 질문</a></li>
-							<li><a class="dropdown-item" href="/customer/customerService">CS센터</a></li>
+							<li><a class="dropdown-item" href="/customer/customerQna">자주하는
+									질문</a></li>
+							<li><a class="dropdown-item"
+								href="/customer/customerService">CS센터</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="/company/main">사원 메뉴</a></li>
+					<li class="nav-item"><a class="nav-link" href="/company/main">사원
+							메뉴</a></li>
 				</ul>
 			</div>
 		</div>
