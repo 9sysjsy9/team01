@@ -58,4 +58,10 @@
 		state = 'success'
 		where hno = #{hno}
 	</update>
+	
+	<update id="modifyFail">
+		update tbl_hire set
+		state = 'fail'
+		where hno = #{hno}
+	</update>
 </mapper>

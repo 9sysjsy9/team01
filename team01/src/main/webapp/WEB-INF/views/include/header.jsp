@@ -43,7 +43,8 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/hire/hire_home">채용공고</a></li>
-							<li><a class="dropdown-item" href="/hire/hire_regist">채용지원/조회</a></li>
+							<li><a class="dropdown-item" href="/hire/hire_regist">채용지원</a></li>
+							<li><a class="dropdown-item" href="/hire/hire_search">채용조회</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"

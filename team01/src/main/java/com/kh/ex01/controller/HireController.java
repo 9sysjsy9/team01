@@ -84,6 +84,12 @@ public class HireController {
 		 return "redirect:/hire/hire_regist";
 	 }
 	 
+	 // 채용조회
+	 @RequestMapping(value = "/hire_search", method = RequestMethod.GET)
+	 public String hireSearch() {
+		 return "hire/hire_search";
+	 }
+	 
 	// 지원자 상세내용
 	 @RequestMapping(value = "/regist_content", method = RequestMethod.GET)
 	 public String registBoard(Model model, int hno) {
@@ -99,13 +105,23 @@ public class HireController {
 		 return "redirect:/hire/regist_list";
 	 }
 	 
-	 // 합격 불합격
+	 // 합격 통지
 	 @RequestMapping(value = "/modify_success", method = RequestMethod.GET)
-	 public String modifyRun(int hno,Model model) {
+	 public String modifySuccess(int hno,Model model) {
 		 HireVo hireVo = hireService.getBoard(hno);
 		 hireService.modifySuccess(hno);
 		 model.addAttribute("hireVo",hireVo);
 		 return "redirect:/hire/regist_content?hno="+hno;
 	 }
 	 
+	 // 불합격 통지
+	 @RequestMapping(value = "/modify_fail", method = RequestMethod.GET)
+	 public String modifyFail(int hno,Model model) {
+		 HireVo hireVo = hireService.getBoard(hno);
+		 hireService.modifyFail(hno);
+		 model.addAttribute("hireVo",hireVo);
+		 return "redirect:/hire/regist_content?hno="+hno;
+	 }
+	 
+	
 }
