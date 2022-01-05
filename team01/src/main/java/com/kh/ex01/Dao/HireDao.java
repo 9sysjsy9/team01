@@ -1,6 +1,8 @@
 package com.kh.ex01.Dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -70,5 +72,14 @@ public class HireDao {
 	
 	public void modifyFail(int hno) {
 		sqlSession.update(NAMESPACE + "modifyFail", hno);
+	}
+	
+	public HireVo searchSuccess(String name, String email) {
+		Map<String, String> map = new HashMap<>();
+		map.put("name",name);
+		map.put("email",email);
+		System.out.println("map : " + map);
+		HireVo hireVo = sqlSession.selectOne(NAMESPACE + "searchSuccess", map);
+		return hireVo;
 	}
 }

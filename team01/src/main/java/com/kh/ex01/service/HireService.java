@@ -67,4 +67,9 @@ public class HireService {
 	public void modifyFail(int hno) {
 		hireDao.modifyFail(hno);
 	}
+	
+	public HireVo searchSuccess(String name, String email) {
+		HireVo hireVo = hireDao.searchSuccess(name, email);
+		return hireVo;
+	}
 }
