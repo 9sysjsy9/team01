@@ -51,15 +51,15 @@ public class StoreController {
 	// 가맹점 문의서 제출
 	@RequestMapping(value = "/applyRegistRun")
 	public String applyRegistRun(FranApplyVo franApplyVo, RedirectAttributes rttr) {
-		String email = franApplyVo.getEmail();
-
-//		if(result > 0) {
-//			rttr.addFlashAttribute("msg", "already");
-//			return "redirect:/store/applyFranchise";
-//		}
+//		String email = franApplyVo.getEmail();
+//
+////		if(result > 0) {
+////			rttr.addFlashAttribute("msg", "already");
+////			return "redirect:/store/applyFranchise";
+////		}
 		System.out.println("StoreController, applyRegistRun, franApplyVo : " + franApplyVo);
 		storeService.applyRegistRun(franApplyVo);
-		rttr.addFlashAttribute("msg", "success");
+		rttr.addFlashAttribute("msg", "regSuccess");
 		return "redirect:/store/applyFranchise";
 	}
 
@@ -76,7 +76,15 @@ public class StoreController {
 			return null;
 		}
 	}
-
+	
+	@RequestMapping(value = "/applyModifyRun", method = RequestMethod.POST)
+	public String applyModifyRun(FranApplyVo franApplyVo, RedirectAttributes rttr) {
+		System.out.println("StoreController, applyModifyRun, franApplyVo : " + franApplyVo);
+		storeService.applyModifyRun(franApplyVo);
+		rttr.addFlashAttribute("msg", "modSuccess");
+		return "redirect:/store/applyFranchise";
+	}
+	
 	// 가맹점 문의 리스트
 	@RequestMapping(value = "/applyFranList", method = RequestMethod.GET)
 	public String applyFranList(Model model) {

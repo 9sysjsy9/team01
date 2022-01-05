@@ -9,6 +9,7 @@ public class HireVo {
 	private String phonnum;
 	private String career;
 	private String content;
+	private String state;
 	public int getHno() {
 		return hno;
 	}
@@ -45,10 +46,17 @@ public class HireVo {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	@Override
 	public String toString() {
 		return "HireVo [hno=" + hno + ", name=" + name + ", email=" + email + ", phonnum=" + phonnum + ", career="
-				+ career + ", content=" + content + "]";
+				+ career + ", content=" + content + ", state=" + state + "]";
 	}
+	
 	
 }
