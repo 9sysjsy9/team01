@@ -1,4 +1,4 @@
-package com.kh.ex01;
+package com.kh.ex01.controller;
 
 import java.awt.Dialog.ModalExclusionType;
 import java.util.List;
@@ -25,10 +25,14 @@ public class ProductController {
 	
    @RequestMapping(value = "/product_index", method = RequestMethod.GET)
    public String productIndex(Model model, PagingDto pt) {
-	   System.out.println("pt: "+pt);
+	   
+	   pt.setCount(productService.getCount());
+	   pt.setPage(pt.getPage());
 	   List<ProductVo> list = productService.selectAll();
 	   model.addAttribute("list", list);
+	   model.addAttribute("pt", pt);
 	   System.out.println("list: "+list);
+	   System.out.println("pt: "+pt);
       return "/product/product_index";
    }
    @RequestMapping(value = "/product_ask", method = RequestMethod.GET)

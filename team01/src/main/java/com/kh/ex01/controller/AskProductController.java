@@ -1,4 +1,4 @@
-package com.kh.ex01;
+package com.kh.ex01.controller;
 
 import java.util.List;
 
