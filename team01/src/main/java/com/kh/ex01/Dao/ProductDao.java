@@ -18,8 +18,12 @@ public class ProductDao {
 	
 	private static final String NAMESAPCE = "com.kh.ex01.mappers.product.";
 	
-	public List<ProductVo> selectAll() {
-		List<ProductVo> list = sqlSession.selectList(NAMESAPCE+"selectAll");
+	public List<ProductVo> selectAll(PagingDto pt) {
+		List<ProductVo> list = sqlSession.selectList(NAMESAPCE+"selectAll",pt);
+		return list;
+	}
+	public List<ProductVo> simpleSelectAll() {
+		List<ProductVo> list = sqlSession.selectList(NAMESAPCE+"simpleSelectAll");
 		return list;
 	}
 	public ProductVo getContent(String shoes_code) {
