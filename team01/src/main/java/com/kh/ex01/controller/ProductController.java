@@ -25,15 +25,20 @@ public class ProductController {
 	
    @RequestMapping(value = "/product_index", method = RequestMethod.GET)
    public String productIndex(Model model, PagingDto pt) {
-	   
 	   pt.setCount(productService.getCount());
 	   pt.setPage(pt.getPage());
-	   List<ProductVo> list = productService.selectAll();
+	   System.out.println("pt: "+pt);
+	   List<ProductVo> list = productService.selectAll(pt);
+	   System.out.println("list: "+list);
 	   model.addAttribute("list", list);
 	   model.addAttribute("pt", pt);
-	   System.out.println("list: "+list);
-	   System.out.println("pt: "+pt);
       return "/product/product_index";
+   }
+   @RequestMapping(value = "/product_list", method = RequestMethod.GET)
+   public String productList(Model model) {
+	   List<ProductVo> list = productService.simpleSelectAll();
+	   model.addAttribute("list", list);
+	   return "/company/product/product_list";
    }
    @RequestMapping(value = "/product_ask", method = RequestMethod.GET)
    public String productAsk() {

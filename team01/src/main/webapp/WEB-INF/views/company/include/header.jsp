@@ -50,6 +50,15 @@
 					
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">제품관리</a>
+						<ul class="dropdown-menu dropdown-menu-end"
+							aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="/product/product_list">제품목록</a></li>
+							<li><a class="dropdown-item" href="#">제품등록</a></li>
+							<li><a class="dropdown-item" href="#">파손/불량</a></li>
+						</ul></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">고객관리</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">

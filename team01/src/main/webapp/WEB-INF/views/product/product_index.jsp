@@ -17,7 +17,7 @@
 		$(".page-link").click(function(e) {
 			e.preventDefault();
 			var page = $(this).attr("href");
-			location.href = "/produck/produck_index?page=" + page;
+			location.href = "/product/product_index?page=" + page;
 		});
 
 	});

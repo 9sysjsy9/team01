@@ -4,6 +4,12 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.ex01.mappers.product">
 	<select id="selectAll" resultType="ProductVo">
+		select * from
+		(select rownum rnum, a.* from
+		(select * from tbl_shoes) a)
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	<select id="simpleSelectAll" resultType="ProductVo">
 		select * from tbl_shoes
 	</select>
 	
