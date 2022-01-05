@@ -64,7 +64,8 @@
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
-			<form role="form" action="/store/applyRegistRun" method="get">
+			<form role="form" action="/store/applyModifyRun" method="post">
+			<input type="hidden" name="fno" id="modModalFno">
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="email"> 문의 이메일 </label> <input type="email"
@@ -93,9 +94,12 @@
 					</div>
 				</div>
 				<div class="modal-footer">
+					<button type="button"
+						class="btn btn-outline-primary flex-shrink-0"
+						style="display: none" id="modifyOnBtn">수정</button>
 					<button type="submit"
-						class="btn btn-outline-primary flex-shrink-0 hidden"
-						style="display: none">수정</button>
+						class="btn btn-outline-primary flex-shrink-0"
+						style="display: none" id="modifyRunBtn">제출</button>
 					<button type="button"
 						class="btn btn-outline-secondary flex-shrink-0 inquiryModalCloseBtn"
 						data-dismiss="modal">닫기</button>
@@ -108,8 +112,10 @@
 
 
 <script>
-	if ("${msg}" == "success") {
+	if ("${msg}" == "regSuccess") {
 		alert("등록 되었습니다.");
+	} else if ("${msg}" == "modSuccess") {
+		alert("수정 되었습니다.");
 	}
 
 	$(function() {
@@ -141,18 +147,26 @@
 				console.log(rData);
 				if (rData.email != null) {
 					$(".hidden").find("#phone").val(rData.phone);
+					$("#modModalFno").val(rData.fno);
 					$(".hidden").find("#applyContent").val(rData.applyContent);
+					$(".hidden").find("#applyContent").prop("readonly" , true);
 					$(".hidden").find("#replyContent").val(rData.replyContent);
 					$(".hidden").show(1000);
+					if(rData.replyState == 'y'){
+						$("#modifyOnBtn").hide();
+					} else {
+						$("#modifyOnBtn").show();
+					}
 				} else {
 					alert("등록된 문의가 없습니다.");
 				}
 			});
-
 		});
-
+		
 		$(".inquiryModalCloseBtn").click(function(e) {
 			$(".hidden").hide();
+			$("#modifyOnBtn").hide();
+			$("#modifyRunBtn").hide();
 		});
 		//지원 모달 창 제출 버튼 시 중복 체크
 		$("#applyModalSubmitBtn").click(function(e){
@@ -170,6 +184,12 @@
 				}
 			});
 
+		});
+		//조회 모달 창 수정 버튼 클릭시
+		$("#modifyOnBtn").click(function(e){
+			$(".hidden").find("#applyContent").prop("readonly" , false);
+			$("#modifyOnBtn").hide();
+			$("#modifyRunBtn").show();
 		});
 	});
 </script>

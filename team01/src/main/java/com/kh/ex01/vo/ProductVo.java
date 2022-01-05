@@ -10,6 +10,8 @@ public class ProductVo {
 	private int shoes_count;
 	private String shoes_category;
 	private int shoes_price;
+	private String shoes_style;
+	private String shoes_state;
 	
 	public String getShoes_code() {
 		return shoes_code;
@@ -53,11 +55,26 @@ public class ProductVo {
 	public void setShoes_price(int shoes_price) {
 		this.shoes_price = shoes_price;
 	}
+	public String getShoes_style() {
+		return shoes_style;
+	}
+	public void setShoes_style(String shoes_style) {
+		this.shoes_style = shoes_style;
+	}
+	
+	public String getShoes_state() {
+		return shoes_state;
+	}
+	public void setShoes_state(String shoes_state) {
+		this.shoes_state = shoes_state;
+	}
 	@Override
 	public String toString() {
 		return "ProductVo [shoes_code=" + shoes_code + ", shoes_name=" + shoes_name + ", shoes_size=" + shoes_size
 				+ ", shoes_color=" + shoes_color + ", shoes_count=" + shoes_count + ", shoes_category=" + shoes_category
-				+ ", shoes_price=" + shoes_price + "]";
+				+ ", shoes_price=" + shoes_price + ", shoes_style=" + shoes_style + ", shoes_state=" + shoes_state
+				+ "]";
 	}
+	
 	
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 public class NoticeVo {
 	private int notice_no;
 	private String notice_title;
+	private String notice_date;
 	private String notice_content;
 
 	public int getNotice_no() {
@@ -23,6 +24,14 @@ public class NoticeVo {
 		this.notice_title = notice_title;
 	}
 
+	public String getNotice_date() {
+		return notice_date;
+	}
+
+	public void setNotice_date(String notice_date) {
+		this.notice_date = notice_date;
+	}
+
 	public String getNotice_content() {
 		return notice_content;
 	}
@@ -33,8 +42,8 @@ public class NoticeVo {
 
 	@Override
 	public String toString() {
-		return "NoticeVo [notice_no=" + notice_no + ", notice_title=" + notice_title + ", notice_content="
-				+ notice_content + "]";
+		return "NoticeVo [notice_no=" + notice_no + ", notice_title=" + notice_title + ", notice_date=" + notice_date
+				+ ", notice_content=" + notice_content + "]";
 	}
 
 }
