@@ -84,6 +84,12 @@ public class HireController {
 		 return "redirect:/hire/hire_regist";
 	 }
 	 
+	 // 채용조회
+	 @RequestMapping(value = "/hire_search", method = RequestMethod.GET)
+	 public String hireSearch() {
+		 return "hire/hire_search";
+	 }
+	 
 	// 지원자 상세내용
 	 @RequestMapping(value = "/regist_content", method = RequestMethod.GET)
 	 public String registBoard(Model model, int hno) {
@@ -116,4 +122,6 @@ public class HireController {
 		 model.addAttribute("hireVo",hireVo);
 		 return "redirect:/hire/regist_content?hno="+hno;
 	 }
+	 
+	
 }
