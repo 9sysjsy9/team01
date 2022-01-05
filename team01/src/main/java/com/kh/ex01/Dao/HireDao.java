@@ -64,4 +64,11 @@ public class HireDao {
 		sqlSession.delete(NAMESPACE + "deleteBoard", hno);
 	}
 	
+	public void modifySuccess(int hno) {
+		sqlSession.update(NAMESPACE + "modifySuccess", hno);
+	}
+	
+	public void modifyFail(int hno) {
+		sqlSession.update(NAMESPACE + "modifyFail", hno);
+	}
 }
