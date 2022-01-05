@@ -11,10 +11,9 @@
 
 <script type="text/javascript">
 $(function(){
-	$(".ask").click(function(){
+	$(".qask").click(function(){
         $(this).next().children().toggle();
      });
-	
 });
 </script>
 
@@ -22,18 +21,18 @@ $(function(){
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h1>자주하는 질문</h1>
+				<h1><b><br>질문과 답변</b></h1>
 			</div>
 
-			<p><br>1:1 문의 전에 자주 하는 질문들을 확인해주세요</p>
-					<br>
+			<p><br><h5>1:1 문의 전에 자주 하는 질문들을 확인해주세요</h5></p>
+					<br><br><br>
 		</div>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#bs-example-navbar-collapse-1">
 			</button>
-			<a class="navbar-brand" href="#" >키워드를입력하세요.</a>
+			<a class="navbar-brand" href="#" ><b>자주하는 질문</b></a>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="navbar-nav">
@@ -42,7 +41,7 @@ $(function(){
 				<form class="form-inline">
 					<input class="form-control mr-sm-2" type="text" />
 					<button class="btn btn-primary my-2 my-sm-0" type="submit">
-						Search</button>
+						검색</button>
 				</form>
 			</div>
 		</nav>
@@ -53,28 +52,28 @@ $(function(){
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="table-warning ask" id="tr1">
+				<tr class="table-warning qask">
 					<th>재고가 없어요. 언제쯤 구매 가능할까요?</th>
 				</tr>
 				<tr>
-					<td class="answer1">입점 업체의 품절 상품 재입고 여부 및 일정에 대하여 정확히 답변드리기는 어려우나,<br>
+					<td class="qanswer">입점 업체의 품절 상품 재입고 여부 및 일정에 대하여 정확히 답변드리기는 어려우나,<br>
 						상품코드 및 옵션 확인 후 상품 상세 페이지 내 상품문의 게시판을 통하여 문의해 주시면,<br> 재입고 일정
 						확인이 가능한 상품에 한하여 안내 받으실 수 있습니다.
 					</td>
 				</tr>
-				<tr class="table-warning ask">
-					<th class="ask">배송 가능한 지역은 어떻게 되나요?</th>
+				<tr class="table-warning qask">
+					<th class="qask">배송 가능한 지역은 어떻게 되나요?</th>
 				</tr>
 				<tr>
-					<td class="answer">현재 서울 지역과 경기, 인천 일부 지역만 가능합니다.<br> 빠른 시일 내 서울 및 경기,인천
+					<td class="qanswer">현재 서울 지역과 경기, 인천 일부 지역만 가능합니다.<br> 빠른 시일 내 서울 및 경기,인천
 						외 지역까지 가능하도록 최선을 다하겠습니다.
 					</td>
 				</tr>
-				<tr class="table-warning ask">
-					<th class="ask">배송 정책은 어떻게 되나요?</th>
+				<tr class="table-warning qask">
+					<th class="qask">배송 정책은 어떻게 되나요?</th>
 				</tr>
 				<tr>
-					<td class="answer">1) 월~금요일<br>
+					<td class="qanswer">1) 월~금요일<br>
 						  - 자체배송은 당일 오전까지 결제완료 주문 건은 당일 출고되며, 오후 주문은 익일 출고 처리됩니다.<br>
 						  - 주문을 따로 하실 경우, 각각 출고 됩니다.<br>
 						2) 토요일<br>
@@ -85,11 +84,11 @@ $(function(){
 						  - 상품 출고 후 택배사의 사정에 따라 1일 이상 배송이 소요됩니다.<br>
 					</td>
 				</tr>
-				<tr class="table-warning ask">
-					<th class="ask">매장 교환은 어떻게 하나요?</th>
+				<tr class="table-warning qask">
+					<th class="qask">매장 교환은 어떻게 하나요?</th>
 				</tr>
 				<tr>
-					<td class="answer">1. 교환 신청<br>
+					<td class="qanswer">1. 교환 신청<br>
 						 - 주문 목록 > 주문 상세 : 교환 신청 버튼을 선택해 주세요.<br>
 						2. 반송 방법 선택 - 매장 교환<br>
 						 - 매장 교환 선택 후 교환 가능한 매장을 선택해 주세요.<br>
@@ -100,11 +99,11 @@ $(function(){
 						 - 3일이 지날 경우 교환 신청은 자동으로 취소됩니다.
 					</td>
 				</tr>
-				<tr class="table-warning ask">
-					<th class="ask">취소는 언제까지 가능한가요?</th>
+				<tr class="table-warning qask">
+					<th class="qask">취소는 언제까지 가능한가요?</th>
 				</tr>
 				<tr>
-					<td class="answer">'주문 취소는 상품준비 중 상태 이후로는 불가능할 수 있습니다.<br>
+					<td class="qanswer">'주문 취소는 상품준비 중 상태 이후로는 불가능할 수 있습니다.<br>
 						주문한 상품의 정확한 출고 여부 확인 및 취소 가능 여부를 위해 <br>
 						1:1 문의 또는 고객센터(1666-1234)로 문의해 주시길 바랍니다.<br>
 						또한, 배송준비중인 상태에서는 취소가 불가능하며, <br>
