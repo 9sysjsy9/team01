@@ -8,8 +8,8 @@ $(function(){
 		e.preventDefault();
 		var state = $(this).attr("data-state");
 		if(state == "unknown"){
-			location.href = "/hire/modify_success?hno=${hireVo.hno}";
 			alert("합격 통지가 완료되었습니다.");
+			location.href = "/hire/modify_success?hno=${hireVo.hno}";
 		} else {
 			alert("이미 합격 통지를 하셨습니다.");
 		}

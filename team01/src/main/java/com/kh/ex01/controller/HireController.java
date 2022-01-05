@@ -105,7 +105,7 @@ public class HireController {
 		 HireVo hireVo = hireService.getBoard(hno);
 		 hireService.modifySuccess(hno);
 		 model.addAttribute("hireVo",hireVo);
-		 return "/company/hire/regist_content";
+		 return "redirect:/hire/regist_content?hno="+hno;
 	 }
 	 
 }
