@@ -4,50 +4,58 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.ex01.mappers.applyfran">
 
-<!-- 지원자 지원 -->
-<insert id="applyRegistRun">
-	INSERT INTO tbl_franapply (fno, email, phone, applycontent)
-	VALUES (seq_fno.nextval, #{email}, #{phone}, #{applyContent}) 
-</insert>
+	<!-- 지원자 지원 -->
+	<insert id="applyRegistRun">
+		INSERT INTO tbl_franapply (fno, email, phone, applycontent)
+		VALUES (seq_fno.nextval, #{email}, #{phone}, #{applyContent})
+	</insert>
 
 
-<!-- 지원 내용 조회 -->
-<!-- 미답변 내용 조회 기능 추가 필요 -->
-<select id="applyStateInquiry" resultType="FranApplyVo">
-	SELECT * FROM tbl_franapply 
-	WHERE email = #{email} AND replystate = 'n'
-	ORDER BY fno DESC
-</select> 
+	<!-- 지원 내용 조회 -->
+	<!-- 미답변 내용 조회 기능 추가 필요 -->
+	<select id="applyStateInquiry" resultType="FranApplyVo">
+		SELECT * FROM tbl_franapply
+		WHERE fno = (SELECT MAX(fno)
+			FROM tbl_franapply
+			WHERE email = #{email})
+	</select>
 
-<!-- 지원 여부 조회 -->
-<select id="checkApply" resultType="int">
-	SELECT COUNT(*) FROM tbl_franapply
-	WHERE email = #{email} and replystate = 'n'
-</select>
 
-<!-- 지원 내용 수정 -->
 
-<!-- 지원 내용 답변 -->
-<!-- 사내페이지 지원 관리 메뉴 -->
+	<!-- 지원 여부 조회 -->
+	<select id="checkApply" resultType="int">
+		SELECT COUNT(*) FROM tbl_franapply
+		WHERE email = #{email} and replystate = 'n'
+	</select>
 
-<!-- 지원리스트 뷰 -->
-<select id="applyFranList" resultType="FranApplyVo">
-	SELECT * FROM tbl_franapply
-	ORDER BY fno desc
-</select>
+	<!-- 지원 내용 수정 -->
+	<update id="applyModifyRun">
+		UPDATE tbl_franapply
+		SET applycontent = #{applyContent}
+		WHERE fno = #{fno}
+	</update>
 
-<!--  지원내용 조회 -->
-<select id="applyInquiry" resultType="FranApplyVo">
-	SELECT * FROM tbl_franapply
-	WHERE fno = #{fno}
-</select>
+	<!-- 지원 내용 답변 -->
+	<!-- 사내페이지 지원 관리 메뉴 -->
 
-<!--  지원 문의 답변 수징 및 등록-->
-<update id="replyRegistRun">
-	UPDATE tbl_franapply
-	SET replyContent = #{replyContent}, replyState = 'y', replyDate = sysdate
-	WHERE fno = #{fno}
-</update>
+	<!-- 지원리스트 뷰 -->
+	<select id="applyFranList" resultType="FranApplyVo">
+		SELECT * FROM tbl_franapply
+		ORDER BY fno desc
+	</select>
+
+	<!-- 지원내용 조회 -->
+	<select id="applyInquiry" resultType="FranApplyVo">
+		SELECT * FROM tbl_franapply
+		WHERE fno = #{fno}
+	</select>
+
+	<!-- 지원 문의 답변 수징 및 등록 -->
+	<update id="replyRegistRun">
+		UPDATE tbl_franapply
+		SET replyContent = #{replyContent}, replyState = 'y', replyDate = sysdate
+		WHERE fno = #{fno}
+	</update>
 
 
 </mapper>

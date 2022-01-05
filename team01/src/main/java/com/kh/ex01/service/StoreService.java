@@ -18,6 +18,9 @@ public class StoreService {
 	public void applyRegistRun(FranApplyVo franApplyVo) {
 		storeDao.applyRegistRun(franApplyVo);
 	}
+	public void applyModifyRun(FranApplyVo franApplyVo) {
+		storeDao.applyModifyRun(franApplyVo);
+	}
 	
 	public FranApplyVo applyStateInquiry(String email) {
 		FranApplyVo franApplyVo = storeDao.applyStateInquiry(email);
