@@ -7,17 +7,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
-	
-	@RequestMapping(value="/main", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String mainPage() {
 		return "/company/main";
 	}
-	
+
 	@RequestMapping("/login")
 	public String login() {
 		return "/company/member/login";
 	}
-	
-	
 
 }

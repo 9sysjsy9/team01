@@ -17,7 +17,7 @@
 		$(".page-link").click(function(e) {
 			e.preventDefault();
 			var page = $(this).attr("href");
-			location.href = "/product/product_index?page=" + page;
+			location.href = "/company/product_index?page=" + page;
 		});
 
 	});
@@ -133,7 +133,7 @@
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
 								<a class="btn btn-outline-dark mt-auto"
-									href="/product/product_detail?shoes_code=${productVo.shoes_code}">정보보기</a>
+									href="/company/product_detail?shoes_code=${productVo.shoes_code}">정보보기</a>
 								<a class="btn btn-outline-dark mt-auto" href="#">장바구니</a>
 							</div>
 						</div>
