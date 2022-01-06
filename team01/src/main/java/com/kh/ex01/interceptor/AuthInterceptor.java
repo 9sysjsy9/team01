@@ -16,7 +16,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession();
 		MemberVo memberVo = new MemberVo();
 		memberVo.setUserid("test01");
-		memberVo.setUsername("username");
+		memberVo.setUsername("테스트01");
 		memberVo.setAuthority(1);
 		session.setAttribute("memberVo", memberVo);
 		
