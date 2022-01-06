@@ -177,16 +177,6 @@
 									class="btn btn-outline-dark btn-lg px-7 askContent"
 									data-ano="${askproductVo.ano}" id="askContent">자세히 보기</button></td>
 						</tr>
-						<!--
-							<form action="/ask/ask_content" method="get" id="frmAskContent" class="frmAskContent">
-								<input type="hidden" name=ano value="${askproductVo.ano}">
-								<input type="hidden" name=title value="${askproductVo.title}">
-								<input type="hidden" name=content value="${askproductVo.content}"> 
-								<input type="hidden" name=regdate value="${askproductVo.regdate}"> 
-								<input type="hidden" name=name value="${askproductVo.name}"> 
-								<input type="hidden" name=email value="${askproductVo.email}">
-							</form>
-							-->
 					</c:forEach>
 				</tbody>
 			</table>
@@ -224,7 +214,6 @@
 		</div>
 	</div>
 </footer>
-
 
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

@@ -13,6 +13,19 @@
 		select * from tbl_shoes
 	</select>
 	
+	<select id="selectAllShoesStyle" resultType="ShoesStyleVo">
+		select * from tbl_shoes_style
+	</select>
+	<select id="selectAllShoesState" resultType="ShoesStateVo">
+		select * from tbl_shoes_state
+	</select>
+	<select id="selectAllShoesColor" resultType="ShoesColorVo">
+		select * from tbl_shoes_color
+	</select>
+	<select id="selectAllShoesCategory" resultType="ShoesCategoryVo">
+		select * from tbl_shoes_category
+	</select>
+	
 	<select id="getProduct" resultType="ProductVo">
 		select * from tbl_shoes 
 		where shoes_code = #{shoes_code}
