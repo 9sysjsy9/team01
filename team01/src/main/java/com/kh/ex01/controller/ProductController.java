@@ -1,6 +1,5 @@
 package com.kh.ex01.controller;
 
-import java.awt.Dialog.ModalExclusionType;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,6 +14,7 @@ import com.kh.ex01.vo.PagingDto;
 import com.kh.ex01.vo.ProductVo;
 import com.kh.ex01.vo.ShoesCategoryVo;
 import com.kh.ex01.vo.ShoesColorVo;
+import com.kh.ex01.vo.ShoesSizeVo;
 import com.kh.ex01.vo.ShoesStateVo;
 import com.kh.ex01.vo.ShoesStyleVo;
 
@@ -50,10 +50,12 @@ public class ProductController {
 	   List<ShoesStateVo> listState = productService.selectAllShoesState();
 	   List<ShoesColorVo> listColor = productService.selectAllShoesColor();
 	   List<ShoesCategoryVo> listCategory = productService.selectAllShoesCategory();
+	   List<ShoesSizeVo> listSize = productService.selectAllShoesSize();
 	   model.addAttribute("listStyle", listStyle);
 	   model.addAttribute("listState", listState);
 	   model.addAttribute("listColor", listColor);
 	   model.addAttribute("listCategory", listCategory);
+	   model.addAttribute("listSize", listSize);
 	   return "/company/product/product_regist";
    }
    @RequestMapping(value = "/product_ask", method = RequestMethod.GET)

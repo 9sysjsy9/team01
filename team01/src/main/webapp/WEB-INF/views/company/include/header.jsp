@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+
 <!DOCTYPE html>
 <head>
 
@@ -47,7 +48,7 @@ console.log("${loginData}");
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="#">건의 사항</a></li>
-							<li><a class="dropdown-item" href="/company/board/free/free_list">자유 게시판</a></li>
+							<li><a class="dropdown-item" href="/free/free_list">자유 게시판</a></li>
 							<li><a class="dropdown-item" href="#">대나무 숲</a></li>
 							<li><a class="dropdown-item" href="#">자료실</a></li>
 						</ul></li>

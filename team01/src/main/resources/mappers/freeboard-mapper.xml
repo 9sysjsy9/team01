@@ -4,5 +4,15 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.ex01.mappers.freeboard">
 
+	<select id="freeList" resultType="BoardVo">
+		select * from tbl_board 
+		where bcate = 'f'
+	</select>
+	
+	<select id="getBoard" resultType="BoardVo">
+		select * from tbl_board
+		where bno = #{bno}
+	</select>
+	
 	
 </mapper>

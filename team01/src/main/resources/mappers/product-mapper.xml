@@ -13,6 +13,9 @@
 		select * from tbl_shoes
 	</select>
 	
+	<select id="selectAllShoesSize" resultType="ShoesSizeVo">
+		select * from tbl_shoes_size order by shoes_size
+	</select>
 	<select id="selectAllShoesStyle" resultType="ShoesStyleVo">
 		select * from tbl_shoes_style
 	</select>
