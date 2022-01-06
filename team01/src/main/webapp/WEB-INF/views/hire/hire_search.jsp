@@ -35,23 +35,23 @@ $(function(){
 </script>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-2">
+		<div class="col-md-4">
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-4">
 			<div class="jumbotron">
 				<h1>채용 조회</h1>
 				<p>지원하신 이름과 이메을을 입력해주세요</p>
 			</div>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-4">
 		</div>
 	</div>
 </div>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-2">
+		<div class="col-md-4">
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-4">
 			<form role="form">
 				<div class="form-group">
 					<label for="name">이름</label>
@@ -66,7 +66,7 @@ $(function(){
 				</div>
 			</form>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-4">
 		</div>
 	</div>
 </div>
