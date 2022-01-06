@@ -2,10 +2,10 @@
 <!DOCTYPE mapper			
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"			
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.ex01.mappers.customer">
+<mapper namespace="com.kh.ex01.mappers.faq">
 
-<select id="selectAll" resultType="NoticeVo">
-	select * from tbl_notice 
-</select>
-
+	<select id="selectAll" resultType="FaqVo">
+		select * from tbl_faq
+		order by faq_no
+	</select>
 </mapper>

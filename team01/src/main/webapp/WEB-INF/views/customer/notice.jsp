@@ -20,12 +20,10 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="jumbotron">
-				<h1><b>
-					공지 사항</b><br>
+				<h1 style="padding-left: 110px;"><b>공지 사항</b><br>
 				</h1>
-				<p>
-					<br><h5>수영 슈즈에 오신 것을 환영합니다. 아래의 공지사항을 확인해주세요.</h5>
-				</p>
+				<p><br><h5 style="padding-left: 110px;">수영 슈즈에 오신 것을 환영합니다. 
+					아래의 공지사항을 확인해주세요.</h5></p>
 			</div>
 			<table class="table">
 				<thead>
@@ -43,9 +41,9 @@
 <%-- 							<td>${noticeVo.notice_date}</td> --%>
 <!-- 						</tr> -->
 					<tr class="table-warning nask">
-						<th>1</th> 
+						<th>2</th> 
 						<th>수영슈즈 물류센터 방역 배송 안내</th>
-						<th>2022-01-05</th> 
+						<th>2022-01-07</th> 
 					</tr>
 					<tr>
 <!-- 					<td class="content" colspan="3"> -->
@@ -70,9 +68,9 @@
 						
 					</tr>
 					<tr class="table-warning nask">
-						<th>2</th> 
+						<th>1</th> 
 						<th>배송 및 교환/반품 비용에 대한 개정안내</th>
-						<th>2022-01-07</th> 
+						<th>2022-01-05</th> 
 					</tr>
 					<tr>
 						<th></th> 
@@ -89,18 +87,18 @@
 				</tbody>
 
 			</table>
-			<nav>
-				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#">Previous</a>
+			<div class="col-md-12">
+				<ul class="pagination justify-content-center">
+					<li class="page-item"><a class="page-link" href="#">이전</a>
 					</li>
 					<li class="page-item"><a class="page-link" href="#">1</a></li>
 					<li class="page-item"><a class="page-link" href="#">2</a></li>
 					<li class="page-item"><a class="page-link" href="#">3</a></li>
 					<li class="page-item"><a class="page-link" href="#">4</a></li>
 					<li class="page-item"><a class="page-link" href="#">5</a></li>
-					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					<li class="page-item"><a class="page-link" href="#">다음</a></li>
 				</ul>
-			</nav>
+			</div>
 		</div>
 	</div>
 </div>

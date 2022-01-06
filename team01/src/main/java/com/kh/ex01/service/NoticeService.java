@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.kh.ex01.Dao.NoticeDao;
-import com.kh.ex01.vo.NoticeVo;
+import com.kh.ex01.vo.customer.NoticeVo;
 
 @Service
 public class NoticeService {
