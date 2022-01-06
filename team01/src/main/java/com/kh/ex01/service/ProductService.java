@@ -11,6 +11,7 @@ import com.kh.ex01.vo.PagingDto;
 import com.kh.ex01.vo.ProductVo;
 import com.kh.ex01.vo.ShoesCategoryVo;
 import com.kh.ex01.vo.ShoesColorVo;
+import com.kh.ex01.vo.ShoesSizeVo;
 import com.kh.ex01.vo.ShoesStateVo;
 import com.kh.ex01.vo.ShoesStyleVo;
 
@@ -28,6 +29,10 @@ public class ProductService {
 		return list;
 	}
 	
+	public List<ShoesSizeVo> selectAllShoesSize() {
+		List<ShoesSizeVo> list = productDao.selectAllShoesSize();
+		return list;
+	}
 	public List<ShoesStyleVo> selectAllShoesStyle() {
 		List<ShoesStyleVo> list = productDao.selectAllShoesStyle();
 		return list;
