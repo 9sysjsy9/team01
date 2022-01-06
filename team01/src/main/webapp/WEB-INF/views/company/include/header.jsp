@@ -21,6 +21,10 @@
 <link href="/css/styles.css" rel="stylesheet" />
 </head>
 <body>
+${memberVo}
+<script>
+console.log("${memberVo}");
+</script>
 	<!-- Responsive navbar-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
