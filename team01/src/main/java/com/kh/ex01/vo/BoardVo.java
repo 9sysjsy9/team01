@@ -17,7 +17,8 @@ public class BoardVo {
 	private Timestamp updatedate; // TIMESTAMP(6) Yes
 	private int cmtcnt; // NUMBER Yes
 	private int bstate; // NUMBER(1,0) Yes 0
-
+	private String username;
+	
 	public BoardVo() {
 		super();
 	}
@@ -125,13 +126,23 @@ public class BoardVo {
 	public void setBstate(int bstate) {
 		this.bstate = bstate;
 	}
+	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	@Override
 	public String toString() {
 		return "BoardVo [bno=" + bno + ", bcate=" + bcate + ", title=" + title + ", content=" + content + ", userid="
 				+ userid + ", viewcnt=" + viewcnt + ", re_group=" + re_group + ", re_seq=" + re_seq + ", re_level="
 				+ re_level + ", regdate=" + regdate + ", updatedate=" + updatedate + ", cmtcnt=" + cmtcnt + ", bstate="
-				+ bstate + "]";
+				+ bstate + ", username=" + username + "]";
 	}
 
+	
 }
