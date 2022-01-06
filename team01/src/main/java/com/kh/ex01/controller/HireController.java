@@ -71,7 +71,7 @@ public class HireController {
 	 }
 	 
 	 // 지원자 보기
-	 @RequestMapping(value = "/regist_list", method = RequestMethod.GET)
+	 @RequestMapping(value = "/company/regist_list", method = RequestMethod.GET)
 	 public String registList(Model model) {
 		 List<HireVo> list = hireService.registList();
 		 model.addAttribute("list",list);
@@ -93,7 +93,7 @@ public class HireController {
 	 }
 	 
 	// 지원자 상세내용
-	 @RequestMapping(value = "/regist_content", method = RequestMethod.GET)
+	 @RequestMapping(value = "/company/regist_content", method = RequestMethod.GET)
 	 public String registBoard(Model model, int hno) {
 		 HireVo hireVo = hireService.getBoard(hno);
 		 model.addAttribute("hireVo",hireVo);
@@ -101,14 +101,14 @@ public class HireController {
 	 }
 	 
 	 // 지원자 삭제
-	 @RequestMapping(value = "/delete_list", method = RequestMethod.GET)
+	 @RequestMapping(value = "/company/delete_list", method = RequestMethod.GET)
 	 public String deleteBoard(int hno) {
 		 hireService.deleteBoard(hno);
 		 return "redirect:/hire/regist_list";
 	 }
 	 
 	 // 합격 통지
-	 @RequestMapping(value = "/modify_success", method = RequestMethod.GET)
+	 @RequestMapping(value = "/company/modify_success", method = RequestMethod.GET)
 	 public String modifySuccess(int hno,Model model) {
 		 HireVo hireVo = hireService.getBoard(hno);
 		 hireService.modifySuccess(hno);
@@ -117,7 +117,7 @@ public class HireController {
 	 }
 	 
 	 // 불합격 통지
-	 @RequestMapping(value = "/modify_fail", method = RequestMethod.GET)
+	 @RequestMapping(value = "/company/modify_fail", method = RequestMethod.GET)
 	 public String modifyFail(int hno,Model model) {
 		 HireVo hireVo = hireService.getBoard(hno);
 		 hireService.modifyFail(hno);
@@ -127,7 +127,7 @@ public class HireController {
 	 
 	 // 합격 확인
 	 @ResponseBody
-	 @RequestMapping(value = "/search_success", method = RequestMethod.GET)
+	 @RequestMapping(value = "/company/search_success", method = RequestMethod.GET)
 	 public String searchSuccess(String name, String email) {
 		 System.out.println("contoller : " + name + email);
 		 HireVo hireVo = hireService.searchSuccess(name, email);
