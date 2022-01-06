@@ -5,13 +5,13 @@
 <script>
 $(function(){
 	$("#btnRegist").click(function(){
-		location.href = "/free/free_regist";
+		location.href = "/company/board/free/free_regist";
 	});
 	
 	$(".title").click(function(e) {
 		e.preventDefault();
 		var bno = $(this).attr("href");
-		location.href = "/free/free_content?bno="+bno;
+		location.href = "/company/board/free/free_content?bno="+bno;
 	});;
 	
 });
