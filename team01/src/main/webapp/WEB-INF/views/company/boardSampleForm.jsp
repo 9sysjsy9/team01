@@ -5,54 +5,72 @@
 
 <!-- Product section-->
 <section class="py-5">
+
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="container-fluid">
-			<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-			<h1 class="display-5 fw-bolder" id="store">가맹 문의 관리</h1></div>
-			<div class="col-md-2"></div>
-			
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<!-- 게시판 이름 -->
+						<h1 class="display-5 fw-bolder" id="store">자유게시판</h1>
+					</div>
+					<div class="col-md-2"></div>
 
-			
-			</div>
+				</div>
 				<div class="row">
 					<div class="col-md-2"></div>
 
 					<div class="col-md-8">
-					<select>
-						<option value="a" selected>전체</option>
-						<option value="y">완료</option>
-						<option value="n">미완료</option>
-					</select>
-					
-					
+						<select>
+							<option value="" selected>5줄 보기</option>
+							<option value="">10줄 보기</option>
+							<option value="">15줄 보기</option>
+						</select>
+
+
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th>문의번호</th>
-									<th>이름</th>
-									<th>연락처</th>
-									<th>문의 일시</th>
-									<th>답변 여부</th>
-									<th>완료 일시</th>
+									<th>#</th>
+									<th>제목</th>
+									<th>글쓴이</th>
+									<th>작성일</th>
+									<th>조회수</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr class="table">
 									<td>1</td>
-									<td>고만재</td>
-									<td>010-6778-0505</td>
-									<td>02/04/2012</td>
-									<td>완료</td>
-									<td>02/04/2012</td>
+									<td>샘플 제목</td>
+									<td>사원1</td>
+									<td>2010/09/10</td>
+									<td>10</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="col-md-2"></div>
 				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<nav class="pagination-sm">
+							<ul class="pagination">
+								<li class="page-item"><a class="page-link" href="#">Previous</a>
+								</li>
+								<li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item"><a class="page-link" href="#">4</a></li>
+								<li class="page-item"><a class="page-link" href="#">5</a></li>
+								<li class="page-item"><a class="page-link" href="#">Next</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
