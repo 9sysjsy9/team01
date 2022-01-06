@@ -54,7 +54,7 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/product/product_list">제품목록</a></li>
-							<li><a class="dropdown-item" href="#">제품등록</a></li>
+							<li><a class="dropdown-item" href="/product/product_regist">제품등록</a></li>
 							<li><a class="dropdown-item" href="#">파손/불량</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a

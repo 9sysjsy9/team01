@@ -5,14 +5,9 @@
 
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
-	$(function() {
-		$(".page-link").click(function(e) {
-			e.preventDefault();
-			var page = $(this).attr("href");
-			location.href = "/product/product_list?page=" + page;
-		});
+$(function() {
 
-	});
+});
 </script>
 <%@include file="/WEB-INF/views/company/product/include/paging_form.jsp"%>
 <div class="row gx-4 gx-lg-5 align-items-center my-5">
