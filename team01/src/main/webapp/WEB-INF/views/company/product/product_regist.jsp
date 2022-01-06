@@ -3,14 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <style>
-.btn btn-outline-dark btn-lg px-4 {
+	.btn btn-outline-dark btn-lg px-4 {
 	padding: 10px, margin: 10px
-}
+	}
+	.hide {
+		display : none
+	}
+	
 </style>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(function() {
-
+		$(".qask").click(function() {
+			$(this).next().toggle();
+		});
 	});
 </script>
 <%@include file="/WEB-INF/views/company/product/include/paging_form.jsp"%>
@@ -88,39 +94,17 @@
 			<div class="card mb-4">
 				<div class="card-header">사이즈</div>
 				<div class="card-body">
-					
-					<!-- 
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button">230</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">235</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">240</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">245</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">250</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">255</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">260</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">265</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">270</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">275</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">280</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">285</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">290</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">295</button>
-					<button class="btn btn-outline-dark btn-lg px-3"
-						id="button-search" type="button" style="padding: 10px;">300</button>
-					-->
+					<div class="table-warning qask">
+						<label>보기 / 접기</label>
+					</div>
+					<div class="hide">
+						<c:forEach items="${listSize}" var="shoesSizeVo">
+							<div>
+								<input type="checkbox" value="${shoesSizeVo.shoes_size}">
+								${shoesSizeVo.shoes_size}
+							</div>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 
@@ -128,11 +112,17 @@
 			<div class="card mb-4">
 				<div class="card-header">색상</div>
 				<div class="card-body">
-					<c:forEach items="${listColor}" var="shoesColorVo">
-						<div>
-							<input type="checkbox"> ${shoesColorVo.shoes_color}
-						</div>
-					</c:forEach>
+					<div class="table-warning qask">
+						<label>보기 / 접기</label>
+					</div>
+					<div class="hide">
+						<c:forEach items="${listColor}" var="shoesColorVo">
+							<div>
+								<input type="checkbox" value="${shoesColorVo.shoes_color}">
+								${shoesColorVo.shoes_color}
+							</div>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 
@@ -140,11 +130,17 @@
 			<div class="card mb-4">
 				<div class="card-header">카테고리</div>
 				<div class="card-body">
-					<c:forEach items="${listCategory}" var="shoesCategoryVo">
-						<div>
-							<input type="checkbox"> ${shoesCategoryVo.shoes_category}
-						</div>
-					</c:forEach>
+					<div class="table-warning qask">
+						<label>보기 / 접기</label>
+					</div>
+					<div class="hide">
+						<c:forEach items="${listCategory}" var="shoesCategoryVo">
+							<div>
+								<input type="checkbox" value="${shoesCategoryVo.shoes_category}">
+								${shoesCategoryVo.shoes_category}
+							</div>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 
@@ -152,11 +148,17 @@
 			<div class="card mb-4">
 				<div class="card-header">스타일</div>
 				<div class="card-body">
-					<c:forEach items="${listStyle}" var="shoesStyleVo">
-						<div>
-							<input type="checkbox"> ${shoesStyleVo.shoes_style}
-						</div>
-					</c:forEach>
+					<div class="table-warning qask">
+						<label>보기 / 접기</label>
+					</div>
+					<div class="hide">
+						<c:forEach items="${listStyle}" var="shoesStyleVo">
+							<div>
+								<input type="checkbox" value="${shoesStyleVo.shoes_style}">
+								${shoesStyleVo.shoes_style}
+							</div>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 
@@ -164,11 +166,17 @@
 			<div class="card mb-4">
 				<div class="card-header">상태</div>
 				<div class="card-body">
-					<c:forEach items="${listState}" var="shoesStateVo">
-						<div>
-							<input type="checkbox"> ${shoesStateVo.shoes_state}
-						</div>
-					</c:forEach>
+					<div class="table-warning qask">
+						<label>보기 / 접기</label>
+					</div>
+					<div class="hide">
+						<c:forEach items="${listState}" var="shoesStateVo">
+							<div>
+								<input type="checkbox" value="">
+								${shoesStateVo.shoes_state}
+							</div>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 
