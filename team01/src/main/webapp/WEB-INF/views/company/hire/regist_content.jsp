@@ -9,7 +9,7 @@ $(function(){
 		var state = $(this).attr("data-state");
 		if(state == "unknown"){
 			alert("합격 통지가 완료되었습니다.");
-			location.href = "/company/hire/modify_success?hno=${hireVo.hno}";
+			location.href = "/hire/modify_success?hno=${hireVo.hno}";
 		} else if(state == "success"){
 			alert("이미 합격 통지를 하셨습니다.");
 		} else {
@@ -21,7 +21,7 @@ $(function(){
 		var state = $(this).attr("data-state");
 		if(state == "unknown"){
 			alert("불합격 통지가 완료되었습니다.");
-			location.href = "/company/hire/modify_fail?hno=${hireVo.hno}";
+			location.href = "/hire/modify_fail?hno=${hireVo.hno}";
 		} else if(state == "fail"){
 			alert("이미 불합격 통지를 하셨습니다.");
 		} else {
