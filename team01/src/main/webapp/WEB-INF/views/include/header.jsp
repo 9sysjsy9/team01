@@ -78,10 +78,6 @@
 							<li><a class="dropdown-item" href="/customer/notice">공지사항</a></li>
 							<li><a class="dropdown-item" href="/customer/qna">질문과 답변</a></li>
 							<li><a class="dropdown-item" href="/customer/csMain">CS센터</a></li>
-							<li><a class="dropdown-item" href="/customer/customerNotice">공지사항</a></li>
-
-							<li><a class="dropdown-item" href="/customer/customerQna">질문과 답변</a></li>
-							<li><a class="dropdown-item" href="/customer/customerService">CS센터</a></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="/company/main">사원 메뉴</a></li>
 				</ul>
