@@ -38,18 +38,17 @@
 		<beans:property name="maxUploadSize" value="10000000"></beans:property>
 	</beans:bean>
 	
-			<beans:bean class="com.kh.ex01.interceptor.AuthInterceptor" id="authInterceptor">
-	</beans:bean>
+<!-- 			<beans:bean class="com.kh.ex01.interceptor.AuthInterceptor" id="authInterceptor"> -->
+<!-- 	</beans:bean> -->
 	
-	<interceptors>
-		<interceptor>
+<!-- 	<interceptors> -->
+<!-- 		<interceptor> -->
 <!-- 			<mapping path="/board/**/*"/> -->
 <!-- 			<mapping path="/comment/**/*"/> -->
-			<mapping path="/"/>
 <!-- 			<exclude-mapping path="/board/contentList"/> -->
-			<beans:ref bean="authInterceptor"></beans:ref>
-		</interceptor>
-	</interceptors>
+<!-- 			<beans:ref bean="authInterceptor"></beans:ref> -->
+<!-- 		</interceptor> -->
+<!-- 	</interceptors> -->
 
 
 </beans:beans>

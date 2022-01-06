@@ -8,7 +8,7 @@ $(function(){
 		e.preventDefault();
 		var hno = $(this).attr("href");
 		console.log("hno:", hno);
-		location.href = "/hire/regist_content?hno="+hno;
+		location.href = "/hire/company/regist_content?hno="+hno;
 	});
 });
 </script>

@@ -24,6 +24,11 @@
 <link rel="icon" type="/image/x-icon" href="/assets/favicon.ico" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="/css/styles.css" rel="stylesheet" />
+<script>
+if("${msg}" == "fail"){
+	alert("아이디와 비밀번호를 확인해주세요.")
+}
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -57,7 +62,7 @@
 				<div class="col-md-4">
 					<div class="row">
 						<div class="col-md-12">
-							<form role="form" action="/company/member/loginRun">
+							<form role="form" action="/member/loginRun" method="post">
 								<div class="form-group">
 									<h1 class="display-5 fw-bolder" id="store">로그인</h1>
 									<label for="userid"> ID </label> <input

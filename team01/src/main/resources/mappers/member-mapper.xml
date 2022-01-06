@@ -6,7 +6,7 @@
 
 <select id="loginRun" resultType="MemberVo">
 	SELECT * FROM tbl_member
-	WHERE #{userid} AND #{userpw}
+	WHERE userid = #{userid} AND userpw = #{userpw}
 </select>
 
 </mapper>
