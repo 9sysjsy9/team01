@@ -3,16 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <style>
-	.btn btn-outline-dark btn-lg px-4 {
+.btn btn-outline-dark btn-lg px-4 {
 	padding: 10px, margin: 10px
-	}
-	.hide {
-		display : none
-	}
-	.MoreImage {
-		display : none
-	}
-	
+}
+
+.hide {
+	display: none
+}
+
+.MoreImage {
+	display: none
+}
 </style>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
@@ -23,6 +24,40 @@ $(function() {
 	$(".btnMoreImage").click(function() {
 		$(".MoreImage").toggle();
 	});
+
+	$(".fileDrop").on("dragenter dragover", function(e) {
+		e.preventDefault();
+	});
+
+	$(".fileDrop").on("drop", function(e) {
+		e.preventDefault();
+		var file = e.originalEvent.dataTransfer.files[0];
+		console.log("file: " + file);
+		var formData = new FormData();
+		formData.append("file", file);
+		var url = "/company/uploadAjax";
+
+		$.ajax({
+			"processData" : false,
+			"contentType" : false,
+			"method" : "post",
+			"url" : url,
+			"data" : formData,
+			"success" : function(rData) {
+				console.log(rData);
+				if (rData == "fail") {
+					alert("잘못된 형식의 파일입니다.");
+					return;
+				}
+				var div = '<div class="divUploaded">'
+				div += '<img src="/company/displayImage?fileName=' + rData+'">';
+				div += "</div>";
+				$("#uploadedList").append(div);
+			}
+		});
+		
+	});
+	
 });
 </script>
 <%@include file="/WEB-INF/views/company/product/include/paging_form.jsp"%>
@@ -33,22 +68,25 @@ $(function() {
 		<div class="col-lg-8">
 			<!-- Featured blog post-->
 			<div class="card mb-4">
-				<a href="#!"><img class="card-img-top"
-					src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-				<div class="card-body">
-					<a class="btn btn-primary" href="#!">이미지 업로드</a>
+				<div class="fileDrop">
+					<label>파일을 드래그 하세요</label> <img class="card-img-top"
+						src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+				</div>
+				<div class="card-body" id="uploadedList">
+					
 				</div>
 			</div>
-			<button type="button" class="btn btn-outline-dark btn-lg px-2 btnMoreImage">More Images/Close</button>
+			<button type="button"
+				class="btn btn-outline-dark btn-lg px-2 btnMoreImage">More
+				Images/Close</button>
 			<!-- Nested row for non-featured blog posts-->
 			<div class="row">
 				<div class="col-lg-6 MoreImage">
 					<!-- Blog post-->
 					<div class="card mb-4">
-						<a href="#!"><img class="card-img-top"
-							src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-						<div class="card-body">
-							<a class="btn btn-primary" href="#!">이미지 업로드</a>
+						<div class="fileDrop">
+							<label>파일을 드래그 하세요</label> <img class="card-img-top"
+								src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
 						</div>
 					</div>
 					<!-- Blog post-->
@@ -60,7 +98,7 @@ $(function() {
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="col-lg-6 MoreImage">
 					<!-- Blog post-->
 					<div class="card mb-4">
