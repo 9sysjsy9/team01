@@ -7,17 +7,17 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.kh.ex01.vo.customer.FaqVo;
+import com.kh.ex01.vo.QnaVo;
 
 @Repository
-public class FaqDao {
+public class QnaDao {
 	@Inject
 	SqlSession sqlSession;
 	
-	private static final String NAMESAPCE = "com.kh.ex01.mappers.faq.";
+	private static final String NAMESAPCE = "com.kh.ex01.mappers.qna.";
 	
-	public List<FaqVo> selectAll() {
-		List<FaqVo> list = sqlSession.selectList(NAMESAPCE+"selectAll");
+	public List<QnaVo> selectAll() {
+		List<QnaVo> list = sqlSession.selectList(NAMESAPCE+"selectAll");
 		return list;
 	}
 	

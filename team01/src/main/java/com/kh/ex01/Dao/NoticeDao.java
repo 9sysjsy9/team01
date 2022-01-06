@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.kh.ex01.vo.customer.NoticeVo;
+import com.kh.ex01.vo.NoticeVo;
 
 @Repository
 public class NoticeDao {

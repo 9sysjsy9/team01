@@ -4,23 +4,22 @@
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
  
 
-<div class="jumbotron">
+<div class="jumbotron" style="padding: 30px;"><br>
 	<h1 style="padding-left: 110px;"><b>CS센터</b><br></h1>
 	<p><br><h5 style="padding-left: 110px;">서비스 접수 전 아래의 공지사항을 확인해주세요.</h5></p>
 </div>
-<div class="jumbotron">
-	<h4 style="padding-left: 110px;"><b>[ 교환, 반품 및 환불이 불가능한 경우 ]</b><br></h4>
-	<p style="padding-left: 110px;">- 고객님의 책임 있는 사유로 상품등이 멸실 또는 훼손된 경우</p><br>  
-		단,상품의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외<br> 
-		- 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우<br>
-		- 고객님의 사용 또는 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우. <br>
-		- 시간의 경과에 의하여 재판매가 곤란할 정도로 상품등의 가치가 현저히 감소한 경우<br>
-		- 복제가 가능한 상품등의 포장을 훼손한 경우<br><br>
-		
-		※ 고객님의 변심으로 인한 교환, 반품을 하실 경우 상품반송 비용은 고객님 부담입니다.<br>
-	 <p style="padding-left: 110px;">(색상 교환, 사이즈 교환 등 포함)</p>
+<div style="background-color:#ffcc99; padding:10px;"><br>
+	<h4 style="padding-left: 130px;"><b>[ 교환, 반품 및 환불이 불가능한 경우 ]</b></h4><br>
+	<p style="padding-left: 130px;">- 고객님의 책임 있는 사유로 상품등이 멸실 또는 훼손된 경우</p>  
+	<p style="padding-left: 150px;">단,상품의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외</p>
+	<p style="padding-left: 130px;">- 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우</p>
+	<p style="padding-left: 130px;">- 고객님의 사용 또는 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우.</p>
+	<p style="padding-left: 130px;">- 시간의 경과에 의하여 재판매가 곤란할 정도로 상품등의 가치가 현저히 감소한 경우</p>
+	<p style="padding-left: 130px;">- 복제가 가능한 상품등의 포장을 훼손한 경우</p>
+	<p style="padding-left: 130px;">※ 고객님의 변심으로 인한 교환, 반품을 하실 경우 상품반송 비용은 고객님 부담입니다.</p>
+	<p style="padding-left: 130px;">(색상 교환, 사이즈 교환 등 포함)</p>
 </div>
-</div>       
+<br>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-4">
@@ -31,7 +30,7 @@
 			<div style=" text-align: center;">
 				<a class="btn btn-primary my-2 my-sm-0" 
 					type="submit" style=" display: inline-block;" 
-					href="/customer/csSub/csExchange">교환 접수
+					href="/customer/csExchange">교환 접수
 				</a>
 			</div>
 		</div>
@@ -44,7 +43,7 @@
 			<div style=" text-align: center;">
 				<a class="btn btn-primary my-2 my-sm-0" 
 					type="submit" style=" display: inline-block;" 
-					href="/customer/csSub/csReturn">반품 접수
+					href="/customer/csReturn">반품 접수
 				</a>
 			</div>
 		</div>
@@ -56,7 +55,7 @@
 			<div style=" text-align: center;">
 				<a class="btn btn-primary my-2 my-sm-0" 
 					type="submit" style=" display: inline-block;" 
-					href="/customer/csSub/csRefund">환불 접수
+					href="/customer/csRefund">환불 접수
 				</a>
 			</div>
 		</div>

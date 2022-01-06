@@ -4,14 +4,13 @@
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <style>
 
-	.qask {
+	.title {
 		cursor: pointer;
 	}
-	.qanswer{
+	.content{
 		display : none
 	}
-	
-	.qask > th, .qanswer > td {
+	.title > th, .content > td {
 		padding-left: 110px;
 	}
 	
@@ -23,8 +22,8 @@
 
 <script type="text/javascript">
 $(function(){
-	$(".qask").click(function(){
-        $(this).next().fadeToggle(500);
+	$(".title").click(function(){
+        $(this).next().children().toggle();
      });
 });
 </script>
@@ -64,17 +63,16 @@ $(function(){
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${list}" var="faqVo">
-				<tr class="table-warning qask">
-					<th style="padding-left: 110px;">${faqVo.faq_title}</th>
+			<c:forEach items="${list}" var="qnaVo">
+				<tr class="table-warning title">
+					<th>${qnaVo.qna_no}</th>
+					<th>${qnaVo.qna_title}</th>
 				</tr>
-				<tr class="qanswer">
-					<td>${faqVo.faq_content}
-					</td>
+				<tr>
+					<td style="padding-left: 130px; padding-right: 130px;" class="content">
+						${qnaVo.qna_content}</td>
 				</tr>
-			
 			</c:forEach>
-				
 			</tbody>
 		</table>
 		<nav>

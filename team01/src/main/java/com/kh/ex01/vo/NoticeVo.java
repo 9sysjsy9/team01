@@ -1,4 +1,4 @@
-package com.kh.ex01.vo.customer;
+package com.kh.ex01.vo;
 
 import java.util.Date;
 
