@@ -8,14 +8,16 @@ $(function(){
 		e.preventDefault();
 		var hno = $(this).attr("href");
 		console.log("hno:", hno);
-		location.href = "/hire/regist_content?hno="+hno;
+		location.href = "/hire/company/regist_content?hno="+hno;
 	});
 });
 </script>
 <div class="row gx-4 gx-lg-5 align-items-center my-5">
-	<div class="col-lg-5" >
-		<h1 class="font-weight-light" style="margin-left:50px;">지원자 리스트</h1>
-	</div>
+	<div class="col-md-2"></div>
+		<div class="col-lg-5" >
+			<h1 class="font-weight-light" style="margin-left:50px;">지원자 리스트</h1>
+		</div>
+	<div class="col-md-2"></div>
 </div>
 <div class="container-fluid">
 	<div class="row">

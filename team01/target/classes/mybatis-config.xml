@@ -10,6 +10,7 @@
 <!-- 		<typeAlias type="com.kh.ex01.vo.MemberVo" alias="MemberVo"/> -->
 <!-- 		<typeAlias type="com.kh.ex01.vo.ProductVo" alias="ProductVo"/> -->
 		<typeAlias type="com.kh.ex01.vo.FranApplyVo" alias="FranApplyVo"/>
+		<typeAlias type="com.kh.ex01.vo.MemberVo" alias="MemberVo"/>
 
 		<!-- 패키지 단위 -->
 		<package name="com.kh.ex01.vo"/>

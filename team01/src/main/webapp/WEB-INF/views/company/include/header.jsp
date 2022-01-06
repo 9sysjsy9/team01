@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+
 <!DOCTYPE html>
 <head>
 
@@ -21,6 +22,10 @@
 <link href="/css/styles.css" rel="stylesheet" />
 </head>
 <body>
+${loginData}
+<script>
+console.log("${loginData}");
+</script>
 	<!-- Responsive navbar-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
@@ -43,7 +48,7 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="#">건의 사항</a></li>
-							<li><a class="dropdown-item" href="#">자유 게시판</a></li>
+							<li><a class="dropdown-item" href="/free/free_list">자유 게시판</a></li>
 							<li><a class="dropdown-item" href="#">대나무 숲</a></li>
 							<li><a class="dropdown-item" href="#">자료실</a></li>
 						</ul></li>
@@ -54,7 +59,7 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/product/product_list">제품목록</a></li>
-							<li><a class="dropdown-item" href="#">제품등록</a></li>
+							<li><a class="dropdown-item" href="/product/product_regist">제품등록</a></li>
 							<li><a class="dropdown-item" href="#">파손/불량</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
@@ -62,7 +67,7 @@
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">고객관리</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/hire/regist_list">채용문의 관리</a></li>
+							<li><a class="dropdown-item" href="/hire/company/regist_list">채용문의 관리</a></li>
 							<li><a class="dropdown-item" href="/store/applyFranList">가맹문의 관리</a></li>
 							<li><a class="dropdown-item" href="#">제품문의 관리</a></li>
 						</ul></li>

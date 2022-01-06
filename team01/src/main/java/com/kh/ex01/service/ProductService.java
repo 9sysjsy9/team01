@@ -7,9 +7,13 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.kh.ex01.Dao.ProductDao;
-import com.kh.ex01.vo.AskProductVo;
 import com.kh.ex01.vo.PagingDto;
 import com.kh.ex01.vo.ProductVo;
+import com.kh.ex01.vo.ShoesCategoryVo;
+import com.kh.ex01.vo.ShoesColorVo;
+import com.kh.ex01.vo.ShoesSizeVo;
+import com.kh.ex01.vo.ShoesStateVo;
+import com.kh.ex01.vo.ShoesStyleVo;
 
 @Service
 public class ProductService {
@@ -22,6 +26,27 @@ public class ProductService {
 	}
 	public List<ProductVo> simpleSelectAll() {
 		List<ProductVo> list = productDao.simpleSelectAll();
+		return list;
+	}
+	
+	public List<ShoesSizeVo> selectAllShoesSize() {
+		List<ShoesSizeVo> list = productDao.selectAllShoesSize();
+		return list;
+	}
+	public List<ShoesStyleVo> selectAllShoesStyle() {
+		List<ShoesStyleVo> list = productDao.selectAllShoesStyle();
+		return list;
+	}
+	public List<ShoesStateVo> selectAllShoesState() {
+		List<ShoesStateVo> list = productDao.selectAllShoesState();
+		return list;
+	}
+	public List<ShoesColorVo> selectAllShoesColor() {
+		List<ShoesColorVo> list = productDao.selectAllShoesColor();
+		return list;
+	}
+	public List<ShoesCategoryVo> selectAllShoesCategory() {
+		List<ShoesCategoryVo> list = productDao.selectAllShoesCategory();
 		return list;
 	}
 	

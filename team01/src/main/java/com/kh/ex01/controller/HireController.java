@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.ex01.service.HireService;
 import com.kh.ex01.vo.HireBoardVo;
@@ -69,7 +70,7 @@ public class HireController {
 	 }
 	 
 	 // 지원자 보기
-	 @RequestMapping(value = "/regist_list", method = RequestMethod.GET)
+	 @RequestMapping(value = "/company/regist_list", method = RequestMethod.GET)
 	 public String registList(Model model) {
 		 List<HireVo> list = hireService.registList();
 		 model.addAttribute("list",list);
@@ -87,11 +88,11 @@ public class HireController {
 	 // 채용조회
 	 @RequestMapping(value = "/hire_search", method = RequestMethod.GET)
 	 public String hireSearch() {
-		 return "hire/hire_search";
+		 return "/hire/hire_search";
 	 }
 	 
 	// 지원자 상세내용
-	 @RequestMapping(value = "/regist_content", method = RequestMethod.GET)
+	 @RequestMapping(value = "/company/regist_content", method = RequestMethod.GET)
 	 public String registBoard(Model model, int hno) {
 		 HireVo hireVo = hireService.getBoard(hno);
 		 model.addAttribute("hireVo",hireVo);
@@ -99,29 +100,45 @@ public class HireController {
 	 }
 	 
 	 // 지원자 삭제
-	 @RequestMapping(value = "/delete_list", method = RequestMethod.GET)
+	 @RequestMapping(value = "/company/delete_list", method = RequestMethod.GET)
 	 public String deleteBoard(int hno) {
 		 hireService.deleteBoard(hno);
-		 return "redirect:/hire/regist_list";
+		 return "redirect:/hire/company/regist_list";
 	 }
 	 
 	 // 합격 통지
-	 @RequestMapping(value = "/modify_success", method = RequestMethod.GET)
+	 @RequestMapping(value = "/company/modify_success", method = RequestMethod.GET)
 	 public String modifySuccess(int hno,Model model) {
 		 HireVo hireVo = hireService.getBoard(hno);
 		 hireService.modifySuccess(hno);
 		 model.addAttribute("hireVo",hireVo);
-		 return "redirect:/hire/regist_content?hno="+hno;
+		 return "redirect:/hire/company/regist_content?hno="+hno;
 	 }
 	 
 	 // 불합격 통지
-	 @RequestMapping(value = "/modify_fail", method = RequestMethod.GET)
+	 @RequestMapping(value = "/company/modify_fail", method = RequestMethod.GET)
 	 public String modifyFail(int hno,Model model) {
 		 HireVo hireVo = hireService.getBoard(hno);
 		 hireService.modifyFail(hno);
 		 model.addAttribute("hireVo",hireVo);
-		 return "redirect:/hire/regist_content?hno="+hno;
+		 return "redirect:/hire/company/regist_content?hno="+hno;
 	 }
 	 
-	
+	 // 합격 확인
+	 @ResponseBody
+	 @RequestMapping(value = "/search_success", method = RequestMethod.GET)
+	 public String searchSuccess(String name, String email) {
+		 System.out.println("contoller : " + name + email);
+		 HireVo hireVo = hireService.searchSuccess(name, email);
+		 System.out.println("controllor hireVo :" + hireVo);
+		 String state = hireVo.getState();
+		 System.out.println("state:" + state);
+		 if(state.equals("success")) {
+			 return "success";
+		 } else if(state.equals("fail")){
+			 return "fail";
+		 } else {
+			 return "stay";
+		 }
+	 }
 }

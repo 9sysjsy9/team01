@@ -7,9 +7,13 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.kh.ex01.vo.AskProductVo;
 import com.kh.ex01.vo.PagingDto;
 import com.kh.ex01.vo.ProductVo;
+import com.kh.ex01.vo.ShoesCategoryVo;
+import com.kh.ex01.vo.ShoesColorVo;
+import com.kh.ex01.vo.ShoesSizeVo;
+import com.kh.ex01.vo.ShoesStateVo;
+import com.kh.ex01.vo.ShoesStyleVo;
 
 @Repository
 public class ProductDao {
@@ -26,6 +30,28 @@ public class ProductDao {
 		List<ProductVo> list = sqlSession.selectList(NAMESAPCE+"simpleSelectAll");
 		return list;
 	}
+	
+	public List<ShoesSizeVo> selectAllShoesSize() {
+		List<ShoesSizeVo> list = sqlSession.selectList(NAMESAPCE+"selectAllShoesSize");
+		return list;
+	}
+	public List<ShoesStyleVo> selectAllShoesStyle() {
+		List<ShoesStyleVo> list = sqlSession.selectList(NAMESAPCE+"selectAllShoesStyle");
+		return list;
+	}
+	public List<ShoesStateVo> selectAllShoesState() {
+		List<ShoesStateVo> list = sqlSession.selectList(NAMESAPCE+"selectAllShoesState");
+		return list;
+	}
+	public List<ShoesColorVo> selectAllShoesColor() {
+		List<ShoesColorVo> list = sqlSession.selectList(NAMESAPCE+"selectAllShoesColor");
+		return list;
+	}
+	public List<ShoesCategoryVo> selectAllShoesCategory() {
+		List<ShoesCategoryVo> list = sqlSession.selectList(NAMESAPCE+"selectAllShoesCategory");
+		return list;
+	}
+	
 	public ProductVo getContent(String shoes_code) {
 		ProductVo productVo = sqlSession.selectOne(NAMESAPCE+"getProduct", shoes_code);
 		return productVo;
