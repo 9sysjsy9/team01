@@ -64,4 +64,10 @@
 		state = 'fail'
 		where hno = #{hno}
 	</update>
+	
+	<select id="searchSuccess" resultType="HireVo">
+		select * from tbl_hire 
+		where name = #{name} 
+		and email = #{email} 
+	</select>
 </mapper>

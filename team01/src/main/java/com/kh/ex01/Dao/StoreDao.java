@@ -21,6 +21,10 @@ public class StoreDao {
 		sqlSession.insert(NAMESPACE + "applyRegistRun", franApplyVo);
 	}
 	
+	public void applyModifyRun(FranApplyVo franApplyVo) {
+		sqlSession.update(NAMESPACE + "applyModifyRun",franApplyVo);
+	}
+	
 	public FranApplyVo applyStateInquiry(String email) {
 		FranApplyVo franApplyVo = sqlSession.selectOne(NAMESPACE + "applyStateInquiry", email);
 		return franApplyVo;
