@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/company")
 public class CompanyController {
 
-	@RequestMapping("/login")
-	public String login() {
-		return "/company/member/login";
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String mainPage() {
+		return "/company/main";
 	}
-
 
 }
