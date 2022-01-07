@@ -76,7 +76,7 @@ console.log("${loginData}");
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">관리자메뉴</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#">가입 승인</a></li>
+							<li><a class="dropdown-item" href="/member/company/memberApproveList">가입 승인</a></li>
 							<li><a class="dropdown-item" href="#">사원 관리</a></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#">회사일정</a></li>
