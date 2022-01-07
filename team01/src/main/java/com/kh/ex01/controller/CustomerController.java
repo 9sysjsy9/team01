@@ -16,24 +16,41 @@ import com.kh.ex01.vo.NoticeVo;
 @RequestMapping("/customer")
 public class CustomerController {
 
-	 @Inject
-	 NoticeService noticeService;
-	 
-	 @RequestMapping(value = "/customerNotice", method = RequestMethod.GET)
-	 public String customerNotice(Model model) {
-		 List<NoticeVo> list = noticeService.selectAll();
-		 model.addAttribute("list", list);
-		 return "customer/customerNotice";
-	 }
-	  
-	 @RequestMapping(value = "/customerQna", method = RequestMethod.GET)
-	 public String customerQna() {
-		 return "customer/customerQna";
-	 }
-	 
-	 @RequestMapping(value = "/customerService", method = RequestMethod.GET)
-	 public String customerService() {
-		 return "customer/customerService";
-	 }
-	 
+	@Inject
+	NoticeService noticeService;
+
+	// /customer/notice
+	@RequestMapping(value = "/notice", method = RequestMethod.GET)
+	public String customerNotice(Model model) {
+		List<NoticeVo> list = noticeService.selectAll();
+		model.addAttribute("list", list);
+		return "customer/notice";
+	}
+
+	// /customer/qna
+	@RequestMapping(value = "/qna", method = RequestMethod.GET)
+	public String customerQna() {
+		return "customer/qna";
+	}
+
+	@RequestMapping(value = "/csExchange", method = RequestMethod.GET)
+	public String csExchange() {
+		return "customer/csSub/csExchange";
+	}
+
+	@RequestMapping(value = "/csReturn", method = RequestMethod.GET)
+	public String csReturn() {
+		return "customer/csSub/csReturn";
+	}
+
+	@RequestMapping(value = "/csRefund", method = RequestMethod.GET)
+	public String csRefund() {
+		return "customer/csSub/csRefund";
+	}
+	
+	@RequestMapping(value = "/csMain", method = RequestMethod.GET)
+	public String csMain() {
+		return "customer/csMain";
+	}
+
 }

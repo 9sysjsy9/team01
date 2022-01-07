@@ -17,7 +17,7 @@ import com.kh.ex01.vo.PagingDto;
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping("/ask")
+@RequestMapping("/company")
 public class AskProductController {
 	@Inject
 	AskProductService askProductService;
