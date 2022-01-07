@@ -12,12 +12,5 @@ public class CompanyController {
 	public String mainPage() {
 		return "/company/main";
 	}
-	
-	@RequestMapping("/login")
-	public String login() {
-		return "/company/member/login";
-	}
-	
-	
 
 }

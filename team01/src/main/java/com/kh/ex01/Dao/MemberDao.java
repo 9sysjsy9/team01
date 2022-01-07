@@ -25,4 +25,18 @@ public class MemberDao {
 		MemberVo memberVo = sqlSession.selectOne(NAMESPACE + "loginRun", loginInfo);
 		return memberVo;
 	}
+	
+	public int checkId(String userid) {
+		int result = sqlSession.selectOne(NAMESPACE + "checkId", userid);
+		return result;
+	}
+	
+	public int checkEno(int eno) {
+		int result = sqlSession.selectOne(NAMESPACE + "checkEno", eno);
+		return result;
+	}
+	
+	public void registRun(MemberVo memberVo) {
+		sqlSession.insert(NAMESPACE + "registRun", memberVo);
+	}
 }

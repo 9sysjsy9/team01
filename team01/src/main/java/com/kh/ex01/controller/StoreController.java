@@ -86,7 +86,7 @@ public class StoreController {
 	}
 	
 	// 가맹점 문의 리스트
-	@RequestMapping(value = "/applyFranList", method = RequestMethod.GET)
+	@RequestMapping(value = "/company/applyFranList", method = RequestMethod.GET)
 	public String applyFranList(Model model) {
 		List<FranApplyVo> list = storeService.applyFranList();
 		model.addAttribute("applyList", list);
@@ -94,16 +94,16 @@ public class StoreController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/applyInquiry", method = RequestMethod.POST)
+	@RequestMapping(value = "/company/applyInquiry", method = RequestMethod.POST)
 	public FranApplyVo applyInquiry(String fno) {
 		FranApplyVo franApplyVo = storeService.applyInquiry(fno);
 		return franApplyVo;
 	}
 	
-	@RequestMapping(value="/replyRegistRun", method = RequestMethod.POST)
+	@RequestMapping(value="/company/replyRegistRun", method = RequestMethod.POST)
 	public String replyRegistRun(FranApplyVo franApplyVo) {
 		System.out.println("StoreController, applyRegistRun, franApplyVo : " + franApplyVo);
 		storeService.replyRegistRun(franApplyVo);
-		return "redirect:/store/applyFranList";
+		return "redirect:/store/company/applyFranList";
 	}
 }

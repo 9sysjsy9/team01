@@ -68,7 +68,7 @@ console.log("${loginData}");
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/hire/company/regist_list">채용문의 관리</a></li>
-							<li><a class="dropdown-item" href="/store/applyFranList">가맹문의 관리</a></li>
+							<li><a class="dropdown-item" href="/store/company/applyFranList">가맹문의 관리</a></li>
 							<li><a class="dropdown-item" href="#">제품문의 관리</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
@@ -81,7 +81,7 @@ console.log("${loginData}");
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#">회사일정</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="/">로그아웃</a></li>
+					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 				</ul>
 			</div>
 		</div>
