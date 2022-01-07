@@ -12,25 +12,43 @@
 	</select>
 	
 	<select id="listNew" resultType="HireBoardVo">
-		select * from tbl_hireboard
-		where cate = '[신입]'
-		order by bno desc
+		select * from
+				(select rownum rnum, a.* from
+				(select * from tbl_hireboard where cate = '[신입]' order by bno desc) a) 
+		where rnum between #{startRow} and #{endRow}
 	</select>
 	
 	<select id="listExperience" resultType="HireBoardVo">
-		select * from tbl_hireboard
-		where cate = '[경력]'
-		order by bno desc
+		select * from
+			(select rownum rnum, a.* from
+			(select * from tbl_hireboard where cate = '[경력]' order by bno desc) a) 
+		where rnum between #{startRow} and #{endRow}
 	</select>
 	
 	<select id="listIntern" resultType="HireBoardVo">
-		select * from tbl_hireboard
-		where cate = '[인턴]'
-		order by bno desc
+		select * from
+			(select rownum rnum, a.* from
+			(select * from tbl_hireboard where cate = '[인턴]' order by bno desc) a) 
+		where rnum between #{startRow} and #{endRow}
 	</select>
 	
 	<select id="getCount" resultType="int">
 		select count(*) from tbl_hireboard
+	</select>
+	
+	<select id="getN_Count" resultType="int">
+		select count(*) from tbl_hireboard
+		where cate = '[신입]'
+	</select>
+	
+	<select id="getI_Count" resultType="int">
+		select count(*) from tbl_hireboard
+		where cate = '[인턴]'
+	</select>
+	
+	<select id="getE_Count" resultType="int">
+		select count(*) from tbl_hireboard
+		where cate = '[경력]'
 	</select>
 	
 	<select id="registList" resultType="HireVo">
@@ -70,4 +88,5 @@
 		where name = #{name} 
 		and email = #{email} 
 	</select>
+	
 </mapper>
