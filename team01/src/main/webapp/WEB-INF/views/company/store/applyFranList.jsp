@@ -13,7 +13,7 @@
 		// 조회버튼 (메일 주소 버튼) 클릭시 내용 modal창 표시 
 		$(".applyInquiryLink").click(function(e) {
 			e.preventDefault();
-			var url = "/store/applyInquiry";
+			var url = "/store/company/applyInquiry";
 			var sData = {
 				"fno" : $(this).attr("href")
 			};
@@ -71,7 +71,7 @@
 								<span aria-hidden="true">×</span>
 							</button>
 						</div>
-						<form role="form" action="/store/replyRegistRun" method="post"
+						<form role="form" action="/store/company/replyRegistRun" method="post"
 							id="applyForm">
 							<input type="hidden" name="fno" id="fno">
 							<!-- form 시작 -->

@@ -1,6 +1,7 @@
 package com.kh.ex01.Dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -24,5 +25,28 @@ public class MemberDao {
 		loginInfo.put("userpw", userpw);
 		MemberVo memberVo = sqlSession.selectOne(NAMESPACE + "loginRun", loginInfo);
 		return memberVo;
+	}
+	
+	public int checkId(String userid) {
+		int result = sqlSession.selectOne(NAMESPACE + "checkId", userid);
+		return result;
+	}
+	
+	public int checkEno(int eno) {
+		int result = sqlSession.selectOne(NAMESPACE + "checkEno", eno);
+		return result;
+	}
+	
+	public void registRun(MemberVo memberVo) {
+		sqlSession.insert(NAMESPACE + "registRun", memberVo);
+	}
+	
+	public List<MemberVo> memberApproveList(){
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "memberApproveList");
+		return list;
+	}
+	
+	public void memberApproveRun(MemberVo memberVo) {
+		sqlSession.update(NAMESPACE + "memberApproveRun", memberVo);
 	}
 }
