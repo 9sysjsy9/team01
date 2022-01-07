@@ -34,13 +34,13 @@ public class MyFileUploadUtil {
 		
 		String dateString = year + "/" + month + "/" + date;
 		String datePath = uploadPath + "/" + dateString; 
-		System.out.println("datePath: "+datePath);
+		System.out.println("MyFileUploadUtil, datePath: "+datePath);
 		
 		File f = new File(datePath);
 		
 		if (!f.exists()) {
 			f.mkdirs();
-			System.out.println("파일 생성됨");
+			System.out.println("MyFileUploadUtil에서 파일 생성됨");
 		}
 
 		return datePath;
@@ -49,19 +49,22 @@ public class MyFileUploadUtil {
 	public static boolean makeThumbnail(String filePath) {
 		int slashIndex = filePath.lastIndexOf("/");
 		String front = filePath.substring(0, slashIndex + 1);
-		System.out.println("front: "+front);
+		System.out.println("MyFileUploadUtil, makeThumbnail, front: "+front);
 		String rear = filePath.substring(slashIndex + 1);
-		System.out.println("rear: "+rear);
+		System.out.println("MyFileUploadUtil, makeThumbnail, rear: "+rear);
 		String thumbnailPath = front + "sm_" + rear;
 		
 		File orgFile = new File(filePath);
+		System.out.println("MyFileUploadUtil, orgFile:"+orgFile);
 		File thumbFile = new File(thumbnailPath);
+		System.out.println("MyFileUploadUtil, thumbFile:"+ thumbnailPath);
 		
 		try {
 			BufferedImage srcImage = ImageIO.read(orgFile);
 			BufferedImage descImage =
 					Scalr.resize(srcImage, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 100);
 			ImageIO.write(descImage, getExtName(filePath), thumbFile);
+			System.out.println("MyFileUploadUtil, makeThumbnail try구문 실행됨");
 			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -83,6 +86,14 @@ public class MyFileUploadUtil {
 			return true;
 		}
 		return false;
+	}
+	
+	public static String getThumbnailPath(String filePath) {
+		int slashIndex = filePath.lastIndexOf("/");
+		String front = filePath.substring(0, slashIndex + 1);
+		String rear = filePath.substring(slashIndex + 1);
+		String thumbnailPath = front + "sm_" + rear;
+		return thumbnailPath;
 	}
 	
 }

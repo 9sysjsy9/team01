@@ -31,6 +31,7 @@ $(function() {
 
 	$(".fileDrop").on("drop", function(e) {
 		e.preventDefault();
+		var div = $(this).next();
 		var file = e.originalEvent.dataTransfer.files[0];
 		console.log("file: " + file);
 		var formData = new FormData();
@@ -44,15 +45,17 @@ $(function() {
 			"url" : url,
 			"data" : formData,
 			"success" : function(rData) {
-				console.log(rData);
+				console.log("rData: "+rData);
 				if (rData == "fail") {
 					alert("잘못된 형식의 파일입니다.");
 					return;
 				}
-				var div = '<div class="divUploaded">'
-				div += '<img src="/company/displayImage?fileName=' + rData+'">';
-				div += "</div>";
-				$("#uploadedList").append(div);
+				var underIndex = rData.indexOf("_");
+				var fileName = rData.substring(underIndex + 1);
+				var asd = '<a href="#" class="a_times">&times;</a>'+"<br>";
+				asd += '<img src="/company/displayImage?fileName=' + rData+'">'+"<br>";
+				asd += "<span>"+fileName+"</span><br>";
+				div.append(asd);
 			}
 		});
 		
@@ -69,10 +72,10 @@ $(function() {
 			<!-- Featured blog post-->
 			<div class="card mb-4">
 				<div class="fileDrop">
-					<label>파일을 드래그 하세요</label> <img class="card-img-top"
+					<label class="label btn-outline-dark btn-lg px-2">파일을 드래그 하세요</label> <img class="card-img-top"
 						src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
 				</div>
-				<div class="card-body" id="uploadedList">
+				<div class="label label-outline-light btn-lg px-2" id="uploadedList">
 					
 				</div>
 			</div>

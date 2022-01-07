@@ -23,14 +23,14 @@ public class UploadController {
 			produces = "application/text;charset=utf-8")
 	@ResponseBody
 	public String uploadAjax(MultipartFile file) throws IOException {
-		System.out.println("file: " + file);
+		//System.out.println("file: " + file);
 		String originalName = file.getOriginalFilename();
-		System.out.println("originalName: " + originalName);
+		//System.out.println("originalName: " + originalName);
 		String filePath = 
 				MyFileUploadUtil.uploadFile(UPLOAD_PATH, originalName, file.getBytes());
-		System.out.println("filePath: "+ filePath);
+		System.out.println("UploadController, filePath: "+ filePath);
 		boolean isImage = MyFileUploadUtil.isImage(filePath);
-		System.out.println("isImage: "+isImage);
+		//System.out.println("isImage: "+isImage);
 		
 		if (isImage) {
 			boolean result = MyFileUploadUtil.makeThumbnail(filePath);
@@ -45,8 +45,13 @@ public class UploadController {
 	
 	@RequestMapping(value="/displayImage", method=RequestMethod.GET)
 	@ResponseBody
-	public void displayImage(String fileName) throws Exception {
+	public byte[] displayImage(String fileName) throws Exception {
 		System.out.println("UploadController, displayFile, fileName: " + fileName);
+		String thumbnailPath = MyFileUploadUtil.getThumbnailPath(fileName);
+		System.out.println("UploadController, displayFile, thumbnailPath: "+thumbnailPath);
+		FileInputStream fis = new FileInputStream(UPLOAD_PATH+thumbnailPath);
+		byte[] bytes = IOUtils.toByteArray(fis);
+		return bytes;
 	}
 	
 }
