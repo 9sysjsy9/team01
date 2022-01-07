@@ -22,7 +22,6 @@
 <link href="/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-${loginData}
 <script>
 console.log("${loginData}");
 </script>
@@ -76,11 +75,11 @@ console.log("${loginData}");
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">관리자메뉴</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#">가입 승인</a></li>
+							<li><a class="dropdown-item" href="/member/company/memberApproveList">가입 승인</a></li>
 							<li><a class="dropdown-item" href="#">사원 관리</a></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#">회사일정</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="/member/company/myPage">마이페이지</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 				</ul>
 			</div>

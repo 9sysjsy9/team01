@@ -1,6 +1,7 @@
 package com.kh.ex01.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -90,5 +92,25 @@ public class MemberController {
 		rttr.addFlashAttribute("msg", "logout");
 		return "redirect:/member/login";
 	}
-
+	
+	@RequestMapping(value = "/company/memberApproveList")
+	public String memberApproveList(Model model) {
+		List<MemberVo> list = memberService.memberApproveList();
+		model.addAttribute("approveList", list);
+		return "/company/member/memberApproveList";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/company/memberApproveRun")
+	public String memberApproveRun(MemberVo memberVo) {
+		System.out.println("MemberControler, memberApproveRun, memberVo : " + memberVo);
+		memberService.memberApproveRun(memberVo);
+		return "success";
+	}
+	
+	@RequestMapping(value = "/company/myPage")
+	public String myPage(MemberVo memberVo) {
+		return "/company/member/mypage";
+	}
+	
 }

@@ -17,7 +17,7 @@ import com.kh.ex01.util.MyFileUploadUtil;
 @RequestMapping("/company")
 public class UploadController {
 	
-	private static final String UPLOAD_PATH = "//E:/upload";
+	private static final String UPLOAD_PATH = "//192.168.0.234/upload";
 
 	@RequestMapping(value="/uploadAjax", method=RequestMethod.POST, 
 			produces = "application/text;charset=utf-8")
@@ -29,15 +29,16 @@ public class UploadController {
 		String filePath = 
 				MyFileUploadUtil.uploadFile(UPLOAD_PATH, originalName, file.getBytes());
 		System.out.println("UploadController, filePath: "+ filePath);
-		boolean isImage = MyFileUploadUtil.isImage(filePath);
+		//boolean isImage = MyFileUploadUtil.isImage(filePath);
 		//System.out.println("isImage: "+isImage);
-		
+		/*
 		if (isImage) {
 			boolean result = MyFileUploadUtil.makeThumbnail(filePath);
 			if (!result) {
 				return "fail";
 			}
 		}
+		*/
 		
 		return filePath.substring(UPLOAD_PATH.length());
 	}
@@ -47,11 +48,23 @@ public class UploadController {
 	@ResponseBody
 	public byte[] displayImage(String fileName) throws Exception {
 		System.out.println("UploadController, displayFile, fileName: " + fileName);
+		/*
 		String thumbnailPath = MyFileUploadUtil.getThumbnailPath(fileName);
 		System.out.println("UploadController, displayFile, thumbnailPath: "+thumbnailPath);
-		FileInputStream fis = new FileInputStream(UPLOAD_PATH+thumbnailPath);
+		*/
+		//FileInputStream fis = new FileInputStream(UPLOAD_PATH+thumbnailPath);
+		FileInputStream fis = new FileInputStream(UPLOAD_PATH+fileName);
 		byte[] bytes = IOUtils.toByteArray(fis);
 		return bytes;
+	}
+	
+	@RequestMapping(value="/deleteFile", method=RequestMethod.GET)
+	@ResponseBody
+	public boolean deleteFile(String fileName) throws Exception {
+		System.out.println("UploadController, deleteFile, fileName:" + fileName);
+		boolean result = MyFileUploadUtil.deleteFile(UPLOAD_PATH+fileName);
+		
+		return result;
 	}
 	
 }

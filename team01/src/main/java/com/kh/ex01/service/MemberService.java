@@ -1,5 +1,7 @@
 package com.kh.ex01.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -30,6 +32,15 @@ public class MemberService {
 	
 	public void registRun(MemberVo memberVo) {
 		memberDao.registRun(memberVo);
+	}
+	
+	public List<MemberVo> memberApproveList(){
+		List<MemberVo> list = memberDao.memberApproveList();
+		return list;
+	}
+	
+	public void memberApproveRun(MemberVo memberVo) {
+		memberDao.memberApproveRun(memberVo);
 	}
 	
 }

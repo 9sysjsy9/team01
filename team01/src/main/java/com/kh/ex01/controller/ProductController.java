@@ -70,5 +70,11 @@ public class ProductController {
 	public String productDetail() {
 		return "/product/product_detail";
 	}
+	
+	@RequestMapping(value = "/regist_run", method = RequestMethod.GET)
+	public String registRun(ProductVo productVo) {
+		System.out.println("regist_run, productVo: "+productVo);
+		return null;
+	}
 
 }
