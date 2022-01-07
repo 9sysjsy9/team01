@@ -22,7 +22,6 @@
 <link href="/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-${loginData}
 <script>
 console.log("${loginData}");
 </script>
@@ -80,7 +79,7 @@ console.log("${loginData}");
 							<li><a class="dropdown-item" href="#">사원 관리</a></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#">회사일정</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="/member/company/myPage">마이페이지</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 				</ul>
 			</div>

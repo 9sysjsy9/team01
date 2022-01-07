@@ -107,4 +107,10 @@ public class MemberController {
 		memberService.memberApproveRun(memberVo);
 		return "success";
 	}
+	
+	@RequestMapping(value = "/company/myPage")
+	public String myPage(MemberVo memberVo) {
+		return "/company/member/mypage";
+	}
+	
 }
