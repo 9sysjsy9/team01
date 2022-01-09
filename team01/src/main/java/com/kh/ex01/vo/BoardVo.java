@@ -18,6 +18,12 @@ public class BoardVo {
 	private int cmtcnt; // NUMBER Yes
 	private int bstate; // NUMBER(1,0) Yes 0
 	private String username;
+	private int next; // 이번게시글의 다음
+	private int prev; // 이번게시글의 이전
+	
+	public void setPage() {
+		
+	}
 	
 	public BoardVo() {
 		super();
@@ -135,14 +141,32 @@ public class BoardVo {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+
+	public int getNext() {
+		return next;
+	}
+
+	public void setNext(int next) {
+		this.next = next;
+	}
+
+	public int getPrev() {
+		return prev;
+	}
+
+	public void setPrev(int prev) {
+		this.prev = prev;
+	}
 
 	@Override
 	public String toString() {
 		return "BoardVo [bno=" + bno + ", bcate=" + bcate + ", title=" + title + ", content=" + content + ", userid="
 				+ userid + ", viewcnt=" + viewcnt + ", re_group=" + re_group + ", re_seq=" + re_seq + ", re_level="
 				+ re_level + ", regdate=" + regdate + ", updatedate=" + updatedate + ", cmtcnt=" + cmtcnt + ", bstate="
-				+ bstate + ", username=" + username + "]";
+				+ bstate + ", username=" + username + ", next=" + next + ", prev=" + prev + "]";
 	}
+
 
 	
 }

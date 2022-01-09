@@ -30,5 +30,20 @@ public class FreeBoardDao {
 		return boardVo;
 	}
 	
+	public void insertBoard(BoardVo boardVo) {
+		sqlSession.insert(NAMESPACE + "insertBoard", boardVo);
+	}
+	
+//	public BoardVo menuMove(int bno) {
+//		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "menuMove",bno);
+//		return boardVo;
+//	}
+	
+	public BoardVo menuMove2(int bno) {
+		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "menuMove2",bno);
+		return boardVo;
+	}
+	
+	
 	
 }

@@ -28,23 +28,38 @@ public class HireDao {
 		return list;
 	}
 	
-	public List<HireBoardVo> listNew() {
-		List<HireBoardVo> list = sqlSession.selectList(NAMESPACE + "listNew");
+	public List<HireBoardVo> listNew(PagingDto pagingDto) {
+		List<HireBoardVo> list = sqlSession.selectList(NAMESPACE + "listNew", pagingDto);
 		return list;
 	}
 	
-	public List<HireBoardVo> listExperience() {
-		List<HireBoardVo> list = sqlSession.selectList(NAMESPACE + "listExperience");
+	public List<HireBoardVo> listExperience(PagingDto pagingDto) {
+		List<HireBoardVo> list = sqlSession.selectList(NAMESPACE + "listExperience", pagingDto);
 		return list;
 	}
 	
-	public List<HireBoardVo> listIntern() {
-		List<HireBoardVo> list = sqlSession.selectList(NAMESPACE + "listIntern");
+	public List<HireBoardVo> listIntern(PagingDto pagingDto) {
+		List<HireBoardVo> list = sqlSession.selectList(NAMESPACE + "listIntern", pagingDto);
 		return list;
 	}
 	
 	public int getCount() {
 		int count = sqlSession.selectOne(NAMESPACE+"getCount");
+		return count;
+	}
+	
+	public int getN_Count() {
+		int count = sqlSession.selectOne(NAMESPACE+"getN_Count");
+		return count;
+	}
+	
+	public int getI_Count() {
+		int count = sqlSession.selectOne(NAMESPACE+"getI_Count");
+		return count;
+	}
+	
+	public int getE_Count() {
+		int count = sqlSession.selectOne(NAMESPACE+"getE_Count");
 		return count;
 	}
 	

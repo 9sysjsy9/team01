@@ -9,13 +9,13 @@
 </style>
 <script>
 $(function(){
-	$("#btnPrev").click(function(){
-// 		location.href = "/free/free_content?bno=596";
-	});
+	$(".btnMove").click(function(e) {
+		e.preventDefault();
+		var move = $(this).attr("href");
+		console.log(move);
+		location.href = "/company/board/free/free_content?bno="+move;
+	});;
 	
-	$("#btnNext").click(function(){
-		
-	});
 });
 </script>
 
@@ -37,8 +37,8 @@ $(function(){
 				<div>${boardVo.content }</div>
 				<hr>
 				<div class="move">
-					<a class="btnPrev btn btn-outline-primary" id="btnPrev">이전</a>
-					<a class="btnNext btn btn-outline-primary" id="btnNext">다음</a>
+					<a class="btnMove btn btn-outline-primary" id="btnPrev" href="${boardMoveVo.prev }">이전</a>
+					<a class="btnMove btn btn-outline-primary" id="btnNext" href="${boardMoveVo.next }">다음</a>
 				</div>
 			</form>
 		</div>

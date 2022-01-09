@@ -23,4 +23,19 @@ public class FreeBoardService {
 		BoardVo boardVo = freeBoardDao.getBoard(bno);
 		return boardVo;
 	}
+	
+	public void insertBoard(BoardVo boardVo) {
+		freeBoardDao.insertBoard(boardVo); 
+	}
+	
+//	public BoardVo menuMove(int bno) {
+//		BoardVo boardVo = freeBoardDao.menuMove(bno);
+//		return boardVo;
+//	}
+	
+	public BoardVo menuMove2(int bno) {
+		BoardVo boardVo = freeBoardDao.menuMove2(bno);
+		return boardVo;
+	}
+	
 }

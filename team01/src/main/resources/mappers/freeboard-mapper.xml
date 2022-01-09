@@ -14,5 +14,25 @@
 		where bno = #{bno}
 	</select>
 	
+	<insert id="insertBoard">
+		insert into tbl_board(bno, bcate, title, content, userid, username)
+		values(seq_bno.nextval, f, '자유게시판 제목', '자유게시판 내용', 'test01', sysdate, '이름')
+	</insert>
+	
+	<select id="menuMove" resultType="BoardVo">
+		select next,prev 
+			from (
+			    select bno, 
+			    lead(bno,1) over(order by bno) as next, 
+			    lag(bno,1) over(order by bno) as prev from tbl_board
+			)
+		where bno = #{bno}
+	</select>
+	
+	<select id="menuMove2" resultType="BoardVo">
+		select * from tbl_board 
+		where bno = (select max(bno) 
+		from tbl_board where bno &lt; #{bno})
+	</select>
 	
 </mapper>
