@@ -74,7 +74,8 @@ public class ProductController {
 	@RequestMapping(value = "/regist_run", method = RequestMethod.GET)
 	public String registRun(ProductVo productVo) {
 		System.out.println("regist_run, productVo: "+productVo);
-		return null;
+		productService.insertProduct(productVo);
+		return "redirect:/company/product_list";
 	}
 
 }

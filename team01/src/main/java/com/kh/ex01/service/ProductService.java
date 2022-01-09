@@ -58,5 +58,7 @@ public class ProductService {
 		int count = productDao.getCount();
 		return count;
 	}
-	
+	public void insertProduct(ProductVo productVo) {
+		productDao.insertProduct(productVo);
+	}
 }

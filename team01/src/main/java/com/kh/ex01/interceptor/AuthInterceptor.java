@@ -9,7 +9,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.kh.ex01.vo.MemberVo;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter{
-	
+	/*
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -23,5 +23,5 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 //		System.out.println("memberVo Data id : " + memberVo.getUserid() + ", name : " + memberVo.getUsername() + ", 권한 : " + memberVo.getAuthority());
 		return super.preHandle(request, response, handler);
 	}
-	
+	*/
 }

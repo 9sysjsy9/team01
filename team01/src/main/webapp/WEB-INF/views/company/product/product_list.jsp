@@ -33,6 +33,7 @@ $(function() {
 									<th>제품가격</th>
 									<th>제품종류</th>
 									<th>제품상태</th>
+									<th>제품이미지</th>
 								</tr>
 								<c:forEach items="${list}" var="productVo">
 									<tr>
@@ -45,6 +46,7 @@ $(function() {
 										<td>${productVo.shoes_price}</td>
 										<td>${productVo.shoes_style}</td>
 										<td>${productVo.shoes_state}</td>
+										<td>${productVo.shoes_image}</td>
 									</tr>
 								</c:forEach>
 						</table>

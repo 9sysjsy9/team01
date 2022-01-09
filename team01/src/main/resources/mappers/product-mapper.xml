@@ -43,4 +43,12 @@
 		where shoes_code = #{shoes_code}
 	</delete>
 	
+	<insert id="insertProduct">
+		insert into tbl_shoes(shoes_code, shoes_name, 
+		shoes_size, shoes_color, shoes_count, shoes_category, 
+		shoes_price, shoes_style, shoes_state, shoes_image)
+		values(seq_shoescode.nextval, #{shoes_name}, #{shoes_size}, #{shoes_color}, #{shoes_count}, #{shoes_category},
+		#{shoes_price}, #{shoes_style}, #{shoes_state}, #{shoes_image})
+	</insert>
+	
 </mapper>
