@@ -47,4 +47,8 @@ public class FreeBoardDao {
 		sqlSession.update(NAMESPACE + "modifyBoard",boardVo);
 	}
 	
+	public void updateViewcnt(int bno) {
+		sqlSession.update(NAMESPACE + "updateViewcnt",bno);
+	}
+	
 }

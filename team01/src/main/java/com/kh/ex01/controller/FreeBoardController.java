@@ -40,6 +40,7 @@ public class FreeBoardController {
 	@RequestMapping(value = "/board/free/free_content", method = RequestMethod.GET)
 	 public String registBoard(Model model, int bno) {
 		 BoardVo boardVo = freeboardService.getBoard(bno);
+		 System.out.println("컨트롤" + boardVo);
 		 BoardVo boardMoveVo = freeboardService.menuMove(bno); // 게시글 이동
 		 model.addAttribute("boardMoveVo",boardMoveVo);
 		 model.addAttribute("boardVo",boardVo);

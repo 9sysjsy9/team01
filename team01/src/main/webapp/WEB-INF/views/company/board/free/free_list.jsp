@@ -53,7 +53,7 @@ $(function(){
 										<td><a class="title" href="${boardVo.bno }">${boardVo.title }</a></td>
 										<td>${boardVo.username }</td>
 										<td>${boardVo.regdate }</td>
-										<td>${boardVo.cmtcnt }</td>
+										<td>${boardVo.viewcnt }</td>
 									</tr>
 								</c:forEach>
 							</tbody>

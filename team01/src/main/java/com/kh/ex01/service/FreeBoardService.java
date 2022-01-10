@@ -20,6 +20,7 @@ public class FreeBoardService {
 	}
 	
 	public BoardVo getBoard(int bno) {
+		freeBoardDao.updateViewcnt(bno); // 조회수 증가
 		BoardVo boardVo = freeBoardDao.getBoard(bno);
 		return boardVo;
 	}
@@ -39,6 +40,10 @@ public class FreeBoardService {
 	
 	public void modifyBoard(BoardVo boardVo) {
 		freeBoardDao.modifyBoard(boardVo);
+	}
+	
+	public void updateViewcnt(int bno) {
+		freeBoardDao.updateViewcnt(bno);
 	}
 	
 }

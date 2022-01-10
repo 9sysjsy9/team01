@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%> 
-${boardVo }
 <style>
 	.move{
 		text-align: right;
