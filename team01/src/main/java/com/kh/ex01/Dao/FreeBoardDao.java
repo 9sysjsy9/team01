@@ -34,16 +34,13 @@ public class FreeBoardDao {
 		sqlSession.insert(NAMESPACE + "insertBoard", boardVo);
 	}
 	
-//	public BoardVo menuMove(int bno) {
-//		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "menuMove",bno);
-//		return boardVo;
-//	}
-	
-	public BoardVo menuMove2(int bno) {
-		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "menuMove2",bno);
+	public BoardVo menuMove(int bno) {
+		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "menuMove",bno);
 		return boardVo;
 	}
 	
-	
+	public void deleteBoard(int bno) {
+		sqlSession.delete(NAMESPACE + "deleteBoard",bno);
+	}
 	
 }

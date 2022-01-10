@@ -40,13 +40,8 @@ public class FreeBoardController {
 	@RequestMapping(value = "/board/free/free_content", method = RequestMethod.GET)
 	 public String registBoard(Model model, int bno) {
 		 BoardVo boardVo = freeboardService.getBoard(bno);
-		 BoardVo boardVo2 = freeboardService.menuMove2(bno);
-//		 BoardVo boardMoveVo = freeboardService.menuMove(bno); // 게시글 이동
-//		 System.out.println("컨텐츠 무브 Vo:"+boardMoveVo);
-//		 System.out.println("컨텐츠 보드 Vo:"+boardVo);
-		 System.out.println("컨텐츠 보드 boardVo2:"+boardVo2);
-//		 model.addAttribute("boardMoveVo",boardMoveVo);
-//		 model.addAttribute("boardVo2", boardVo2);
+		 BoardVo boardMoveVo = freeboardService.menuMove(bno); // 게시글 이동
+		 model.addAttribute("boardMoveVo",boardMoveVo);
 		 model.addAttribute("boardVo",boardVo);
 		 return "/company/board/free/free_content";
 	 }
@@ -59,16 +54,11 @@ public class FreeBoardController {
 		return "redirect:/company/board/free/free_list";
 	}
 	
-//	@RequestMapping(value="/referenceRoom", method=RequestMethod.GET)
-//	   public String referenceRoom(Model model, int rno) {
-//	      ReferenceVo referenceVo = lookJobService.getReference(rno);
-//	      ReferenceVo pageVo = lookJobService.pageMove(rno);
-//	      List<ReferenceVo> data = lookJobService.referenceImage(rno);
-//	      System.out.println(pageVo);
-//	      model.addAttribute("data", data);
-//	      model.addAttribute("pageVo", pageVo);
-//	      model.addAttribute("referenceVo", referenceVo);
-//	      return "employ/referenceRoom";
-//	   }
+	// 자유게시판 글 삭제
+	@RequestMapping(value="/board/free/free_delete", method=RequestMethod.GET)
+	public String deleteBoard(int bno) {
+		freeboardService.deleteBoard(bno);
+		return "redirect:/company/board/free/free_list";
+	}
 	
 }

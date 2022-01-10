@@ -2,8 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%> 
+${boardVo }
 <style>
 	.move{
+		text-align: right;
+	}
+	.btnMD{
 		text-align: right;
 	}
 </style>
@@ -12,10 +16,19 @@ $(function(){
 	$(".btnMove").click(function(e) {
 		e.preventDefault();
 		var move = $(this).attr("href");
-		console.log(move);
-		location.href = "/company/board/free/free_content?bno="+move;
-	});;
+		console.log("move : " + move);
+		if(move == "0"){
+			alert("페이지가 존재 하지 않습니다.");
+		} else {
+			location.href = "/company/board/free/free_content?bno="+move;
+		}
+	});
 	
+	$("#btnDelete").click(function(){
+		var bno = $(this).attr("data-bno");
+		console.log("bno:", bno);
+		location.href = "/company/board/free/free_delete?bno="+bno;
+	});
 });
 </script>
 
@@ -32,13 +45,21 @@ $(function(){
 						${boardVo.title }
 					</div>	
 				</div>
+				<div>
+					<c:if test="${loginData.userid == boardVo.userid}">
+						<div class="btnMD">
+							<a class="btn btn-outline-warning" id="btnModify">수정</a>
+							<a class="btn btn-outline-danger" id="btnDelete" data-bno="${boardVo.bno }">삭제</a>
+						</div>
+					</c:if>
+				</div>
 				<div class="form-group">${boardVo.username }</div>
 				<hr>
 				<div>${boardVo.content }</div>
 				<hr>
 				<div class="move">
-					<a class="btnMove btn btn-outline-primary" id="btnPrev" href="${boardMoveVo.prev }">이전</a>
-					<a class="btnMove btn btn-outline-primary" id="btnNext" href="${boardMoveVo.next }">다음</a>
+					<a class="btnMove btn btn-outline-primary" id="btnPrev" href="${boardMoveVo.prev}">이전</a>
+					<a class="btnMove btn btn-outline-primary" id="btnNext" href="${boardMoveVo.next}">다음</a>
 				</div>
 			</form>
 		</div>

@@ -7,6 +7,7 @@
 	<select id="freeList" resultType="BoardVo">
 		select * from tbl_board 
 		where bcate = 'f'
+		order by bno desc
 	</select>
 	
 	<select id="getBoard" resultType="BoardVo">
@@ -29,10 +30,15 @@
 		where bno = #{bno}
 	</select>
 	
-	<select id="menuMove2" resultType="BoardVo">
-		select * from tbl_board 
-		where bno = (select max(bno) 
-		from tbl_board where bno &lt; #{bno})
-	</select>
+<!-- 	<select id="menuMove2" resultType="BoardVo"> -->
+<!-- 		select * from tbl_board  -->
+<!-- 		where bno = (select max(bno)  -->
+<!-- 		from tbl_board where bno &lt; #{bno}) -->
+<!-- 	</select> -->
+	
+	<delete id="deleteBoard">
+		delete from tbl_board
+		where bno = #{bno}
+	</delete>
 	
 </mapper>

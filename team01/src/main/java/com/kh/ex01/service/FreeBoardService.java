@@ -28,14 +28,12 @@ public class FreeBoardService {
 		freeBoardDao.insertBoard(boardVo); 
 	}
 	
-//	public BoardVo menuMove(int bno) {
-//		BoardVo boardVo = freeBoardDao.menuMove(bno);
-//		return boardVo;
-//	}
-	
-	public BoardVo menuMove2(int bno) {
-		BoardVo boardVo = freeBoardDao.menuMove2(bno);
+	public BoardVo menuMove(int bno) {
+		BoardVo boardVo = freeBoardDao.menuMove(bno);
 		return boardVo;
 	}
 	
+	public void deleteBoard(int bno) {
+		freeBoardDao.deleteBoard(bno);
+	}
 }
