@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.ex01.service.FreeBoardService;
 import com.kh.ex01.vo.BoardVo;
 import com.kh.ex01.vo.HireBoardVo;
+import com.kh.ex01.vo.PagingDto;
 
 @Controller
 @RequestMapping("/company")
@@ -23,10 +24,12 @@ public class FreeBoardController {
 	
 	// 자유게시판 목록
 	@RequestMapping(value = "/board/free/free_list", method = RequestMethod.GET)
-	 public String freeList(Model model) {
-		 List<BoardVo> list = freeboardService.freeList();
+	 public String freeList(Model model,PagingDto pagingDto) {
+		 pagingDto.setCount(freeboardService.getCount());
+		 pagingDto.setPage(pagingDto.getPage());
+		 List<BoardVo> list = freeboardService.freeList(pagingDto);
 		 model.addAttribute("list",list);
-		 System.out.println("list:"+list);
+		 model.addAttribute("pagingDto", pagingDto);
 		 return "/company/board/free/free_list";
 	 }
 	
@@ -51,7 +54,7 @@ public class FreeBoardController {
 	@RequestMapping(value="/board/free/regist_run", method=RequestMethod.GET)
 	public String boardRegistRun(BoardVo boardVo) {
 		System.out.println("BoardController, boardRegistRun, boardVo:" + boardVo);
-//		freeboardService.insertBoard(boardVo);
+		freeboardService.insertBoard(boardVo);
 		return "redirect:/company/board/free/free_list";
 	}
 	

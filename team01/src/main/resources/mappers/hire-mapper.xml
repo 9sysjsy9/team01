@@ -13,8 +13,8 @@
 	
 	<select id="listNew" resultType="HireBoardVo">
 		select * from
-				(select rownum rnum, a.* from
-				(select * from tbl_hireboard where cate = '[신입]' order by bno desc) a) 
+			(select rownum rnum, a.* from
+			(select * from tbl_hireboard where cate = #{cate} order by bno desc) a) 
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	

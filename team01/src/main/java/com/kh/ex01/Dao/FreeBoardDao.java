@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ex01.vo.BoardVo;
+import com.kh.ex01.vo.PagingDto;
 
 
 
@@ -20,14 +21,20 @@ public class FreeBoardDao {
 	
 	private static final String NAMESPACE = "com.kh.ex01.mappers.freeboard.";
 	
-	public List<BoardVo> freeList() {
-		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "freeList");
+	public List<BoardVo> freeList(PagingDto pagingDto) {
+		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "freeList", pagingDto);
 		return list;
 	}
+	
 	
 	public BoardVo getBoard(int bno) {
 		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "getBoard",bno);
 		return boardVo;
+	}
+	
+	public int getCount() {
+		int count = sqlSession.selectOne(NAMESPACE+"getCount");
+		return count;
 	}
 	
 	public void insertBoard(BoardVo boardVo) {

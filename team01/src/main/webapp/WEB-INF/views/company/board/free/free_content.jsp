@@ -9,6 +9,7 @@
 	.btnMD{
 		text-align: right;
 	}
+ 	   
 </style>
 <script>
 $(function(){
@@ -82,8 +83,7 @@ $(function(){
 				</div>
 			</form>
 		</div>
-		<div class="col-md-3">
-		</div>
+		<div class="col-md-3"></div>
 	</div>
 </div>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
