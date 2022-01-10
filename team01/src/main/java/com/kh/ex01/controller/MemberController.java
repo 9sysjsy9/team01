@@ -1,5 +1,8 @@
 package com.kh.ex01.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,20 +11,25 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.ex01.service.MemberService;
+import com.kh.ex01.util.MyFileUploadUtil;
 import com.kh.ex01.vo.MemberVo;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 
+	private static final String UPLOAD_PATH = "//192.168.0.234/upload/profile";
+		
 	@Inject
 	private MemberService memberService;
 
@@ -52,6 +60,7 @@ public class MemberController {
 		sendVoData.setPosition(memberVo.getPosition());
 		sendVoData.setDepartment(memberVo.getDepartment());
 		sendVoData.setEno(memberVo.getEno());
+		sendVoData.setProfileimg(memberVo.getProfileimg());
 		session.setAttribute("loginData", sendVoData);
 
 		return "/company/main";
@@ -109,8 +118,64 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/company/myPage")
-	public String myPage(MemberVo memberVo) {
+	public String myPage(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginData");
+		int eno = memberVo.getEno();
+		memberVo = memberService.getMemberData(eno);
+		model.addAttribute("memberData", memberVo);
 		return "/company/member/mypage";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/company/myDataModifyRun", method = RequestMethod.POST)
+	public String myDataModifyRun(MemberVo memberVo) {
+		System.out.println("MemberControler, myDataModifyRun, memberVo : " + memberVo);
+		//프로필 이미지 sample 존재하는경우 프로필 사진 변경 및 삭제
+		boolean result = MyFileUploadUtil.profileImgChange(UPLOAD_PATH, memberVo.getEno(),"JPG");
+		if(result == true) {
+			memberVo.setProfileimg("y");
+		}
+		memberService.myDataModifyRun(memberVo);
+		return "success";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/company/profileImgAjax", method = RequestMethod.POST, produces = "application/text;charset=utf-8")
+	public String profileImgAjax(MultipartFile file, int eno) throws IOException {
+		System.out.println("MemberController, profileImgAjax, eno : " + eno);
+		System.out.println("MemberController, profileImgAjax, file : " + file);
+		
+		String originalName = file.getOriginalFilename();
+		System.out.println("MemberController, profileImgAjax, originalName : " + originalName);
+		
+		String filePath = 
+				MyFileUploadUtil.uploadProfileImg(UPLOAD_PATH, originalName, eno, file.getBytes());
+		System.out.println("UploadController, filePath: "+ filePath);
+			MyFileUploadUtil.makeSampleProfileImg(filePath);
+		return filePath;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/company/displaySample", method=RequestMethod.GET)
+	public byte[] displaySample(String fileName) throws Exception {
+		System.out.println("MemberController, displaySample, fileName: " + fileName);
+		String samplePath = MyFileUploadUtil.getSamplePath(fileName);
+		System.out.println("MemberController, displaySample, samplePath: " + samplePath);
+		FileInputStream fis = new FileInputStream(samplePath);
+		byte[] bytes = IOUtils.toByteArray(fis);
+		fis.close();
+		return bytes;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/company/profileImgLoad", method=RequestMethod.GET)
+	public byte[] profileImgLoad(int eno) throws Exception {
+		System.out.println("MemberController, profileImgLoad, eno: " + eno);
+		FileInputStream fis = new FileInputStream(UPLOAD_PATH + "/profile_" + eno + ".jpg");
+		byte[] bytes = IOUtils.toByteArray(fis);
+		fis.close();
+		return bytes;
 	}
 	
 }

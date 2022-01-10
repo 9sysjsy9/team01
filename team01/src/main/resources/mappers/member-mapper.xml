@@ -43,4 +43,17 @@
 	WHERE eno = #{eno}
 </update>
 
+<!-- 회원정보 선택 (마이페이지, 사원검색) -->
+<select id="getMemberData" resultType="MemberVo">
+	SELECT * FROM tbl_member
+	WHERE eno = #{eno}
+</select>
+
+<!-- 회원정보 수정 (마이페이지 내 전화번호, 자기소개 )-->
+<update id="myDataModifyRun">
+	UPDATE tbl_member
+	SET  phone = #{phone}, introduce = #{introduce}, profileimg = #{profileimg}
+	WHERE eno = #{eno} 
+</update>
+
 </mapper>

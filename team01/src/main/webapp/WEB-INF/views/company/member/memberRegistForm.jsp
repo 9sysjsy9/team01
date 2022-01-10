@@ -185,7 +185,7 @@ $(function(){
 								<div class="form-group input-group input-group-sm">
 									 <input
 										type="text" class="form-control" id="phone1"
-										placeholder="010" maxlength="4"  /> - <input
+										placeholder="010" maxlength="3"  /> - <input
 										type="text" class="form-control" id="phone2"
 										placeholder="1234" maxlength="4" /> - <input
 										type="text" class="form-control" id="phone3"
