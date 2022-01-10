@@ -117,9 +117,12 @@
 			<c:forEach items="${list}" var="productVo">
 				<div class="col mb-5">
 					<div class="card h-100">
-						<!-- Product image-->
+<!-- 						
+						<img class="card-img-top" 
+						src="/product_images/shoes${productVo.shoes_code}.jpg" alt="..." /> 
+ -->
 						<img class="card-img-top"
-							src="/product_images/shoes${productVo.shoes_code}.jpg" alt="..." />
+							src="/company/displayImage?fileName=${productVo.shoes_image}">
 						<!-- Product details-->
 						<div class="card-body p-4">
 							<div class="text-center">

@@ -22,23 +22,38 @@ public class HireService {
 		return list;
 	}
 	
-	public List<HireBoardVo> listNew() {
-		List<HireBoardVo> list = hireDao.listNew();
+	public List<HireBoardVo> listNew(PagingDto pagingDto) {
+		List<HireBoardVo> list = hireDao.listNew(pagingDto);
 		return list;
 	}
 	
-	public List<HireBoardVo> listExperience() {
-		List<HireBoardVo> list = hireDao.listExperience();
+	public List<HireBoardVo> listExperience(PagingDto pagingDto) {
+		List<HireBoardVo> list = hireDao.listExperience(pagingDto);
 		return list;
 	}
 	
-	public List<HireBoardVo> listIntern() {
-		List<HireBoardVo> list = hireDao.listIntern();
+	public List<HireBoardVo> listIntern(PagingDto pagingDto) {
+		List<HireBoardVo> list = hireDao.listIntern(pagingDto);
 		return list;
 	}
 	
 	public int getCount() {
 		int count = hireDao.getCount();
+		return count;
+	}
+	
+	public int getN_Count() {
+		int count = hireDao.getN_Count();
+		return count;
+	}
+	
+	public int getI_Count() {
+		int count = hireDao.getI_Count();
+		return count;
+	}
+	
+	public int getE_Count() {
+		int count = hireDao.getE_Count();
 		return count;
 	}
 	

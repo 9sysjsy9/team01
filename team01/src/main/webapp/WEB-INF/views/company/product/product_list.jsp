@@ -6,7 +6,11 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
 $(function() {
-
+	$(".btnDelete").click(function() {
+		var shoes_code = $(this).attr("data-shoes_code");
+		var shoes_image = $(this).attr("data-shoes_image");
+		location.href = "/company/delete_run?shoes_code="+shoes_code+"&shoes_image="+shoes_image;
+	});
 });
 </script>
 <%@include file="/WEB-INF/views/company/product/include/paging_form.jsp"%>
@@ -33,6 +37,9 @@ $(function() {
 									<th>제품가격</th>
 									<th>제품종류</th>
 									<th>제품상태</th>
+									<th>제품이미지</th>
+									<th>수정</th>
+									<th>삭제</th>
 								</tr>
 								<c:forEach items="${list}" var="productVo">
 									<tr>
@@ -45,6 +52,13 @@ $(function() {
 										<td>${productVo.shoes_price}</td>
 										<td>${productVo.shoes_style}</td>
 										<td>${productVo.shoes_state}</td>
+										<td>
+											<img src="/company/displayThumbnailImage?fileName=${productVo.shoes_image}">
+										</td>
+										<td><button type="button" class="btn btn-outline-light btn-lg px-2 a_times btnModify" 
+											data-shoes_code="${productVo.shoes_code}" data-shoes_image="${productVo.shoes_image}">수정</button></td>
+										<td><button type="button" class="btn btn-outline-light btn-lg px-2 a_times btnDelete" 
+											data-shoes_code="${productVo.shoes_code}" data-shoes_image="${productVo.shoes_image}"> ✖️</button></td>
 									</tr>
 								</c:forEach>
 						</table>

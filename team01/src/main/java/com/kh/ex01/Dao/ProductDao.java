@@ -60,5 +60,11 @@ public class ProductDao {
 		int count = sqlSession.selectOne(NAMESAPCE+"getCount");
 		return count;
 	}
+	public void insertProduct(ProductVo productVo) {
+		sqlSession.selectOne(NAMESAPCE+"insertProduct", productVo);
+	}
+	public void deleteProduct(String shoes_code) {
+		sqlSession.selectOne(NAMESAPCE+"deleteProduct", shoes_code);
+	}
 	
 }
