@@ -91,13 +91,11 @@
 							var underIndex = rData.indexOf("_");
 							var fileName = rData.substring(underIndex + 1);
 							var asd = '<div class="divUploaded">';
+							asd += '<img src="/company/displayThumbnailImage?fileName='
+								+ rData + '">' + "<br>";
 							asd += '<label class="label label-outline-dark btn-lg px-2">' + fileName + "</label>";
-							asd += '<button type="button" class="btn btn-outline-light btn-lg px-2 a_times" data-rdata="'+rData+'"> ✖️</button>'+ "<br>";
+							asd += '<button type="button" class="btn btn-outline-light btn-lg px-2 btnDelete" data-rdata="'+rData+'"> ✖️</button>'+ "<br>";
 							asd += '</div>';
-							/*
-							asd += '<img src="/company/displayImage?fileName='
-									+ rData + '">' + "<br>";
-							*/
 							div.append(asd);
 							$("#frmProduct>input[name=shoes_image]").val(rData);
 						}
@@ -106,11 +104,11 @@
 				});
 		
 		
-		$(".uploadedList").on("click", ".a_times", function() {
+		$(".uploadedList").on("click", ".btnDelete", function() {
 			var asd = $(this).parent();
 			var filename = $(this).attr("data-rdata");
 			console.log("filename: "+filename);
-			var url = "/company/deleteFile?fileName=" + filename;
+			var url = "/company/deleteAllFile?fileName=" + filename;
 			
 			$.get(url, function(rData) {
 				console.log("rData: "+ rData);
