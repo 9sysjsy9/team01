@@ -43,4 +43,8 @@ public class FreeBoardDao {
 		sqlSession.delete(NAMESPACE + "deleteBoard",bno);
 	}
 	
+	public void modifyBoard(BoardVo boardVo) {
+		sqlSession.update(NAMESPACE + "modifyBoard",boardVo);
+	}
+	
 }

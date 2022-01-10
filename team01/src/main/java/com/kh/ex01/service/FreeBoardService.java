@@ -36,4 +36,9 @@ public class FreeBoardService {
 	public void deleteBoard(int bno) {
 		freeBoardDao.deleteBoard(bno);
 	}
+	
+	public void modifyBoard(BoardVo boardVo) {
+		freeBoardDao.modifyBoard(boardVo);
+	}
+	
 }

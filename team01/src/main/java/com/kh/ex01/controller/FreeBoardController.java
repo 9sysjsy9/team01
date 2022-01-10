@@ -61,4 +61,19 @@ public class FreeBoardController {
 		return "redirect:/company/board/free/free_list";
 	}
 	
+	// 자유게시판 글 수정 
+	@RequestMapping(value="/board/free/free_modify_run", method=RequestMethod.GET)
+	public String modifyBoard(BoardVo boardVo) {
+		freeboardService.modifyBoard(boardVo);
+		return "redirect:/company/board/free/free_content?bno="+ boardVo.getBno() + 
+				"&title=" + boardVo.getTitle() + "&content=" + boardVo.getContent();
+	}
+	
+	// 자유게시판 글 수정 폼
+	@RequestMapping(value="/board/free/free_modify", method=RequestMethod.GET)
+	public String searchByBno(Model model, int bno) {
+		BoardVo boardVo = freeboardService.getBoard(bno);
+		model.addAttribute("boardVo",boardVo);
+		return "/company/board/free/free_modify";
+	}
 }
