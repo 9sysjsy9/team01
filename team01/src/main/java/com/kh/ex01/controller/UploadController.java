@@ -23,22 +23,19 @@ public class UploadController {
 			produces = "application/text;charset=utf-8")
 	@ResponseBody
 	public String uploadAjax(MultipartFile file) throws IOException {
-		//System.out.println("file: " + file);
 		String originalName = file.getOriginalFilename();
-		//System.out.println("originalName: " + originalName);
 		String filePath = 
 				MyFileUploadUtil.uploadFile(UPLOAD_PATH, originalName, file.getBytes());
 		System.out.println("UploadController, filePath: "+ filePath);
-		//boolean isImage = MyFileUploadUtil.isImage(filePath);
-		//System.out.println("isImage: "+isImage);
-		/*
+		
+		boolean isImage = MyFileUploadUtil.isImage(filePath);
+		System.out.println("isImage: "+isImage);
 		if (isImage) {
 			boolean result = MyFileUploadUtil.makeThumbnail(filePath);
 			if (!result) {
 				return "fail";
 			}
 		}
-		*/
 		
 		return filePath.substring(UPLOAD_PATH.length());
 	}
@@ -58,12 +55,39 @@ public class UploadController {
 		return bytes;
 	}
 	
+	@RequestMapping(value="/displayThumbnailImage", method=RequestMethod.GET)
+	@ResponseBody
+	public byte[] displayThumbnailImage(String fileName) throws Exception {
+		System.out.println("UploadController, displayThumbnailImage, fileName: " + fileName);
+		String thumbnailPath = MyFileUploadUtil.getThumbnailPath(fileName);
+		System.out.println("UploadController, displayThumbnailImage, thumbnailPath: "+thumbnailPath);
+		FileInputStream fis = new FileInputStream(UPLOAD_PATH+thumbnailPath);
+		byte[] bytes = IOUtils.toByteArray(fis);
+		return bytes;
+	}
+	
+	@RequestMapping(value="/deleteAllFile", method=RequestMethod.GET)
+	@ResponseBody
+	public boolean deleteAllFile(String fileName) throws Exception {
+		System.out.println("UploadController, deleteAllFile, fileName:" + fileName);
+		boolean result = MyFileUploadUtil.deleteAllFile(UPLOAD_PATH+fileName);
+		
+		return result;
+	}
+	
 	@RequestMapping(value="/deleteFile", method=RequestMethod.GET)
 	@ResponseBody
 	public boolean deleteFile(String fileName) throws Exception {
 		System.out.println("UploadController, deleteFile, fileName:" + fileName);
 		boolean result = MyFileUploadUtil.deleteFile(UPLOAD_PATH+fileName);
-		
+		return result;
+	}
+	
+	@RequestMapping(value="/deleteThumbnailFile", method=RequestMethod.GET)
+	@ResponseBody
+	public boolean deleteThumbnailFile(String fileName) throws Exception {
+		System.out.println("UploadController, deleteThumbnailFile, fileName:" + fileName);
+		boolean result = MyFileUploadUtil.deleteThumbnailFile(UPLOAD_PATH+fileName);
 		return result;
 	}
 	

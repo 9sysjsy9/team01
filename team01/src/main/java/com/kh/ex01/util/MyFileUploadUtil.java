@@ -41,7 +41,7 @@ public class MyFileUploadUtil {
 
 		try {
 			BufferedImage srcImage = ImageIO.read(orgFile);
-			BufferedImage descImage = Scalr.resize(srcImage, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 100);
+			BufferedImage descImage = Scalr.resize(srcImage, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 75);
 			ImageIO.write(descImage, getExtName(filePath), thumbFile);
 			System.out.println("MyFileUploadUtil, makeThumbnail try구문 실행됨");
 			return true;
@@ -52,13 +52,12 @@ public class MyFileUploadUtil {
 		return false;
 	}
 
-	public static boolean deleteFile(String fileName) throws Exception{
+	public static boolean deleteAllFile(String fileName) throws Exception {
 		File f = new File(fileName);
 		if (f.exists()) {
 			f.delete();
 			System.out.println("원본 파일 삭제됨.");
-			return true;
-			/*
+
 			if (isImage(fileName)) {
 				String thumbnailPath = getThumbnailPath(fileName);
 				System.out.println(thumbnailPath);
@@ -70,15 +69,45 @@ public class MyFileUploadUtil {
 							System.out.println("썸네일 파일 삭제됨.");
 							return true;
 						}
-						
 						Thread.sleep(500);
 						
 					}
+					
+				}
+				
+			}
+			
+		}
+		return false;
+	}
 
+	public static boolean deleteFile(String fileName) throws Exception {
+		File f = new File(fileName);
+		if (f.exists()) {
+			f.delete();
+			System.out.println("원본 파일 삭제됨.");
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean deleteThumbnailFile(String fileName) throws Exception {
+		if (isImage(fileName)) {
+			String thumbnailPath = getThumbnailPath(fileName);
+			System.out.println(thumbnailPath);
+			File f2 = new File(thumbnailPath);
+			if (f2.exists()) {
+
+				while (true) {
+					boolean b = f2.delete();
+					if (b == true) {
+						System.out.println("썸네일 파일 삭제됨.");
+					}
+					Thread.sleep(500);
 				}
 
 			}
-			*/
+			return true;
 		}
 		return false;
 	}
@@ -97,7 +126,7 @@ public class MyFileUploadUtil {
 
 		if (!f.exists()) {
 			f.mkdirs();
-			System.out.println("MyFileUploadUtil에서 파일 생성됨");
+			System.out.println("MyFileUploadUtil에서 폴더 디렉토리 생성됨");
 		}
 
 		return datePath;

@@ -63,5 +63,8 @@ public class ProductDao {
 	public void insertProduct(ProductVo productVo) {
 		sqlSession.selectOne(NAMESAPCE+"insertProduct", productVo);
 	}
+	public void deleteProduct(String shoes_code) {
+		sqlSession.selectOne(NAMESAPCE+"deleteProduct", shoes_code);
+	}
 	
 }
