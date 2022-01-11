@@ -163,14 +163,15 @@ $(function() {
 						</tr>
 						<tr class="n-same-row">
 							<th scope="row">문의 내용</th>
-							<td style="padding-left: 10px;"><textarea name="qa_msg"
-									cols="70" rows="8" class="n-input" placeholder="내용을 입력하세요."></textarea></td>
+							<td style="padding-left: 10px;">
+							<textarea name="qa_msg" cols="70" rows="8" class="n-input" 
+								placeholder="내용을 입력하세요."></textarea></td>
 						</tr>
 						<tr>
 							<th scope="row">사진 첨부
 							<td class="file-upload" style="padding-left: 10px;">
-								<ul class="file_show" id="file_show"></ul> <input type="file"
-								id="input_file" multiple="multiple" />
+								<ul class="file_show" id="file_show"></ul> 
+								<input type="file" id="input_file" multiple="multiple" />
 							</td>
 							</th>
 						</tr>
