@@ -38,6 +38,20 @@ $(function(){
 	$("#btnMenu").click(function(){
 		location.href = "/company/board/free/free_list";
 	});
+	
+	$("#btnCommentInsert").click(function() {
+		var content = $("#c_content").val();
+		var sData = {
+				"content"	: content,
+				"userid"	: "${boardVo.userid}",
+				"username"	: "${boardVo.username}",
+				"bno"		: "${boardVo.bno}"
+		};
+		console.log("sData", sData);
+		var url = "/comment/insertComment";
+		$.post(url, sData, function(rData) {
+		});
+	});
 });
 </script>
 
@@ -66,36 +80,30 @@ $(function(){
 				<hr>
 				<div>${boardVo.content}</div>
 				<hr>
-				<li>
-					<div>
-						<a><img src="/images/pp.png" width="36" height="36"></a>
-						<div>
-							<div>${boardVo.username }(${boardVo.username })</div>
-						</div>	
-					</div>
-				</li>
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
 							<table class="table">
 								<tbody>
-									<tr>
-										<td><img src="/images/pp.png" width="36" height="36"></td>
-										<td colspan="10">
-											<dl>
-												<dt>
-													${boardVo.username }(${boardVo.username })<br>
-												</dt>
-												<dd></dd>
-												<dd>
-													${commentVo.content } 댓글내용
-												</dd>
-												<dd>
-													${commentVo.regdate } 01/04/2012
-												</dd>
-											</dl>
-										</td>
-									</tr>
+									<c:forEach items="${list }" var="commentVo">
+										<tr>
+											<td style="width: 66px;padding-top: 25px;"><img src="/images/pp.png" width="40" height="40"></td>
+											<td style="height: 98px; padding-top: 20px;">
+												<dl>
+													<dt>
+														${boardVo.username }(${boardVo.userid })<br>
+													</dt>
+													<dd></dd>
+													<dd>
+														${commentVo.content }
+													</dd>
+													<dd>
+														${commentVo.regdate }
+													</dd>
+												</dl>
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -104,17 +112,13 @@ $(function(){
 				<div>
 					<div class="row">
 						<div class="col-md-8">
+							<label>${boardVo.username }(${boardVo.userid })</label>
 							<input type="text" class="form-control"
 								placeholder="댓글을 입력하세요" id="c_content">
-								
 						</div>
-						<div class="col-md-2">
-							<input type="text" class="form-control"
-								placeholder="아이디를 입력하세요" id="c_userid">
-						</div>
-						<div class="col-md-2">
-							<button type="button" class="btn btn-sm btn-primary"
-								id="btnCommentInsert">완료</button>
+						<div class="col-md-2" style="margin-top: 32px;">
+							<button type="button" class="btn btn-outline-primary"
+								id="btnCommentInsert" data-bno="${boardVo.bno }">완료</button>
 						</div>
 					</div>
 				</div>
@@ -122,7 +126,7 @@ $(function(){
 					<div class="row">
 						<div class="col-md-6">
 							<div>
-								<a class=" btn btn-outline-primary" id="btnMenu">목록</a>
+								<a class="btn btn-outline-primary" id="btnMenu">목록</a>
 							</div>
 						</div>
 						<div class="col-md-6">

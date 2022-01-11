@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.ex01.service.CommentService;
 import com.kh.ex01.service.FreeBoardService;
 import com.kh.ex01.vo.BoardVo;
+import com.kh.ex01.vo.CommentVo;
 import com.kh.ex01.vo.HireBoardVo;
 import com.kh.ex01.vo.PagingDto;
 
@@ -21,6 +23,9 @@ public class FreeBoardController {
 	
 	@Inject
 	private FreeBoardService freeboardService;
+	
+	@Inject
+	private CommentService commentService;
 	
 	// 자유게시판 목록
 	@RequestMapping(value = "/board/free/free_list", method = RequestMethod.GET)
@@ -43,10 +48,11 @@ public class FreeBoardController {
 	@RequestMapping(value = "/board/free/free_content", method = RequestMethod.GET)
 	 public String registBoard(Model model, int bno) {
 		 BoardVo boardVo = freeboardService.getBoard(bno);
-		 System.out.println("컨트롤" + boardVo);
 		 BoardVo boardMoveVo = freeboardService.menuMove(bno); // 게시글 이동
+		 List<CommentVo> list = commentService.commentList(bno); // 덧글 리스트
 		 model.addAttribute("boardMoveVo",boardMoveVo);
 		 model.addAttribute("boardVo",boardVo);
+		 model.addAttribute("list",list);
 		 return "/company/board/free/free_content";
 	 }
 	
