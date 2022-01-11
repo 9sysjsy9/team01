@@ -43,8 +43,8 @@ public class MemberService {
 		memberDao.memberApproveRun(memberVo);
 	}
 	
-	public MemberVo getMemberData(int eno) {
-		MemberVo memberVo = memberDao.getMemberData(eno);
+	public MemberVo getMemberData(String userid) {
+		MemberVo memberVo = memberDao.getMemberData(userid);
 		return memberVo;
 	}
 	
