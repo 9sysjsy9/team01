@@ -40,6 +40,32 @@
 	}
 </style>
 
+<script>
+$(function() {
+	
+	$("#btnCheck").click(function() {
+		var url = "/member/checkState";
+		var sData = {
+				"eno" : eno,
+				"userid" :userid
+		}
+		$.post(url, sData, function(rData){
+			console.log(rData.checkId);
+			console.log(rData.checkEno);
+			
+			if (rData.checkId > 0){
+				msg = "사용중인 아이디 입니다.";
+				inputResult = false;
+			} else if (rData.checkEno > 0){
+				msg = "가입된 사번 입니다.";
+				inputResult = false;
+			}
+		});
+		
+	});
+	
+});
+</script>
 <html lang="ko">
   <head>
     <meta charset="utf-8">
@@ -63,9 +89,10 @@
 		</div>
 		<div class="card-body">
       <form class="form-signin" method="POST" onSubmit="logincall();return false">
-        <h5 class="form-signin-heading">환영합니다</h5><br>
+        <h5 class="form-signin-heading">환영합니다</h5>
         <label for="inputEmail" class="sr-only">Your ID</label>
-        <input type="text" id="uid" class="form-control" placeholder="Your ID" required autofocus><BR>
+        <button class="btn btn-outline-light" id="btnCheck">아이디 중복체크</button><br>
+        <input type="text" id="uid" class="form-control" placeholder="Your ID" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="upw" class="form-control" placeholder="Password" required><br>
         <div class="checkbox">
