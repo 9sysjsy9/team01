@@ -52,6 +52,7 @@ public class UploadController {
 		//FileInputStream fis = new FileInputStream(UPLOAD_PATH+thumbnailPath);
 		FileInputStream fis = new FileInputStream(UPLOAD_PATH+fileName);
 		byte[] bytes = IOUtils.toByteArray(fis);
+		fis.close();
 		return bytes;
 	}
 	
@@ -63,6 +64,7 @@ public class UploadController {
 		System.out.println("UploadController, displayThumbnailImage, thumbnailPath: "+thumbnailPath);
 		FileInputStream fis = new FileInputStream(UPLOAD_PATH+thumbnailPath);
 		byte[] bytes = IOUtils.toByteArray(fis);
+		fis.close();
 		return bytes;
 	}
 	
@@ -79,7 +81,7 @@ public class UploadController {
 	@ResponseBody
 	public boolean deleteFile(String fileName) throws Exception {
 		System.out.println("UploadController, deleteFile, fileName:" + fileName);
-		boolean result = MyFileUploadUtil.deleteFile(UPLOAD_PATH+fileName);
+		boolean result = MyFileUploadUtil.deleteFile(UPLOAD_PATH+"/shoes"+fileName);
 		return result;
 	}
 	
@@ -87,7 +89,7 @@ public class UploadController {
 	@ResponseBody
 	public boolean deleteThumbnailFile(String fileName) throws Exception {
 		System.out.println("UploadController, deleteThumbnailFile, fileName:" + fileName);
-		boolean result = MyFileUploadUtil.deleteThumbnailFile(UPLOAD_PATH+fileName);
+		boolean result = MyFileUploadUtil.deleteThumbnailFile(UPLOAD_PATH+"/shoes"+fileName);
 		return result;
 	}
 	
