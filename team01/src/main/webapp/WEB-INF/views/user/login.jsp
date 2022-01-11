@@ -59,11 +59,11 @@
 
 	<div class="card align-middle" style="width:20rem; border-radius:20px;">
 		<div class="card-title" style="margin-top:30px;">
-			<h2 class="card-title text-center" style="color:#113366;">수영슈즈</h2>
+			<h2 class="card-title text-center" style="color:#113366;">수영 슈즈</h2>
 		</div>
 		<div class="card-body">
       <form class="form-signin" method="POST" onSubmit="logincall();return false">
-        <h5 class="form-signin-heading">환영합니다</h5><br>
+        <h5 class="form-signin-heading" style="text-align:center">환영합니다</h5><br>
         <label for="inputEmail" class="sr-only">Your ID</label>
         <input type="text" id="uid" class="form-control" placeholder="Your ID" required autofocus><BR>
         <label for="inputPassword" class="sr-only">Password</label>
@@ -73,7 +73,8 @@
             <input type="checkbox" value="remember-me"> 로그인 정보 기억하기
           </label>
         </div>
-        <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">로 그 인</button>
+        <button id="btn-Yes" class="btn btn-lg btn-success btn-block" type="submit"><b>로 그 인</b></button>
+        <button id="btn-Yes" class="btn btn-lg btn-warning btn-block" type="submit"><b>회 원 가 입</b></button>
       </form>
       
 		</div>
