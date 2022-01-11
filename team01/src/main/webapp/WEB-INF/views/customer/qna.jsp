@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <style>
-
 	.title {
 		cursor: pointer;
 	}
@@ -13,11 +12,7 @@
 	.title > th, .content > td {
 		padding-left: 110px;
 	}
-	
 </style>
-
-	
-
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript">
@@ -26,8 +21,12 @@ $(function(){
         $(this).next().children().toggle();
      });
 });
+// $(function(){
+// 	$(".title").click(function(){
+//         $(this).next().fadeToggle(500);
+//      });
+// });
 </script>
-
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -43,7 +42,7 @@ $(function(){
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#bs-example-navbar-collapse-1">
 			</button>
-			<a class="navbar-brand" href="#" style="padding-left: 110px;">자주하는 질문</b></a>
+			<a class="navbar-brand" href="#" style="padding-left: 110px;">자주하는 질문</a>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="navbar-nav">
@@ -88,7 +87,6 @@ $(function(){
 			</ul>
 		</nav>
 	</div>
-</div>
 </div>
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

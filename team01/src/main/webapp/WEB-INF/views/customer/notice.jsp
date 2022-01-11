@@ -4,20 +4,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <style>
-
-	.qask {
+	.title {
 			cursor: pointer;
 		}
 	.content {
 		display: none
 	}
-	
+	.title > th, .content > td {
+		padding-left: 110px;
+	}
 </style>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 $(function(){
 	$(".title").click(function(){
-        $(this).next().fadeToggle(500);
+        $(this).next().children().fadeToggle(500);
      });
 });
 </script>
@@ -25,29 +26,31 @@ $(function(){
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="jumbotron">
+			<div class="jumbotron" style="padding: 10px;"><br>
 				<h1 style="padding-left: 110px;"><b>공지 사항</b><br>
 				</h1>
-				<p><br><h5 style="padding-left: 110px;">수영 슈즈에 오신 것을 환영합니다. 
-					아래의 공지사항을 확인해주세요.</h5></p>
+				<br>
+<!-- 				<p> -->
+				<h5 style="padding-left: 110px;">수영 슈즈에 오신 것을 환영합니다. 
+					아래의 공지사항을 확인해주세요.</h5>
+<!-- 					</p> -->
+					
 			</div>
 			<table class="table">
-			<thead>
-				<tr>
-					<th><br></th>
-				</tr>
-			</thead>
+			
 			<tbody>
 			<c:forEach items="${list}" var="noticeVo">
 				<tr class="table-warning title">
 					<th style="padding-left: 130px">
 						${noticeVo.notice_no}</th>
 					<th>${noticeVo.notice_title}</th>
-					<th>${noticeVo.notice_date}</th>
+					<th style="padding-right: 130px">
+						${noticeVo.notice_date}</th>
 				</tr>
 				<tr>
 					<td></td>
-					<td>${noticeVo.notice_content}</td>
+					<td></td>
+					<td class="content">${noticeVo.notice_content}</td>
 				</tr>
 			</c:forEach>
 			</tbody>
