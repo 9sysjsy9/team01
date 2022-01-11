@@ -114,10 +114,10 @@ $(function() {
 					type="submit">
 					<b>로 그 인</b>
 				</button>
-				<button id="btn-Yes" class="btn btn-lg btn-warning btn-block"
-					type="submit">
+				<a class="btn btn-lg btn-warning btn-block"
+					 href="/user/register">
 					<b>회 원 가 입</b>
-				</button>
+				</a>
 			</form>
 
 		</div>

@@ -66,6 +66,7 @@ public class CustomerController {
 		return "user/orderList";
 	}
 	
+	
 	@RequestMapping(value = "/qna", method = RequestMethod.GET)
 	public String qnaList(Model model) {
 		List<QnaVo> list = customerService.qnaList();
