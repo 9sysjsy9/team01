@@ -43,4 +43,13 @@ public class MemberService {
 		memberDao.memberApproveRun(memberVo);
 	}
 	
+	public MemberVo getMemberData(String userid) {
+		MemberVo memberVo = memberDao.getMemberData(userid);
+		return memberVo;
+	}
+	
+	public void myDataModifyRun(MemberVo memberVo) {
+		memberDao.myDataModifyRun(memberVo);
+	}
+	
 }

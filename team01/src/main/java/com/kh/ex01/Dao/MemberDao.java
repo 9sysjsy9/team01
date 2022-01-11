@@ -49,4 +49,13 @@ public class MemberDao {
 	public void memberApproveRun(MemberVo memberVo) {
 		sqlSession.update(NAMESPACE + "memberApproveRun", memberVo);
 	}
+	
+	public MemberVo getMemberData(String userid) {
+		MemberVo memberVo = sqlSession.selectOne(NAMESPACE + "getMemberData", userid);
+		return memberVo;
+	}
+	
+	public void myDataModifyRun(MemberVo memberVo) {
+		sqlSession.update(NAMESPACE + "myDataModifyRun", memberVo);
+	}
 }

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%> 
+<%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%> 
 <script>
 $(function(){
 	$("#btnRegist").click(function(){
@@ -12,7 +13,15 @@ $(function(){
 		e.preventDefault();
 		var bno = $(this).attr("href");
 		location.href = "/company/board/free/free_content?bno="+bno;
-	});;
+	});
+	
+	$(function(){
+		$(".page-link").click(function(e) {
+			e.preventDefault();
+			var page = $(this).attr("href");
+			location.href = "/company/board/free/free_list?page=" + page;
+		});
+	});
 	
 });
 </script>
@@ -31,11 +40,6 @@ $(function(){
 				<div class="row">
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
-					<select>
-						<option value="" selected>5줄 보기</option>
-						<option value="">10줄 보기</option>
-						<option value="">15줄 보기</option>
-					</select>
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -50,10 +54,10 @@ $(function(){
 								<c:forEach  items="${list}" var="boardVo">
 									<tr class="table">
 										<td>${boardVo.bno }</td>
-										<td><a class="title" href="${boardVo.bno }">${boardVo.title }</a></td>
-										<td>${boardVo.username }</td>
+										<td><a class="title" href="${boardVo.bno}">${boardVo.title}</a></td>
+										<td style="cursor:pointer"class="btnUsername" data-userid="${boardVo.userid}">${boardVo.username}</td>
 										<td>${boardVo.regdate }</td>
-										<td>${boardVo.cmtcnt }</td>
+										<td>${boardVo.viewcnt }</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -65,6 +69,35 @@ $(function(){
 						</div> 
 					</div>
 					<div class="col-md-2"></div>
+					<nav>
+						<ul class="pagination justify-content-center">
+							<c:if test="${pagingDto.startPage != 1}">
+							<li class="page-item">
+								<a class="page-link" href="${pagingDto.startPage - 1}">이전</a>
+							</li>
+							</c:if>
+							<c:forEach var="v" begin="${pagingDto.startPage}" 
+											   end="${pagingDto.endPage}">
+							<li 
+								<c:choose>
+									<c:when test="${pagingDto.page == v}">
+										class="page-item active"
+									</c:when>
+									<c:otherwise>
+										class="page-item"
+									</c:otherwise>
+								</c:choose>
+							>
+								<a class="page-link" href="${v}">${v}</a>
+							</li>
+							</c:forEach>
+							<c:if test="${pagingDto.endPage < pagingDto.totalPage}">
+							<li class="page-item">
+								<a class="page-link" href="${pagingDto.endPage + 1}">다음</a>
+							</li>
+							</c:if>
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</div>
