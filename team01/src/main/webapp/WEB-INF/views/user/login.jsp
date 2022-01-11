@@ -44,22 +44,25 @@ body {
 <script>
 $(function() {
 	
-	$("#btnCheck").click(function() {
-		var url = "/member/checkState";
+	$("#btn-Yes").click(function() {
+		var user_id = $("#user_id").val();
+		var user_pw = $("#user_pw").val();
+		console.log("user_id: "+user_id);
+		console.log("user_pw: "+user_pw);
+		
+		var url = "/user/loginRun";
 		var sData = {
-				"eno" : eno,
-				"userid" :userid
+				"user_id" : user_id,
+				"user_pw" : user_pw
 		}
 		$.post(url, sData, function(rData){
-			console.log(rData.checkId);
-			console.log(rData.checkEno);
+			console.log("rData: "+rData);
 			
-			if (rData.checkId > 0){
-				msg = "사용중인 아이디 입니다.";
-				inputResult = false;
-			} else if (rData.checkEno > 0){
-				msg = "가입된 사번 입니다.";
-				inputResult = false;
+			if (rData == 'fail'){
+				alert("아이디와 비밀번호를 확인해주세요.");
+				location.href = "/user/login";
+			} else {
+				location.href = "/";
 			}
 		});
 		
@@ -67,75 +70,37 @@ $(function() {
 	
 });
 </script>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="">
-<meta name="author" content="">
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-<title>로그인 폼</title>
-
-</head>
-
-<body cellpadding="0" cellspacing="0" marginleft="0" margintop="0"
-	width="100%" height="100%" align="center">
-
-	<div class="card align-middle"
-		style="width: 20rem; border-radius: 20px;">
-		<div class="card-title" style="margin-top: 30px;">
-			<h2 class="card-title text-center" style="color: #113366;">수영 슈즈</h2>
-		</div>
-		<div class="card-body">
-			<form class="form-signin" method="post"
-				onSubmit="logincall();return false">
-				<h5 class="form-signin-heading" style="text-align: center">환영합니다</h5>
-				<label for="inputEmail" class="sr-only">Your ID</label>
-				<button class="btn btn-outline-light" id="btnCheck">아이디
-					중복체크</button>
-				<br> <input type="text" id="uid" class="form-control"
-					placeholder="Your ID" required autofocus> <br><label
-					for="inputPassword" class="sr-only">Password</label> <input
-					type="password" id="upw" class="form-control"
-					placeholder="Password" required><br>
-				<div class="checkbox">
-					<label> <input type="checkbox" value="remember-me">
-						로그인 정보 기억하기
-					</label>
-				</div>
-				<button id="btn-Yes" class="btn btn-lg btn-success btn-block"
-					type="submit">
-					<b>로 그 인</b>
-				</button>
-				<a class="btn btn-lg btn-warning btn-block"
-					 href="/user/register">
-					<b>회 원 가 입</b>
-				</a>
-			</form>
-
-		</div>
+<div class="card align-middle"
+	style="width: 20rem; border-radius: 20px;">
+	<div class="card-title" style="margin-top: 30px;">
+		<h2 class="card-title text-center" style="color: #113366;">수영 슈즈</h2>
 	</div>
+	<div class="card-body">
+		<form class="form-signin" method="post"
+			onSubmit="logincall();return false">
+			<h5 class="form-signin-heading" style="text-align: center">환영합니다</h5>
+			<label for="inputEmail" class="sr-only">Your ID</label> <br> <input
+				type="text" id="user_id" class="form-control" placeholder="Your ID"
+				required autofocus> <br>
+			<label for="inputPassword" class="sr-only">Password</label> <input
+				type="password" id="user_pw" class="form-control"
+				placeholder="Password" required><br>
+			<div class="checkbox">
+				<label> <input type="checkbox" value="remember-me">
+					로그인 정보 기억하기
+				</label>
+			</div>
+			<button id="btn-Yes" class="btn btn-lg btn-success btn-block" type="button">
+				<b>로 그 인</b>
+			</button>
+			<a class="btn btn-lg btn-warning btn-block" href="/user/register">
+				<b>회 원 가 입</b>
+			</a>
+		</form>
 
-	<div class="modal"></div>
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
-</body>
-</html>
+	</div>
+</div>
+
+<div class="modal"></div>
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>
