@@ -7,10 +7,12 @@
 <script>
 $(function(){
 	if("${memberData.profileimg}" == 'y'){
+		
 	$("#profileImg").attr("src","/member/company/profileImgLoad?eno=${loginData.eno}");
+	
 	}
+	
 	$("#infoModifyBtn").click(function(e){
-		e.preventDefault();
 		
 		 var phoneData = "${memberData.phone}";
 		 var firstBar = phoneData.indexOf("-");
@@ -21,7 +23,9 @@ $(function(){
 		 $("#phone1").val(phone1);
 		 $("#phone2").val(phone2);
 		 $("#phone3").val(phone3);
-		 $("#introduce").val("${memberData.introduce}");
+		 var introduce = "${memberData.introduce}";
+		 introduce = introduce.replaceAll("<br/>","\r\n");
+		 $("#introduce").val(introduce);
 		 $("#modal-infoModify").trigger("click");
 	});
 
@@ -65,7 +69,7 @@ $(function(){
 	$("#modifyRunBtn").click(function(e){
 		e.preventDefault();
 		var phone = $("#phone1").val() + '-' + $("#phone2").val() + '-' + $("#phone3").val();
-		var introduce = $("#introduce").val();
+		var introduce = $("#introduce").val().replace(/(?:\r\n|\n|\n)/g, '<br/>');
 		
 		var url = "/member/company/myDataModifyRun";
 		var sData = {
