@@ -22,6 +22,11 @@ public class UserController {
 	public String login() {
 		return "/user/login";
 	}
+	
+	@RequestMapping(value="/login_check",  method = RequestMethod.GET)
+	public String login_check() {
+		return "/user/login";
+	}
 
 	@RequestMapping(value = "/loginRun", method = RequestMethod.POST)
 	public String loginRun(UserVo userVo2, HttpServletRequest request, RedirectAttributes rttr) {
@@ -37,7 +42,12 @@ public class UserController {
 
 	}
 
-	@RequestMapping(value = "/registForm")
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String register() {
+		return "user/register";
+	}
+	
+		@RequestMapping(value = "/registForm")
 	public String registForm() {
 		return null;
 	}
