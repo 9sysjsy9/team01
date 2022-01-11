@@ -1,6 +1,5 @@
 package com.kh.ex01.controller;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -121,8 +120,8 @@ public class MemberController {
 	public String myPage(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		MemberVo memberVo = (MemberVo)session.getAttribute("loginData");
-		int eno = memberVo.getEno();
-		memberVo = memberService.getMemberData(eno);
+		String userid = memberVo.getUserid();
+		memberVo = memberService.getMemberData(userid);
 		model.addAttribute("memberData", memberVo);
 		return "/company/member/mypage";
 	}
@@ -176,6 +175,14 @@ public class MemberController {
 		byte[] bytes = IOUtils.toByteArray(fis);
 		fis.close();
 		return bytes;
+	}
+
+//회원 정보 조회하기
+	@ResponseBody
+	@RequestMapping(value="/company/memberInfo", method=RequestMethod.POST)
+	public MemberVo memberInfo(String userid) {
+		MemberVo memberVo = memberService.getMemberData(userid);
+		return memberVo;
 	}
 	
 }

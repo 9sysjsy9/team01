@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%> 
+<%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%> 
 <script>
 $(function(){
 	$("#btnRegist").click(function(){
@@ -19,12 +20,6 @@ $(function(){
 			e.preventDefault();
 			var page = $(this).attr("href");
 			location.href = "/company/board/free/free_list?page=" + page;
-		});
-	});
-	
-	$(function(){
-		$(".btnUsername").click(function(e) {
-			console.log("클릭");
 		});
 	});
 	
@@ -59,8 +54,8 @@ $(function(){
 								<c:forEach  items="${list}" var="boardVo">
 									<tr class="table">
 										<td>${boardVo.bno }</td>
-										<td><a class="title" href="${boardVo.bno }">${boardVo.title }</a></td>
-										<td class="btnUsername" data-userid="${boardVo.userid}">${boardVo.username }</td>
+										<td><a class="title" href="${boardVo.bno}">${boardVo.title}</a></td>
+										<td style="cursor:pointer"class="btnUsername" data-userid="${boardVo.userid}">${boardVo.username}</td>
 										<td>${boardVo.regdate }</td>
 										<td>${boardVo.viewcnt }</td>
 									</tr>

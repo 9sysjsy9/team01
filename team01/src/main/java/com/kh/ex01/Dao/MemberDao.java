@@ -50,8 +50,8 @@ public class MemberDao {
 		sqlSession.update(NAMESPACE + "memberApproveRun", memberVo);
 	}
 	
-	public MemberVo getMemberData(int eno) {
-		MemberVo memberVo = sqlSession.selectOne(NAMESPACE + "getMemberData", eno);
+	public MemberVo getMemberData(String userid) {
+		MemberVo memberVo = sqlSession.selectOne(NAMESPACE + "getMemberData", userid);
 		return memberVo;
 	}
 	
