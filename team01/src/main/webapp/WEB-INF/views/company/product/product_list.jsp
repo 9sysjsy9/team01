@@ -53,7 +53,8 @@ $(function() {
 										<td>${productVo.shoes_style}</td>
 										<td>${productVo.shoes_state}</td>
 										<td>
-											<img src="/company/displayThumbnailImage?fileName=${productVo.shoes_image}">
+											<img src="/company/displayThumbnailImage?fileName=${productVo.shoes_image}"><br>
+											<a href="/company/download.do?fileName=${productVo.shoes_image}">이미지 다운로드</a>
 										</td>
 										<td><button type="button" class="btn btn-outline-light btn-lg px-2 btnModify" 
 											data-shoes_code="${productVo.shoes_code}" data-shoes_image="${productVo.shoes_image}">수정</button></td>

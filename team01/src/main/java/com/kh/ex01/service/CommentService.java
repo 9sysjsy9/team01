@@ -26,4 +26,7 @@ public class CommentService {
 		commentDao.insertComment(commentVo);
 	}
 	
+	public void deleteCommentBoard(int bno) {
+		commentDao.deleteCommentBoard(bno);
+	}
 }

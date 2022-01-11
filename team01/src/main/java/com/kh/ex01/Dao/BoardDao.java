@@ -14,18 +14,24 @@ import com.kh.ex01.vo.PagingDto;
 
 
 @Repository
-public class FreeBoardDao {
+public class BoardDao {
 		
 	@Inject
 	private SqlSession sqlSession;
 	
-	private static final String NAMESPACE = "com.kh.ex01.mappers.freeboard.";
+	private static final String NAMESPACE = "com.kh.ex01.mappers.board.";
 	
+	//자유게시판 리스트
 	public List<BoardVo> freeList(PagingDto pagingDto) {
 		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "freeList", pagingDto);
 		return list;
 	}
 	
+	//익명게시판 리스트
+	public List<BoardVo> anonymousList(PagingDto pagingDto) {
+		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "anonymousList", pagingDto);
+		return list;
+	}
 	
 	public BoardVo getBoard(int bno) {
 		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "getBoard",bno);
@@ -37,8 +43,14 @@ public class FreeBoardDao {
 		return count;
 	}
 	
+	// 자유게시판 글추가
 	public void insertBoard(BoardVo boardVo) {
 		sqlSession.insert(NAMESPACE + "insertBoard", boardVo);
+	}
+	
+	// 익명게시판 글추가
+	public void insertAnonymousBoard(BoardVo boardVo) {
+		sqlSession.insert(NAMESPACE + "insertAnonymousBoard", boardVo);
 	}
 	
 	public BoardVo menuMove(int bno) {
@@ -57,5 +69,7 @@ public class FreeBoardDao {
 	public void updateViewcnt(int bno) {
 		sqlSession.update(NAMESPACE + "updateViewcnt",bno);
 	}
+	
+	
 	
 }

@@ -9,6 +9,7 @@
 		(select * from tbl_shoes) a)
 		where rnum between #{startRow} and #{endRow}
 	</select>
+	
 	<select id="simpleSelectAll" resultType="ProductVo">
 		select * from tbl_shoes
 	</select>
