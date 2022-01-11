@@ -3,7 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 
-
+<script>
+$(function(){
+	$(".page-link").click(function(e) {
+		e.preventDefault();
+		var page = $(this).attr("href");
+		location.href = "/hire/hire_intern?page=" + page;
+	});
+});
+</script>
+<%@include file="/WEB-INF/views/hire/include/paging_form.jsp" %>
 <div class="row gx-4 gx-lg-5 align-items-center my-5">
 	<div class="col-lg-5" >
 		<h1 class="font-weight-light" style="margin-left:50px;">진행 중인 채용공고</h1>
@@ -28,13 +37,13 @@
 					<div class="col-md-8">
 						<table class="table">
 							<thead>
-								<c:forEach  items="${list}" var="hireVo">
+								<c:forEach  items="${list}" var="hireboardVo">
 									<tr>
-										<td>${hireVo.bno }</td>
-										<td>${hireVo.cate }</td>
-										<td><a href="${hireVo.title }">${hireVo.title }</a></td>
-										<td>${hireVo.regdate }</td>
-										<td>${hireVo.writer }</td>
+										<td>${hireboardVo.bno }</td>
+										<td>${hireboardVo.cate }</td>
+										<td><a href="${hireboardVo.title }">${hireboardVo.title }</a></td>
+										<td>${hireboardVo.regdate }</td>
+										<td>${hireboardVo.writer }</td>
 									</tr>
 								</c:forEach>
 							</thead>

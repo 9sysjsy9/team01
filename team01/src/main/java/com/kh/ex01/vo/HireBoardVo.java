@@ -9,6 +9,7 @@ public class HireBoardVo {
 	private String title;
 	private String writer;
 	private Timestamp regdate;
+	
 	public int getBno() {
 		return bno;
 	}
@@ -41,8 +42,9 @@ public class HireBoardVo {
 	}
 	@Override
 	public String toString() {
-		return "HireVo [bno=" + bno + ", cate=" + cate + ", title=" + title + ", writer=" + writer + ", regdate="
+		return "HireBoardVo [bno=" + bno + ", cate=" + cate + ", title=" + title + ", writer=" + writer + ", regdate="
 				+ regdate + "]";
 	}
+	
 	
 }

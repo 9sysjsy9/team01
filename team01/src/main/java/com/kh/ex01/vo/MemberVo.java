@@ -17,6 +17,7 @@ public class MemberVo {
 	private String department; 	// VARCHAR2(14 BYTE) Yes 부서
 	private Timestamp regdate; 	// TIMESTAMP(6) Yes sysdate 가입일
 	private Timestamp udpatedate; // TIMESTAMP(6) Yes 회원정보 수정일
+	private String profileimg;
 
 	public MemberVo() {
 		super();
@@ -126,13 +127,24 @@ public class MemberVo {
 	public void setUdpatedate(Timestamp udpatedate) {
 		this.udpatedate = udpatedate;
 	}
+	
+	
+
+	public String getProfileimg() {
+		return profileimg;
+	}
+
+	public void setProfileimg(String profileimg) {
+		this.profileimg = profileimg;
+	}
 
 	@Override
 	public String toString() {
 		return "MemberVo [userid=" + userid + ", userpw=" + userpw + ", username=" + username + ", eno=" + eno
 				+ ", gender=" + gender + ", phone=" + phone + ", email=" + email + ", introduce=" + introduce
 				+ ", position=" + position + ", authority=" + authority + ", department=" + department + ", regdate="
-				+ regdate + ", udpatedate=" + udpatedate + "]";
+				+ regdate + ", udpatedate=" + udpatedate + ", profileimg=" + profileimg + "]";
 	}
+
 
 }

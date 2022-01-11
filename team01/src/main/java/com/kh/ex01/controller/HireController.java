@@ -47,25 +47,35 @@ public class HireController {
 	 
 	 // 신입 채용공고
 	 @RequestMapping(value = "/hire_new", method = RequestMethod.GET)
-	 public String hireNew(Model model) {
-		 List<HireBoardVo> list = hireService.listNew();
+	 public String hireNew(Model model, PagingDto pagingDto) {
+		 pagingDto.setCount(hireService.getN_Count());
+		 pagingDto.setPage(pagingDto.getPage());
+		 System.out.println(pagingDto);
+		 List<HireBoardVo> list = hireService.listNew(pagingDto);
 		 model.addAttribute("list", list);
+		 model.addAttribute("pagingDto", pagingDto);
 		 return "hire/hire_new";
 	 }
 	 
 	 // 경력 채용공고
 	 @RequestMapping(value = "/hire_experience", method = RequestMethod.GET)
-	 public String hireExperience(Model model) {
-		 List<HireBoardVo> list = hireService.listExperience();
+	 public String hireExperience(Model model, PagingDto pagingDto) {
+		 pagingDto.setCount(hireService.getE_Count());
+		 pagingDto.setPage(pagingDto.getPage());
+		 List<HireBoardVo> list = hireService.listExperience(pagingDto);
 		 model.addAttribute("list", list);
+		 model.addAttribute("pagingDto", pagingDto);
 		 return "hire/hire_experience";
 	 }
 	 
 	 // 인턴 채용공고
 	 @RequestMapping(value = "/hire_intern", method = RequestMethod.GET)
-	 public String hireIntern(Model model) {
-		 List<HireBoardVo> list = hireService.listIntern();
+	 public String hireIntern(Model model, PagingDto pagingDto) {
+		 pagingDto.setCount(hireService.getI_Count());
+		 pagingDto.setPage(pagingDto.getPage());
+		 List<HireBoardVo> list = hireService.listIntern(pagingDto);
 		 model.addAttribute("list", list);
+		 model.addAttribute("pagingDto", pagingDto);
 		 return "hire/hire_intern";
 	 }
 	 

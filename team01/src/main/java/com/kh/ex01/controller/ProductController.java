@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kh.ex01.service.ProductService;
+import com.kh.ex01.util.MyFileUploadUtil;
 import com.kh.ex01.vo.PagingDto;
 import com.kh.ex01.vo.ProductVo;
 import com.kh.ex01.vo.ShoesCategoryVo;
@@ -69,6 +70,21 @@ public class ProductController {
 	@RequestMapping(value = "/product_detail", method = RequestMethod.GET)
 	public String productDetail() {
 		return "/product/product_detail";
+	}
+	
+	@RequestMapping(value = "/regist_run", method = RequestMethod.GET)
+	public String registRun(ProductVo productVo) {
+		System.out.println("regist_run, productVo: "+productVo);
+		productService.insertProduct(productVo);
+		return "redirect:/company/product_list";
+	}
+	
+	@RequestMapping(value = "/delete_run", method = RequestMethod.GET)
+	public String deleteRun(ProductVo productVo) throws Exception {
+		System.out.println("delete_run, getShoes_code: "+ productVo.getShoes_code());
+		System.out.println("delete_run, getShoes_image: "+ productVo.getShoes_image());
+		productService.deleteProduct(productVo);
+		return "redirect:/company/product_list";
 	}
 
 }

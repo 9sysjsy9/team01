@@ -27,7 +27,14 @@
 <script>
 if("${msg}" == "fail"){
 	alert("아이디와 비밀번호를 확인해주세요.")
+} else if ("${msg}" == "registSuccess"){
+	alert("정상적으로 등록 신청 되었습니다.")
+} else if ("${msg}" == "waitingApprove"){
+	alert("사용 승인 대기중 입니다.")
+} else if ("${msg}" == "logout"){
+	alert("로그아웃 되었습니다.")
 }
+	
 </script>
 </head>
 <body>
@@ -63,13 +70,13 @@ if("${msg}" == "fail"){
 					<div class="row">
 						<div class="col-md-12">
 							<form role="form" action="/member/loginRun" method="post">
-								<div class="form-group">
+								<div class="form-group input-group-sm">
 									<h1 class="display-5 fw-bolder" id="store">로그인</h1>
 									<label for="userid"> ID </label> <input
 										type="text" class="form-control" id="userid" name="userid"
 										placeholder="Your ID" />
 								</div>
-								<div class="form-group">
+								<div class="form-group input-group-sm">
 
 									<label for="userpw"> Password </label> <input
 										type="password" class="form-control"
@@ -82,8 +89,8 @@ if("${msg}" == "fail"){
 								</div>
 								<button type="submit"
 									class="btn btn-outline-primary flex-shrink-0">로그인</button>
-								<button type="button"
-									class="btn btn-outline-primary flex-shrink-0">가입요청</button>
+								<a href="/member/registForm" 
+									class="btn btn-outline-primary flex-shrink-0">가입요청</a>
 							</form>
 
 						</div>

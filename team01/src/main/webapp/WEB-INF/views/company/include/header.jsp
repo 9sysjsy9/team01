@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <head>
 
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -22,9 +23,14 @@
 <link href="/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-${loginData}
 <script>
 console.log("${loginData}");
+$(function(){
+	$("#msgimg").click(function(e){
+		e.preventDefault();
+		console.log("이미지 클릭");
+	});
+});
 </script>
 	<!-- Responsive navbar-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -48,7 +54,7 @@ console.log("${loginData}");
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="#">건의 사항</a></li>
-							<li><a class="dropdown-item" href="/free/free_list">자유 게시판</a></li>
+							<li><a class="dropdown-item" href="/company/board/free/free_list">자유 게시판</a></li>
 							<li><a class="dropdown-item" href="#">대나무 숲</a></li>
 							<li><a class="dropdown-item" href="#">자료실</a></li>
 						</ul></li>
@@ -68,7 +74,7 @@ console.log("${loginData}");
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/hire/company/regist_list">채용문의 관리</a></li>
-							<li><a class="dropdown-item" href="/store/applyFranList">가맹문의 관리</a></li>
+							<li><a class="dropdown-item" href="/store/company/applyFranList">가맹문의 관리</a></li>
 							<li><a class="dropdown-item" href="#">제품문의 관리</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
@@ -76,12 +82,16 @@ console.log("${loginData}");
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">관리자메뉴</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#">가입 승인</a></li>
+							<li><a class="dropdown-item" href="/member/company/memberApproveList">가입 승인</a></li>
 							<li><a class="dropdown-item" href="#">사원 관리</a></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#">회사일정</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="/">로그아웃</a></li>
+					<li class="nav-item">
+						<a class="nav-link active" href="/member/company/myPage">${loginData.username}<img src="/images/msgoff.png" style="width:20px" id="msgimg"></a>
+						
+					</li>
+
+					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 				</ul>
 			</div>
 		</div>

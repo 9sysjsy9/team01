@@ -15,8 +15,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		HttpSession session = request.getSession();
 		MemberVo memberVo = new MemberVo();
-		memberVo = (MemberVo)session.getAttribute("memberVo");
-		System.out.println("AuthInterceptor,, preHandle,, memberVo.getUserid() : " + memberVo);
+		memberVo = (MemberVo)session.getAttribute("loginData");
+		System.out.println("AuthInterceptor, preHandle, memberVo.getUserid() : " + memberVo);
 		if(memberVo == null) {
 			response.sendRedirect("/member/login");
 		}

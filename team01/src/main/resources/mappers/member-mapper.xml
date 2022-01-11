@@ -4,9 +4,56 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.ex01.mappers.member">
 
+<!-- 로그인 가능 여부 상태 확인(가입 승인 대기 상태) -->
+
+<!-- 로그인 데이터 -->
 <select id="loginRun" resultType="MemberVo">
 	SELECT * FROM tbl_member
 	WHERE userid = #{userid} AND userpw = #{userpw}
 </select>
+
+<!-- 아이디 중복체크 -->
+<select id="checkId" resultType="int">
+	SELECT COUNT(*) FROM tbl_member
+	WHERE userid = #{userid}
+</select>
+
+<!-- 사번 중복체크 -->
+<select id="checkEno" resultType="int">
+	SELECT COUNT(*) FROM tbl_member
+	WHERE eno = #{eno}
+</select>
+
+<!-- 회원 정보 추가 -->
+<insert id="registRun">
+	INSERT INTO tbl_member (userid, userpw, username, eno, gender, email, phone)
+	VALUES(#{userid}, #{userpw}, #{username}, #{eno}, #{gender}, #{email}, #{phone})
+</insert>
+
+<!-- 승인 대기 회원 리스트 -->
+<select id="memberApproveList" resultType="MemberVo">
+	SELECT * FROM tbl_member
+	WHERE authority = 0
+</select>
+
+<!-- 사용 승인 -->
+<update id="memberApproveRun">
+	UPDATE tbl_member
+	SET department = #{department}, position = #{position}, authority = #{authority}
+	WHERE eno = #{eno}
+</update>
+
+<!-- 회원정보 선택 (마이페이지, 사원검색) -->
+<select id="getMemberData" resultType="MemberVo">
+	SELECT * FROM tbl_member
+	WHERE userid = #{userid}
+</select>
+
+<!-- 회원정보 수정 (마이페이지 내 전화번호, 자기소개 )-->
+<update id="myDataModifyRun">
+	UPDATE tbl_member
+	SET  phone = #{phone}, introduce = #{introduce}, profileimg = #{profileimg}
+	WHERE eno = #{eno} 
+</update>
 
 </mapper>
