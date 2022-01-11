@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper			
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"			
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.ex01.mappers.user">
+
+<!-- 로그인 가능 여부 상태 확인(가입 승인 대기 상태) -->
+
+<!-- 로그인 데이터 -->
+<select id="loginRun" resultType="UserVo">
+	SELECT * FROM tbl_user
+	WHERE user_id = #{user_id} AND user_pw = #{user_pw}
+</select>
+
+<!-- 아이디 중복체크 -->
+<select id="checkId" resultType="int">
+	SELECT COUNT(*) FROM tbl_user
+	WHERE user_id = #{user_id}
+</select>
+
+
+</mapper>

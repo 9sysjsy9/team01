@@ -69,6 +69,8 @@ public class MyFileUploadUtil {
 				System.out.println(thumbnailPath);
 				File f2 = new File(thumbnailPath);
 				if (f2.exists()) {
+					f2.delete();
+					/*
 					while (true) {
 						boolean b = f2.delete();
 						if (b == true) {
@@ -78,11 +80,11 @@ public class MyFileUploadUtil {
 						Thread.sleep(500);
 						
 					}
-					
+					*/
 				}
 				
 			}
-			
+			return true;
 		}
 		return false;
 	}
@@ -100,10 +102,10 @@ public class MyFileUploadUtil {
 	public static boolean deleteThumbnailFile(String fileName) throws Exception {
 		if (isImage(fileName)) {
 			String thumbnailPath = getThumbnailPath(fileName);
-			System.out.println(thumbnailPath);
+			System.out.println("deleteThumbnailFile: "+thumbnailPath);
 			File f2 = new File(thumbnailPath);
 			if (f2.exists()) {
-
+				/*
 				while (true) {
 					boolean b = f2.delete();
 					if (b == true) {
@@ -111,7 +113,7 @@ public class MyFileUploadUtil {
 					}
 					Thread.sleep(500);
 				}
-
+				*/
 			}
 			return true;
 		}
@@ -125,7 +127,7 @@ public class MyFileUploadUtil {
 		int date = cal.get(Calendar.DATE);
 
 		String dateString = year + "/" + month + "/" + date;
-		String datePath = uploadPath + "/" + dateString;
+		String datePath = uploadPath + "/shoes/" + dateString;
 		System.out.println("MyFileUploadUtil, datePath: " + datePath);
 
 		File f = new File(datePath);

@@ -55,9 +55,9 @@ $(function() {
 										<td>
 											<img src="/company/displayThumbnailImage?fileName=${productVo.shoes_image}">
 										</td>
-										<td><button type="button" class="btn btn-outline-light btn-lg px-2 a_times btnModify" 
+										<td><button type="button" class="btn btn-outline-light btn-lg px-2 btnModify" 
 											data-shoes_code="${productVo.shoes_code}" data-shoes_image="${productVo.shoes_image}">수정</button></td>
-										<td><button type="button" class="btn btn-outline-light btn-lg px-2 a_times btnDelete" 
+										<td><button type="button" class="btn btn-outline-light btn-lg px-2 btnDelete" 
 											data-shoes_code="${productVo.shoes_code}" data-shoes_image="${productVo.shoes_image}"> ✖️</button></td>
 									</tr>
 								</c:forEach>

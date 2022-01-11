@@ -20,6 +20,5 @@ public class QnaDao {
 		List<QnaVo> list = sqlSession.selectList(NAMESAPCE+"selectAll");
 		return list;
 	}
-	 //
-	
+
 }
