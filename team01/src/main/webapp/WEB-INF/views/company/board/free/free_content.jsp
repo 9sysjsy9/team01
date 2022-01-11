@@ -66,25 +66,56 @@ $(function(){
 				<hr>
 				<div>${boardVo.content}</div>
 				<hr>
-				<div class="row">
-					<div class="col-md-12">
-						<button type="button" class="btn btn-sm btn-primary"
-							id="btnCommentList">댓글보기</button>
+				<li>
+					<div>
+						<a><img src="/images/pp.png" width="36" height="36"></a>
+						<div>
+							<div>${boardVo.username }(${boardVo.username })</div>
+						</div>	
+					</div>
+				</li>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<table class="table">
+								<tbody>
+									<tr>
+										<td><img src="/images/pp.png" width="36" height="36"></td>
+										<td colspan="10">
+											<dl>
+												<dt>
+													${boardVo.username }(${boardVo.username })<br>
+												</dt>
+												<dd></dd>
+												<dd>
+													${commentVo.content } 댓글내용
+												</dd>
+												<dd>
+													${commentVo.regdate } 01/04/2012
+												</dd>
+											</dl>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="col-md-8">
-						<input type="text" class="form-control"
-							placeholder="댓글을 입력하세요" id="c_content">
-					</div>
-					<div class="col-md-2">
-						<input type="text" class="form-control"
-							placeholder="아이디를 입력하세요" id="c_userid">
-					</div>
-					<div class="col-md-2">
-						<button type="button" class="btn btn-sm btn-primary"
-							id="btnCommentInsert">완료</button>
+				<div>
+					<div class="row">
+						<div class="col-md-8">
+							<input type="text" class="form-control"
+								placeholder="댓글을 입력하세요" id="c_content">
+								
+						</div>
+						<div class="col-md-2">
+							<input type="text" class="form-control"
+								placeholder="아이디를 입력하세요" id="c_userid">
+						</div>
+						<div class="col-md-2">
+							<button type="button" class="btn btn-sm btn-primary"
+								id="btnCommentInsert">완료</button>
+						</div>
 					</div>
 				</div>
 				<div>
