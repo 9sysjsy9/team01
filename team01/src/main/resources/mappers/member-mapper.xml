@@ -15,7 +15,7 @@
 <!-- 아이디 중복체크 -->
 <select id="checkId" resultType="int">
 	SELECT COUNT(*) FROM tbl_member
-	WHERE userid = #{ueno}
+	WHERE userid = #{userid}
 </select>
 
 <!-- 사번 중복체크 -->
