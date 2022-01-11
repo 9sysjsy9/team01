@@ -97,4 +97,5 @@ public class HireDao {
 		HireVo hireVo = sqlSession.selectOne(NAMESPACE + "searchSuccess", map);
 		return hireVo;
 	}
+	
 }

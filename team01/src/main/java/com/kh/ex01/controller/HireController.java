@@ -134,6 +134,7 @@ public class HireController {
 		 return "redirect:/hire/company/regist_content?hno="+hno;
 	 }
 	 
+	 
 	 // 합격 확인
 	 @ResponseBody
 	 @RequestMapping(value = "/search_success", method = RequestMethod.GET)

@@ -18,11 +18,21 @@ public class CommentController {
 	@Inject
 	private CommentService commentService;
 	
-	@RequestMapping(value="/insertComment", method=RequestMethod.POST)
-	public String insertComment(CommentVo commentVo) {
+	//자유게시판 댓글
+	@RequestMapping(value="/insertFreeComment", method=RequestMethod.POST)
+	public String insertFreeComment(CommentVo commentVo) {
 		System.out.println("CommentController, insertComment, commentVo:" + commentVo);
 		int bno = commentVo.getBno();
 		commentService.insertComment(commentVo);
 		return "redirect:/company/board/free/free_content?bno=" + bno;
+	}
+	
+	//익명게시판 댓글
+	@RequestMapping(value="/insertAnonymousComment", method=RequestMethod.POST)
+	public String insertAnonymousComment(CommentVo commentVo) {
+		System.out.println("CommentController, insertComment, commentVo:" + commentVo);
+		int bno = commentVo.getBno();
+		commentService.insertComment(commentVo);
+		return "redirect:/company/board/anonymous/anonymous_content?bno=" + bno;
 	}
 }

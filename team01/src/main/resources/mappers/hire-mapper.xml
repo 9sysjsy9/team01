@@ -14,7 +14,7 @@
 	<select id="listNew" resultType="HireBoardVo">
 		select * from
 			(select rownum rnum, a.* from
-			(select * from tbl_hireboard where cate = #{cate} order by bno desc) a) 
+			(select * from tbl_hireboard where cate = '[신입]' order by bno desc) a) 
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	
@@ -73,13 +73,13 @@
 	
 	<update id="modifySuccess">
 		update tbl_hire set
-		state = 'success'
+		state = 'success', result = 'Y'
 		where hno = #{hno}
 	</update>
 	
 	<update id="modifyFail">
 		update tbl_hire set
-		state = 'fail'
+		state = 'fail', result = 'Y'
 		where hno = #{hno}
 	</update>
 	
@@ -88,5 +88,6 @@
 		where name = #{name} 
 		and email = #{email} 
 	</select>
+	
 	
 </mapper>

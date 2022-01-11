@@ -15,6 +15,7 @@
 		values(seq_cno.nextval, #{bno}, #{userid}, #{username}, #{content})
 	</insert>
 	
+	
 	<delete id="deleteCommentBoard">
 		delete from tbl_comment
 		where bno = #{bno}
