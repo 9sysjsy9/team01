@@ -28,4 +28,8 @@ public class CommentDao {
 		sqlSession.insert(NAMESPACE + "insertComment", commentVo);
 	}
 	
+	public void deleteCommentBoard(int bno) {
+		sqlSession.delete(NAMESPACE + "deleteCommentBoard",bno);
+	}
+	
 }

@@ -6,6 +6,7 @@ public class CommentVo {
 	private int cno;
 	private int bno;
 	private String userid;
+	private String username;
 	private String content;
 	private Timestamp regdate;
 
@@ -48,11 +49,20 @@ public class CommentVo {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
+	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	@Override
 	public String toString() {
-		return "CommentVo [cno=" + cno + ", bno=" + bno + ", userid=" + userid + ", content=" + content + ", regdate="
-				+ regdate + "]";
+		return "CommentVo [cno=" + cno + ", bno=" + bno + ", userid=" + userid + ", username=" + username + ", content="
+				+ content + ", regdate=" + regdate + "]";
 	}
 
 }

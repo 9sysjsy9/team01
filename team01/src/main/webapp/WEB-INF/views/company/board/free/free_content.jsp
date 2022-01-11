@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%> 
+<%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%> 
 <style>
 	.move{
 		text-align: right;
@@ -39,28 +40,13 @@ $(function(){
 		location.href = "/company/board/free/free_list";
 	});
 	
-	$("#btnCommentInsert").click(function() {
-		var content = $("#c_content").val();
-		var sData = {
-				"content"	: content,
-				"userid"	: "${boardVo.userid}",
-				"username"	: "${boardVo.username}",
-				"bno"		: "${boardVo.bno}"
-		};
-		console.log("sData", sData);
-		var url = "/comment/insertComment";
-		$.post(url, sData, function(rData) {
-		});
-	});
 });
 </script>
-
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-3">
 		</div>
 		<div class="col-md-6">
-			<form role="form">
 				<div class="form-group">
 					<h1 class="display-5 fw-bolder" id="store"
 						style="margin-bottom: 50px; margin-top: 50px;">자유게시판</h1>
@@ -76,7 +62,7 @@ $(function(){
 						</div>
 					</c:if>
 				</div>
-				<div class="form-group">${boardVo.username }</div>
+				<div class="form-group btnUsername" style="cursor:pointer" data-userid="${boardVo.userid}">${boardVo.username}</div>
 				<hr>
 				<div>${boardVo.content}</div>
 				<hr>
@@ -84,21 +70,23 @@ $(function(){
 					<div class="row">
 						<div class="col-md-12">
 							<table class="table">
+							<tbody id="commentList">
+							</tbody>
 								<tbody>
-									<c:forEach items="${list }" var="commentVo">
+									<c:forEach items="${list}" var="commentVo">
 										<tr>
 											<td style="width: 66px;padding-top: 25px;"><img src="/images/pp.png" width="40" height="40"></td>
 											<td style="height: 98px; padding-top: 20px;">
 												<dl>
-													<dt>
-														${boardVo.username }(${boardVo.userid })<br>
+													<dt style="cursor:pointer"class="btnUsername" data-userid="${commentVo.userid}">
+														${commentVo.username}(${commentVo.userid })<br>
 													</dt>
 													<dd></dd>
 													<dd>
-														${commentVo.content }
+														${commentVo.content}
 													</dd>
 													<dd>
-														${commentVo.regdate }
+														${commentVo.regdate}
 													</dd>
 												</dl>
 											</td>
@@ -109,19 +97,24 @@ $(function(){
 						</div>
 					</div>
 				</div>
+				<form action="/comment/insertComment" method="post">
 				<div>
+				<input type="hidden" name="userid" value="${loginData.userid }">
+				<input type="hidden" name="username" value="${loginData.username }">
+				<input type="hidden" name="bno" value="${boardVo.bno}">
 					<div class="row">
 						<div class="col-md-8">
-							<label>${boardVo.username }(${boardVo.userid })</label>
+							<label>${loginData.username }(${loginData.userid })</label>
 							<input type="text" class="form-control"
-								placeholder="댓글을 입력하세요" id="c_content">
+								placeholder="댓글을 입력하세요" id="c_content" name="content">
 						</div>
 						<div class="col-md-2" style="margin-top: 32px;">
-							<button type="button" class="btn btn-outline-primary"
+							<button type="submit" class="btn btn-outline-primary"
 								id="btnCommentInsert" data-bno="${boardVo.bno }">완료</button>
 						</div>
 					</div>
 				</div>
+				</form>
 				<div>
 					<div class="row">
 						<div class="col-md-6">
@@ -137,7 +130,6 @@ $(function(){
 						</div>
 					</div>
 				</div>
-			</form>
 		</div>
 		<div class="col-md-3"></div>
 	</div>

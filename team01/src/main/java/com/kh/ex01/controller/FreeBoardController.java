@@ -53,6 +53,7 @@ public class FreeBoardController {
 		 model.addAttribute("boardMoveVo",boardMoveVo);
 		 model.addAttribute("boardVo",boardVo);
 		 model.addAttribute("list",list);
+		 System.out.println("FreeBC, list : " + list);
 		 return "/company/board/free/free_content";
 	 }
 	
@@ -67,6 +68,7 @@ public class FreeBoardController {
 	// 자유게시판 글 삭제
 	@RequestMapping(value="/board/free/free_delete", method=RequestMethod.GET)
 	public String deleteBoard(int bno) {
+		commentService.deleteCommentBoard(bno);
 		freeboardService.deleteBoard(bno);
 		return "redirect:/company/board/free/free_list";
 	}
