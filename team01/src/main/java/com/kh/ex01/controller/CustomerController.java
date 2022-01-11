@@ -57,6 +57,14 @@ public class CustomerController {
 	public String csCheck() {
 		return "customer/csCheck";
 	}
+	@RequestMapping(value = "/mine", method = RequestMethod.GET)
+	public String mine() {
+		return "user/mine";
+	}
+	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
+	public String orderList() {
+		return "user/orderList";
+	}
 	
 	@RequestMapping(value = "/qna", method = RequestMethod.GET)
 	public String qnaList(Model model) {
