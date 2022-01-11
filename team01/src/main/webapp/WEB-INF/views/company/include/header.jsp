@@ -55,7 +55,7 @@ $(function(){
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="#">건의 사항</a></li>
 							<li><a class="dropdown-item" href="/company/board/free/free_list">자유 게시판</a></li>
-							<li><a class="dropdown-item" href="#">대나무 숲</a></li>
+							<li><a class="dropdown-item" href="/company/board/anonymous/anonymous_list">대나무 숲</a></li>
 							<li><a class="dropdown-item" href="#">자료실</a></li>
 						</ul></li>
 					

@@ -11,8 +11,14 @@
 	</select>
 	
 	<insert id="insertComment">
-		insert into tbl_comment(cno, bno, userid, content)
-		values(seq_cno.nextval, #{bno}, #{userid}, #{content})
+		insert into tbl_comment(cno, bno, userid, username, content)
+		values(seq_cno.nextval, #{bno}, #{userid}, #{username}, #{content})
 	</insert>
+	
+	
+	<delete id="deleteCommentBoard">
+		delete from tbl_comment
+		where bno = #{bno}
+	</delete>
 	
 </mapper>

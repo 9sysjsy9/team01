@@ -35,6 +35,7 @@ $(function(){
 										<td>${hireVo.email }</td>
 										<td>${hireVo.phonnum }</td>
 										<td>${hireVo.career }</td>
+										<td>${hireVo.result }</td>
 									</tr>
 								</c:forEach>
 							</thead>

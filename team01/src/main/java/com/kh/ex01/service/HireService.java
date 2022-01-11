@@ -87,4 +87,5 @@ public class HireService {
 		HireVo hireVo = hireDao.searchSuccess(name, email);
 		return hireVo;
 	}
+	
 }
