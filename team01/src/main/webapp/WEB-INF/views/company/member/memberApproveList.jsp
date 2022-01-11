@@ -110,7 +110,7 @@ $(function(){
 											<option value="영업">영업</option>
 											<option value="인사">인사</option>
 											<option value="감사">감사</option>
-											<option value="품진관리">품질관리</option>
+											<option value="품질관리">품질관리</option>
 										</select>
 									</td>
 									<td>

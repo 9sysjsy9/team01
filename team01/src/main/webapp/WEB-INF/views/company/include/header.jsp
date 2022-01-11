@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <head>
 
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -24,6 +25,12 @@
 <body>
 <script>
 console.log("${loginData}");
+$(function(){
+	$("#msgimg").click(function(e){
+		e.preventDefault();
+		console.log("이미지 클릭");
+	});
+});
 </script>
 	<!-- Responsive navbar-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -79,7 +86,11 @@ console.log("${loginData}");
 							<li><a class="dropdown-item" href="#">사원 관리</a></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#">회사일정</a></li>
-					<li class="nav-item"><a class="nav-link" href="/member/company/myPage">마이페이지</a></li>
+					<li class="nav-item">
+						<a class="nav-link active" href="/member/company/myPage">${loginData.username}<img src="/images/msgoff.png" style="width:20px" id="msgimg"></a>
+						
+					</li>
+
 					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 				</ul>
 			</div>

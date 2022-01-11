@@ -2,7 +2,13 @@ package com.kh.ex01.util;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -159,6 +165,87 @@ public class MyFileUploadUtil {
 		String rear = filePath.substring(slashIndex + 1);
 		String thumbnailPath = front + "sm_" + rear;
 		return thumbnailPath;
+	}
+//프로필 사진 업로드 
+	
+	public static String uploadProfileImg(String uploadPath, String originalName, int eno, byte[] fileData) {
+		String filePath = uploadPath + "/" + eno + "."+getExtName(originalName);
+		File target = new File(filePath);
+		System.out.println("filePath :" + filePath);
+		System.out.println("target :" + target);
+		
+		try {
+			FileCopyUtils.copy(fileData, target);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return filePath;
+	}
+	
+	public static boolean makeSampleProfileImg(String filePath) {
+		// //192.168.0.234/upload/profile/test01.JPG
+		int slashIndex = filePath.lastIndexOf("/");
+		String front = filePath.substring(0, slashIndex + 1);
+		System.out.println("MyFileUploadUtil, makeThumbnail, front: "+front);
+		String rear = filePath.substring(slashIndex + 1);
+		System.out.println("MyFileUploadUtil, makeThumbnail, rear: "+rear);
+		String samplePath = front + "sample_" + rear;
+		
+		File orgFile = new File(filePath);
+		System.out.println("MyFileUploadUtil, orgFile:"+orgFile);
+		File sampleFile = new File(samplePath);
+		System.out.println("MyFileUploadUtil, sampleFile:"+ sampleFile);
+//		InputStream srcStream = null;
+//		BufferedImage srcImage = null;
+//		OutputStream descStream = null;
+//		BufferedImage descImage = null;
+		try {
+			InputStream srcStream = new FileInputStream(orgFile);
+			BufferedImage srcImage = ImageIO.read(srcStream);
+			OutputStream descStream = new FileOutputStream(sampleFile);
+			BufferedImage descImage = Scalr.resize(srcImage, 350, 450, null);
+			ImageIO.write(descImage, getExtName(filePath), descStream);
+			System.out.println("MyFileUploadUtil, makeSampleProfileImg try구문 실행됨");
+			srcStream.close();
+			descStream.close();
+			orgFile.delete();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public static String getSamplePath(String filePath) {
+		int slashIndex = filePath.lastIndexOf("/");
+		String front = filePath.substring(0, slashIndex + 1);
+		String rear = filePath.substring(slashIndex + 1);
+		String samplePath = front + "sample_" + rear;
+		return samplePath;
+	}
+	
+	public static boolean profileImgChange(String uploadPath, int eno, String extName) {
+		File sampleFilePath = new File(uploadPath +"/sample_"+ eno +"." + extName);
+		File profileFilePath = null;
+		
+		if(sampleFilePath.exists() == true) {
+			profileFilePath = new File(uploadPath +"/profile_"+ eno +"." + extName);
+			
+			sampleFilePath.renameTo(profileFilePath);
+
+//			try {
+//				Files.copy(sampleFilePath.toPath(), profileFilePath.toPath(), StandardCopyOption.REPLACE_EXISTING);
+//				System.out.println("성공");
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+			sampleFilePath.delete();
+			return true;
+		}
+		System.out.println("MyFileUploadUtil profileImgChange, sampleFilePath : " + sampleFilePath);
+		System.out.println("MyFileUploadUtil profileImgChange, profileFilePath : " + profileFilePath);
+		System.out.println("실패");
+		return false;
 	}
 
 }

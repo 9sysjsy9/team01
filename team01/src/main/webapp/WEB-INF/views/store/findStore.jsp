@@ -82,7 +82,7 @@ $(function(){
 		map.panTo(moveLatLon);
 		$("#phone").text("TEL : 052-123-4567");
 		$("#store").text("울산 1호점");
-		$("#explain").text("수영슈즈 2호점은 남구 남부경찰서 근처에 위치해 있습니다.");
+		$("#explain").text("수영슈즈 1호점은 울산 남구 남부경찰서 근처에 위치해 있습니다.");
 		$("#address").text("주소 : 울산 남구 삼산로35번길 19");
 	});
 });
