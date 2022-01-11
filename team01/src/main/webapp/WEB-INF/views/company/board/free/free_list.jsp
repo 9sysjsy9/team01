@@ -52,7 +52,7 @@ $(function(){
 							</thead>
 							<tbody>
 								<c:forEach  items="${list}" var="boardVo">
-									<tr class="table">
+									<tr>
 										<td>${boardVo.bno }</td>
 										<td><a class="title" href="${boardVo.bno}">${boardVo.title}</a></td>
 										<td style="cursor:pointer"class="btnUsername" data-userid="${boardVo.userid}">${boardVo.username}</td>
