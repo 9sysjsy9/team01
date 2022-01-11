@@ -125,15 +125,15 @@
 <!-- Page content-->
 <div class="container">
 	<form action="/company/regist_run" id="frmProduct">
-		<input type="text" name="shoes_name">
-		<input type="text" name="shoes_size">
-		<input type="text" name="shoes_color">
-		<input type="text" name="shoes_count">
-		<input type="text" name="shoes_category">
-		<input type="text" name="shoes_price">
-		<input type="text" name="shoes_style">
-		<input type="text" name="shoes_state">
-		<input type="text" name="shoes_image">
+		<input type="hidden" name="shoes_name">
+		<input type="hidden" name="shoes_size">
+		<input type="hidden" name="shoes_color">
+		<input type="hidden" name="shoes_count">
+		<input type="hidden" name="shoes_category">
+		<input type="hidden" name="shoes_price">
+		<input type="hidden" name="shoes_style">
+		<input type="hidden" name="shoes_state">
+		<input type="hidden" name="shoes_image">
 	</form>
 	<div class="row">
 		<div class="col-lg-7">

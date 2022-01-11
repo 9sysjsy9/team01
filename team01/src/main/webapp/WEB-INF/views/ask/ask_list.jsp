@@ -175,7 +175,7 @@
 							<td>${askproductVo.email}</td>
 							<td><button type="button"
 									class="btn btn-outline-dark btn-lg px-7 askContent"
-									data-ano="${askproductVo.ano}" id="askContent">자세히 보기</button></td>
+									data-ano="${askproductVo.ano}">자세히 보기</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>

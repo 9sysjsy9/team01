@@ -7,16 +7,18 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.kh.ex01.Dao.QnaDao;
+import com.kh.ex01.Dao.UserDao;
 import com.kh.ex01.vo.QnaVo;
+import com.kh.ex01.vo.UserVo;
 
 @Service
-public class QnaService {
-	
+public class UserService {
+
 	@Inject
-	private QnaDao qnaDao;
-	
-	public List<QnaVo> selectAll() {
-		List<QnaVo> list = qnaDao.selectAll();
-		return list;
+	private UserDao userDao;
+
+	public UserVo loginRun(UserVo userVo2) {
+		UserVo userVo = userDao.loginRun(userVo2);
+		return userVo;
 	}
 }

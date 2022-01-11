@@ -9,28 +9,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.kh.ex01.service.NoticeService;
+import com.kh.ex01.service.CustomerService;
 import com.kh.ex01.vo.NoticeVo;
+import com.kh.ex01.vo.QnaVo;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 
 	@Inject
-	NoticeService noticeService;
+	CustomerService customerService;
 
 	// /customer/notice
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)
 	public String customerNotice(Model model) {
-		List<NoticeVo> list = noticeService.selectAll();
+		List<NoticeVo> list = customerService.noticeList();
 		model.addAttribute("list", list);
 		return "customer/notice";
-	}
-
-	// /customer/qna
-	@RequestMapping(value = "/qna", method = RequestMethod.GET)
-	public String customerQna() {
-		return "customer/qna";
 	}
 
 	@RequestMapping(value = "/csExchange", method = RequestMethod.GET)
@@ -48,9 +43,27 @@ public class CustomerController {
 		return "customer/csSub/csRefund";
 	}
 	
+	@RequestMapping(value = "/csReceive", method = RequestMethod.GET)
+	public String csReceive() {
+		return "customer/csReceive";
+	}
+	
 	@RequestMapping(value = "/csMain", method = RequestMethod.GET)
 	public String csMain() {
 		return "customer/csMain";
+	}
+	
+	@RequestMapping(value = "/csCheck", method = RequestMethod.GET)
+	public String csCheck() {
+		return "customer/csCheck";
+	}
+	
+	@RequestMapping(value = "/qna", method = RequestMethod.GET)
+	public String qnaList(Model model) {
+		List<QnaVo> list = customerService.qnaList();
+		System.out.println("list: "+list);
+		model.addAttribute("list", list);
+		return "customer/qna";
 	}
 
 }

@@ -79,6 +79,16 @@
 							<li><a class="dropdown-item" href="/qna/list">질문과 답변</a></li>
 							<li><a class="dropdown-item" href="/customer/csMain">CS센터</a></li>
 						</ul></li>
+						
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
+						<ul class="dropdown-menu dropdown-menu-end"
+							aria-labelledby="navbarDropdown">
+						<li><a class="dropdown-item" href="/user/mine">나의 정보</a></li>
+						<li><a class="dropdown-item" href="/user/chList">주문 내역 조회</a></li>
+					</ul></li>
+						
 					<li class="nav-item"><a class="nav-link" href="/company/main">사원 메뉴</a></li>
 				</ul>
 			</div>
