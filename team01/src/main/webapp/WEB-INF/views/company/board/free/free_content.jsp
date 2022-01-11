@@ -64,8 +64,29 @@ $(function(){
 				</div>
 				<div class="form-group">${boardVo.username }</div>
 				<hr>
-				<div>${boardVo.content }</div>
+				<div>${boardVo.content}</div>
 				<hr>
+				<div class="row">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-sm btn-primary"
+							id="btnCommentList">댓글보기</button>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-8">
+						<input type="text" class="form-control"
+							placeholder="댓글을 입력하세요" id="c_content">
+					</div>
+					<div class="col-md-2">
+						<input type="text" class="form-control"
+							placeholder="아이디를 입력하세요" id="c_userid">
+					</div>
+					<div class="col-md-2">
+						<button type="button" class="btn btn-sm btn-primary"
+							id="btnCommentInsert">완료</button>
+					</div>
+				</div>
 				<div>
 					<div class="row">
 						<div class="col-md-6">

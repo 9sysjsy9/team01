@@ -22,6 +22,12 @@ $(function(){
 		});
 	});
 	
+	$(function(){
+		$(".btnUsername").click(function(e) {
+			console.log("클릭");
+		});
+	});
+	
 });
 </script>
 <!-- Product section-->
@@ -54,7 +60,7 @@ $(function(){
 									<tr class="table">
 										<td>${boardVo.bno }</td>
 										<td><a class="title" href="${boardVo.bno }">${boardVo.title }</a></td>
-										<td>${boardVo.username }</td>
+										<td class="btnUsername" data-userid="${boardVo.userid}">${boardVo.username }</td>
 										<td>${boardVo.regdate }</td>
 										<td>${boardVo.viewcnt }</td>
 									</tr>
