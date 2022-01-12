@@ -3,12 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
+
 <style>
-	body
-{
-  margin: 0 auto;
-  width: 800px;
-}
+body { 
+   margin: 0 auto; 
+   width: 800px; 
+} 
+
+#wrapper { 
+width: 200px; 
+margin: 0 auto; 
+border: 1px solid #000; 
+} 
 </style>
 
 <script>
@@ -19,20 +26,21 @@ $(function() {
 		
 	});
 	
-	/** 우편번호 찾기 */
-	function execDaumPostcode() {
-	   daum.postcode.load(function() {
-	      new daum.Postcode({
-	         oncomplete : function(data) {
-	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-	            $("#postcode").val(data.zonecode);
-	            $("#address").val(data.roadAddress);
-	         }
-	      }).open();
-	   });
-	}
+	
 
 });
+/** 우편번호 찾기 */
+function execDaumPostcode() {
+   daum.postcode.load(function() {
+      new daum.Postcode({
+         oncomplete : function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            $("#postcode").val(data.zonecode);
+            $("#address").val(data.roadAddress);
+         }
+      }).open();
+   });
+}
 </script>
 
 <html lang="en">
@@ -61,7 +69,8 @@ $(function() {
          <tr>
             <th>아이디</th>
             <td><input type="text" name="cursor:pointer"> 
-            <button id="btnCheck">아이디 중복체크</button></td>
+            <button id="btnCheck" class="btn btn-info m-btn--air"
+            	>아이디 중복체크</button></td>
          </tr>
          <tr>
             <th>비밀번호</th>
@@ -105,48 +114,41 @@ $(function() {
             </select></td>
          </tr>
          <tr>
-            <th>주소</th>
+            <th rowspan="2">주소</th>
             <td>
-               <div class="form-group m-form__group row">
-                             <label class="col-md-2 offset-md-3 col-form-label">
-                                  주&nbsp;&nbsp;소&nbsp;&nbsp;
-                                  <span class="m--font-orange vertical-middle">*</span>
-                             </label>
-                  <div class="col-md-2">
-                     <input type="text" class="form-control m-input" name="postcode"
+               
+                     <input type="text" name="postcode"
                         id="postcode" placeholder="우편번호" readonly />
-                  </div>
-                  <div class="col-md-2 postcode-btn">
+                 
                      <button type="button" class="btn btn-info m-btn--air"
                         onclick="execDaumPostcode()">주소 찾기</button>
-                  </div>
                   
-                  <div class="col-md-4 offset-md-5" id="wrapper">
-                     <input type="text" class="form-control m-input m--margin-top-10"
+                  
+              </td>
+             </tr>
+          <tr>
+               	
+               <td>
+                     <input type="text" 
                         name="address" id="address" placeholder="도로명 주소" readonly />
-                  </div>
-                  <div class="col-md-4 offset-md-5" id="wrapper">
-                     <input type="text" class="form-control m-input m--margin-top-10"
-                        name="detailAddress" placeholder="상세 주소" required />
-                  </div>
-               </div> 
-                            <input type="text" name="zip_h_1"> -  
-                            <input type="text" name="zip_h_2">
-                            <input type="text" name="addr_h1"><br>
+                  
+                     <input type="text" 
+                        name="detailAddress" placeholder="상세 주소" size="60" required />
+                  </td>
 
-            </td>
+            
          </tr>
          <tr>
             <th>전화번호</th>
-            <td><input type="text" name="cel1"> - <input
-               type="text" name="cel2_1" title="전화번호"> - <input
-               type="text" name="cel2_2"></td>
+            <td><input type="text" name="cel1"> 
+            	- <input type="text" name="cel2_1" title="전화번호"> 
+                - <input type="text" name="cel2_2"></td>
          </tr>
          <tr>
             <th>핸드폰 번호</th>
-            <td><input type="text" name="tel_h1"> - <input
-               type="text" name="tel_h2_1"> - <input type="text"
-               name="tel_h2_2"></td>
+            <td><input type="text" name="tel_h1"> 
+         	   - <input type="text" name="tel_h2_1"> 
+               - <input type="text" name="tel_h2_2"></td>
          </tr>
          <tr>
             <th>직업</th>
@@ -205,11 +207,11 @@ $(function() {
             <td colspan="2"></td>
          </tr>
          <tr>
-            <td colspan="2" align="center"><br> <input type="submit"
-               value="회원가입"> <input type="reset" value="취소"></td>
+            <td colspan="2" align="center"><br> 
+            	<input type="submit" class="btn btn-warning" value="회원 가입">
+            	<input type="reset" class="btn btn-secondary" value="가입 취소"></td>
          </tr>
       </table>
    </form>
- </body>
-</html>
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 

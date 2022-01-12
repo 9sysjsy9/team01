@@ -76,7 +76,7 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/customer/notice">공지사항</a></li>
-							<li><a class="dropdown-item" href="/qna/list">질문과 답변</a></li>
+							<li><a class="dropdown-item" href="/customer/qna">질문과 답변</a></li>
 							<li><a class="dropdown-item" href="/customer/csMain">CS센터</a></li>
 						</ul></li>
 						
