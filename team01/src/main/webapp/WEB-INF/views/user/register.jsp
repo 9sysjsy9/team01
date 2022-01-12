@@ -10,6 +10,16 @@
   width: 800px;
 }
 </style>
+
+<script>
+$(function() {
+	$("#btnCheck").on("click", function() {
+		var user_id = $(this).prev().val();
+		console.log("user_id: "+user_id);
+	});
+});
+</script>
+
 <html lang="en">
  <head>
   <meta charset="UTF-8">
@@ -17,7 +27,7 @@
   <title>회원 가입</title>
  </head>
  <body><br><br>
- <form name="write_form_member" method="post">
+ <form name="write_form_member" class="userTable" method="post">
    <table width="940" style="padding:5px 0 5px 0; ">
       <tr height="2" bgcolor="#FFC8C3"><td colspan="2"></td></tr>
       <h2><b>수영슈즈 회원가입</b></h2>
@@ -30,7 +40,7 @@
          <th>아이디</th>
          <td>
          <input type="text" name="cursor:pointer">
-         <a href='#' style='cursor:help'>아이디 중복체크</a>
+         <button type="button" id="btnCheck">아이디 중복체크</button>
          </td>
        </tr>
        <tr>
@@ -57,7 +67,6 @@
         </select>
         </tr>
         <tr>
-        </td>
            <th>답변</th>
            <td><input type='text' name='pwhintans'></td>
         </tr>
