@@ -106,8 +106,8 @@ $(function(){
 				<button type="button"
 					class="btn btn-outline-dark flex-shrink-0 btn-sm">내가 작성한 글</button>
 					<br> <br>
-				<button type="button"
-					class="btn btn-outline-primary flex-shrink-0 btn-sm">메시지 함</button>
+				<a href="/message/company/receiveMessageList" type="button"
+					class="btn btn-outline-primary flex-shrink-0 btn-sm">메시지 함</a>
 					<br> <br>
 				<button type="button"
 					class="btn btn-outline-danger flex-shrink-0 btn-sm">탈퇴하기</button>

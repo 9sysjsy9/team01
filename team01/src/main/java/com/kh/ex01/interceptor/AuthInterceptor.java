@@ -13,7 +13,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		/*
+		
 		HttpSession session = request.getSession();
 		MemberVo memberVo = new MemberVo();
 		memberVo = (MemberVo)session.getAttribute("loginData");
@@ -21,7 +21,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 		if(memberVo == null) {
 			response.sendRedirect("/member/login");
 		}
-		*/
+		
 		return super.preHandle(request, response, handler);
 	}
 	

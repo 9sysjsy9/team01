@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper			
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"			
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.ex01.mappers.message">
+	
+<!-- <select id="receiveMessageList" resultType="MessageVo"> -->
+<!-- 	SELECT * FROM tbl_message -->
+<!-- 	WHERE receiver = #{receiver} -->
+<!-- 	ORDER BY mno desc -->
+<!-- </select> -->
+
+<select id="receiveMessageList" resultType="MessageVo">
+	SELECT mes.mno, mes.sender, mes.receiver, mes.content, mes.readstate, mes.senddate, mes.readdate, mem.username AS sendername
+	FROM tbl_member mem, tbl_message mes
+	WHERE mes.sender = mem.userid AND mes.receiver = #{receiver}
+	ORDER BY mes.mno desc
+</select>
+
+<select id="sendMessageList" resultType="MessageVo">
+	SELECT * FROM tbl_message
+	WHERE sender = #{sender}
+	ORDER BY mno desc
+</select>
+
+
+</mapper>
