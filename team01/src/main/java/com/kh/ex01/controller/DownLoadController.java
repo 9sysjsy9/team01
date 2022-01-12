@@ -3,8 +3,6 @@ package com.kh.ex01.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
 
@@ -16,19 +14,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.ex01.util.MyFileUploadUtil;
+
 
 @Controller
 @RequestMapping("/hire")
 public class DownLoadController {
-	
-	private static final String UPLOAD_PATH = "//192.168.0.234/upload/";
 	
 	@RequestMapping(value="/fileDownload")
 	public void fileDownload( HttpServletResponse response, HttpServletRequest request, @RequestParam Map<String, String> paramMap) {
 	 
 	    String path = paramMap.get("filePath"); //full경로
 	    String fileName = paramMap.get("fileName"); //파일명
-	   
 	 
 	    File file = new File(path);
 	 
@@ -40,15 +37,10 @@ public class DownLoadController {
 	        String browser = request.getHeader("User-Agent");
 	        //파일 인코딩
 	        if(browser.contains("MSIE") || browser.contains("Trident") || browser.contains("Chrome")){//브라우저 확인 파일명 encode  
-	            
-	            downName = URLEncoder.encode(fileName,"UTF-8").replaceAll("\\+", "%20");
-	            
+	            downName = URLEncoder.encode(MyFileUploadUtil.getFirstName(fileName),"UTF-8").replaceAll("\\+", "%20");
 	        }else{
-	            
 	            downName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
-	            
 	        }
-	        
 	        response.setHeader("Content-Disposition","attachment;filename=\"" + downName+"\"");             
 	        response.setContentType("application/octer-stream");
 	        response.setHeader("Content-Transfer-Encoding", "binary;");
@@ -60,13 +52,9 @@ public class DownLoadController {
 	        int data = 0;
 	 
 	        while((data=(fileInputStream.read(b, 0, b.length))) != -1){
-	            
 	            servletOutputStream.write(b, 0, data);
-	            
 	        }
-	 
 	        servletOutputStream.flush();//출력
-	        
 	    }catch (Exception e) {
 	        e.printStackTrace();
 	    }finally{

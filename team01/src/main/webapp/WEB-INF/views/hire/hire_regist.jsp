@@ -2,6 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
+<script>
+$(function(){
+	var message = "${message}";
+	if (message == "regist_success") {
+		alert("채용지원을 하셨습니다.");
+	}
+});
+</script>
 <form action="/hire/regist_run" method="post" enctype="multipart/form-data">
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 my-5">
@@ -42,12 +50,12 @@
 								<div class="form-group">
 									<label for="content"> 자기소개 </label> 
 									<textarea rows="8" cols="50" class="form-control" id="content" 
-										name="content" placeholder="간략한 자기소개 작성 바랍니다."></textarea>
+										name="content" placeholder="간략한 자기소개 작성 바랍니다." required></textarea>
 								</div>
 								
 								<div>
-									<label>이력처 첨부</label>
-									<input type="file" name="uploadFile"/>
+									<label>이력처 첨부</label><br>
+									<input type="file" name="uploadFile" required/>
 								</div>
 							</div>
 							<div>
