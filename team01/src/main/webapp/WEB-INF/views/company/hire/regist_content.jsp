@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%> 
+${hireVo.filename }
 <script>
 $(function(){
 	$(".btnSuccess").click(function(e){
@@ -28,6 +29,13 @@ $(function(){
 			alert("이미 합격 통지를 하셨습니다.")
 		}
 	});
+	$("#download").click(function(){
+        
+	    var filePath = "//192.168.0.234/upload/${hireVo.filename}";
+	    var fileName = "${hireVo.filename}";
+	    console.log("fileName");
+	    location.href = "/hire/fileDownload?filePath=" + filePath + "&fileName=" + fileName;
+	});
 });
 </script>
 <style>
@@ -49,11 +57,13 @@ $(function(){
 					<input type="text" class="form-control" readonly value="${hireVo.name }"/>
 				</div>
 				<div class="form-group">
-					 
 					<label>자기소개</label>
 					<input type="text" class="form-control" readonly value="${hireVo.content }"/>
 				</div>
-				
+				<div>
+					<label>이력서</label>
+					<button type="button" id="download">다운로드</button>
+				</div>
 				<div class="tag">
 					<a class="btn btn-outline-dark flex-shrink-0" href="regist_list">이전</a>
 					<a class="btn btn-outline-danger flex-shrink-0"

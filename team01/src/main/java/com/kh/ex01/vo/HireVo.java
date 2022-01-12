@@ -1,5 +1,6 @@
 package com.kh.ex01.vo;
 
+import org.springframework.web.multipart.MultipartFile;
 
 public class HireVo {
 
@@ -11,6 +12,8 @@ public class HireVo {
 	private String content;
 	private String state;
 	private String result; // 합/불 확인
+	private String fileName; // 파일저장이름
+	private MultipartFile uploadFile;
 	public int getHno() {
 		return hno;
 	}
@@ -59,12 +62,24 @@ public class HireVo {
 	public void setResult(String result) {
 		this.result = result;
 	}
+	public String getFilename() {
+		return fileName;
+	}
+	public void setFilename(String filename) {
+		this.fileName = filename;
+	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 	@Override
 	public String toString() {
 		return "HireVo [hno=" + hno + ", name=" + name + ", email=" + email + ", phonnum=" + phonnum + ", career="
-				+ career + ", content=" + content + ", state=" + state + ", result=" + result + "]";
+				+ career + ", content=" + content + ", state=" + state + ", result=" + result + ", fileName=" + fileName
+				+ ", uploadFile=" + uploadFile + "]";
 	}
-	
 	
 	
 }

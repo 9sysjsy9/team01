@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
-<form action="/hire/regist_run" method="get">
+<form action="/hire/regist_run" method="post" enctype="multipart/form-data">
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="row gx-4 gx-lg-5 align-items-center">
@@ -16,17 +16,17 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<label for="exampleInputEmail1"> 이름 </label> 
-									<input type="text" class="form-control" name="name" required/>
+									<label for="name"> 이름 </label> 
+									<input type="text" class="form-control" id="name" name="name" required/>
 								</div>
 								<div class="form-group">
-									<label for="exampleInputPassword1"> 이메일 </label> 
-									<input type="email" class="form-control" name="email" required/>
+									<label for="email"> 이메일 </label> 
+									<input type="email" class="form-control" id="email" name="email" required/>
 								</div>
 								
 								<div class="form-group">
-									<label for="exampleInputPassword1"> 전화번호 </label> 
-									<input type="text" class="form-control" name="phonnum" required/>
+									<label for="phonnum"> 전화번호 </label> 
+									<input type="text" class="form-control" id="phonnum" name="phonnum" required/>
 								</div>
 								
 								<div class="form-group">
@@ -40,11 +40,15 @@
 								</div>
 								
 								<div class="form-group">
-									<label for="exampleInputPassword1"> 자기소개 </label> 
-									<textarea rows="8" cols="50" class="form-control" id="exampleInputPassword1" 
+									<label for="content"> 자기소개 </label> 
+									<textarea rows="8" cols="50" class="form-control" id="content" 
 										name="content" placeholder="간략한 자기소개 작성 바랍니다."></textarea>
 								</div>
 								
+								<div>
+									<label>이력처 첨부</label>
+									<input type="file" name="uploadFile"/>
+								</div>
 							</div>
 							<div>
 								<button class="btn btn-outline-dark flex-shrink-0" type="submit"
