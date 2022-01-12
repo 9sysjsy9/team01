@@ -49,9 +49,14 @@ public class UserController {
 		return "user/register";
 	}
 	
-		@RequestMapping(value = "/registForm")
-	public String registForm() {
-		return null;
+	@RequestMapping(value = "/mine", method = RequestMethod.GET)
+	public String mine() {
+		return "user/mine";
+	}
+	
+	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
+	public String orderList() {
+		return "user/orderList";
 	}
 
 	
