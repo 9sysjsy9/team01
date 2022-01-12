@@ -23,7 +23,7 @@ import com.kh.ex01.vo.ShoesStyleVo;
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping("/company")
+@RequestMapping("/product")
 public class ProductController {
 	@Inject
 	ProductService productService;
@@ -40,14 +40,14 @@ public class ProductController {
 		return "/product/product_index";
 	}
 
-	@RequestMapping(value = "/product_list", method = RequestMethod.GET)
+	@RequestMapping(value = "/company/product_list", method = RequestMethod.GET)
 	public String productList(Model model) {
 		List<ProductVo> list = productService.simpleSelectAll();
 		model.addAttribute("list", list);
 		return "/company/product/product_list";
 	}
 
-	@RequestMapping(value = "/product_regist", method = RequestMethod.GET)
+	@RequestMapping(value = "/company/product_regist", method = RequestMethod.GET)
 	public String productRegist(Model model) {
 		List<ShoesStyleVo> listStyle = productService.selectAllShoesStyle();
 		List<ShoesStateVo> listState = productService.selectAllShoesState();
@@ -72,19 +72,19 @@ public class ProductController {
 		return "/product/product_detail";
 	}
 	
-	@RequestMapping(value = "/regist_run", method = RequestMethod.GET)
+	@RequestMapping(value = "/company/regist_run", method = RequestMethod.GET)
 	public String registRun(ProductVo productVo) {
 		System.out.println("regist_run, productVo: "+productVo);
 		productService.insertProduct(productVo);
-		return "redirect:/company/product_list";
+		return "redirect:/product/company/product_list";
 	}
 	
-	@RequestMapping(value = "/delete_run", method = RequestMethod.GET)
+	@RequestMapping(value = "/company/delete_run", method = RequestMethod.GET)
 	public String deleteRun(ProductVo productVo) throws Exception {
 		System.out.println("delete_run, getShoes_code: "+ productVo.getShoes_code());
 		System.out.println("delete_run, getShoes_image: "+ productVo.getShoes_image());
 		productService.deleteProduct(productVo);
-		return "redirect:/company/product_list";
+		return "redirect:/product/company/product_list";
 	}
 
 }

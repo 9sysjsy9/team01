@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kh.ex01.util.MyFileUploadUtil;
 
 @Controller
-@RequestMapping("/company")
+@RequestMapping("/upload")
 public class UploadController {
 
 	private static final String UPLOAD_PATH = "//192.168.0.234/upload";

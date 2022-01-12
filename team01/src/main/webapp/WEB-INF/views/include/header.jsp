@@ -66,8 +66,8 @@
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">제품안내</a>
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/company/product_index">제품정보</a></li>
-							<li><a class="dropdown-item" href="/company/product_ask">제품문의</a></li>
+							<li><a class="dropdown-item" href="/product/product_index">제품정보</a></li>
+							<li><a class="dropdown-item" href="/product/product_ask">제품문의</a></li>
 						</ul></li>
 
 					<li class="nav-item dropdown"><a

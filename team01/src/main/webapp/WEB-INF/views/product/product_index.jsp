@@ -17,7 +17,7 @@
 		$(".page-link").click(function(e) {
 			e.preventDefault();
 			var page = $(this).attr("href");
-			location.href = "/company/product_index?page=" + page;
+			location.href = "/product/company/product_index?page=" + page;
 		});
 
 	});
@@ -122,7 +122,7 @@
 						src="/product_images/shoes${productVo.shoes_code}.jpg" alt="..." /> 
  -->
 						<img class="card-img-top"
-							src="/company/displayImage?fileName=${productVo.shoes_image}">
+							src="/upload/displayImage?fileName=${productVo.shoes_image}">
 						<!-- Product details-->
 						<div class="card-body p-4">
 							<div class="text-center">
