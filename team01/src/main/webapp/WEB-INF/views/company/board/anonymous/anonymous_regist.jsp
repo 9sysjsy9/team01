@@ -11,7 +11,7 @@
 			<div class="col-md-4">
 			</div>
 			<div class="col-md-4">
-				<h3 style="margin-top: 40px; margin-bottom: 40px;">자유 게시판 글쓰기</h3>
+				<h3 style="margin-top: 40px; margin-bottom: 40px;">대나무숲 글쓰기</h3>
 			</div>
 			<div class="col-md-4">
 			</div>

@@ -1,6 +1,7 @@
 package com.kh.ex01.Dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -30,6 +31,11 @@ public class CommentDao {
 	
 	public void deleteCommentBoard(int bno) {
 		sqlSession.delete(NAMESPACE + "deleteCommentBoard",bno);
+	}
+	
+	public List<Object> profileImg(){
+		List<Object> list = sqlSession.selectList(NAMESPACE + "profileImg");
+		return list;
 	}
 	
 }

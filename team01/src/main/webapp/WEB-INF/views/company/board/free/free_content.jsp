@@ -79,7 +79,7 @@ $(function(){
 											<td style="height: 98px; padding-top: 20px;">
 												<dl>
 													<dt style="cursor:pointer"class="btnUsername" data-userid="${commentVo.userid}">
-														${commentVo.username}(${commentVo.userid })<br>
+														${commentVo.username}(${commentVo.userid })<br> 
 													</dt>
 													<dd></dd>
 													<dd>
