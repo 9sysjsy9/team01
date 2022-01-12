@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ex01.vo.CommentVo;
+import com.kh.ex01.vo.MemberVo;
 
 
 
@@ -33,9 +34,9 @@ public class CommentDao {
 		sqlSession.delete(NAMESPACE + "deleteCommentBoard",bno);
 	}
 	
-	public List<Object> profileImg(){
-		List<Object> list = sqlSession.selectList(NAMESPACE + "profileImg");
-		return list;
+	public CommentVo profileImg() {
+		CommentVo commentVo = sqlSession.selectOne(NAMESPACE + "profileImg");
+		return commentVo;
 	}
 	
 }

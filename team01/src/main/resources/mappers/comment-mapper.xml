@@ -21,7 +21,7 @@
 		where bno = #{bno}
 	</delete>
 	
-	<select id="profileImg" resultType="Object">
+	<select id="profileImg" resultType="CommentVo">
 		select c.cno, c.bno, c.userid, c.username, c.content, c.regdate, m.profileimg
 		from tbl_comment c, tbl_member m
 		where c.userid = m.userid

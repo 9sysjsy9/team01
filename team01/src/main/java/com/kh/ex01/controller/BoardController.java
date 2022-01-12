@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.ex01.service.CommentService;
+import com.kh.ex01.service.MemberService;
 import com.kh.ex01.service.BoardService;
 import com.kh.ex01.vo.BoardVo;
 import com.kh.ex01.vo.CommentVo;
 import com.kh.ex01.vo.HireBoardVo;
+import com.kh.ex01.vo.MemberVo;
 import com.kh.ex01.vo.PagingDto;
 
 @Controller
@@ -26,6 +28,8 @@ public class BoardController {
 	
 	@Inject
 	private CommentService commentService;
+	@Inject
+	private MemberService memberService;
 	
 	
 	// 자유게시판 목록
@@ -52,10 +56,11 @@ public class BoardController {
 		 BoardVo boardVo = boardService.getBoard(bno);
 		 BoardVo boardMoveVo = boardService.menuMove(bno); // 게시글 이동
 		 List<CommentVo> list = commentService.commentList(bno); // 덧글 리스트
+		 list.get(0).getProfileimg();
 		 model.addAttribute("boardMoveVo",boardMoveVo);
 		 model.addAttribute("boardVo",boardVo);
 		 model.addAttribute("list",list);
-		 System.out.println("FreeBC, list : " + list);
+		// model.addAttribute("memberVo",memberVo);
 		 return "/company/board/free/free_content";
 	 }
 	

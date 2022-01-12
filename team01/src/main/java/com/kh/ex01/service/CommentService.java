@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.ex01.Dao.CommentDao;
 import com.kh.ex01.vo.CommentVo;
+import com.kh.ex01.vo.MemberVo;
 
 
 @Service
@@ -31,8 +32,8 @@ public class CommentService {
 		commentDao.deleteCommentBoard(bno);
 	}
 	
-	public List<Object> profileImg(){
-		List<Object> list = commentDao.profileImg();
-		return list;
+	public CommentVo profileImg() {
+		CommentVo commentVo = commentDao.profileImg();
+		return commentVo;
 	}
 }
