@@ -1,7 +1,6 @@
 package com.kh.ex01.vo;
 
 import java.sql.Timestamp;
-<<<<<<< HEAD
 import java.util.Date;
 
 public class OrderProductVo {
