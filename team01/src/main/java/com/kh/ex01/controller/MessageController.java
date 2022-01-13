@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.ex01.service.MessageService;
 import com.kh.ex01.vo.MemberVo;
@@ -39,5 +41,27 @@ public class MessageController {
 		List<MessageVo> list = messageService.sendMessageList(sender);
 		model.addAttribute("sendMessageList", list);
 		return "/company/message/sendMessageList";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/company/sendMessageRun", method=RequestMethod.POST)
+	public String sendMessageRun(MessageVo messageVo) {
+		System.out.println("MessageController, snedMesageRun, messageVo : " + messageVo);
+		messageService.sendMessageRun(messageVo);
+		return "success";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/company/getMessageData", method=RequestMethod.POST)
+	public MessageVo getMessageData(int mno, String reader) {
+		System.out.println("reader : " + reader);
+		if(reader.equals("receiver")) {
+			System.out.println("수신자 읽음");
+			messageService.readStateChange(mno);
+		} else if (reader.equals("sender")) {
+			
+		}
+		MessageVo messageVo = messageService.getMessageData(mno);
+		return messageVo ;
 	}
 }
