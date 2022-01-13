@@ -99,3 +99,8 @@
 	<br>
 	<br>
 	<br>
+	
+	<script>
+	
+	console.log("${userData}");
+	</script>

@@ -79,7 +79,7 @@
 	
 	<update id="modifyFail">
 		update tbl_hire set
-		state = 'fail', result = 'Y'
+		state = 'fail', result = 'N'
 		where hno = #{hno}
 	</update>
 	
@@ -88,6 +88,7 @@
 		where name = #{name} 
 		and email = #{email} 
 	</select>
+	
 	
 	
 </mapper>

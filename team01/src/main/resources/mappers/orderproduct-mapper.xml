@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper			
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"			
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.ex01.mappers.orderproduct">
+	
+	<select id="selectOrder" resultType="OrderProductVo">
+		select b.order_code, b.order_shoescode, b.order_regdate, b.user_id, a.shoes_price
+		from tbl_shoes a, tbl_orderproduct b
+		where a.shoes_code = b.order_shoescode and b.order_shoescode = #{order_shoescode}
+	</select>
+
+</mapper>
