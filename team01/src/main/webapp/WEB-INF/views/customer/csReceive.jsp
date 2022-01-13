@@ -7,10 +7,23 @@
 <script src="/js/myscript.js"></script>
 <script>
 $(function() {
-	$("#modal-858514").click(function(e){
-		e.preventDefault();
-		$("#modal-858513").show();
+	$("#checkOrderNum").click(function() {
+		var order_code = $("input[name=order_code]").val();
+		if (order_code == "") {
+			alert("주문번호를 입력해주세요");
+			return;
+		}
+		var url = "/order/xxxxx/" + order_code;
+		$.get(url, function(rData) {
+			if (rData == "success") {
+				
+			} else {
+				
+			}
+		});
 	});
+	
+	
 });
 </script>
 
@@ -64,17 +77,13 @@ $(function() {
 						<tr>
 							<th scope="row">주문 번호</th>
 							<td class="order-check" style="padding-left: 10px;"><input
-								type="text" name="ord_no" class="n-input" readonly="" value=""
+								type="text" name="order_code" class="n-input" readonly="" value=""
 								placeholder="조회버튼을 누르세요."> 
 						
 <!-- 조회 모달 필요 부분 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
 							
-								<a class="n-btn btn-sm btn-accent" name="" onclick=""
-									class="table-warning find" id="modal-858514"
-									href="#modal-container-858514"
-									class="btn btn-primary my-2 my-sm-0 " data-toggle="modal"
-									style="display: inline-block;" style="font-size: 20px"
-									> 조회</a>
+								<button type="button" class="btn btn-sm btn-primary my-2 my-sm-0" 
+									 id="checkOrderNum"> 조회</button>
 						</tr>
 					</tbody>
 					<tbody>

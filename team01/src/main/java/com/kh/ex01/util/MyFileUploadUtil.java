@@ -160,6 +160,12 @@ public class MyFileUploadUtil {
 		String shortName = filename.substring(underIndex + 1);
 		return shortName;
 	}
+	
+	public static String getFirstName(String filename) {
+		int underIndex = filename.indexOf("_");
+		String firstName = filename.substring(underIndex + 1);
+		return firstName;
+	}
 
 	public static String getThumbnailPath(String filePath) {
 		int slashIndex = filePath.lastIndexOf("/");

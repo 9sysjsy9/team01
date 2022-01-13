@@ -28,6 +28,13 @@ $(function(){
 			alert("이미 합격 통지를 하셨습니다.")
 		}
 	});
+	$("#download").click(function(){
+        
+	    var filePath = "//192.168.0.234/upload/${hireVo.filename}";
+	    var fileName = "${hireVo.filename}";
+	    console.log("fileName");
+	    location.href = "/hire/fileDownload?filePath=" + filePath + "&fileName=" + fileName;
+	});
 });
 </script>
 <style>
@@ -49,11 +56,12 @@ $(function(){
 					<input type="text" class="form-control" readonly value="${hireVo.name }"/>
 				</div>
 				<div class="form-group">
-					 
 					<label>자기소개</label>
 					<input type="text" class="form-control" readonly value="${hireVo.content }"/>
 				</div>
-				
+				<div>
+					<a class="btn btn-outline-dark flex-shrink-0" id="download">이력서 다운로드</a>
+				</div>
 				<div class="tag">
 					<a class="btn btn-outline-dark flex-shrink-0" href="regist_list">이전</a>
 					<a class="btn btn-outline-danger flex-shrink-0"

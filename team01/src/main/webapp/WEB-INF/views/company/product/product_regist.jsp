@@ -12,7 +12,8 @@
 }
 
 .MoreImage {
-/* 	display: none */
+	/* 	display: none */
+	
 }
 </style>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
@@ -65,50 +66,48 @@
 			$("#frmProduct").submit();
 		});
 
-		$(".fileDrop").on(
-				"drop",
-				function(e) {
-					e.preventDefault();
-					var div = $(this).next();
-					var file = e.originalEvent.dataTransfer.files[0];
-					console.log("file: " + file);
-					var formData = new FormData();
-					formData.append("file", file);
-					var url = "/company/uploadAjax";
+		$(".fileDrop").on("drop", function(e) {
+			e.preventDefault();
+			var div = $(this).next();
+			var file = e.originalEvent.dataTransfer.files[0];
+			console.log("file: " + file);
+			var formData = new FormData();
+			formData.append("file", file);
+			var url = "/upload/uploadAjax";
 
-					$.ajax({
-						"processData" : false,
-						"contentType" : false,
-						"method" : "post",
-						"url" : url,
-						"data" : formData,
-						"success" : function(rData) {
-							console.log("rData: " + rData);
-							if (rData == "fail") {
-								alert("잘못된 형식의 파일입니다.");
-								return;
-							}
-							var underIndex = rData.indexOf("_");
-							var fileName = rData.substring(underIndex + 1);
-							var asd = '<div class="divUploaded">';
-							asd += '<img src="/company/displayThumbnailImage?fileName='
-								+ rData + '">' + "<br>";
-							asd += '<label class="label label-outline-dark btn-lg px-2">' + fileName + "</label>";
-							asd += '<button type="button" class="btn btn-outline-light btn-lg px-2 btnDelete" data-rdata="'+rData+'"> ✖️</button>'+ "<br>";
-							asd += '</div>';
-							div.append(asd);
-							$("#frmProduct>input[name=shoes_image]").val(rData);
-						}
-					});
+			$.ajax({
+				"processData" : false,
+				"contentType" : false,
+				"method" : "post",
+				"url" : url,
+				"data" : formData,
+				"success" : function(rData) {
+					console.log("rData: " + rData);
+					if (rData == "fail") {
+						alert("잘못된 형식의 파일입니다.");
+						return;
+					}
+					var underIndex = rData.indexOf("_");
+					var fileName = rData.substring(underIndex + 1);
+					var asd = '<div class="divUploaded">';
+					asd += '<img src="/company/displayThumbnailImage?fileName='
+						+ rData + '">' + "<br>";
+					asd += '<label class="label label-outline-dark btn-lg px-2">' + fileName + "</label>";
+					asd += '<button type="button" class="btn btn-outline-light btn-lg px-2 btnDelete" data-rdata="'+rData+'"> ✖️</button>'+ "<br>";
+					asd += '</div>';
+					div.append(asd);
+					$("#frmProduct>input[name=shoes_image]").val(rData);
+				}
+			});
 
-				});
+		});
 		
 		
 		$(".uploadedList").on("click", ".btnDelete", function() {
 			var asd = $(this).parent();
 			var filename = $(this).attr("data-rdata");
 			console.log("filename: "+filename);
-			var url = "/company/deleteAllFile?fileName=" + filename;
+			var url = "/upload/deleteAllFile?fileName=" + filename;
 			
 			$.get(url, function(rData) {
 				console.log("rData: "+ rData);
@@ -124,16 +123,14 @@
 <%@include file="/WEB-INF/views/company/product/include/paging_form.jsp"%>
 <!-- Page content-->
 <div class="container">
-	<form action="/company/regist_run" id="frmProduct">
-		<input type="hidden" name="shoes_name">
-		<input type="hidden" name="shoes_size">
-		<input type="hidden" name="shoes_color">
-		<input type="hidden" name="shoes_count">
-		<input type="hidden" name="shoes_category">
-		<input type="hidden" name="shoes_price">
-		<input type="hidden" name="shoes_style">
-		<input type="hidden" name="shoes_state">
-		<input type="hidden" name="shoes_image">
+	<form action="/product/company/regist_run" id="frmProduct">
+		<input type="hidden" name="shoes_name"> <input type="hidden"
+			name="shoes_size"> <input type="hidden" name="shoes_color">
+		<input type="hidden" name="shoes_count"> <input type="hidden"
+			name="shoes_category"> <input type="hidden"
+			name="shoes_price"> <input type="hidden" name="shoes_style">
+		<input type="hidden" name="shoes_state"> <input type="hidden"
+			name="shoes_image">
 	</form>
 	<div class="row">
 		<div class="col-lg-7">
@@ -148,7 +145,8 @@
 			</div>
 
 			<button type="button"
-				class="btn btn-outline-dark btn-lg px-2 btnMoreImage">열기 / 닫기</button>
+				class="btn btn-outline-dark btn-lg px-2 btnMoreImage">열기 /
+				닫기</button>
 			<!-- Nested row for non-featured blog posts-->
 
 			<div class="row">
@@ -243,10 +241,10 @@
 						<label>보기 / 접기</label>
 					</div>
 					<div class="hide">
-						<c:forEach items="${listColor}" var="shoesColorVo"> 
+						<c:forEach items="${listColor}" var="shoesColorVo">
 							<div>
-								<input type="checkbox" class="shoes_colorCheckbox" 
-								value="${shoesColorVo.shoes_color}">
+								<input type="checkbox" class="shoes_colorCheckbox"
+									value="${shoesColorVo.shoes_color}">
 								${shoesColorVo.shoes_color}
 							</div>
 						</c:forEach>
@@ -265,7 +263,7 @@
 						<c:forEach items="${listCategory}" var="shoesCategoryVo">
 							<div>
 								<input type="checkbox" class="shoes_categoryCheckbox"
-								value="${shoesCategoryVo.shoes_category}">
+									value="${shoesCategoryVo.shoes_category}">
 								${shoesCategoryVo.shoes_category}
 							</div>
 						</c:forEach>
@@ -284,7 +282,7 @@
 						<c:forEach items="${listStyle}" var="shoesStyleVo">
 							<div>
 								<input type="checkbox" class="shoes_styleCheckbox"
-								value="${shoesStyleVo.shoes_style}">
+									value="${shoesStyleVo.shoes_style}">
 								${shoesStyleVo.shoes_style}
 							</div>
 						</c:forEach>
@@ -303,7 +301,7 @@
 						<c:forEach items="${listState}" var="shoesStateVo">
 							<div>
 								<input type="checkbox" class="shoes_stateCheckbox"
-								value="${shoesStateVo.shoes_state}">
+									value="${shoesStateVo.shoes_state}">
 								${shoesStateVo.shoes_state}
 							</div>
 						</c:forEach>
@@ -319,10 +317,10 @@
 						<label>보기 / 접기</label>
 					</div>
 					<div class="hide">
-							<div>
-								<input type="text">
-								<button type="button" class="btnshoes_name">완료</button>
-							</div>
+						<div>
+							<input type="text">
+							<button type="button" class="btnshoes_name">완료</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -335,10 +333,10 @@
 						<label>보기 / 접기</label>
 					</div>
 					<div class="hide">
-							<div>
-								<input type="number">
-								<button type="button" class="btnshoes_count">완료</button>
-							</div>
+						<div>
+							<input type="number">
+							<button type="button" class="btnshoes_count">완료</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -351,16 +349,17 @@
 						<label>보기 / 접기</label>
 					</div>
 					<div class="hide">
-							<div>
-								<input type="number">
-								<button type="button" class="btnshoes_price">완료</button>
-							</div>
+						<div>
+							<input type="number">
+							<button type="button" class="btnshoes_price">완료</button>
+						</div>
 					</div>
 				</div>
 			</div>
-			
-			<button class="btn btn-outline-dark btn-lg px-2" id="btnProductAdd">제품 등록</button> 
-			
+
+			<button class="btn btn-outline-dark btn-lg px-2" id="btnProductAdd">제품
+				등록</button>
+
 		</div>
 	</div>
 </div>
