@@ -11,6 +11,20 @@ public class AskProductVo {
 	private String ask_reply;//            varchar2(500) 
 	private String ask_title;//            varchar2(100) 
 	private Timestamp ask_date;//             timestamp(6)  
+	
+	private String user_id;
+	
+	
+	
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public AskProductVo() {
+		super();
+	}
 	public int getAno() {
 		return ano;
 	}
@@ -57,9 +71,8 @@ public class AskProductVo {
 	public String toString() {
 		return "AskProductVo [ano=" + ano + ", order_code=" + order_code + ", ask_cate=" + ask_cate + ", ask_content="
 				+ ask_content + ", ask_reply=" + ask_reply + ", ask_title=" + ask_title + ", ask_date=" + ask_date
-				+ "]";
+				+ ", user_id=" + user_id + "]";
 	}
-	
-	
+
 	
 }

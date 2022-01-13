@@ -76,6 +76,7 @@ $(function(){
 							<li><a class="dropdown-item" href="/hire/company/regist_list">채용문의 관리</a></li>
 							<li><a class="dropdown-item" href="/store/company/applyFranList">가맹문의 관리</a></li>
 							<li><a class="dropdown-item" href="#">제품문의 관리</a></li>
+							<li><a class="dropdown-item" href="/customer/company/csList">CS문의 관리</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
