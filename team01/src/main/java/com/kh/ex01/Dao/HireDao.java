@@ -69,6 +69,7 @@ public class HireDao {
 	}
 	
 	public void registRun(HireVo hireVo) {
+		System.out.println("HireDao, regist_Run, hireVo : " + hireVo);
 		sqlSession.insert(NAMESPACE + "registRun", hireVo);
 	}
 	

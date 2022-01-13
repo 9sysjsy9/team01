@@ -101,19 +101,17 @@ public class HireController {
 	 public String registRun(HireVo hireVo, RedirectAttributes rttr) throws IOException {
 		 //이력서 업로드
 		 String fileName = null;
-			MultipartFile uploadFile = hireVo.getUploadFile();
-			if (!uploadFile.isEmpty()) {
-				String originalFileName = uploadFile.getOriginalFilename();
-				System.out.println("originalFileName:"+originalFileName);
-//				String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
-				UUID uuid = UUID.randomUUID();	//UUID 구하기
-				fileName = uuid + "_" + originalFileName;
-				uploadFile.transferTo(new File(UPLOAD_PATH + "resume/" + fileName));
-			}
-			hireVo.setFilename(fileName);
-			hireService.registRun(hireVo); 
-			rttr.addFlashAttribute("message", "regist_success");
-		 return "redirect:/hire/hire_regist";
+		MultipartFile uploadFile = hireVo.getUploadFile();
+		String originalFileName = uploadFile.getOriginalFilename();
+		System.out.println("originalFileName:"+originalFileName);
+//		String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
+		UUID uuid = UUID.randomUUID();	//UUID 구하기
+		fileName = uuid + "_" + originalFileName;
+		uploadFile.transferTo(new File(UPLOAD_PATH + "resume/" + fileName));
+		hireVo.setFilename(fileName);
+		hireService.registRun(hireVo); 
+		rttr.addFlashAttribute("message", "regist_success");
+		return "redirect:/hire/hire_regist";
 	 }
 	 
 	 // 채용조회
@@ -173,4 +171,6 @@ public class HireController {
 			 return "stay";
 		 }
 	 }
+	 
+	 // 채용 공고 등록하기
 }
