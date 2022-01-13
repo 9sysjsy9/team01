@@ -28,8 +28,8 @@ public class CommentService {
 		commentDao.insertComment(commentVo);
 	}
 	
-	public void deleteCommentBoard(int bno) {
-		commentDao.deleteCommentBoard(bno);
+	public void deleteCommentBoard(int cno) {
+		commentDao.deleteComment(cno);
 	}
 	
 	public CommentVo profileImg() {

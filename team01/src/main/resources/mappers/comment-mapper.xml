@@ -16,7 +16,7 @@
 	</insert>
 	
 	
-	<delete id="deleteCommentBoard">
+	<delete id="deleteComment">
 		delete from tbl_comment
 		where bno = #{bno}
 	</delete>

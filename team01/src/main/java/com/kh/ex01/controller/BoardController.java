@@ -98,5 +98,16 @@ public class BoardController {
 		return "/company/board/free/free_modify";
 	}
 	
+	// 채용공고 글 등록폼
+	@RequestMapping(value="/hire/regist_board", method=RequestMethod.GET)
+	public String hireBoardResgist() {
+		return "/company/hire/regist_board";
+	}
 	
+	// 채용공고 등록
+	@RequestMapping(value="/hire/regist_board_run", method=RequestMethod.GET)
+	public String hireBoardResgistRun(HireBoardVo hireBoardVo) {
+		boardService.insertHireBoard(hireBoardVo);
+		return "redirect:/hire/company/regist_list";
+	}
 }

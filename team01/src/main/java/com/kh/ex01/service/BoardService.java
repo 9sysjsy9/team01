@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.ex01.Dao.BoardDao;
 import com.kh.ex01.vo.BoardVo;
+import com.kh.ex01.vo.HireBoardVo;
 import com.kh.ex01.vo.PagingDto;
 
 @Service
@@ -62,6 +63,9 @@ public class BoardService {
 		boardDao.updateViewcnt(bno);
 	}
 	
-	
+	//채용공고 등록
+	public void insertHireBoard(HireBoardVo hireBoardVo) {
+		boardDao.insertHireBoard(hireBoardVo);
+	}
 	
 }

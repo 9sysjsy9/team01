@@ -43,11 +43,10 @@ public class CommentController {
 		return "redirect:/company/board/anonymous/anonymous_content?bno=" + bno;
 	}
 	
-//	@RequestMapping(value="/profileImg", method=RequestMethod.GET)
-//	public String profileImg(Model model){
-//		List<MemberVo> list = commentService.profileImg();
-//		System.out.println("컨트롤:"+list );
-//		model.addAttribute("list",list);
-//		return null;
+	//자유게시판 댓글 삭제
+//	@RequestMapping(value="/deleteFreeComment", method=RequestMethod.POST)
+//	public String deleteFreeComment(int cno) {
+//		commentService.deleteCommentBoard(cno);
+//		return "redirect:/company/board/free/free_content?bno=" + bno;
 //	}
 }
