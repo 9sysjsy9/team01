@@ -73,7 +73,7 @@
 			console.log("file: " + file);
 			var formData = new FormData();
 			formData.append("file", file);
-			var url = "/company/uploadAjax";
+			var url = "/upload/uploadAjax";
 
 			$.ajax({
 				"processData" : false,
@@ -107,7 +107,7 @@
 			var asd = $(this).parent();
 			var filename = $(this).attr("data-rdata");
 			console.log("filename: "+filename);
-			var url = "/company/deleteAllFile?fileName=" + filename;
+			var url = "/upload/deleteAllFile?fileName=" + filename;
 			
 			$.get(url, function(rData) {
 				console.log("rData: "+ rData);
@@ -123,7 +123,7 @@
 <%@include file="/WEB-INF/views/company/product/include/paging_form.jsp"%>
 <!-- Page content-->
 <div class="container">
-	<form action="/company/regist_run" id="frmProduct">
+	<form action="/product/company/regist_run" id="frmProduct">
 		<input type="hidden" name="shoes_name"> <input type="hidden"
 			name="shoes_size"> <input type="hidden" name="shoes_color">
 		<input type="hidden" name="shoes_count"> <input type="hidden"

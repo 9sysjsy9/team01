@@ -1,14 +1,20 @@
 package com.kh.ex01.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.ex01.service.HireService;
 import com.kh.ex01.vo.HireBoardVo;
@@ -18,6 +24,8 @@ import com.kh.ex01.vo.PagingDto;
 @Controller
 @RequestMapping("/hire")
 public class HireController {
+	
+	private static final String UPLOAD_PATH = "//192.168.0.234/upload/";
 	
 	@Inject
 	private HireService hireService;
@@ -89,9 +97,22 @@ public class HireController {
 	 }
 	 
 	 // 지원 등록하기
-	 @RequestMapping(value = "/regist_run", method = RequestMethod.GET)
-	 public String registRun(HireVo hireVo) {
-		 hireService.registRun(hireVo);
+	 @RequestMapping(value = "/regist_run", method = RequestMethod.POST)
+	 public String registRun(HireVo hireVo, RedirectAttributes rttr) throws IOException {
+		 //이력서 업로드
+		 String fileName = null;
+			MultipartFile uploadFile = hireVo.getUploadFile();
+			if (!uploadFile.isEmpty()) {
+				String originalFileName = uploadFile.getOriginalFilename();
+				System.out.println("originalFileName:"+originalFileName);
+//				String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
+				UUID uuid = UUID.randomUUID();	//UUID 구하기
+				fileName = uuid + "_" + originalFileName;
+				uploadFile.transferTo(new File(UPLOAD_PATH + "resume/" + fileName));
+			}
+			hireVo.setFilename(fileName);
+			hireService.registRun(hireVo); 
+			rttr.addFlashAttribute("message", "regist_success");
 		 return "redirect:/hire/hire_regist";
 	 }
 	 

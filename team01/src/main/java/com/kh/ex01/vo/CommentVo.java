@@ -9,6 +9,8 @@ public class CommentVo {
 	private String username;
 	private String content;
 	private Timestamp regdate;
+	
+	private String profileimg;
 
 	public int getCno() {
 		return cno;
@@ -59,10 +61,19 @@ public class CommentVo {
 		this.username = username;
 	}
 
+	public String getProfileimg() {
+		return profileimg;
+	}
+
+	public void setProfileimg(String profileimg) {
+		this.profileimg = profileimg;
+	}
+
 	@Override
 	public String toString() {
 		return "CommentVo [cno=" + cno + ", bno=" + bno + ", userid=" + userid + ", username=" + username + ", content="
-				+ content + ", regdate=" + regdate + "]";
+				+ content + ", regdate=" + regdate + ", profileimg=" + profileimg + "]";
 	}
+
 
 }

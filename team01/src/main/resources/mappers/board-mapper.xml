@@ -18,6 +18,7 @@
 		where bno = #{bno}
 	</select>
 	
+	
 	<select id="getCount" resultType="int">
 		select count(*) from tbl_board
 	</select>

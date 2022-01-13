@@ -1,6 +1,7 @@
 package com.kh.ex01.Dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ex01.vo.CommentVo;
+import com.kh.ex01.vo.MemberVo;
 
 
 
@@ -30,6 +32,11 @@ public class CommentDao {
 	
 	public void deleteCommentBoard(int bno) {
 		sqlSession.delete(NAMESPACE + "deleteCommentBoard",bno);
+	}
+	
+	public CommentVo profileImg() {
+		CommentVo commentVo = sqlSession.selectOne(NAMESPACE + "profileImg");
+		return commentVo;
 	}
 	
 }
