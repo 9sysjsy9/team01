@@ -1,54 +1,65 @@
 package com.kh.ex01.vo;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class AskProductVo {
-	private int ano;
-	private String title;
-	private String content;
-	private Date regdate;
-	private String name;
-	private String email;
+	
+	private int ano;//         not null number        
+	private String order_code;//          varchar2(100) 
+	private String ask_cate;//             varchar2(6)   
+	private String ask_content;//          varchar2(500) 
+	private String ask_reply;//            varchar2(500) 
+	private String ask_title;//            varchar2(100) 
+	private Timestamp ask_date;//             timestamp(6)  
 	public int getAno() {
 		return ano;
 	}
 	public void setAno(int ano) {
 		this.ano = ano;
 	}
-	public String getTitle() {
-		return title;
+	public String getOrder_code() {
+		return order_code;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setOrder_code(String order_code) {
+		this.order_code = order_code;
 	}
-	public String getContent() {
-		return content;
+	public String getAsk_cate() {
+		return ask_cate;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setAsk_cate(String ask_cate) {
+		this.ask_cate = ask_cate;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public String getAsk_content() {
+		return ask_content;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setAsk_content(String ask_content) {
+		this.ask_content = ask_content;
 	}
-	public String getName() {
-		return name;
+	public String getAsk_reply() {
+		return ask_reply;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setAsk_reply(String ask_reply) {
+		this.ask_reply = ask_reply;
 	}
-	public String getEmail() {
-		return email;
+	public String getAsk_title() {
+		return ask_title;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAsk_title(String ask_title) {
+		this.ask_title = ask_title;
+	}
+	public Timestamp getAsk_date() {
+		return ask_date;
+	}
+	public void setAsk_date(Timestamp ask_date) {
+		this.ask_date = ask_date;
 	}
 	@Override
 	public String toString() {
-		return "AskProductVo [ano=" + ano + ", title=" + title + ", content=" + content + ", regdate=" + regdate
-				+ ", name=" + name + ", email=" + email + "]";
+		return "AskProductVo [ano=" + ano + ", order_code=" + order_code + ", ask_cate=" + ask_cate + ", ask_content="
+				+ ask_content + ", ask_reply=" + ask_reply + ", ask_title=" + ask_title + ", ask_date=" + ask_date
+				+ "]";
 	}
+	
+	
 	
 }

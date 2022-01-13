@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.ex01.service.UserService;
+import com.kh.ex01.vo.AskProductVo;
 import com.kh.ex01.vo.UserVo;
 
 @Controller
@@ -41,12 +42,19 @@ public class UserController {
 			rttr.addFlashAttribute("msg", "success");
 			return "success";
 		}
-
 	}
-
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	
+	@RequestMapping(value="/register",  method = RequestMethod.GET)
 	public String register() {
-		return "user/register";
+		return "/user/register";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/userRegistRun", method = RequestMethod.POST)
+	public String userRegistRun(UserVo userVo) {
+		System.out.println("UserController, userRegistRun, userVo : " + userVo);
+		userService.userRegistRun(userVo);
+		return "success";
 	}
 	
 	@RequestMapping(value = "/mine", method = RequestMethod.GET)
@@ -59,5 +67,23 @@ public class UserController {
 		return "user/orderList";
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/checkOrderNum", method=RequestMethod.POST)
+	public UserVo checkOrderNum(String order_code) {
+		System.out.println("UserController, checkOrderNum, order_code : " + order_code);
+		UserVo userVo = userService.checkOrderNum(order_code);
+		System.out.println("UserController, checkOrderNum, userVo : " + userVo);
+		return userVo;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/askRegistRun", method=RequestMethod.POST)
+	public String askRegistRun(AskProductVo askProductVo) {
+		System.out.println("UserController, askRegistRun, askProductVo : " + askProductVo);
+		userService.askRegistRun(askProductVo);
+		return "success";
+		
+	}
+	
 	
 }
