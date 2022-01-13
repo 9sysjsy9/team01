@@ -48,6 +48,11 @@ public class CustomerController {
 		return "customer/csReceive";
 	}
 	
+	@RequestMapping(value = "/csReceive2", method = RequestMethod.GET)
+	public String csReceive2() {
+		return "customer/csReceive2";
+	}
+	
 	@RequestMapping(value = "/csMain", method = RequestMethod.GET)
 	public String csMain() {
 		return "customer/csMain";

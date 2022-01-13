@@ -29,5 +29,17 @@ public class MessageDao {
 		return messageVo;
 	}
 	
+	public void sendMessageRun(MessageVo messageVo) {
+		sqlSession.insert(NAMESPACE + "sendMessageRun", messageVo);
+	}
+	
+	public MessageVo getMessageData(int mno) {
+		MessageVo messageVo = sqlSession.selectOne(NAMESPACE + "getMessageData", mno);
+		return messageVo;
+	}
+	
+	public void readStateChange(int mno) {
+		sqlSession.update(NAMESPACE + "readStateChange",mno);
+	}
 
 }

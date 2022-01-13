@@ -1,6 +1,7 @@
 package com.kh.ex01.vo;
 
 import java.sql.Timestamp;
+<<<<<<< HEAD
 import java.util.Date;
 
 public class OrderProductVo {
@@ -47,5 +48,5 @@ public class OrderProductVo {
 				+ order_regdate + ", user_id=" + user_id + ", shoes_price=" + shoes_price + "]";
 	}
 	
-	
+
 }

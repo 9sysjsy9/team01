@@ -2,7 +2,14 @@
 	pageEncoding="UTF-8"%>
 
 <script>
+function check_enter(){
+	if(event.keyCode == 13){
+		event.returnValue = false;
+	};
+};
+
 $(function() {
+	//멤버 이름 버튼 > 멤버 정보 모달 표시
 	$(".btnUsername").click(function(e) {
 		e.preventDefault();
 		console.log("클릭됨");
@@ -27,14 +34,37 @@ $(function() {
 			$("#modalPosition").text(rData.position);
 			$("#modalDepartment").text(rData.department);
 			$("#modalIntroduce").html(rData.introduce);
+			
+			$("#modalSendername").text("${loginData.username}");
+			$("#modalReceivername").text(rData.username).attr("data-receiver",rData.userid);
+			$("#modalMessageContent").val("");
+			$("#modalMessageContent").val(rData.content).prop("readonly",false);
 		});
 		$("#modal-memberInfo").trigger("click");
 	});
 	
+	//멤버 정보 모달 - 메시지 보내기 버튼 > 메시지 발송 모달
 	$("#sendMessageFormBtn").click(function(e){
-		console.log("메시지보내기 버튼 클릭");
-		$("#modal-sendMessage").trigger("click");
+		$("#messageReceiveRunBtn").show();
+		$("#modal-messageForm").trigger("click");
+	});
+	
+	//메시지 발송 모달- 전송 버튼 > 메시지 전송 후 alert 출력
+	$("#messageReceiveRunBtn").click(function(e){
+		e.preventDefault();
 		
+		var url = "/message/company/sendMessageRun";
+		var content = $("#modalReceivername").attr("data-receiver").replace(/(?:\r\n|\n|\n)/g, ' ');
+		var sData = {
+				"sender" : "${loginData.userid}",
+				"receiver" : content,
+				"content" : $("#modalMessageContent").val()
+		};
+		$.post(url, sData, function(rData){
+			if(rData = "success"){
+				alert("메시지가 성공적으로 발송되었습니다.")
+			}
+		});
 	});
 });
 </script>
@@ -103,12 +133,8 @@ $(function() {
 								class="btn btn-outline-dark flex-shrink-0 btn-sm"
 								data-dismiss="modal">닫기</button>
 						</div>
-
-
 					</div>
-
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -119,7 +145,7 @@ $(function() {
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<a id="modal-sendMessage" href="#modal-container-sendMessage"
+			<a id="modal-messageForm" href="#modal-container-sendMessage"
 				role="button" class="btn" data-toggle="modal" style="display: none">sendMessageModal</a>
 
 			<div class="modal fade" id="modal-container-sendMessage"
@@ -133,43 +159,27 @@ $(function() {
 							</button>
 						</div>
 						<div class="modal-body">
-							<div>
-								<label> 발신인  : <span>test01</span> </label>
+							<div class="form-group">
+								<label> 발신인  : <span id="modalSendername"></span> </label>
 							</div>
-							<div>
-								<label> 수신인 : <span>test02</span> </label>
+							<div class="form-group">
+								<label> 수신인 : <span id="modalReceivername" data-receiver="#"></span> </label>
+							</div>
+							<div class="form-group">
+								<label> 내용 </label>
+								<textarea id="modalMessageContent" class="form-control" rows="6" placeholder="메시지를 입력해주세요." onkeypress="check_enter()"></textarea>
 							</div>
 
-<!-- 							<table> -->
-<!-- 								<tr> -->
-<!-- 									<td>발신 : </td> -->
-<!-- 									<td id="modalSender">ㅁㄴㅇㄹ</td> -->
-<!-- 								</tr> -->
-<!-- 								<tr> -->
-<!-- 									<td>수신 : </td> -->
-<!-- 									<td id="modalReceiver">ㅁㄴㅇㄹ</td> -->
-<!-- 								</tr> -->
-
-<!-- 								<tr> -->
-<!-- 									<td>내용</td> -->
-<%-- 									<td id="content">${memberData.introduce}</td> --%>
-<!-- 								</tr> -->
-<!-- 							</table> -->
 						</div>
 						<div class="modal-footer">
-							<button type="button"
-								class="btn btn-outline-primary flex-shrink-0 btn-sm">메시지
-								보내기</button>
+							<button type="button" id="messageReceiveRunBtn"
+								class="btn btn-outline-primary flex-shrink-0 btn-sm" data-dismiss="modal">발송</button>
 							<button type="button"
 								class="btn btn-outline-dark flex-shrink-0 btn-sm"
 								data-dismiss="modal">닫기</button>
 						</div>
-
-
 					</div>
-
 				</div>
-
 			</div>
 		</div>
 	</div>

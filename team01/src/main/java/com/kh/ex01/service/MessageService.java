@@ -25,4 +25,17 @@ public class MessageService {
 		return list;
 	}
 	
+	public void sendMessageRun(MessageVo messageVo) {
+		messageDao.sendMessageRun(messageVo);
+	}
+	
+	public MessageVo getMessageData(int mno) {
+		MessageVo messageVo = messageDao.getMessageData(mno);
+		return messageVo;
+	}
+	
+	public void readStateChange(int mno) {
+		messageDao.readStateChange(mno);
+	}
+	
 }

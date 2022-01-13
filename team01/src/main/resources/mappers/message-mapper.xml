@@ -11,16 +11,34 @@
 <!-- </select> -->
 
 <select id="receiveMessageList" resultType="MessageVo">
-	SELECT mes.mno, mes.sender, mes.receiver, mes.content, mes.readstate, mes.senddate, mes.readdate, mem.username AS sendername
+	SELECT mes.mno, mes.sender, mes.receiver, SUBSTR(mes.content, 0, 10) AS content, mes.readstate, mes.senddate, mes.readdate, mem.username AS sendername
 	FROM tbl_member mem, tbl_message mes
 	WHERE mes.sender = mem.userid AND mes.receiver = #{receiver}
 	ORDER BY mes.mno desc
 </select>
 
 <select id="sendMessageList" resultType="MessageVo">
-	SELECT * FROM tbl_message
-	WHERE sender = #{sender}
-	ORDER BY mno desc
+	SELECT mes.mno, mes.sender, mes.receiver, SUBSTR(mes.content, 0, 10) AS content, mes.readstate, mes.senddate, mes.readdate, mem.username AS receivername
+	FROM tbl_member mem, tbl_message mes
+	WHERE mes.receiver = mem.userid AND mes.sender = #{sender}
+	ORDER BY mes.mno desc
+</select>
+
+<insert id="sendMessageRun">
+	INSERT INTO tbl_message (mno, sender, receiver, content)
+	VALUES (seq_mno.nextval, #{sender}, #{receiver}, #{content})
+</insert>
+
+<update id="readStateChange">
+	update tbl_message
+	set readstate = 'y'
+	where mno = #{mno}
+</update>
+
+<select id="getMessageData" resultType="MessageVo">
+	select mes.mno, mes.sender, mes.receiver, mes.content, mes.readstate, mes.senddate, mes.readdate, mem.username receivername
+	from tbl_message mes ,tbl_member mem
+	where mem.userid = mes.receiver AND mno = #{mno}
 </select>
 
 

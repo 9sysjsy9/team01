@@ -3,9 +3,35 @@
 
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%> 
+<%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%>
 
-${receiveMessageList}
+<script>
+$(function(){
+	$(".btnContent").click(function(e){
+		
+		$(this).nextAll(".readState").text("읽음");
+		
+		$("#messageReceiveRunBtn").hide();
+		var url = "/message/company/getMessageData";
+		
+		var sData = {
+				"mno" : $(this).attr("data-mno"),
+				"reader" : "receiver"
+		};
+		
+		$.post(url, sData, function(rData){
+			console.log(rData);
+			
+			$("#modalSendername").text("${loginData.username}")
+			$("#modalReceivername").text(rData.receivername);
+			$("#modalMessageContent").val(rData.content).prop("readonly",true);
+			
+			$("#modal-messageForm").trigger("click");
+		});
+	});
+	
+});
+</script>  
 <!-- Product section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 my-5">
@@ -21,7 +47,7 @@ ${receiveMessageList}
 							<div class="bg-white" id="sidebar-wrapper">
 								<div class="list-group">
 									<a
-										class="list-group-item list-group-item-action list-group-item-light p-3"
+										class="list-group-item list-group-item-action list-group-item-dark p-3"
 										href="/message/company/receiveMessageList">수<br>신<br>함
 									</a> <a
 										class="list-group-item list-group-item-action list-group-item-light p-3"
@@ -53,9 +79,14 @@ ${receiveMessageList}
 												<c:forEach items="${receiveMessageList}" var="messageVoData">
 													<tr>
 														<td style="cursor: pointer" class="btnUsername" data-userid="${messageVoData.sender}">${messageVoData.sendername}</td>
-														<td style="cursor: pointer">${messageVoData.content}</td>
+														<td style="cursor: pointer" class="btnContent" data-mno="${messageVoData.mno}">${messageVoData.content}...</td>
 														<td>${messageVoData.senddate}</td>
-														<td>${messageVoData.readstate}</td>
+														<td class="readState">
+															<c:choose>
+															<c:when test="${messageVoData.readstate == 'y'}">읽음</c:when>
+															<c:otherwise>읽지않음</c:otherwise>
+															</c:choose>
+														</td>
 													</tr>
 													</c:forEach>
 											</tbody>

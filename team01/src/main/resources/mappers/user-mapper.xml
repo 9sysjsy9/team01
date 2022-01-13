@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper			
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"			
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -18,5 +19,24 @@
 	where user_id = #{user_id}
 </select>
 
+<select id="userjob" resultType="UserJobVo">
+	select *from tbl_userjob
+</select>
+
+<select id="checkOrderNum" resultType="UserVo">
+	SELECT tbl_user.user_email, tbl_user.user_phone, tbl_orderproduct.order_regdate, tbl_orderproduct.user_id, tbl_orderproduct.order_shoescode
+	FROM tbl_user, tbl_orderproduct
+	WHERE tbl_user.user_id = (SELECT user_id FROM tbl_orderproduct WHERE order_code = #{order_code})
+</select>
+
+<insert id="userRegistRun">
+	INSERT INTO tbl_user (user_id, user_pw, user_name, user_phone, user_email, user_addr)
+	VALUES (#{user_id}, #{user_pw}, #{user_name}, #{user_phone}, #{user_email}, #{user_addr})
+</insert>
+
+<insert id="askRegistRun">
+	INSERT INTO tbl_askproduct(ano, order_code, ask_cate, ask_content, ask_title)
+	VALUES (seq_ano.nextval, #{order_code}, #{ask_cate}, #{ask_content}, #{ask_title})
+</insert>
 
 </mapper>
