@@ -2,6 +2,7 @@ package com.kh.ex01.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,12 +34,16 @@ public class UserController {
 	@ResponseBody
 	public String loginRun(UserVo userVo2, HttpServletRequest request, RedirectAttributes rttr) {
 		UserVo userVo = userService.loginRun(userVo2);
+		
+		HttpSession session = request.getSession();
+
 
 		if (userVo == null) {
 			rttr.addFlashAttribute("msg", "fail");
 			return "fail";
 		} else {
 			rttr.addFlashAttribute("msg", "success");
+			session.setAttribute("userData", userVo);
 			return "success";
 		}
 
@@ -57,6 +62,12 @@ public class UserController {
 	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
 	public String orderList() {
 		return "user/orderList";
+	}
+	
+	@RequestMapping(value = "/user_basket", method = RequestMethod.GET)
+	public String userBasket() {
+		
+		return "user/user_basket";
 	}
 
 	
