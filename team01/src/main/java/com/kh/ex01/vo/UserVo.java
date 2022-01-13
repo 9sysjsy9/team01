@@ -9,6 +9,13 @@ public class UserVo {
 	private String user_name;
 	private String user_phone;
 	private String user_email;
+	private String user_addr;
+	
+	//
+	private Timestamp order_regdate;
+	private String order_shoescode;
+	
+	
 	public String getUser_id() {
 		return user_id;
 	}
@@ -39,11 +46,38 @@ public class UserVo {
 	public void setUser_email(String user_email) {
 		this.user_email = user_email;
 	}
+	
+	
+	public String getUser_addr() {
+		return user_addr;
+	}
+	public void setUser_addr(String user_addr) {
+		this.user_addr = user_addr;
+	}
+	
+	
+	
+	public Timestamp getOrder_regdate() {
+		return order_regdate;
+	}
+	public void setOrder_regdate(Timestamp order_regdate) {
+		this.order_regdate = order_regdate;
+	}
+	public String getOrder_shoescode() {
+		return order_shoescode;
+	}
+	public void setOrder_shoescode(String order_shoescode) {
+		this.order_shoescode = order_shoescode;
+	}
+	
 	@Override
 	public String toString() {
 		return "UserVo [user_id=" + user_id + ", user_pw=" + user_pw + ", user_name=" + user_name + ", user_phone="
-				+ user_phone + ", user_email=" + user_email + "]";
+				+ user_phone + ", user_email=" + user_email + ", user_addr=" + user_addr + ", order_regdate="
+				+ order_regdate + ", order_shoescode=" + order_shoescode + "]";
 	}
 	
+
+
 	
 }
