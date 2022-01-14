@@ -1,17 +1,22 @@
 package com.kh.ex01.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.ex01.service.OrderProductService;
 import com.kh.ex01.service.UserService;
 import com.kh.ex01.vo.AskProductVo;
+import com.kh.ex01.vo.OrderProductVo;
 import com.kh.ex01.vo.UserVo;
 
 @Controller
@@ -20,7 +25,9 @@ public class UserController {
 
 	@Inject
 	private UserService userService;
-
+	@Inject
+	OrderProductService orderProductService;
+	
 	@RequestMapping("/login")
 	public String login() {
 		return "/user/login";
@@ -68,8 +75,16 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
-	public String orderList() {
-		return "user/orderList";
+	public String orderList(HttpSession httpSession, Model model) {
+		UserVo userVo = (UserVo) httpSession.getAttribute("userData");
+		System.out.println("orderList, userVo:"+userVo);
+		System.out.println("orderList, userVo: "+userVo);
+		if (userVo != null) {
+			List<OrderProductVo> list = orderProductService.selectOrder(userVo.getUser_id());
+			System.out.println("orderList, list"+list);
+			model.addAttribute("list", list);
+		}
+		return "/user/orderList";
 	}
 	
 	@RequestMapping(value = "/user_basket", method = RequestMethod.GET)

@@ -17,9 +17,9 @@ public class OrderProductService {
 	@Inject
 	OrderProductDao orderProductDao;
 	
-	public OrderProductVo selectOrder(String order_shoescode) {
-		OrderProductVo orderProductVo = orderProductDao.selectOrder(order_shoescode);
-		return orderProductVo;
+	public List<OrderProductVo> selectOrder(String order_shoescode) {
+		List<OrderProductVo> list = orderProductDao.selectOrder(order_shoescode);
+		return list;
 	}
 	
 	public void insertOrderProduct(OrderProductVo orderProductVo) {
