@@ -18,5 +18,11 @@
 		order by csReceive_order
 	</select>
 	
+	<select id="csList" resultType="AskProductVo">
+		SELECT A.ano, A.order_code, A.ask_contnet, A.ask_title, A.ask_date, B.user_id
+		FROM tbl_askproduct A, tbl_orderproduct B
+		WHERE A.order_code = B.order_code
+	</select>
+	
 
 </mapper>
