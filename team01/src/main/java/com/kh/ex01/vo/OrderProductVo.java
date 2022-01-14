@@ -10,6 +10,7 @@ public class OrderProductVo {
 	private Date order_regdate;
 	private String user_id;
 	private int shoes_price;
+	private String shoes_name;
 	
 	public String getOrder_code() {
 		return order_code;
@@ -41,10 +42,17 @@ public class OrderProductVo {
 	public void setShoes_price(int shoes_price) {
 		this.shoes_price = shoes_price;
 	}
+	public String getShoes_name() {
+		return shoes_name;
+	}
+	public void setShoes_name(String shoes_name) {
+		this.shoes_name = shoes_name;
+	}
 	@Override
 	public String toString() {
 		return "OrderProductVo [order_code=" + order_code + ", order_shoescode=" + order_shoescode + ", order_regdate="
-				+ order_regdate + ", user_id=" + user_id + ", shoes_price=" + shoes_price + "]";
+				+ order_regdate + ", user_id=" + user_id + ", shoes_price=" + shoes_price + ", shoes_name=" + shoes_name
+				+ "]";
 	}
 	
 
