@@ -7,7 +7,9 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.kh.ex01.Dao.BoardDao;
 import com.kh.ex01.Dao.CommentDao;
 import com.kh.ex01.vo.CommentVo;
 import com.kh.ex01.vo.MemberVo;
@@ -18,6 +20,9 @@ public class CommentService {
 	
 	@Inject
 	CommentDao commentDao;
+	
+	@Inject
+	BoardDao boardDao;
 	
 	public List<CommentVo> commentList(int bno){
 		List<CommentVo> list = commentDao.commentList(bno);
@@ -35,5 +40,9 @@ public class CommentService {
 	public CommentVo profileImg() {
 		CommentVo commentVo = commentDao.profileImg();
 		return commentVo;
+	}
+	
+	public void deleteComment(int bno, int cno) {
+		commentDao.deleteComment(cno);
 	}
 }

@@ -1,22 +1,14 @@
 package com.kh.ex01.controller;
 
-
-
-import java.util.List;
-import java.util.Map;
-
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.ex01.service.BoardService;
 import com.kh.ex01.service.CommentService;
 import com.kh.ex01.vo.CommentVo;
-import com.kh.ex01.vo.MemberVo;
 
 @Controller
 @RequestMapping("/comment")
@@ -24,6 +16,10 @@ public class CommentController {
 	
 	@Inject
 	private CommentService commentService;
+	
+	@Inject
+	private BoardService boardService;
+	
 	
 	//자유게시판 댓글
 	@RequestMapping(value="/insertFreeComment", method=RequestMethod.POST)
@@ -44,9 +40,12 @@ public class CommentController {
 	}
 	
 	//자유게시판 댓글 삭제
-//	@RequestMapping(value="/deleteFreeComment", method=RequestMethod.POST)
-//	public String deleteFreeComment(int cno) {
-//		commentService.deleteCommentBoard(cno);
-//		return "redirect:/company/board/free/free_content?bno=" + bno;
-//	}
+	@RequestMapping(value="/deleteFreeComment", method=RequestMethod.GET)
+	public String deleteFreeComment(int cno, int bno) {
+		commentService.deleteCommentBoard(cno);
+		boardService.getBoard(bno);
+		System.out.println("cno: "+ cno);
+		System.out.println("bno: "+ bno);
+		return "redirect:/company/board/free/free_content?bno=" + bno;
+	}
 }

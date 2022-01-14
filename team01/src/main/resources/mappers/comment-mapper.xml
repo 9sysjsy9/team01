@@ -18,7 +18,7 @@
 	
 	<delete id="deleteComment">
 		delete from tbl_comment
-		where bno = #{bno}
+		where cno = #{cno}
 	</delete>
 	
 	<select id="profileImg" resultType="CommentVo">
@@ -26,4 +26,5 @@
 		from tbl_comment c, tbl_member m
 		where c.userid = m.userid
 	</select>
+	
 </mapper>
