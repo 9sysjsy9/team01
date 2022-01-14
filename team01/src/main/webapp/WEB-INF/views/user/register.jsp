@@ -94,7 +94,9 @@ $(function() {
          </tr>
          <tr>
             <th>비밀번호</th>
-            <td><input type="password" name="user_pw" id="user_pw"> 영문/숫자포함 6자 이상</td>
+            <td><input type="password" name="user_pw" id="user_pw">
+            	<b><span style="font-size: 14px; color: #5800fd;"
+            	> 영문/숫자포함 6자 이상</span></b></td>
          </tr>
          
          <tr>
@@ -128,7 +130,7 @@ $(function() {
             <td colspan="2" align="center"><br> 
             
             	<button type="button" class="btn btn-warning" id="userRegistRunBtn">회원 가입</button>
-            	<button type="reset" class="btn btn-secondary" >가입 취소</button>
+            	<a type="reset" class="btn btn-secondary" href="/product/product_index">가입 취소</a>
            	</td>
          </tr>
       </table>

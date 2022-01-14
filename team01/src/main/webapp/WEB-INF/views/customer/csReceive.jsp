@@ -66,7 +66,12 @@ $(function() {
 });
 </script>
 
-<div class="container-fluid">
+<div class="jumbotron" style="padding: 10px;"><br>
+	<h1 style="padding-left: 110px;"><b>CS 접수 센터</b></h1>
+	<p><h5 style="padding-left: 110px;">서비스 접수 전 아래 항목을 정확히 입력해주세요.</h5></p>
+</div>
+
+<div class="container-fluid" style="padding-left: 110px;">
 	<div class="row">
 
 
@@ -147,6 +152,7 @@ $(function() {
 			
 		</table>
 							<button type="submit" class="btn btn-primary" id="askCsBtn">문의하기</button>
+							<a type="submit" class="btn btn-primary" id="askCsBtn" href="/customer/csCheck">나의 주문 확인</a>
 			</form>
 		</div>
 

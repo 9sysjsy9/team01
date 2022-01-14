@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.kh.ex01.Dao.CustomerDao;
+import com.kh.ex01.vo.AskProductVo;
+import com.kh.ex01.vo.CsCheckVo;
 import com.kh.ex01.vo.CsreceiveVo;
 import com.kh.ex01.vo.NoticeVo;
 import com.kh.ex01.vo.QnaVo;
@@ -26,6 +28,14 @@ public class CustomerService {
 	}
 	public List<CsreceiveVo> csreceiveList() {
 		List<CsreceiveVo> list = customerDao.csreceiveList();
+		return list;
+	}
+	public List<AskProductVo> csList() {
+		List<AskProductVo> list = customerDao.csList();
+		return list;
+	}
+	public List<CsCheckVo> csCheck() {
+		List<CsCheckVo> list = customerDao.csCheck();
 		return list;
 	}
 	

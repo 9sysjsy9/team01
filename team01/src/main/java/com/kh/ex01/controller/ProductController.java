@@ -68,7 +68,9 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/product_detail", method = RequestMethod.GET)
-	public String productDetail() {
+	public String productDetail(String shoes_code, Model model) {
+		ProductVo productVo = productService.getContent(shoes_code);
+		model.addAttribute("productVo", productVo);
 		return "/product/product_detail";
 	}
 	
