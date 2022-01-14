@@ -90,7 +90,7 @@
 					var underIndex = rData.indexOf("_");
 					var fileName = rData.substring(underIndex + 1);
 					var asd = '<div class="divUploaded">';
-					asd += '<img src="/company/displayThumbnailImage?fileName='
+					asd += '<img src="/upload/displayThumbnailImage?fileName='
 						+ rData + '">' + "<br>";
 					asd += '<label class="label label-outline-dark btn-lg px-2">' + fileName + "</label>";
 					asd += '<button type="button" class="btn btn-outline-light btn-lg px-2 btnDelete" data-rdata="'+rData+'"> ✖️</button>'+ "<br>";

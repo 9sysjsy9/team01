@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kh.ex01.vo.AskProductVo;
+import com.kh.ex01.vo.CsCheckVo;
 import com.kh.ex01.vo.CsreceiveVo;
 import com.kh.ex01.vo.NoticeVo;
 import com.kh.ex01.vo.QnaVo;
@@ -30,6 +32,15 @@ public class CustomerDao {
 	public List<CsreceiveVo> csreceiveList() {
 		List<CsreceiveVo> list = sqlSession.selectList(NAMESAPCE+"csreceiveList");
 		return list;
+	}
+	
+	public List<AskProductVo> csList(){
+		List<AskProductVo> list = sqlSession.selectList(NAMESAPCE+"csList"); 
+		return list;
+	}
+	public List<CsCheckVo> csCheck() {
+		List<CsCheckVo> list = sqlSession.selectList(NAMESAPCE+"csCheck"); 
+		return null;
 	}
 	
 }

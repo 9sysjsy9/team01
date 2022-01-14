@@ -1,8 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Navigation-->
+${productVo} 
+<script>
+$(function() {
+	$("#count").change(function() {
+		var user_count = $(this).val();
+		console.log("user_count: "+user_count);
+	});
+	
+	$(".cart").click(function() {
+		
+	});
+	
+	$(".basket").click(function() {
+		location.href = "/user/user_basket";
+	});
+	
+	$(".order").click(function() {
+		var shoes_code = $(this).attr("data-shoes_code");
+		var user_id = $(this).attr("data-user_id");
+		console.log("shoes_code: "+shoes_code);
+		console.log("user_id: "+user_id);
+		
+		if (user_id == null || user_id == "") {
+			alert("로그인 정보가 필요합니다");
+		} else {
+			var url = "/orderProduct/insertOrderProduct";
+			var sData = {
+				"order_shoescode" : shoes_code,
+				"user_id" : user_id
+			};
+			$.post(url, sData, function(rData) {
+				console.log("rData: "+ rData);
+				if (rData == "success") {
+					alert("주문에 성공했습니다");
+				} 
+			});
+		}
+		
+	});
+	
+});
+</script>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container px-4 px-lg-5">
 		<a class="navbar-brand" href="#!">Start Bootstrap</a>
@@ -27,12 +69,10 @@
 						<li><a class="dropdown-item" href="#!">New Arrivals</a></li>
 					</ul></li>
 			</ul>
-			<form class="d-flex">
-				<button class="btn btn-outline-dark" type="submit">
+				<button class="btn btn-outline-dark basket" type="button">
 					<i class="bi-cart-fill me-1"></i> Cart <span
 						class="badge bg-dark text-white ms-1 rounded-pill">0</span>
 				</button>
-			</form>
 		</div>
 	</div>
 </nav>
@@ -42,7 +82,7 @@
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
 				<img class="card-img-top mb-5 mb-md-0"
-					src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
+					src="/upload/displayImage?fileName=${productVo.shoes_image}"/>
 			</div>
 			<div class="col-md-6">
 				<div class="small mb-1">SKU: BST-498</div>
@@ -55,13 +95,18 @@
 					consequatur obcaecati excepturi alias magni, accusamus eius
 					blanditiis delectus ipsam minima ea iste laborum vero?</p>
 				<div class="d-flex">
-					<select name="amount">
-						<c:forEach begin="1" end="10" var="i">
+					<select id="count">
+						<c:forEach begin="1" end="${productVo.shoes_count}" var="i">
 							<option value="${i}">${i}</option>
 						</c:forEach>
 					</select><i class="bi-cart-fill me-2"></i>
-					<button class="btn btn-outline-dark flex-shrink-0" type="button">
-						<i class="bi-cart-fill me-1"></i> Add to cart</button>
+					
+					<button class="btn btn-outline-dark flex-shrink-0 cart" type="button"
+						data-shoes_code="${productVo.shoes_code}" data-user_id="${userData.user_id}">장바구니 담기</button>
+						<i class="bi-cart-fill me-2"></i>
+					<button class="btn btn-outline-dark flex-shrink-0 order" type="button"
+						data-shoes_code="${productVo.shoes_code}" data-user_id="${userData.user_id}">주문하기</button>
+						<i class="bi-cart-fill me-2"></i>
 				</div>
 			</div>
 		</div>
