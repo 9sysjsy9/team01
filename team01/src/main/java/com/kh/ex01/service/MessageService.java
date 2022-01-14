@@ -38,4 +38,15 @@ public class MessageService {
 		messageDao.readStateChange(mno);
 	}
 	
+	public void senderDeleteStateChange(int mno) {
+		messageDao.senderDeleteStateChange(mno);
+	}
+	
+	public void receiverDeleteStateChange(int mno) {
+		messageDao.receiverDeleteStateChange(mno);
+	}
+	public void messageSendCancel(int mno) {
+		messageDao.messageSendCancel(mno);
+	}
+	
 }

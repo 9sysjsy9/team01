@@ -13,14 +13,14 @@
 <select id="receiveMessageList" resultType="MessageVo">
 	SELECT mes.mno, mes.sender, mes.receiver, SUBSTR(mes.content, 0, 10) AS content, mes.readstate, mes.senddate, mes.readdate, mem.username AS sendername
 	FROM tbl_member mem, tbl_message mes
-	WHERE mes.sender = mem.userid AND mes.receiver = #{receiver}
+	WHERE mes.sender = mem.userid AND mes.receiver = #{receiver} AND mes.readstate != 'c' AND mes.receiverstate = 'n'
 	ORDER BY mes.mno desc
 </select>
 
 <select id="sendMessageList" resultType="MessageVo">
 	SELECT mes.mno, mes.sender, mes.receiver, SUBSTR(mes.content, 0, 10) AS content, mes.readstate, mes.senddate, mes.readdate, mem.username AS receivername
 	FROM tbl_member mem, tbl_message mes
-	WHERE mes.receiver = mem.userid AND mes.sender = #{sender}
+	WHERE mes.receiver = mem.userid AND mes.sender = #{sender} AND mes.senderstate = 'n'
 	ORDER BY mes.mno desc
 </select>
 
@@ -40,6 +40,24 @@
 	from tbl_message mes ,tbl_member mem
 	where mem.userid = mes.receiver AND mno = #{mno}
 </select>
+
+<update id="messageSendCancel">
+	update tbl_message
+	set readstate = 'c'
+	where mno = #{mno}
+</update>
+
+<update id="senderDeleteStateChange">
+	update tbl_message
+	set senderstate = 'd'
+	where mno = #{mno}
+</update>
+
+<update id="receiverDeleteStateChange">
+	update tbl_message
+	set receiverstate = 'd'
+	where mno = #{mno}
+</update>
 
 
 </mapper>
