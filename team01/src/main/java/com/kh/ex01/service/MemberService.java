@@ -52,4 +52,9 @@ public class MemberService {
 		memberDao.myDataModifyRun(memberVo);
 	}
 	
+	public List<MemberVo> memberManageList() {
+		List<MemberVo> list = memberDao.memberManageList();
+		return list;
+	}
+	
 }

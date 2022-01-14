@@ -185,4 +185,12 @@ public class MemberController {
 		return memberVo;
 	}
 	
+//회원 관리
+	@RequestMapping(value="/company/memberManageList")
+	public String memberManageList(Model model) {
+		List<MemberVo> list = memberService.memberManageList();
+		model.addAttribute("memberManageList", list);
+		return "/company/member/memberManageList";
+	}
+	
 }

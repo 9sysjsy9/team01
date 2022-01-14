@@ -68,11 +68,6 @@ $(function(){
 					<div class="col-md-2"></div>
 
 					<div class="col-md-8">
-						<select>
-							<option value="" selected>5줄 보기</option>
-							<option value="">10줄 보기</option>
-							<option value="">15줄 보기</option>
-						</select>
 
 						<table class="table table-hover">
 							<thead>

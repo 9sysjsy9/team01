@@ -24,7 +24,9 @@
 </head>
 <body>
 <script>
+
 console.log("${loginData}");
+
 $(function(){
 	$("#msgimg").click(function(e){
 		e.preventDefault();
@@ -83,9 +85,9 @@ $(function(){
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/member/company/memberApproveList">가입 승인</a></li>
-							<li><a class="dropdown-item" href="#">사원 관리</a></li>
+							<li><a class="dropdown-item" href="/member/company/memberManageList">사원 관리</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="#">회사일정</a></li>
+					<li class="nav-item"><a class="nav-link" href="/schedule/company/scheduleCalendar">회사일정</a></li>
 					<li class="nav-item">
 						<a class="nav-link active" href="/member/company/myPage">${loginData.username}<img src="/images/msgoff.png" style="width:20px" id="msgimg"></a>
 						

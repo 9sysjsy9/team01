@@ -11,9 +11,29 @@ public class MessageVo {
 	private String readstate; 	// varchar2(1 byte)		yes 'n'
 	private Timestamp senddate; // timestamp(6) 		yes sysdate
 	private Timestamp readdate; // timestamp(6) 		yes
+	private String senderstate;
+	private String receiverstate;
 	
 	private String receivername;
 	private String sendername;
+	
+	
+
+	public String getSenderstate() {
+		return senderstate;
+	}
+
+	public void setSenderstate(String senderstate) {
+		this.senderstate = senderstate;
+	}
+
+	public String getReceiverstate() {
+		return receiverstate;
+	}
+
+	public void setReceiverstate(String receiverstate) {
+		this.receiverstate = receiverstate;
+	}
 
 	public MessageVo() {
 		super();
@@ -94,8 +114,10 @@ public class MessageVo {
 	@Override
 	public String toString() {
 		return "MessageVo [mno=" + mno + ", sender=" + sender + ", receiver=" + receiver + ", content=" + content
-				+ ", readstate=" + readstate + ", senddate=" + senddate + ", readdate=" + readdate + ", receivername="
-				+ receivername + ", sendername=" + sendername + "]";
+				+ ", readstate=" + readstate + ", senddate=" + senddate + ", readdate=" + readdate + ", senderstate="
+				+ senderstate + ", receiverstate=" + receiverstate + ", receivername=" + receivername + ", sendername="
+				+ sendername + "]";
 	}
+
 
 }
