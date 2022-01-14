@@ -10,4 +10,8 @@
 		where a.shoes_code = b.order_shoescode and b.order_shoescode = #{order_shoescode}
 	</select>
 
+	<insert id="insertOrderProduct">
+		insert into tbl_orderproduct(order_code, order_shoescode, user_id)
+		values(seq_ordercode.nextval, #{order_shoescode}, #{user_id})
+	</insert>
 </mapper>

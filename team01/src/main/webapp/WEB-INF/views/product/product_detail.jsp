@@ -8,28 +8,39 @@ ${productVo}
 $(function() {
 	$("#count").change(function() {
 		var user_count = $(this).val();
+		console.log("user_count: "+user_count);
 	});
 	
 	$(".cart").click(function() {
-		var shoes_code = $(this).attr("data-shoes_code");
-		var user_count = $("#count").val();
-		console.log("shoes_code: "+shoes_code);
-		console.log("user_count: "+user_count);
 		
-		var url = "/orderProduct/insertOrderProduct";
-		var sData = {
-			"order_shoescode" : shoes_code,
-		};
-		$.post(url, sData, function(rData) {
-			console.log("rData: "+ rData);
-			if (rData == "success") {
-				
-			} 
-		});
 	});
 	
 	$(".basket").click(function() {
 		location.href = "/user/user_basket";
+	});
+	
+	$(".order").click(function() {
+		var shoes_code = $(this).attr("data-shoes_code");
+		var user_id = $(this).attr("data-user_id");
+		console.log("shoes_code: "+shoes_code);
+		console.log("user_id: "+user_id);
+		
+		if (user_id == null || user_id == "") {
+			alert("로그인 정보가 필요합니다");
+		} else {
+			var url = "/orderProduct/insertOrderProduct";
+			var sData = {
+				"order_shoescode" : shoes_code,
+				"user_id" : user_id
+			};
+			$.post(url, sData, function(rData) {
+				console.log("rData: "+ rData);
+				if (rData == "success") {
+					alert("주문에 성공했습니다");
+				} 
+			});
+		}
+		
 	});
 	
 });
@@ -91,7 +102,10 @@ $(function() {
 					</select><i class="bi-cart-fill me-2"></i>
 					
 					<button class="btn btn-outline-dark flex-shrink-0 cart" type="button"
-						data-shoes_code="${productVo.shoes_code}">Add to cart</button>
+						data-shoes_code="${productVo.shoes_code}" data-user_id="${userData.user_id}">장바구니 담기</button>
+						<i class="bi-cart-fill me-2"></i>
+					<button class="btn btn-outline-dark flex-shrink-0 order" type="button"
+						data-shoes_code="${productVo.shoes_code}" data-user_id="${userData.user_id}">주문하기</button>
 						<i class="bi-cart-fill me-2"></i>
 				</div>
 			</div>

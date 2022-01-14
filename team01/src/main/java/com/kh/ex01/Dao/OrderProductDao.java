@@ -18,5 +18,8 @@ public class OrderProductDao {
 		OrderProductVo orderProductVo = sqlSession.selectOne(NAMESAPCE+"selectOrder", order_shoescode);
 		return orderProductVo;
 	}
+	public void insertOrderProduct(OrderProductVo orderProductVo) {
+		sqlSession.insert(NAMESAPCE+"insertOrderProduct", orderProductVo);
+	}
 	
 }
