@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ex01.vo.BoardVo;
+import com.kh.ex01.vo.HireBoardVo;
 import com.kh.ex01.vo.PagingDto;
 
 
@@ -70,6 +71,9 @@ public class BoardDao {
 		sqlSession.update(NAMESPACE + "updateViewcnt",bno);
 	}
 	
-	
+	// 채용공고글 추가
+	public void insertHireBoard (HireBoardVo hireboardVo) {
+		sqlSession.insert(NAMESPACE +"insertHireBoard", hireboardVo);
+	}
 	
 }

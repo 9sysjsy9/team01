@@ -56,4 +56,8 @@
 	WHERE eno = #{eno} 
 </update>
 
+<select id="memberManageList" resultType="MemberVo">
+	SELECT * FROM tbl_member
+</select>
+
 </mapper>

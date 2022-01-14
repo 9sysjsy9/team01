@@ -11,40 +11,7 @@ if("${msg}" == "approve"){
 }
 
 $(function(){
-	$(".approveBtn").click(function(e){
-		e.preventDefault();
-		var eno = $(this).attr("data-eno");
-		var parent1 = $(this).parent(); //td
-		var tr = $(this).parent().parent(); //tr
-		
-		var position = tr.find(".position").val();
-		var department = tr.find(".department").val();
-		var authority = tr.find(".authority").val();
-		
-		var url = "/member/company/memberApproveRun";
-		var sData = {
-				"eno" : eno,
-				"position" : position,
-				"department" : department,
-				"authority" : authority
-		}
-		
-		$.post(url, sData, function(rData){
-			console.log(rData);
-			if(rData == "success"){
-				alert("사용 승인 되었습니다.");
-				location.href="/member/company/memberApproveList";
-			}
-				
-			
-		})
-		
-		console.log(eno);
-		console.log(position);
-		console.log(department);
-		console.log(authority);
 
-	});
 });
 </script>
 
@@ -68,11 +35,6 @@ $(function(){
 					<div class="col-md-2"></div>
 
 					<div class="col-md-8">
-						<select>
-							<option value="" selected>5줄 보기</option>
-							<option value="">10줄 보기</option>
-							<option value="">15줄 보기</option>
-						</select>
 
 						<table class="table table-hover">
 							<thead>
@@ -84,47 +46,39 @@ $(function(){
 									<th>부서</th>
 									<th>권한</th>
 									<th>가입일</th>
-									<th>승인</th>
+									<th>상태</th>
+									<th>관리</th>
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${approveList}" var="list">
+							
+							 
+							<c:forEach items="${memberManageList}" var="list">
 							
 							<tr>
 									<td>${list.eno}</td>
 									<td>${list.username}</td>
 									<td>${list.gender}</td>
-
-									<td>
-										<select class="position" name="position">
-											<option value="사원">사원</option>
-											<option value="대리">대리</option>
-											<option value="차장">차장</option>
-										</select>
-									</td>
-									<td>
-										<select class="department" name="department">
-											<option value="영업">영업</option>
-											<option value="인사">인사</option>
-											<option value="감사">감사</option>
-											<option value="품진관리">품질관리</option>
-										</select>
-									</td>
-									<td>
-										<select class="authority" name="authority">
-											<option value="1">일반</option>
-											<option value="2">관리</option>
-											<option value="3">전체</option>
-										</select>
-									</td>
+									<td>${list.position}</td>
+									<td>${list.department}</td>
+									<td>${list.authority}</td>
 									<td>${list.regdate}</td>
+									
 									<td>
-										<button type="submit" data-eno="${list.eno}" class="approveBtn btn btn-outline-dark flex-shrink-0 btn-sm" >승인</button>
-										<button type="button" data-eno="${list.eno}" class="rejectBtn btn btn-outline-danger flex-shrink-0 btn-sm">거절</button>
+										상태
+									</td>
+									
+									<td>
+										<button type="submit" data-eno="${list.eno}" class="approveBtn btn btn-outline-dark flex-shrink-0 btn-sm" >관리</button>
 									</td>
 								</tr>
 								
 							</c:forEach>
+							
+							
+							
+							
+							
 								
 							</tbody>
 						</table>

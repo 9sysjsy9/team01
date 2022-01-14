@@ -64,4 +64,24 @@ public class MessageController {
 		MessageVo messageVo = messageService.getMessageData(mno);
 		return messageVo ;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/company/messageDeleteRun", method = RequestMethod.POST)
+	public String messageDeleteRun(int mno, String reader) {
+		System.out.println("reader : " + reader);
+		if(reader.equals("sender")) {
+			messageService.senderDeleteStateChange(mno);
+		} else if (reader.equals("receiver")){
+			messageService.receiverDeleteStateChange(mno);
+		}
+		return "success";
+	};
+	
+	@ResponseBody
+	@RequestMapping(value = "/company/messageSendCancel", method = RequestMethod.POST)
+	public String messageSendCancel(int mno) {
+		System.out.println("mno : " + mno);
+		messageService.messageSendCancel(mno);
+		return "success";
+	};
 }

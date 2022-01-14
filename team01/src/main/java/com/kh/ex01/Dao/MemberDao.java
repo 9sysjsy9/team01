@@ -58,4 +58,10 @@ public class MemberDao {
 	public void myDataModifyRun(MemberVo memberVo) {
 		sqlSession.update(NAMESPACE + "myDataModifyRun", memberVo);
 	}
+	
+	public List<MemberVo> memberManageList() {
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "memberManageList");
+		return list;
+	}
+	
 }

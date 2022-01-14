@@ -1,5 +1,7 @@
 package com.kh.ex01.Dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,9 +16,9 @@ public class OrderProductDao {
 	
 	private static final String NAMESAPCE = "com.kh.ex01.mappers.orderproduct.";
 	
-	public OrderProductVo selectOrder(String order_shoescode) {
-		OrderProductVo orderProductVo = sqlSession.selectOne(NAMESAPCE+"selectOrder", order_shoescode);
-		return orderProductVo;
+	public List<OrderProductVo> selectOrder(String order_shoescode) {
+		List<OrderProductVo> list = sqlSession.selectList(NAMESAPCE+"selectOrder", order_shoescode);
+		return list;
 	}
 	public void insertOrderProduct(OrderProductVo orderProductVo) {
 		sqlSession.insert(NAMESAPCE+"insertOrderProduct", orderProductVo);

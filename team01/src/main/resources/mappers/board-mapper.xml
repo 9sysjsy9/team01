@@ -75,4 +75,9 @@
 		values(seq_bno.nextval, 'A', #{title}, #{content}, #{userid}, sysdate, #{username})
 	</insert>
 	
+	<insert id="insertHireBoard">
+		insert into tbl_hireboard(bno, cate, title, content, writer)
+		values(seq_bno.nextval, #{cate}, #{title}, #{content}, '관리자')
+	</insert>
+	
 </mapper>

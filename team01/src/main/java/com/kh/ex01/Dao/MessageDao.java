@@ -41,5 +41,18 @@ public class MessageDao {
 	public void readStateChange(int mno) {
 		sqlSession.update(NAMESPACE + "readStateChange",mno);
 	}
+	
+	public void senderDeleteStateChange(int mno) {
+		sqlSession.update(NAMESPACE + "senderDeleteStateChange", mno);
+	}
 
+	public void receiverDeleteStateChange(int mno) {
+		sqlSession.update(NAMESPACE + "receiverDeleteStateChange", mno);
+	}
+	
+	public void messageSendCancel(int mno) {
+		System.out.println("mno2 : " + mno);
+		sqlSession.update(NAMESPACE + "messageSendCancel", mno);
+	}
+	
 }
