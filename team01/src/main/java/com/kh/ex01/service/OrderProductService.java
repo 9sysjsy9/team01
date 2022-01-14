@@ -22,4 +22,8 @@ public class OrderProductService {
 		return orderProductVo;
 	}
 	
+	public void insertOrderProduct(OrderProductVo orderProductVo) {
+		orderProductDao.insertOrderProduct(orderProductVo);
+	}
+	
 }

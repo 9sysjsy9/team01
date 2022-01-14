@@ -7,14 +7,11 @@
 	<title>이벤트 리스너로 장바구니 수량 변경 및 자동 합계 구하기</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/10-11.css" />
-	<script type="text/javascript" src="/css/10-11.js"></script>  
+	<script type="text/javascript" src="/js/10-11.js"></script>  
 </head>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
-
-<nav>
 <br>
 <br>
-</nav>
 <form name="orderform" id="orderform" method="post" class="orderform"
 	action="/Page" onsubmit="return false;">
 
