@@ -152,7 +152,7 @@ $(function() {
 			
 		</table>
 							<button type="submit" class="btn btn-primary" id="askCsBtn">문의하기</button>
-							<a type="submit" class="btn btn-primary" id="askCsBtn" href="/customer/csCheck">문의 내역 확인</a>
+							<a type="submit" class="btn btn-primary" id="askCsBtn" href="/customer/csCheck">나의 주문 확인</a>
 			</form>
 		</div>
 

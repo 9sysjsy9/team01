@@ -24,5 +24,10 @@
 		WHERE A.order_code = B.order_code
 	</select>
 	
+	<select id="csCheck" resultType="CsCheckVo">
+		select * from tbl_csCheck
+		order by csCheck_order
+	</select>
+	
 
 </mapper>
