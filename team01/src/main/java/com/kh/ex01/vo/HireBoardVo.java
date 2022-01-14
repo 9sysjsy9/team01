@@ -8,6 +8,7 @@ public class HireBoardVo {
 	private String cate;
 	private String title;
 	private String writer;
+	private String content;
 	private Timestamp regdate;
 	
 	public int getBno() {
@@ -40,11 +41,16 @@ public class HireBoardVo {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	@Override
 	public String toString() {
-		return "HireBoardVo [bno=" + bno + ", cate=" + cate + ", title=" + title + ", writer=" + writer + ", regdate="
-				+ regdate + "]";
+		return "HireBoardVo [bno=" + bno + ", cate=" + cate + ", title=" + title + ", writer=" + writer + ", content="
+				+ content + ", regdate=" + regdate + "]";
 	}
-	
 	
 }

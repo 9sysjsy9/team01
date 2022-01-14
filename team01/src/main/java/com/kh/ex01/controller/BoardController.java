@@ -57,12 +57,9 @@ public class BoardController {
 		 BoardVo boardVo = boardService.getBoard(bno);
 		 BoardVo boardMoveVo = boardService.menuMove(bno); // 게시글 이동
 		 List<CommentVo> list = commentService.commentList(bno); // 덧글 리스트
-		 String userid = list.get(0).getUserid();
-		 MemberVo memberVo = memberService.getMemberData(userid);
 		 model.addAttribute("boardMoveVo",boardMoveVo);
 		 model.addAttribute("boardVo",boardVo);
 		 model.addAttribute("list",list);
-		 model.addAttribute("memberVo",memberVo);
 		 return "/company/board/free/free_content";
 	 }
 	
@@ -98,5 +95,16 @@ public class BoardController {
 		return "/company/board/free/free_modify";
 	}
 	
+	// 채용공고 글 등록폼
+	@RequestMapping(value="/hire/regist_board", method=RequestMethod.GET)
+	public String hireBoardResgist() {
+		return "/company/hire/regist_board";
+	}
 	
+	// 채용공고 등록
+	@RequestMapping(value="/hire/regist_board_run", method=RequestMethod.GET)
+	public String hireBoardResgistRun(HireBoardVo hireBoardVo) {
+		boardService.insertHireBoard(hireBoardVo);
+		return "redirect:/hire/company/regist_list";
+	}
 }

@@ -8,7 +8,7 @@
 			<div class="jumbotron" style="padding: 10px;">
 				<br>
 				<h1 style="padding-left: 110px;">
-					<b>나의 서비스 진행 내역</b>
+					<b>나의 주문 확인</b>
 					<h5 style="padding-left:110px">현재 서비스 진행중인 내용을 확인하세요.</h5>
 
 				</h1>

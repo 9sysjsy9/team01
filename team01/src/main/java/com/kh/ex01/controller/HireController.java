@@ -99,8 +99,8 @@ public class HireController {
 	 // 지원 등록하기
 	 @RequestMapping(value = "/regist_run", method = RequestMethod.POST)
 	 public String registRun(HireVo hireVo, RedirectAttributes rttr) throws IOException {
-		 //이력서 업로드
-		 String fileName = null;
+		//이력서 업로드
+		String fileName = null;
 		MultipartFile uploadFile = hireVo.getUploadFile();
 		String originalFileName = uploadFile.getOriginalFilename();
 		System.out.println("originalFileName:"+originalFileName);
@@ -172,5 +172,4 @@ public class HireController {
 		 }
 	 }
 	 
-	 // 채용 공고 등록하기
 }

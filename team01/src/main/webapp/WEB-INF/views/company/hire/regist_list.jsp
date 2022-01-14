@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
-${loginData.authority }
 <script>
 $(function() {
 	$(".title").click(function(e) {
@@ -16,7 +15,7 @@ $(function() {
 		if(authority != 3){
 			alert("권한이 없습니다.");
 		} else {
-			console.log("관리자입니다.");		
+			location.href = "/company/hire/regist_board";
 		}
 	});
 });

@@ -30,8 +30,8 @@ public class CommentDao {
 		sqlSession.insert(NAMESPACE + "insertComment", commentVo);
 	}
 	
-	public void deleteCommentBoard(int bno) {
-		sqlSession.delete(NAMESPACE + "deleteCommentBoard",bno);
+	public void deleteComment(int cno) {
+		sqlSession.delete(NAMESPACE + "deleteComment",cno);
 	}
 	
 	public CommentVo profileImg() {
