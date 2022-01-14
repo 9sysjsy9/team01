@@ -52,4 +52,8 @@ public class MemberService {
 		memberDao.myDataModifyRun(memberVo);
 	}
 	
+	public List<MemberVo> listMember() {
+		return memberDao.listMember();
+	}
+	
 }

@@ -8,15 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.ex01.service.CommentService;
-import com.kh.ex01.service.MemberService;
 import com.kh.ex01.service.BoardService;
 import com.kh.ex01.vo.BoardVo;
 import com.kh.ex01.vo.CommentVo;
 import com.kh.ex01.vo.HireBoardVo;
-import com.kh.ex01.vo.MemberVo;
 import com.kh.ex01.vo.PagingDto;
 
 @Controller
@@ -28,10 +25,6 @@ public class BoardController {
 	
 	@Inject
 	private CommentService commentService;
-	
-	@Inject
-	private MemberService memberService;
-	
 	
 	// 자유게시판 목록
 	@RequestMapping(value = "/board/free/free_list", method = RequestMethod.GET)

@@ -185,4 +185,24 @@ public class MemberController {
 		return memberVo;
 	}
 	
+	// 사원 조회
+//	@RequestMapping(value="/company/search_member", method=RequestMethod.GET)
+//	public String searchMember() {
+//		return "/company/member/memberSearch";
+//	}
+	
+	// 사원 리스트
+	@RequestMapping(value="/company/search_member", method=RequestMethod.GET)
+	public String listMember(Model model) {
+		List<MemberVo> list = memberService.listMember();
+		model.addAttribute("list", list);
+		System.out.println("list:"  + list);
+		return "/company/member/memberSearch";
+	}
+	
+	@RequestMapping(value="/company/search_test", method=RequestMethod.GET)
+	public void searchTest() {
+		
+	}
+	
 }

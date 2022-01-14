@@ -56,4 +56,45 @@
 	WHERE eno = #{eno} 
 </update>
 
+<!-- 사원 리스트 -->
+<select id="listmember" resultType="MemberVo">
+	select * from tbl_member
+	order by regdate desc
+</select>
+
+<!-- 검색 조건 -->
+<select id="listmember" resultType="MemberVo">
+	select * from tbl_member
+	WHERE department = #{department} AND position = #{position} AND username = #{username} AND eno = #{eno}
+	
+		<choose>
+			<when test='#{department} != "전체"'>
+				department = #{department}
+			</when>
+			<when test='#{department} == "전체"'>
+				department != #{department}
+			</when>
+		</choose>
+
+		<choose>
+			<when test='#{position} != "전체"'>
+				AND position = #{position}
+			</when>
+			<when test='#{position} == "전체"'>
+				AND position != #{position}
+			</when>
+		</choose>
+		
+		<choose>
+			<when test='#{en} == "n"'>
+				AND username = #{keyword}
+			</when>
+			<when test='#{en} == "e"'>
+				AND eno = #{keyword}
+			</when>
+		</choose>
+		
+
+</select>
+
 </mapper>
