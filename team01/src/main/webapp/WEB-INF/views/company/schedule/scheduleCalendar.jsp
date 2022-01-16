@@ -77,7 +77,7 @@
 }
 </style>
 
-
+${scheduleDataList}
 <script>
 var date = new Date();
 
@@ -206,9 +206,6 @@ function renderCalendar(){
 		
 		//달력 일자 클릭
 	});
-	
-
-	
 }
 
 $(function(){
