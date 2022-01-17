@@ -15,9 +15,15 @@ public class ScheduleService {
 	@Inject
 	private ScheduleDao scheduleDao;
 	
-	public List<ScheduleVo> scheduleDataList(int syear, int smonth) {
-		List<ScheduleVo> list = scheduleDao.scheduleDataList(syear, smonth);
+	public List<ScheduleVo> getMonthScheduleDataList(ScheduleVo scheduleVo){
+		List<ScheduleVo> list =  scheduleDao.getMonthScheduleDataList(scheduleVo);
 		return list;
 	}
+	
+	public List<ScheduleVo> getDateScheduleDataList(ScheduleVo scheduleVo){
+		List<ScheduleVo> list =  scheduleDao.getDateScheduleDataList(scheduleVo);
+		return list;
+	}
+	
 
 }

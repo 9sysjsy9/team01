@@ -27,7 +27,7 @@ import com.kh.ex01.vo.MemberVo;
 @RequestMapping("/member")
 public class MemberController {
 
-	private static final String UPLOAD_PATH = "//192.168.0.234/upload/profile";
+	private static final String UPLOAD_PATH = "D:/upload/profile";
 		
 	@Inject
 	private MemberService memberService;

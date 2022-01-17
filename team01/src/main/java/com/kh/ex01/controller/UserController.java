@@ -111,6 +111,31 @@ public class UserController {
 		
 	}
 	
-
+	@RequestMapping(value = "/pwChk", method=RequestMethod.POST)
+	@ResponseBody
+	public UserVo pwChk(String pw, HttpSession session) {
+		System.out.println("pw:" + pw);
+		UserVo userVo = (UserVo)session.getAttribute("userData");
+		if (userVo == null) {
+			return null;
+		}
+		System.out.println("userVo:" + userVo);
+		String user_pw = userVo.getUser_pw();
+		System.out.println("user_pw:" + user_pw);
+		
+		if (pw.equals(user_pw)) {
+			return userVo;
+		} else {
+			return null;
+		}
+		
+	}
+	
+	// 사용자 정보 변경하기
+	@RequestMapping(value = "/changeUserInfo", method=RequestMethod.POST)
+	public void changeUserInfo(UserVo userVo) {
+		System.out.println("changeUserInfo 실행됨");
+		System.out.println("UserController, changeUserInfo, userVo: " + userVo);
+	}
 	
 }

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +85,7 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 						<li><a class="dropdown-item" href="/user/mine">나의 정보</a></li>
-						<li><a class="dropdown-item" href="/customer/csCheck">나의 주문 확인</a></li>
+						<li><a class="dropdown-item" href="/user/orderList">나의 주문 확인</a></li>
 					</ul></li>
 						
 					<li class="nav-item"><a class="nav-link" href="/company/main">사원 메뉴</a></li>

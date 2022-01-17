@@ -1,94 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
-<style>
-.body {
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-}
+<link rel="stylesheet"
+	href="/css/calendar.css">
 
- .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.calendar {
-  width: 800px;
-  margin: 50px;
-}
-
-.year-month {
-  font-size: 35px;
-}
-
-.nav {
-  display: flex;
-  border-radius: 5px;
-}
-
-.nav-btn {
-  width: 75px;
-  height: 30px;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-  .days {
-   text-align : center; 
-
-}
-	.dates {
-}
-
-.date {
-  padding: 15px;
-  text-align: right;
-  height : 100px;
-  width : 120px;
-  cursor : pointer;
-}
-
-.scheduleDate {
-  padding: 15px;
-  text-align: center;
-  width : 300px;
-  max-width : 300px;
-}
-
-.content {
-  padding: 15px;
-  text-align: left;
-  width : 300px;
-  max-width : 300px;
-}
-
-.day:nth-child(7n + 1),
-.date:nth-child(7n + 1) {
-  color: #FF0000;
-}
-
-.day:nth-child(7n),
-.date:nth-child(7n) {
-  color: #0000FF;
-}
-</style>
-
-${scheduleDataList}
 <script>
 var date = new Date();
 
 //달력 표시
 renderCalendar();
 
-
 //이전 달 버튼
 function prevMonth(){
 	 date.setMonth(date.getMonth() - 1);
-	 renderCalendar();
+		 renderCalendar();
 };
 //다음 달 버튼	
 function nextMonth(){
@@ -105,6 +32,7 @@ function goToday(){
 
 //달력 정보 불러오기
 function renderCalendar(){
+	 
 	var viewYear = date.getFullYear();
 	var viewMonth = date.getMonth() + 1;
 
@@ -121,14 +49,13 @@ function renderCalendar(){
 	var prevDates = []; //이전달의 날자들을 담아둘 배열
 
 	
-	var thisDates = [...Array(TLDate + 1).keys()].slice(1);
+ 	var thisDates = [...Array(TLDate + 1).keys()].slice(1);
+
 				//Array(n)으로 배열을 만들면 길이가 n인 배열이 생성됨 (이때 모든 요소들은 undefined)
 				//모든 요소들이 empty 값이기 때문에 keys() 메서드를 이용하면 0 ~ n-1 까지의 Array Iterator가 생성됨
 				//전개 구문을 통해 이 Array Iterator 를 배열로 만들어 내면 0부터 n-1까지의 배열을 얻어 낼수 있음
 				//그래서 이번 달 마지막 날짜 + 1 을 n 에 전달해주고
 				//제일 앞에 있는 0을 없에기위해 slice 메서드를 활용
-
-
 				
 	var nextDates = []; //다음달의 날자들을 담아둘 배열
 
@@ -173,30 +100,24 @@ function renderCalendar(){
 				nextDatesAttr[i] = viewYear+"_"+(viewMonth+1)+"_"+nextDates[i];
 			}
 		}
-	
-// 		console.log("prevDatesAttr : " + prevDatesAttr);
-// 		console.log("thisDatesAttr : " + thisDatesAttr);
-// 		console.log("nextDatesAttr : " + nextDatesAttr);
 
 	//concat 매서드를 통해서 세 배열을 합친 다음에, forEach 메서드로 전체 요소들을 돌면서, html코드로 데이터를 하나씩 수정 해준다
 	var dates = prevDates.concat(thisDates, nextDates);
 	var datesAttrs = prevDatesAttr.concat(thisDatesAttr, nextDatesAttr);
-	
 
-	
 	//년_월_일 - viewYear/viewMonth/dates[i]
 	for(var i = 0 ; i < dates.length ;  i++){ 
 		if(i%7 == 6){ //한주의 끝 (토요일)
-			dates[i] = "<td class='date btn-outline-info' data-date="+datesAttrs[i]+">" + dates[i] + "</td></tr>";
+			dates[i] = "<td class='date btn-outline-info' id="+datesAttrs[i]+">" + dates[i] + "</td></tr>";
 		} else if (i%7 == 0) { //한주의 시작(일요일)
-			dates[i] = "<tr><td class='date btn-outline-warning' data-date="+datesAttrs[i]+">" + dates[i] + "</td>";
+			dates[i] = "<tr><td class='date btn-outline-warning' id="+datesAttrs[i]+">" + dates[i] + "</td>";
 		} else { //(월화수목금)
-			dates[i] = "<td class='date btn-outline-secondary' data-date="+datesAttrs[i]+">" + dates[i] + "</td>";
+			dates[i] = "<td class='date btn-outline-secondary' id="+datesAttrs[i]+">" + dates[i] + "</td>";
 		}
 	}
 	
-	console.log(dates);
-	console.log(datesAttrs);
+// 	console.log(dates);
+// 	console.log(datesAttrs);
 	
 	//jQuery
 	$(function(){
@@ -206,23 +127,81 @@ function renderCalendar(){
 		
 		//달력 일자 클릭
 	});
-}
-
-$(function(){
-	$(".date").click(function(e){
-		var dateVal = $(this).attr("data-date");
-		console.log(dateVal);
-	});
-});
-//달력 정보 불러오기 끝
 	
 
+	var url = "/schedule/company/getMonthScheduleDataList";
+	var syear = date.getFullYear();
+	var smonth = (date.getMonth()+1);
 
+	var sData = { 
+			 "syear" : syear,
+			 "smonth" : smonth
+	};
+
+	$.post(url, sData, function(rData){
+		 console.log(rData);
+		 
+		 $(function(){	
+			for(var i = 0 ; i < rData.length ; i++){
+				$("#"+rData[i].syear+"_"+rData[i].smonth+"_"+rData[i].sdate+"").append("<div class='contentTitle'>"+rData[i].content+"</div>");
+			};
+		});
+	});
+	
+}
+
+//JQuery
+$(function(){
+	$(".dates").on("click",".date", function(e){
+		
+		var dateVal = $(this).attr("id"); //yyyy_MM_dd
+		console.log(dateVal);
+		var underIndex1 = dateVal.indexOf("_");
+		var underIndex2 = dateVal.lastIndexOf("_");
+		
+		var syear = dateVal.substring(0,underIndex1);
+		var smonth = dateVal.substring(underIndex1 + 1,underIndex2);
+		var sdate = dateVal.substring(underIndex2 + 1);
+		
+		var url = "/schedule/company/getDateScheduleDataList";
+		var sData = { 
+				 "syear" : syear,
+				 "smonth" : smonth,
+				 "sdate" : sdate
+		};
+
+		$.post(url, sData, function(rData){
+			 console.log(rData);
+			 $(".contentViewModalTable").empty();
+			 $("#contentViewModalLabel").text(syear+"/"+smonth+"/"+sdate);
+			 for(var i = 0 ; i < rData.length ; i++){
+				 $(".contentViewModalTable").append("<tr><td class='btnUsername table-active' data-userid="+rData[i].userid+">"+ (i+1) +". "+rData[i].username+"</td></tr>");
+				 $(".contentViewModalTable").append("<tr><td>"+rData[i].content+"</td></tr>");
+				 if(rData[i].userid == "${loginData.userid}"){
+					 	$(".contentViewModalTable").append("<tr><td style='text-align:right' data-sno="+rData[i].sno+">"+ 
+					 			"<button type='button' class='scheduleModifyBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>수정 </button>"+
+					 			"<button type='button' class='schdeuleDeleteBtn btn btn-outline-danger flex-shrink-0 btn-sm'> 삭제</button> </td></tr>");
+				 };
+
+			 };
+			 $("#modal-contentViewModal").trigger("click");
+		});
+
+	});
+
+	
+//일정 등록 버튼
+	$(".scheduleRegistBtn").click(function(){
+		$("#modal-scheduleRegistModal").trigger("click");
+	});
+//일정 수정 버튼
+//일정 삭제 버튼
+});
+//달력 정보 불러오기 끝
  </script>
+
 <div class="body">
-
-<div class="calendar">
-
+	<div class="calendar">
 			<div class="header">
 				<div class="year-month">1</div>
 				<div class="nav">
@@ -231,60 +210,106 @@ $(function(){
 					<button class="btn btn-outline-dark flex-shrink-0 btn-sm nav-btn go-next" onclick="nextMonth()">다음월</button>
 				</div>
 			</div>
-<div>
-			<table class="table table-bordered">
-				<thead>
-					<tr class="days">
-						<th class="day">일</th>
-						<th class="day">월</th>
-						<th class="day">화</th>
-						<th class="day">수</th>
-						<th class="day">목</th>
-						<th class="day">금</th>
-						<th class="day">토</th>
-					</tr>
-				</thead>
-
-				<tbody class="dates">
-				
-				</tbody>
-			</table>
+			<div>
+				<table class="table table-bordered">
+					<thead>
+						<tr class="days">
+							<th class="day">일</th>
+							<th class="day">월</th>
+							<th class="day">화</th>
+							<th class="day">수</th>
+							<th class="day">목</th>
+							<th class="day">금</th>
+							<th class="day">토</th>
+						</tr>
+					</thead>
+					<tbody class="dates">
+					</tbody>
+				</table>
 			</div>
-			
+	</div>
 </div>
 
-
-
-
-<!-- 		<div class="calendar"> -->
-		
-<!-- 			<div class="header"> -->
-<!-- 				<div class="year-month">1</div> -->
-<!-- 				<div class="nav"> -->
-<!-- 					<button class="btn btn-outline-dark flex-shrink-0 btn-sm nav-btn go-prev">이전월</button> -->
-<!-- 					<button class="btn btn-outline-dark flex-shrink-0 btn-sm nav-btn go-today">오늘</button> -->
-<!-- 					<button class="btn btn-outline-dark flex-shrink-0 btn-sm nav-btn go-next">다음월</button> -->
-					
-					
-<!-- 				</div> -->
-<!-- 			</div> -->
+<!-- content 확인 모달 -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			 <a id="modal-contentViewModal" href="#modal-container-contentViewModal" role="button" class="btn" data-toggle="modal" style="display:none">dateModal</a>
 			
-<!-- 			<div class="main"> -->
-<!-- 				<div class="days"> -->
-<!-- 					<div class="day">일</div> -->
-<!-- 					<div class="day">월</div> -->
-<!-- 					<div class="day">화</div> -->
-<!-- 					<div class="day">수</div> -->
-<!-- 					<div class="day">목</div> -->
-<!-- 					<div class="day">금</div> -->
-<!-- 					<div class="day">토</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="dates"></div> -->
-<!-- 			</div> -->
-			
-
-			
-			
-<!-- 		</div> -->
+			<div class="modal fade" id="modal-container-contentViewModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="contentViewModalLabel">
+								2022년 1월 2일
+							</h5> 
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span>
+							</button><br>
+						</div>
+						
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12">
+									<table class="table table-bordered">
+										<tbody class="contentViewModalTable">
+										</tbody>
+									</table>
+								</div>						
+							</div>
+						</div>
+						
+						<div class="modal-footer">
+							<button type="button" class="scheduleRegistBtn btn btn-outline-primary flex-shrink-0 btn-sm"  data-dismiss="modal">일정 추가</button> 
+							<button type="button" class="btn btn-outline-dark flex-shrink-0 btn-sm" data-dismiss="modal">닫기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+<!-- /content 확인 모달 -->
+
+
+<!-- schduleData 추가  시작-->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			 <a id="modal-scheduleRegistModal" href="#modal-container-scheduleRegistModal" role="button" class="btn" data-toggle="modal" style="display:none">dateModal</a>
+			
+			<div class="modal fade" id="modal-container-scheduleRegistModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">
+								새 일정 등록
+							</h5> 
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span>
+							</button><br>
+						</div>
+						
+						<div class="modal-body">
+							<div class="row">
+<!-- 								<div class="col-md-12"> -->
+<!-- 									<table class="table table-bordered"> -->
+<!-- 										<tbody class="contentViewModalTable"> -->
+<!-- 										</tbody> -->
+<!-- 									</table> -->
+<!-- 								</div>						 -->
+							</div>
+						</div>
+						
+						<div class="modal-footer">
+							<button type="button" class="scheduleRegistBtn btn btn-outline-primary flex-shrink-0 btn-sm">등록</button> 
+							<button type="button" class="btn btn-outline-dark flex-shrink-0 btn-sm" data-dismiss="modal">취소</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /schduleData 추가 끝-->
 <%@ include file="/WEB-INF/views/company/include/footer.jsp"%>
