@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,7 +92,6 @@
 					</c:if>	
 						
 					<li class="nav-item"><a class="nav-link" href="/company/main">사원 메뉴</a></li>
-					
 					<li class="nav-item"><a class="nav-link" href="/user/login">로그인</a></li>
 				</ul>
 			</div>
