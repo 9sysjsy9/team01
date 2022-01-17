@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ex01.vo.OrderProductVo;
+import com.kh.ex01.vo.UserBasketVo;
 
 @Repository
 public class OrderProductDao {
@@ -20,6 +21,12 @@ public class OrderProductDao {
 		List<OrderProductVo> list = sqlSession.selectList(NAMESAPCE+"selectOrder", order_shoescode);
 		return list;
 	}
+	
+	public List<UserBasketVo> selectBasket(String order_shoescode) {
+		List<UserBasketVo> list = sqlSession.selectList(NAMESAPCE+"selectBasket", order_shoescode);
+		return list;
+	}
+	
 	public void insertOrderProduct(OrderProductVo orderProductVo) {
 		sqlSession.insert(NAMESAPCE+"insertOrderProduct", orderProductVo);
 	}

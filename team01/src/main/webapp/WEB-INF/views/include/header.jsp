@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 
 <!DOCTYPE html>
 <html>
@@ -79,15 +79,18 @@
 							<li><a class="dropdown-item" href="/customer/qna">질문과 답변</a></li>
 							<li><a class="dropdown-item" href="/customer/csMain">CS센터</a></li>
 						</ul></li>
-						
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
-						<ul class="dropdown-menu dropdown-menu-end"
-							aria-labelledby="navbarDropdown">
-						<li><a class="dropdown-item" href="/user/mine">나의 정보</a></li>
-						<li><a class="dropdown-item" href="/user/orderList">나의 주문 확인</a></li>
-					</ul></li>
+					
+					<c:if test="${userData != null}">	
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
+							<ul class="dropdown-menu dropdown-menu-end"
+								aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="/user/mine">나의 정보</a></li>
+							<li><a class="dropdown-item" href="/user/orderList">주문 확인</a></li>
+							<li><a class="dropdown-item" href="/user/user_basket">장바구니</a></li>
+						</ul></li>
+					</c:if>	
 						
 					<li class="nav-item"><a class="nav-link" href="/company/main">사원 메뉴</a></li>
 					

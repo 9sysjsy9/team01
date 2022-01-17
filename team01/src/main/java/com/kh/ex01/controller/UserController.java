@@ -17,6 +17,7 @@ import com.kh.ex01.service.OrderProductService;
 import com.kh.ex01.service.UserService;
 import com.kh.ex01.vo.AskProductVo;
 import com.kh.ex01.vo.OrderProductVo;
+import com.kh.ex01.vo.UserBasketVo;
 import com.kh.ex01.vo.UserVo;
 
 @Controller
@@ -88,8 +89,13 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/user_basket", method = RequestMethod.GET)
-	public String userBasket() {
-		
+	public String userBasket(HttpSession httpSession, Model model) {
+		UserVo userVo = (UserVo) httpSession.getAttribute("userData");
+		if (userVo != null) {
+			List<UserBasketVo> list = orderProductService.selectBasket(userVo.getUser_id());
+			System.out.println("orderList, list"+list);
+			model.addAttribute("list", list);
+		}
 		return "user/user_basket";
 	}
 
