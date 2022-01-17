@@ -25,5 +25,13 @@ public class ScheduleService {
 		return list;
 	}
 	
+	public void scheduleRegistRun(ScheduleVo scheduleVo) {
+		scheduleDao.scheduleRegistRun(scheduleVo);
+	}
+	
+	public void scheduleDeleteRun(int sno) {
+		scheduleDao.scheduleDeleteRun(sno);
+	}
+	
 
 }

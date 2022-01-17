@@ -9,8 +9,9 @@ function check_enter(){
 };
 
 $(function() {
-	//멤버 이름 버튼 > 멤버 정보 모달 표시
-	$(".btnUsername").click(function(e) {
+	//멤버 이름 버튼 > 멤버 정보 모달 표시 시작
+	
+	$("*").on("click",".btnUsername",function(e){
 		e.preventDefault();
 		console.log("클릭됨");
 		console.log($(this).attr("data-userid"));
@@ -42,6 +43,7 @@ $(function() {
 		});
 		$("#modal-memberInfo").trigger("click");
 	});
+	//멤버 이름 버튼 > 멤버 정보 모달 표시 끝
 	
 	//멤버 정보 모달 - 메시지 보내기 버튼 > 메시지 발송 모달
 	$("#sendMessageFormBtn").click(function(e){

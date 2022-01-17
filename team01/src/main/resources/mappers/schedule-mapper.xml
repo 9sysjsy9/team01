@@ -33,4 +33,14 @@
 	ORDER BY sdate ASC, sno ASC
 </select>
 
+<insert id="scheduleRegistRun">
+	INSERT INTO tbl_schedule (sno, userid, syear, smonth, sdate, authority, content)
+	VALUES(seq_sno.nextval, #{userid}, #{syear}, #{smonth}, #{sdate}, 0, #{content})
+</insert>
+
+<delete id="scheduleDeleteRun">
+	DELETE FROM tbl_schedule
+	WHERE sno = #{sno}
+</delete>
+
 </mapper>
