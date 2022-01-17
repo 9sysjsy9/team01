@@ -54,6 +54,14 @@ public class ScheduleController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/company/getDateScheduleData/{sno}", method=RequestMethod.POST)
+	public ScheduleVo getDateScheduleData(@PathVariable int sno) {
+		System.out.println("ScheduleControllet, getDateScheduleData, sno : " + sno);
+		ScheduleVo scheduleVo = scheduleService.getDateScheduleData(sno);
+		return scheduleVo;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/company/scheduleRegistRun", method=RequestMethod.POST)
 	public String scheduleRegistRun(ScheduleVo scheduleVo) {
 		System.out.println("ScheduleController, scheduleRegistRun, scheduleVo : " + scheduleVo);
@@ -63,12 +71,24 @@ public class ScheduleController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/company/scheduleModifyRun", method=RequestMethod.POST)
+	public String scheduleModifyRun(ScheduleVo scheduleVo) {
+		System.out.println("ScheduleController, scheduleModifyRun, scheduleVo : " + scheduleVo);
+		scheduleService.scheduleModifyRun(scheduleVo);
+		return "success";
+		
+	}
+	
+	
+	@ResponseBody
 	@RequestMapping(value = "/company/scheduleDeleteRun/{sno}", method=RequestMethod.POST)
 	public String scheduleDeleteRun(@PathVariable int sno) {
 		System.out.println("ScheduleControllet, scheduleDeleteRun, sno : " + sno);
 		scheduleService.scheduleDeleteRun(sno);
 		return "success";
 	}
+	
+
 	
 	
 }

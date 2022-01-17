@@ -183,10 +183,10 @@ $(function(){
 			 for(var i = 0 ; i < rData.length ; i++){
 // 				 $(".contentViewModalTable").append("<tr><td class='btnUsername table-active' data-userid="+rData[i].userid+">"+ (i+1) +". "+rData[i].username+"</td></tr>");
 				 $(".contentViewModalTable").append("<tr><td class='btnUsername table-active' data-userid="+rData[i].userid+" data-dismiss='modal' style='cursor:pointer'>작성자 : "+rData[i].username+"</td></tr>");
-				 $(".contentViewModalTable").append("<tr><td>"+rData[i].content+"</td></tr>");
+				 $(".contentViewModalTable").append("<tr><td class=''>"+rData[i].content+"</td></tr>");
 				 if(rData[i].userid == "${loginData.userid}"){
 					 	$(".contentViewModalTable").append("<tr><td style='text-align:right' data-sno="+rData[i].sno+">"+ 
-					 			"<button type='button' class='scheduleModifyBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>수정 </button>"+
+					 			"<button type='button' class='scheduleModifyBtn btn btn-outline-warning flex-shrink-0 btn-sm' data-dismiss='modal'>수정 </button>"+
 					 			"<button type='button' class='scheduleDeleteBtn btn btn-outline-danger flex-shrink-0 btn-sm'> 삭제</button> </td></tr>");
 				 };
 
@@ -204,15 +204,10 @@ $(function(){
 		$("#modal-scheduleRegistModal").trigger("click");
 		//내용 작성란 내용 비우기
 		$("#modalRegistContent").val("");
-
-		
-		
-		
 	});
 	
 	$(".scheduleRegistRunBtn").click(function(){
-		var content = $("#modalRegistContent").val().replace(/(?:\r\n|\n|\n)/g, ' ');
-
+		var content = $("#modalRegistContent").val().replace(/(?:\r\n|\r|\n)/g, ' ');
 		var url = "/schedule/company/scheduleRegistRun";
 		var sData = { 
 			"userid" : "${loginData.userid}",
@@ -221,17 +216,50 @@ $(function(){
 			"sdate" : sdate,
 			"content" : content
 		};
-		
 		$.post(url, sData, function(rData){
 			console.log(rData);
-			alert("일정이 추가 되었습니다.");
 			renderCalendar();
+			alert("일정이 추가 되었습니다.");
 		});
-		
-	})
+	});
 
 //일정 수정 버튼
+	$(".contentViewModalTable").on("click",".scheduleModifyBtn",function(e){
+		console.log("data-sno : " + $(this).parent().attr("data-sno"));
+		var sno = $(this).parent().attr("data-sno");
+		var url = "/schedule/company/getDateScheduleData/"+sno;
+		$.post(url, function(rData){
+			console.log(rData);
+			$("#modalModifyDate").text(rData.syear+"/"+rData.smonth+"/"+rData.sdate);
+			$("#modalModifyContent").val(rData.content);
+			$(".scheduleModifyRunBtn").attr("data-sno",rData.sno);
+		});
+		
+		$("#modal-scheduleModifyModal").trigger("click");
+	});
+	
+	$(".scheduleModifyRunBtn").click(function(e){
+		var result = confirm("수정 하시겠습니까?");
+		if(result){
+			var url = "/schedule/company/scheduleModifyRun";
+			var content = $("#modalModifyContent").val().replace(/(?:\r\n|\r|\n)/g, ' ');
+			var sData = {
+					"sno" : $(".scheduleModifyRunBtn").attr("data-sno"),
+					"content" : content
+			};
+			
+			$.post(url, sData, function(rData){
+				console.log(rData);
+				if(rData == "success"){
+					alert("수정 되었습니다.");
+					renderCalendar();
+					$("#modal-scheduleModifyModal").trigger("click");
+				};
+			});
+			
+		}
 
+	});
 
 
 //일정 삭제 버튼
@@ -244,14 +272,13 @@ $(function(){
 			$.post(url, function(rData){
 				if(rData == "success"){
 					alert("삭제 되었습니다.");
-					$("#modal-contentViewModal").trigger("click");
 					renderCalendar();
-				}
+					$("#modal-contentViewModal").trigger("click");
+				};
 			});
-
 		};
-		
 	});
+	
 });
 //달력 정보 불러오기 끝
  </script>
@@ -348,9 +375,7 @@ $(function(){
 						
 						<div class="modal-body">
 						
-						
 						<!--  -->
-						
 							<div class="form-group">
 								<label> 일자  : <span id="modalRegistDate"></span> </label>
 							</div>
@@ -358,11 +383,8 @@ $(function(){
 								<label> 일정 내용 </label>
 								<textarea id="modalRegistContent" class="form-control" rows="6" placeholder="내용을 입력해주세요." onkeypress="check_enter()"></textarea>
 							</div>
-							
 						<!--  -->
-
 						</div>
-						
 						<div class="modal-footer">
 							<button type="button" class="scheduleRegistRunBtn btn btn-outline-primary flex-shrink-0 btn-sm" data-dismiss="modal">등록</button> 
 							<button type="button" class="btn btn-outline-dark flex-shrink-0 btn-sm" data-dismiss="modal">취소</button>
@@ -374,4 +396,46 @@ $(function(){
 	</div>
 </div>
 <!-- /schduleData 추가 끝-->
+
+<!-- schduleData 수정 시작-->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			 <a id="modal-scheduleModifyModal" href="#modal-container-scheduleModifyModal" role="button" class="btn" data-toggle="modal" style="display:none" >ModifyModal</a>
+			
+			<div class="modal fade" id="modal-container-scheduleModifyModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">
+								일정 수정
+							</h5> 
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span>
+							</button><br>
+						</div>
+						
+						<div class="modal-body">
+						
+						<!--  -->
+							<div class="form-group">
+								<label> 일자  : <span id="modalModifyDate"></span> </label>
+							</div>
+							<div class="form-group">
+								<label> 일정 내용 </label>
+								<textarea id="modalModifyContent" class="form-control" rows="6" placeholder="내용을 입력해주세요." onkeypress="check_enter()"></textarea>
+							</div>
+						<!--  -->
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="scheduleModifyRunBtn btn btn-outline-warning flex-shrink-0 btn-sm" data-sno="#">수정</button> 
+							<button type="button" class="btn btn-outline-dark flex-shrink-0 btn-sm" data-dismiss="modal">취소</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /schduleData 수정 끝-->
 <%@ include file="/WEB-INF/views/company/include/footer.jsp"%>
