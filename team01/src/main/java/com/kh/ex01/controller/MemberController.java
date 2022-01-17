@@ -27,7 +27,7 @@ import com.kh.ex01.vo.MemberVo;
 @RequestMapping("/member")
 public class MemberController {
 
-	private static final String UPLOAD_PATH = "//192.168.0.234/upload/profile";
+	private static final String UPLOAD_PATH = "D:/upload/profile";
 		
 	@Inject
 	private MemberService memberService;
@@ -185,12 +185,6 @@ public class MemberController {
 		return memberVo;
 	}
 	
-	// 사원 조회
-//	@RequestMapping(value="/company/search_member", method=RequestMethod.GET)
-//	public String searchMember() {
-//		return "/company/member/memberSearch";
-//	}
-	
 	// 사원 리스트
 	@RequestMapping(value="/company/search_member", method=RequestMethod.GET)
 	public String listMember(Model model) {
@@ -205,6 +199,14 @@ public class MemberController {
 		List<MemberVo> list = memberService.searchDepartment(department);
 		model.addAttribute("list", list);
 		return "/company/member/memberSearch";
+	}
+
+//회원 관리
+	@RequestMapping(value="/company/memberManageList")
+	public String memberManageList(Model model) {
+		List<MemberVo> list = memberService.memberManageList();
+		model.addAttribute("memberManageList", list);
+		return "/company/member/memberManageList";
 	}
 	
 }

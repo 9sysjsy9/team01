@@ -26,6 +26,44 @@ $(function(){
 		});
 	});
 	
+	$(".btnDelete").click(function(e){
+		var mno = $(this).attr("data-mno");
+		console.log("mno:" + mno);
+		var url = "/message/company/messageDeleteRun";
+		
+		var sData = {
+				"mno" : mno,
+				"reader" : "sender"
+		};
+		
+		$.post(url, sData, function(rData){
+			console.log("btnDelete rData:" + rData)
+			if(rData == "success"){
+				alert("메시지가 메시지함에서 삭제 되었습니다.")
+			}
+			location.href = "/message/company/sendMessageList";
+		});
+	});
+	
+	$(".btnSendCancel").click(function(e){
+		var thisbtn = $(this);
+		var mno = $(this).attr("data-mno");
+		console.log("mno:" + mno);
+		var url = "/message/company/messageSendCancel";
+		
+		var sData = {
+				"mno" : mno,
+		};
+		$.post(url, sData, function(rData){
+			console.log(rData);
+			if(rData == "success"){
+				thisbtn.addClass("disabled");
+				thisbtn.parent().prev().text("발신취소");
+				alert("발신취소 처리 되었습니다.")
+			}
+		});
+	});
+	
 });
 </script> 
 <!-- Product section-->
@@ -68,6 +106,9 @@ $(function(){
 													<th>내용</th>
 													<th>날짜</th>
 													<th>읽음</th>
+													<th>발신취소</th>
+													<th>삭제</th>
+													
 												</tr>
 											</thead>
 											<tbody>
@@ -76,12 +117,34 @@ $(function(){
 														<td style="cursor: pointer" class="btnUsername" data-userid="${messageVoData.receiver}">${messageVoData.receivername}</td>
 														<td style="cursor: pointer" class="btnContent" data-mno="${messageVoData.mno}">${messageVoData.content}...</td>
 														<td>${messageVoData.senddate}</td>
+														
 														<td class="readState">
 															<c:choose>
 															<c:when test="${messageVoData.readstate == 'y'}">읽음</c:when>
-															<c:otherwise>읽지않음</c:otherwise>
+															<c:when test="${messageVoData.readstate == 'n'}">읽지않음</c:when>
+															<c:otherwise>발신취소</c:otherwise>
 															</c:choose>
 														</td>
+														
+														<td class="sendCancel">
+															<c:choose>
+																<c:when test="${messageVoData.readstate == 'y'}">
+																	<button type="button" class="btn btn-sm active btn-outline-secondary disabled">발신취소</button>
+																</c:when>
+																<c:when test="${messageVoData.readstate == 'n'}">
+																	<button type="button" data-mno="${messageVoData.mno}" class="btnSendCancel btn btn-outline-secondary flex-shrink-0 btn-sm">발신취소</button>
+																</c:when>
+																<c:otherwise>
+																	<button type="button" class="btn btn-sm active btn-outline-secondary disabled">발신취소</button>
+																</c:otherwise>
+															</c:choose>
+														</td>
+														
+														<td>
+															<button type="button" data-mno="${messageVoData.mno}" class="btnDelete btn btn-outline-danger flex-shrink-0 btn-sm">삭제</button>
+														</td>
+														
+
 													</tr>
 													</c:forEach>
 											</tbody>

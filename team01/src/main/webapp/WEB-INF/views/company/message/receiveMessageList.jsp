@@ -30,6 +30,30 @@ $(function(){
 		});
 	});
 	
+	$(".btnDelete").click(function(e){
+		var mno = $(this).attr("data-mno");
+		console.log("mno:" + mno);
+		var url = "/message/company/messageDeleteRun";
+		
+		var sData = {
+				"mno" : mno,
+				"reader" : "receiver"
+		};
+		
+		$.post(url, sData, function(rData){
+			console.log("btnDelete rData:" + rData)
+			if(rData == "success"){
+				alert("메시지가 메시지함에서 삭제 되었습니다.")
+			}
+			location.href = "/message/company/sendMessageList";
+			
+		});
+	});
+	
+	$(".btnSendCancel").click(function(e){
+		
+	});
+	
 });
 </script>  
 <!-- Product section-->
@@ -73,6 +97,7 @@ $(function(){
 													<th>내용</th>
 													<th>날짜</th>
 													<th>읽음</th>
+													<th>삭제</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -86,6 +111,10 @@ $(function(){
 															<c:when test="${messageVoData.readstate == 'y'}">읽음</c:when>
 															<c:otherwise>읽지않음</c:otherwise>
 															</c:choose>
+														</td>
+														
+														<td>
+															<button type="button" data-mno="${messageVoData.mno}" class="btnDelete btn btn-outline-danger flex-shrink-0 btn-sm">삭제</button>
 														</td>
 													</tr>
 													</c:forEach>

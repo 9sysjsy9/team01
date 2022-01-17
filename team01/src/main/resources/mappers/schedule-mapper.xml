@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper			
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"			
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.ex01.mappers.schedule">
+<select id="getMonthScheduleDataList" resultType="ScheduleVo">
+	SELECT  S.sno, S.userid, S.syear, S.smonth, S.sdate, S.regdate, S.updatedate, S.authority, SUBSTR(S.content, 0, 8) AS content, M.username
+	FROM tbl_schedule S, tbl_member M
+	WHERE
+	S.userid = M.userid
+	AND
+	<choose>
+		<when test='syear == 1'>
+			syear = #{syear} AND smonth BETWEEN #{smonth} AND #{smonth}+1
+			OR syear = #{syear}-1 AND smonth = 12
+		</when>
+		<when test='syear == 12'>
+			syear = #{syear} AND smonth BETWEEN #{smonth}-1 AND #{smonth}
+			OR syear = #{syear}+1 AND smonth = 1
+		</when>
+		<otherwise>
+			syear = #{syear} AND smonth BETWEEN #{smonth}-1 AND #{smonth}+1
+		</otherwise>
+	</choose>
+	ORDER BY syear ASC, smonth ASC, sdate ASC, sno ASC
+
+</select>
+
+<select id="getDateScheduleDataList" resultType="ScheduleVo">
+	SELECT S.sno, S.userid, S.syear, S.smonth, S.sdate, S.regdate, S.updatedate, S.authority, S.content, M.username
+	FROM tbl_schedule S, tbl_member M
+	WHERE syear = #{syear} AND smonth = #{smonth} AND sdate = #{sdate} AND S.userid = M.userid
+	ORDER BY sdate ASC, sno ASC
+</select>
+
+</mapper>

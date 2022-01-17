@@ -59,6 +59,7 @@ public class MemberDao {
 		sqlSession.update(NAMESPACE + "myDataModifyRun", memberVo);
 	}
 	
+
 	public List<MemberVo> listMember() {
 		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "listmember");
 		return list;
@@ -68,4 +69,10 @@ public class MemberDao {
 		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "searchDepartment",department);
 		return list;
 	}
+
+	public List<MemberVo> memberManageList() {
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "memberManageList");
+		return list;
+	}
+
 }
