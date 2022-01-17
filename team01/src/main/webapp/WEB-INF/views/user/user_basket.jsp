@@ -35,7 +35,7 @@
 			<div class="split"></div>
 		</div>
 
-		<c:forEach items="${list}" var="userBasketVo">
+		<c:forEach items="${list}" var="userBasketVo" varStatus="loop">
 			<div class="row data">
 				<div class="subdiv">
 					<div class="check">
@@ -56,12 +56,12 @@
 					</div>
 					<div class="num">
 						<div class="updown">
-							<input type="text" name="p_num1" id="p_num1" size="2"
+							<input type="text" name="p_num${loop.count}" id="p_num${loop.count}" size="2"
 								maxlength="4" class="p_num" value="1"
-								onkeyup="javascript:basket.changePNum(1);"> <span
-								onclick="javascript:basket.changePNum(1);"><i
+								onkeyup="javascript:basket.changePNum(${loop.count});"> <span
+								onclick="javascript:basket.changePNum(${loop.count});"><i
 								class="fas fa-arrow-alt-circle-up up"></i></span> <span
-								onclick="javascript:basket.changePNum(1);"><i
+								onclick="javascript:basket.changePNum(${loop.count});"><i
 								class="fas fa-arrow-alt-circle-down down"></i></span>
 						</div>
 					</div>
@@ -87,7 +87,7 @@
 
 	<div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: 4개</div>
 	<div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액:
-		74,200원</div>
+		74,200</div>
 
 	<div id="goorder" class="">
 		<div class="clear"></div>

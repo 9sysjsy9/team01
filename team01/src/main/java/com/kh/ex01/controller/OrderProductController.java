@@ -20,9 +20,13 @@ public class OrderProductController {
 	@RequestMapping(value = "/insertOrderProduct", method = RequestMethod.POST)
 	@ResponseBody
 	public String insertOrderProduct(OrderProductVo orderProductVo) {
-			System.out.println("orderProductVo: "+orderProductVo);
+		System.out.println("orderProductVo: "+orderProductVo);	
+		if (orderProductVo.getUser_id() != null && orderProductVo.getOrder_shoescode() != null 
+				&& orderProductVo.getOrder_count() != 0) {
 			orderProductService.insertOrderProduct(orderProductVo);
 			return "success";
+		}
+		return "fail";
 	}
-	
+
 }

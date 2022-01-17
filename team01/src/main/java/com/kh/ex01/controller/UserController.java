@@ -88,6 +88,21 @@ public class UserController {
 		return "/user/orderList";
 	}
 	
+	@RequestMapping(value = "/orderList2", method = RequestMethod.GET)
+	public String orderRead() {
+		return "/user/orderList2";
+	}
+	
+	@RequestMapping(value = "/orderContent", method = RequestMethod.GET)
+	public String orderContent() {
+		return "/user/orderContent";
+	}
+	
+	@RequestMapping(value = "/orderResult", method = RequestMethod.GET)
+	public String orderResult() {
+		return "/user/orderResult";
+	}
+	
 	@RequestMapping(value = "/user_basket", method = RequestMethod.GET)
 	public String userBasket(HttpSession httpSession, Model model) {
 		UserVo userVo = (UserVo) httpSession.getAttribute("userData");
@@ -137,10 +152,10 @@ public class UserController {
 		
 	}
 	
-	// »ç¿ëÀÚ Á¤º¸ º¯°æÇÏ±â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	@RequestMapping(value = "/changeUserInfo", method=RequestMethod.POST)
 	public void changeUserInfo(UserVo userVo) {
-		System.out.println("changeUserInfo ½ÇÇàµÊ");
+		System.out.println("changeUserInfo ï¿½ï¿½ï¿½ï¿½ï¿½");
 		System.out.println("UserController, changeUserInfo, userVo: " + userVo);
 	}
 	

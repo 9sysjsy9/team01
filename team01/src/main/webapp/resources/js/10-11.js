@@ -41,7 +41,7 @@ let basket = {
     //화면 업데이트
     updateUI: function () {
         document.querySelector('#sum_p_num').textContent = '상품갯수: ' + this.totalCount.formatNumber() + '개';
-        document.querySelector('#sum_p_price').textContent = '합계금액: ' + this.totalPrice.formatNumber() + '원';
+        document.querySelector('#sum_p_price').textContent = '합계금액: $ ' + this.totalPrice.formatNumber();
     },
     //개별 수량 변경
     changePNum: function (pos) {
@@ -55,7 +55,7 @@ let basket = {
         item.value = newval;
 
         var price = item.parentElement.parentElement.previousElementSibling.firstElementChild.getAttribute('value');
-        item.parentElement.parentElement.nextElementSibling.textContent = (newval * price).formatNumber()+"원";
+        item.parentElement.parentElement.nextElementSibling.textContent ='$ '+(newval * price).formatNumber();
         //AJAX 업데이트 전송
 
         //전송 처리 결과가 성공이면    
