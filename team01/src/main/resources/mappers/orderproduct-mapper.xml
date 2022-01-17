@@ -10,14 +10,14 @@
 	</select>
 
 	<select id="selectOrder" resultType="OrderProductVo">
-		select b.order_code, b.order_shoescode, b.user_id, b.order_regdate, a.shoes_price, a.shoes_name, a.shoes_image
+		select b.order_code, b.order_shoescode, b.user_id, b.order_regdate, b.order_count, a.shoes_price, a.shoes_name, a.shoes_image
 		from tbl_shoes a, tbl_orderproduct b, tbl_user c
 		where b.user_id = c.user_id
 		and c.user_id = #{user_id}
 		and a.shoes_code = b.order_shoescode
 	</select>
 	<select id="selectBasket" resultType="UserBasketVo">
-		select b.order_code, b.order_shoescode, b.user_id, b.order_regdate, a.shoes_price, a.shoes_name, a.shoes_image
+		select b.order_code, b.order_shoescode, b.user_id, b.order_regdate, b.order_count, a.shoes_price, a.shoes_name, a.shoes_image
 		from tbl_shoes a, tbl_orderproduct b, tbl_user c
 		where b.user_id = c.user_id
 		and c.user_id = #{user_id}

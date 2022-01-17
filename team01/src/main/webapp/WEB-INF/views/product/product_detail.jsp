@@ -7,8 +7,8 @@ ${productVo}
 <script>
 $(function() {
 	$("#count").change(function() {
-		var user_count = $(this).val();
-		console.log("user_count: "+user_count);
+		var order_count = $(this).val();
+		console.log("order_count: "+order_count);
 	});
 	
 	$(".cart").click(function() {
@@ -22,8 +22,10 @@ $(function() {
 	$(".order").click(function() {
 		var shoes_code = $(this).attr("data-shoes_code");
 		var user_id = $(this).attr("data-user_id");
+		var order_count = $("#count").val();
 		console.log("shoes_code: "+shoes_code);
 		console.log("user_id: "+user_id);
+		console.log("order_count: "+order_count);
 		
 		if (user_id == null || user_id == "") {
 			alert("로그인 정보가 필요합니다");
@@ -31,7 +33,8 @@ $(function() {
 			var url = "/orderProduct/insertOrderProduct";
 			var sData = {
 				"order_shoescode" : shoes_code,
-				"user_id" : user_id
+				"user_id" : user_id,
+				"order_count" : order_count
 			};
 			$.post(url, sData, function(rData) {
 				console.log("rData: "+ rData);
