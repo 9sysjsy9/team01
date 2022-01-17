@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,6 +51,23 @@ public class ScheduleController {
 		System.out.println("ScheduleController, getDateScheduleDataList, scheduleVo : " + scheduleVo);
 		System.out.println("ScheduleController, getDateScheduleDataList, list : " + list);
 		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/company/scheduleRegistRun", method=RequestMethod.POST)
+	public String scheduleRegistRun(ScheduleVo scheduleVo) {
+		System.out.println("ScheduleController, scheduleRegistRun, scheduleVo : " + scheduleVo);
+		scheduleService.scheduleRegistRun(scheduleVo);
+		//userid, content, syear, sdate, smonth
+		return "success";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/company/scheduleDeleteRun/{sno}", method=RequestMethod.POST)
+	public String scheduleDeleteRun(@PathVariable int sno) {
+		System.out.println("ScheduleControllet, scheduleDeleteRun, sno : " + sno);
+		scheduleService.scheduleDeleteRun(sno);
+		return "success";
 	}
 	
 	

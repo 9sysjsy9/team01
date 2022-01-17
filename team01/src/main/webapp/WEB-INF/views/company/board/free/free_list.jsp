@@ -55,7 +55,7 @@ $(function(){
 									<tr>
 										<td>${boardVo.bno }</td>
 										<td><a class="title" href="${boardVo.bno}">${boardVo.title}</a></td>
-										<td style="cursor:pointer"class="btnUsername" data-userid="${boardVo.userid}">${boardVo.username}</td>
+										<td style="cursor:pointer" class="btnUsername" data-userid="${boardVo.userid}">${boardVo.username}</td>
 										<td>${boardVo.regdate }</td>
 										<td>${boardVo.viewcnt }</td>
 									</tr>

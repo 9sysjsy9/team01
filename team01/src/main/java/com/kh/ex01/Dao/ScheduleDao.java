@@ -30,5 +30,14 @@ public class ScheduleDao {
 		
 	}
 	
+	public void scheduleRegistRun(ScheduleVo scheduleVo) {
+		sqlSession.selectList(NAMESPACE + "scheduleRegistRun" , scheduleVo);
+	}
+	
+	public void scheduleDeleteRun(int sno) {
+		System.out.println("ScheduleDao, scheduleDeleteRun, sno :" + sno);
+		sqlSession.delete(NAMESPACE + "scheduleDeleteRun", sno);
+	}
+	
 
 }

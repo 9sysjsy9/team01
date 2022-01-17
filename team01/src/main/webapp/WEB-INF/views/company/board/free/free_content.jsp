@@ -58,7 +58,7 @@ $(function(){
 			location.href = "/comment/deleteFreeComment?cno=" + cno + "&bno=" + bno; 
 		} else {
 			alert("직접 작성한 댓글이 아닙니다.");
-		}
+		};
 	});
 });
 
