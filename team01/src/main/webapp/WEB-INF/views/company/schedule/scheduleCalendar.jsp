@@ -256,9 +256,7 @@ $(function(){
 					$("#modal-scheduleModifyModal").trigger("click");
 				};
 			});
-			
 		}
-
 	});
 
 
