@@ -1,5 +1,6 @@
 package com.kh.ex01.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -93,9 +95,26 @@ public class UserController {
 		return "/user/orderList2";
 	}
 	
-	@RequestMapping(value = "/orderContent", method = RequestMethod.GET)
-	public String orderContent() {
+	@RequestMapping(value = "/goOrderContent", method = RequestMethod.GET)
+	public String goOrderContent() {
 		return "/user/orderContent";
+	}
+	
+	@RequestMapping(value = "/orderContent", method = RequestMethod.POST)
+	@ResponseBody
+	public List<UserBasketVo> orderContent(@RequestParam(value="orderList[]") List<String> orderList,
+			HttpSession httpSession) {
+		//System.out.println("orderContent, orderList: "+orderList);
+		if (orderList != null) {
+			List<UserBasketVo> list = new ArrayList<>();
+			for (String order_code : orderList) {
+				UserBasketVo userBasketVo = orderProductService.getBasket(order_code);
+				list.add(userBasketVo);
+				httpSession.setAttribute("list", list);
+			}
+			return list;
+		} 
+		return null;
 	}
 	
 	@RequestMapping(value = "/orderResult", method = RequestMethod.GET)

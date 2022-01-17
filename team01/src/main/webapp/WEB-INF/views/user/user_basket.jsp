@@ -10,6 +10,43 @@
 	<script type="text/javascript" src="/js/10-11.js"></script>  
 </head>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
+<script>
+$(function() {
+	$(".check").click(function() {
+		if ($(this).is(':checked')) {
+			var userBasketVo = $(this).val();
+			console.log(".check, userBasketVo: "+userBasketVo);
+		}
+	});
+	
+	$("#btnSelectedOrder").click(function() {
+		var checkeds = $(".check:checked");
+		console.log(checkeds);
+		var orderList = [];
+		
+		$.each(checkeds, function(i) {
+			var order_code = $(this).val();
+			orderList[i] = order_code;
+		});
+		
+		$.ajax({
+			  url : "/user/orderContent",
+			  type : "post",
+			  data : {
+				 orderList : orderList
+			  },
+			  success : function(rData){
+			  	console.log("rData: "+rData);
+			  	if (rData != null) {
+			  		location.href = "/user/goOrderContent";
+			  	}
+			  	
+			  }
+		});
+		
+	});
+});
+</script>
 <br>
 <br>
 <form name="orderform" id="orderform" method="post" class="orderform"
@@ -39,7 +76,7 @@
 			<div class="row data">
 				<div class="subdiv">
 					<div class="check">
-						<input type="checkbox" name="buy" value="260" checked="checked"
+						<input type="checkbox" class="check" name="buy" value="${userBasketVo.order_code}" checked="checked"
 							onclick="javascript:basket.checkItem();">&nbsp;
 					</div>
 					<div class="img">
@@ -52,20 +89,22 @@
 				<div class="subdiv">
 					<div class="basketprice">
 						<input type="hidden" name="p_price" id="p_price1" class="p_price"
-							value="${userBasketVo.shoes_price}">$ ${userBasketVo.shoes_price}
+							value="${userBasketVo.shoes_price}">${userBasketVo.shoes_price}원
 					</div>
 					<div class="num">
 						<div class="updown">
 							<input type="text" name="p_num${loop.count}" id="p_num${loop.count}" size="2"
-								maxlength="4" class="p_num" value="1"
-								onkeyup="javascript:basket.changePNum(${loop.count});"> <span
-								onclick="javascript:basket.changePNum(${loop.count});"><i
-								class="fas fa-arrow-alt-circle-up up"></i></span> <span
-								onclick="javascript:basket.changePNum(${loop.count});"><i
-								class="fas fa-arrow-alt-circle-down down"></i></span>
+								maxlength="4" class="p_num" value="${userBasketVo.order_count}"
+								onkeyup="javascript:basket.changePNum(${loop.count});"> 
+							<span onclick="javascript:basket.changePNum(${loop.count});">
+								<i class="fas fa-arrow-alt-circle-up up"></i>
+							</span> 
+							<span onclick="javascript:basket.changePNum(${loop.count});">
+								<i class="fas fa-arrow-alt-circle-down down"></i>
+							</span>
 						</div>
 					</div>
-					<div class="sum">${userBasketVo.shoes_price}</div>
+					<div class="sum">${userBasketVo.shoes_price}원</div>
 				</div>
 				<div class="subdiv">
 					<div class="basketcmd">
@@ -86,13 +125,13 @@
 	</div>
 
 	<div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: 4개</div>
-	<div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액:
-		74,200</div>
+	<div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액: 74,200원</div>
 
 	<div id="goorder" class="">
 		<div class="clear"></div>
 		<div class="buttongroup center-align cmd">
-			<a href="javascript:void(0);">선택한 상품 주문</a>
+<!-- 			<a href="javascript:void(0);">선택한 상품 주문</a> -->
+			<button type="button" id="btnSelectedOrder">선택한 상품 주문</button>
 		</div>
 	</div>
 </form>
