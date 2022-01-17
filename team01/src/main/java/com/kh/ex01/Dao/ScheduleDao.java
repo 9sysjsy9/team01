@@ -30,14 +30,24 @@ public class ScheduleDao {
 		
 	}
 	
+	public ScheduleVo getDateScheduleData(int sno) {
+		ScheduleVo scheduleVo = sqlSession.selectOne(NAMESPACE + "getDateScheduleData", sno);
+		return scheduleVo;
+	}
+	
 	public void scheduleRegistRun(ScheduleVo scheduleVo) {
-		sqlSession.selectList(NAMESPACE + "scheduleRegistRun" , scheduleVo);
+		sqlSession.insert(NAMESPACE + "scheduleRegistRun" , scheduleVo);
+	}
+	
+	public void scheduleModifyRun(ScheduleVo scheduleVo) {
+		sqlSession.update(NAMESPACE + "scheduleModifyRun", scheduleVo);
 	}
 	
 	public void scheduleDeleteRun(int sno) {
 		System.out.println("ScheduleDao, scheduleDeleteRun, sno :" + sno);
 		sqlSession.delete(NAMESPACE + "scheduleDeleteRun", sno);
 	}
+	
 	
 
 }

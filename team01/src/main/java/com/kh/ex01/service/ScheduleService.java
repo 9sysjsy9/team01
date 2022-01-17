@@ -25,8 +25,17 @@ public class ScheduleService {
 		return list;
 	}
 	
+	public ScheduleVo getDateScheduleData(int sno) {
+		ScheduleVo scheduleVo = scheduleDao.getDateScheduleData(sno);
+		return scheduleVo;
+	}
+	
 	public void scheduleRegistRun(ScheduleVo scheduleVo) {
 		scheduleDao.scheduleRegistRun(scheduleVo);
+	}
+	
+	public void scheduleModifyRun(ScheduleVo scheduleVo) {
+		scheduleDao.scheduleModifyRun(scheduleVo);
 	}
 	
 	public void scheduleDeleteRun(int sno) {

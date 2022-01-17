@@ -12,6 +12,7 @@ $(function() {
 	//멤버 이름 버튼 > 멤버 정보 모달 표시 시작
 	
 	$("*").on("click",".btnUsername",function(e){
+// 	$(".btnUsername").click(function(e){
 		e.preventDefault();
 		console.log("클릭됨");
 		console.log($(this).attr("data-userid"));
