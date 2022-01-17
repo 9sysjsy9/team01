@@ -137,7 +137,7 @@
 							<div class="text-center">
 								<a class="btn btn-outline-dark mt-auto"
 									href="/product/product_detail?shoes_code=${productVo.shoes_code}">정보보기</a>
-								<a class="btn btn-outline-dark mt-auto" href="#">장바구니</a>
+								<a class="btn btn-outline-dark mt-auto" href="/user/user_basket">장바구니</a>
 							</div>
 						</div>
 					</div>

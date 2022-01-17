@@ -3,7 +3,7 @@ package com.kh.ex01.vo;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class OrderProductVo {
+public class UserBasketVo {
 
 	private String order_code;
 	private String order_shoescode;
@@ -64,10 +64,11 @@ public class OrderProductVo {
 	}
 	@Override
 	public String toString() {
-		return "OrderProductVo [order_code=" + order_code + ", order_shoescode=" + order_shoescode + ", order_regdate="
+		return "UserBasketVo [order_code=" + order_code + ", order_shoescode=" + order_shoescode + ", order_regdate="
 				+ order_regdate + ", user_id=" + user_id + ", order_count=" + order_count + ", shoes_price="
 				+ shoes_price + ", shoes_name=" + shoes_name + ", shoes_image=" + shoes_image + "]";
 	}
+	
 	
 
 }

@@ -52,6 +52,16 @@ public class MemberService {
 		memberDao.myDataModifyRun(memberVo);
 	}
 	
+
+	public List<MemberVo> listMember() {
+		return memberDao.listMember();
+	}
+	
+	public List<MemberVo> searchDepartment(String department) {
+		List<MemberVo> list = memberDao.searchDepartment(department);
+		return list;
+	}
+
 	public List<MemberVo> memberManageList() {
 		List<MemberVo> list = memberDao.memberManageList();
 		return list;

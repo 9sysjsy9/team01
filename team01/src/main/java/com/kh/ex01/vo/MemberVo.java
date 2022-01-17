@@ -18,6 +18,11 @@ public class MemberVo {
 	private Timestamp regdate; 	// TIMESTAMP(6) Yes sysdate 가입일
 	private Timestamp udpatedate; // TIMESTAMP(6) Yes 회원정보 수정일
 	private String profileimg;
+	
+	private String en; //사원검색시에
+	
+	
+	
 
 	public MemberVo() {
 		super();

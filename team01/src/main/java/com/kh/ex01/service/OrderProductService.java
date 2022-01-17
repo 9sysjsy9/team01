@@ -11,6 +11,7 @@ import com.kh.ex01.Dao.OrderProductDao;
 import com.kh.ex01.vo.AskProductVo;
 import com.kh.ex01.vo.OrderProductVo;
 import com.kh.ex01.vo.PagingDto;
+import com.kh.ex01.vo.UserBasketVo;
 
 @Service
 public class OrderProductService {
@@ -19,6 +20,11 @@ public class OrderProductService {
 	
 	public List<OrderProductVo> selectOrder(String order_shoescode) {
 		List<OrderProductVo> list = orderProductDao.selectOrder(order_shoescode);
+		return list;
+	}
+	
+	public List<UserBasketVo> selectBasket(String order_shoescode) {
+		List<UserBasketVo> list = orderProductDao.selectBasket(order_shoescode);
 		return list;
 	}
 	
