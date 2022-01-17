@@ -63,38 +63,45 @@
 </select>
 
 <!-- 검색 조건 -->
-<select id="listmember" resultType="MemberVo">
-	select * from tbl_member
-	WHERE department = #{department} AND position = #{position} AND username = #{username} AND eno = #{eno}
+<!-- <select id="listmember" resultType="MemberVo"> -->
+<!-- 	select * from tbl_member -->
+<!-- 	WHERE department = #{department} AND position = #{position} AND username = #{username} AND eno = #{eno} -->
 	
-		<choose>
-			<when test='#{department} != "전체"'>
-				department = #{department}
-			</when>
-			<when test='#{department} == "전체"'>
-				department != #{department}
-			</when>
-		</choose>
+<!-- 		<choose> -->
+<!-- 			<when test='#{department} != "전체"'> -->
+<!-- 				department = #{department} -->
+<!-- 			</when> -->
+<!-- 			<when test='#{department} == "전체"'> -->
+<!-- 				department != #{department} -->
+<!-- 			</when> -->
+<!-- 		</choose> -->
 
-		<choose>
-			<when test='#{position} != "전체"'>
-				AND position = #{position}
-			</when>
-			<when test='#{position} == "전체"'>
-				AND position != #{position}
-			</when>
-		</choose>
+<!-- 		<choose> -->
+<!-- 			<when test='#{position} != "전체"'> -->
+<!-- 				AND position = #{position} -->
+<!-- 			</when> -->
+<!-- 			<when test='#{position} == "전체"'> -->
+<!-- 				AND position != #{position} -->
+<!-- 			</when> -->
+<!-- 		</choose> -->
 		
-		<choose>
-			<when test='#{en} == "n"'>
-				AND username = #{keyword}
-			</when>
-			<when test='#{en} == "e"'>
-				AND eno = #{keyword}
-			</when>
-		</choose>
-		
+<!-- 		<choose> -->
+<!-- 			<when test='#{en} == "이름"'> -->
+<!-- 				AND username = #{keyword} -->
+<!-- 			</when> -->
+<!-- 			<when test='#{en} == "사번"'> -->
+<!-- 				AND eno = #{keyword} -->
+<!-- 			</when> -->
+<!-- 		</choose> -->
+<!-- </select> -->
 
+<!-- 인사부검색 -->
+<select id="searchDepartment" resultType="memberVo">
+	select * from tbl_member
+	where department = #{department}
+	order by regdate desc
 </select>
+
+
 
 </mapper>

@@ -63,4 +63,9 @@ public class MemberDao {
 		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "listmember");
 		return list;
 	}
+	
+	public List<MemberVo> searchDepartment(String department){
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "searchDepartment",department);
+		return list;
+	}
 }

@@ -56,4 +56,9 @@ public class MemberService {
 		return memberDao.listMember();
 	}
 	
+	public List<MemberVo> searchDepartment(String department) {
+		List<MemberVo> list = memberDao.searchDepartment(department);
+		return list;
+	}
+	
 }

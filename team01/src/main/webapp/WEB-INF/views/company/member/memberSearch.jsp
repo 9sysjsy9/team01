@@ -14,6 +14,11 @@ $(function(){
 		console.log("타입" + searchType3);
 		console.log("키" + keyword);
 	});
+	$(".btn").click(function() {
+		var department = $(this).val();
+		console.log("부서:" + department);
+		location.href = "/member/company/search_department?department=" + department;
+	});
 });
 </script>
 <style>
@@ -35,8 +40,13 @@ $(function(){
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
+				<div style="text-align: center; margin-bottom: 30px;margin-top: 30px;">
+					<button class="btn btn-outline-dark flex-shrink-0" type="button" value="인사부">인사부</button>
+					<button class="btn btn-outline-dark flex-shrink-0" type="button" value="영업부">영업부</button>
+					<button class="btn btn-outline-dark flex-shrink-0" type="button" value="품질관리부">품질관리부</button>
+					<button class="btn btn-outline-dark flex-shrink-0" type="button" value="감사부">감사부</button>
+				</div>
 				<div>
-				
 					<select name="department" id="searchType1">
 						<option selected value="전체">부서</option>
 						<option value="인사부">인사부</option>
@@ -45,7 +55,7 @@ $(function(){
 						<option value="감사부">감사부</option>
 					</select> 
 					
-					<select name="position" id="searchType3">
+					<select name="position" id="searchType2">
 						<option selected value="전체">직책</option>
 						<option value="사원">사원</option>
 						<option value="대리">대리</option>
@@ -53,9 +63,10 @@ $(function(){
 						<option value="부장">부장</option>
 					</select> 
 					
-					<select name="en" id="searchType2">
-						<option value="e">사번</option>
-						<option value="n">이름</option>
+					<select name="en" id="searchType3">
+						<option selected value="전체">전체</option>
+						<option value="사번">사번</option>
+						<option value="이름">이름</option>
 					</select>
 
 					<input type="text" name="keyword" id="keyword" placeholder="검색어 입력">
@@ -89,6 +100,7 @@ $(function(){
 						</c:forEach>
 					</tbody>
 				</table>
+				
 			</div>
 			<div class="col-md-3"></div>
 		</div>

@@ -196,13 +196,15 @@ public class MemberController {
 	public String listMember(Model model) {
 		List<MemberVo> list = memberService.listMember();
 		model.addAttribute("list", list);
-		System.out.println("list:"  + list);
 		return "/company/member/memberSearch";
 	}
 	
-	@RequestMapping(value="/company/search_test", method=RequestMethod.GET)
-	public void searchTest() {
-		
+	// 부서별 사원 검색
+	@RequestMapping(value="/company/search_department", method=RequestMethod.GET)
+	public String searchDepartment(Model model, String department) {
+		List<MemberVo> list = memberService.searchDepartment(department);
+		model.addAttribute("list", list);
+		return "/company/member/memberSearch";
 	}
 	
 }
