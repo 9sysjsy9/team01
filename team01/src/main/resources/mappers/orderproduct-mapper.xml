@@ -16,16 +16,40 @@
 		and c.user_id = #{user_id}
 		and a.shoes_code = b.order_shoescode
 	</select>
+	
 	<select id="selectBasket" resultType="UserBasketVo">
-		select b.order_code, b.order_shoescode, b.user_id, b.order_regdate, b.order_count, a.shoes_price, a.shoes_name, a.shoes_image
-		from tbl_shoes a, tbl_orderproduct b, tbl_user c
-		where b.user_id = c.user_id
-		and c.user_id = #{user_id}
-		and a.shoes_code = b.order_shoescode
+		select b.order_code, b.order_shoescode, b.user_id, b.order_regdate, c.order_count, a.shoes_price, a.shoes_name, a.shoes_image
+		from tbl_shoes a, tbl_orderproduct b, tbl_basket c, tbl_user d
+		where a.shoes_code = b.order_shoescode
+		and b.order_code = c.order_code
+        and b.user_id = d.user_id
+        and d.user_id = #{user_id}
+	</select>
+	
+	<select id="getBasket" resultType="UserBasketVo">
+		select b.order_code, b.order_shoescode, b.user_id, b.order_regdate, c.order_count, a.shoes_price, a.shoes_name, a.shoes_image
+		from tbl_shoes a, tbl_orderproduct b, tbl_basket c
+		where a.shoes_code = b.order_shoescode
+		and b.order_code = c.order_code
+		and c.order_code = #{order_code} 
 	</select>
 
 	<insert id="insertOrderProduct">
 		insert into tbl_orderproduct(order_code, order_shoescode, user_id, order_count)
 		values(seq_ordercode.nextval, #{order_shoescode}, #{user_id}, #{order_count})
 	</insert>
+	
+	<update id="changeBasketCount">
+		update tbl_basket
+		set order_count = #{order_count}
+		where order_code = #{order_code}
+	</update>
+	
+	<select id="getBasketCount" resultType="int">
+		select order_count 
+		from tbl_basket
+		where order_code = #{order_code}
+	</select>
+	
+	
 </mapper>

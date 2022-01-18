@@ -27,8 +27,22 @@ public class OrderProductDao {
 		return list;
 	}
 	
+	public UserBasketVo getBasket(String order_code) {
+		UserBasketVo userBasketVo = sqlSession.selectOne(NAMESAPCE+"getBasket", order_code);
+		return userBasketVo;
+	}
+	
 	public void insertOrderProduct(OrderProductVo orderProductVo) {
 		sqlSession.insert(NAMESAPCE+"insertOrderProduct", orderProductVo);
+	}
+	
+	public void changeBasketCount(UserBasketVo userBasketVo) {
+		sqlSession.update(NAMESAPCE+"changeBasketCount", userBasketVo);
+	}
+	
+	public int getBasketCount(String order_code) {
+		int order_count = sqlSession.selectOne(NAMESAPCE+"getBasketCount", order_code);
+		return order_count;
 	}
 	
 }

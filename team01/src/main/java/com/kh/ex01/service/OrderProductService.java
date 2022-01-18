@@ -32,4 +32,19 @@ public class OrderProductService {
 		orderProductDao.insertOrderProduct(orderProductVo);
 	}
 	
+	public UserBasketVo getBasket(String order_code) {
+		UserBasketVo userBasketVo = orderProductDao.getBasket(order_code);
+		return userBasketVo;
+	}
+	
+	public void changeBasketCount(UserBasketVo userBasketVo) {
+		orderProductDao.changeBasketCount(userBasketVo);
+	}
+	
+	public int getBasketCount(String order_code) {
+		int order_count = orderProductDao.getBasketCount(order_code);
+		return order_count;
+	}
+	
+	
 }
