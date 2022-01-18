@@ -3,10 +3,25 @@
 
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%>
+
+${noticePagingDto}
 <script>
 $(function(){
 	$("#noticeRegistForm").click(function(e){
 		location.href = "/company/board/notice/notice_regist";
+	});
+	
+	$(".aTitle").click(function(e){
+		e.preventDefault();
+		var bno = $(this).attr("href");
+		location.href = "/company/board/notice/notice_content/"+bno;
+	});
+	
+	$(".page-link").click(function(e){
+		e.preventDefault();
+		var page = $(this).attr("href");
+		location.href = "/company/board/notice/notice_list?page="+page;
 	});
 	
 });
@@ -41,13 +56,15 @@ $(function(){
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="table">
-									<td>1</td>
-									<td>공지사항 제목 입니다.</td>
-									<td>김갑수</td>
-									<td>2010/09/10</td>
-									<td>10</td>
+								<c:forEach items="${noticeList}" var="list">
+								<tr>
+									<td>${list.bno}</td>
+									<td><a class="aTitle" href="${list.bno}" type="button">${list.title}</a></td>
+									<td style="cursor: pointer" class="btnUsername" data-userid="${list.userid}" >${list.username}</td>
+									<td>${list.regdate}</td>
+									<td>${list.viewcnt}</td>
 								</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 							<div style="text-align:right">
@@ -56,13 +73,71 @@ $(function(){
 								</c:if>
 							</div>
 					</div>
-
 					
-					<div class="col-md-2">
-					</div>
+					<div class="col-md-2"></div>
+					
+<!-- 페이징 시작 -->
+	<div class="row">
+		<div class="col-md-12">
+			<nav class="pagination-sm">
+				<ul class="pagination justify-content-center">
+				
+				
+					<li class="page-item">
+						<c:if test="${noticePagingDto.startPage != 1}">
+							<a class="page-link" href="${noticePagingDto.startPage - 1}">이전</a>
+						</c:if>
+					</li>
+					
+					<c:forEach var="page" begin="${noticePagingDto.startPage}" end="${noticePagingDto.endPage}">
+					
+						<li 
+							<c:choose>
+								<c:when test="${noticePagingDto.page == page}">
+									class="page-item active"
+								</c:when>
+								<c:otherwise>
+									class="page-item"
+								</c:otherwise>
+							</c:choose>
+						>
+								<a class="page-link" href="${page}">${page}</a>
+							</li>
+							
+					</c:forEach>
+					
+					<li class="page-item">
+						<c:if test="${noticePagingDto.endPage != noticePagingDto.totalPage}">
+							<a class="page-link" href="${noticePagingDto.endPage + 1}">다음</a>
+						</c:if>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+	</div>
+<!-- 페이징 끝 -->
+
+<!-- 검색 시작 -->
+<div class="row">
+<div class="col-md-2"></div>
+	<div class="col-md-8" >
+		<form class="form-inline justify-content-center">
+			<select class="form-control mr-sm-2" name="searchType">
+				<option value="tc">제목+내용</option>
+				<option value="t">제목</option>
+				<option value="c">내용</option>
+				<option value="u">작성자</option>
+			</select>
+			<input class="form-control mr-sm-2" type="text" placeholder="검색어">
+			<button class="form-control my-2 my-sm-0 btn btn-outline-secondary flex-shrink-0 " type="submit">검색</button>
+		</form>
+	</div>
+<div class="col-md-2"></div>
+</div>
+<!-- 검색 끝-->
+					
 				</div>
-
-
 			</div>
 		</div>
 	</div>

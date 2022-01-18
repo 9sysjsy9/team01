@@ -11,7 +11,8 @@ public class PagingDto {
 	private int perPage =10; 
 	private String searchType ="t"; 
 	private String keyword; 
-	
+
+	//검색종류,키워드,현재페이지
 
 	public PagingDto() {
 		super();

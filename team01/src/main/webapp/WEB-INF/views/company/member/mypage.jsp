@@ -127,7 +127,16 @@ $(function(){
 						</tr>
 						<tr>
 							<td>성별</td>
-							<td>${memberData.gender}</td>
+							<td>
+								<c:choose>
+									<c:when test="${memberData.gender == 'f'}">
+										여
+									</c:when>
+									<c:when test="${memberData.gender == 'm'}">
+										남
+									</c:when>
+								</c:choose>
+							</td>
 						</tr>
 						<tr>
 							<td>전화번호</td>
