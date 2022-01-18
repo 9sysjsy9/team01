@@ -43,6 +43,15 @@ public class HireDao {
 		return list;
 	}
 	
+	public HireBoardVo getHireBoard(int bno) {
+		HireBoardVo hireBoardVo = sqlSession.selectOne(NAMESPACE + "getHireBoard",bno);
+		return hireBoardVo;
+	}
+	
+	public void deleteHireBoard(int bno) {
+		sqlSession.delete(NAMESPACE + "deleteHireBoard", bno);
+	}
+	
 	public int getCount() {
 		int count = sqlSession.selectOne(NAMESPACE+"getCount");
 		return count;

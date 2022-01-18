@@ -69,7 +69,6 @@ public class MemberService {
 	
 	public List<MemberVo> searchMember(MemberVo memberVo){
 		List<MemberVo> list = memberDao.searchMember(memberVo);
-		System.out.println("서비스:" + memberVo);
 		return list;
 	}
 	

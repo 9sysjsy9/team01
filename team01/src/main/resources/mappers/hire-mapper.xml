@@ -32,6 +32,16 @@
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	
+	<select id="getHireBoard" resultType="HireBoardVo">
+		select * from tbl_hireboard
+		where bno = #{bno}
+	</select>
+	
+	<delete id="deleteHireBoard">
+		delete from tbl_hireboard
+		where bno = #{bno}
+	</delete>
+	
 	<select id="getCount" resultType="int">
 		select count(*) from tbl_hireboard
 	</select>

@@ -18,7 +18,6 @@
 		where bno = #{bno}
 	</select>
 	
-	
 	<select id="getCount" resultType="int">
 		select count(*) from tbl_board
 	</select>
@@ -75,9 +74,10 @@
 		values(seq_bno.nextval, 'A', #{title}, #{content}, #{userid}, sysdate, #{username})
 	</insert>
 	
+<!-- 채용공고등록 -->	
 	<insert id="insertHireBoard">
-		insert into tbl_hireboard(bno, cate, title, content, writer)
-		values(seq_bno.nextval, #{cate}, #{title}, #{content}, '관리자')
+		insert into tbl_hireboard(bno, cate, title, content, regdate, writer)
+		values(seq_bno.nextval, #{cate}, #{title}, #{content}, sysdate, '관리자')
 	</insert>
 	
 </mapper>

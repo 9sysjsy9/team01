@@ -18,10 +18,18 @@ $(function() {
 			location.href = "/company/hire/regist_board";
 		}
 	});
+	$("#btnDelete").click(function(){
+		var authority = ${loginData.authority };
+		if(authority != 3){
+			alert("권한이 없습니다.");
+		} else {
+			location.href = "/hire/company/companyHire_all";
+		}
+	});
 });
 </script>
 <style>
-.btnRegist {
+.btnDR {
 	text-align: right;
 	margin-top: 30px;
 	margin-bottom: 30px;
@@ -30,6 +38,7 @@ $(function() {
 	margin-top: 100px;
 }
 </style>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-3"></div>
@@ -37,7 +46,8 @@ $(function() {
 			<div class="list">
 				<h1 class="font-weight-light" style="margin-left: 50px;">지원자리스트</h1>
 			</div>
-			<div class="btnRegist">
+			<div class="btnDR">
+				<a class="btn btn-outline-danger flex-shrink-0" id="btnDelete">채용공고삭제</a>
 				<a class="btn btn-outline-dark flex-shrink-0" id="btnRegist">채용공고 등록</a>
 			</div>
 			<table class="table">
