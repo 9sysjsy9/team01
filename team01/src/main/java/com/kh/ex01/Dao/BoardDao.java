@@ -77,9 +77,16 @@ public class BoardDao {
 	}
 	
 //-----------------------공지 게시판-----------------------
+	
+	//글 시퀀스 얻기
+	public int getBnoSeq() {
+		int bno = sqlSession.selectOne(NAMESPACE + "getBnoSeq");
+		return bno;
+	}
+	
 	//공지 글 개수
-	public int getNoticeCount() {
-		int count = sqlSession.selectOne(NAMESPACE + "getNoticeCount");
+	public int getNoticeCount(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE + "getNoticeCount", pagingDto);
 		return count;
 	}
 	

@@ -3,9 +3,22 @@
 
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/company/board/pagingForm.jsp"%>
 <!-- http://localhost/company/board/notice/notice_regist -->
 <script>
 $(function(){
+	
+	$(".noticeListBtn").click(function(e){
+		e.preventDefault();
+		var bno = $(this).attr("href");
+		$("#pagingForm").attr("action","/company/board/notice/notice_list");
+		$("#pagingForm > input[name=page]").val("${noticePagingDto.page}");
+		$("#pagingForm > input[name=searchType]").val("${noticePagingDto.searchType}");
+		$("#pagingForm > input[name=keyword]").val("${noticePagingDto.keyword}");
+		$("#pagingForm").submit();
+	});
+	
+	
 	$(".noticeRegistRunBtn").click(function(e){
 		e.preventDefault();
 		$("#noticeRegistForm").submit();
@@ -56,6 +69,7 @@ $(function(){
 							</tbody>
 						</table>
 							<div style="text-align:right">
+									<button type='button' class='noticeListBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>목록</button>
 								<c:if test="${loginData.authority == 3}">
 									<button type='button' class='noticeRegistRunBtn btn btn-outline-primary flex-shrink-0 btn-sm'>게시</button>
 								</c:if>

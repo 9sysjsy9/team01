@@ -3,20 +3,27 @@
 
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/company/board/pagingForm.jsp"%>
 <!-- http://localhost/company/board/notice/notice_regist -->
 <script>
 $(function(){
-	$(".noticeRegistRunBtn").click(function(e){
+	$(".noticeModifyRunBtn").click(function(e){
 		e.preventDefault();
 		$("#noticeModifyForm").submit();
 		console.log("수정 완료 버튼 클릭");
 	});
 	
 	//목록 버튼
-	$(".noticeListBtn").click(function(e){
-		console.log("목록 버튼 클릭")
+	$(".noticeCancelBtn").click(function(e){
+		console.log("취소 버튼 클릭")
 		e.preventDefault();
-		location.href = "/company/board/notice/notice_list";
+// 		location.href = "/company/board/notice/notice_list";
+		$("#pagingForm").attr("action","/company/board/notice/notice_content");
+		$("#pagingForm > input[name=bno]").val("${noticeContent.bno}");
+		$("#pagingForm > input[name=page]").val("${noticePagingDto.page}");
+		$("#pagingForm > input[name=searchType]").val("${noticePagingDto.searchType}");
+		$("#pagingForm > input[name=keyword]").val("${noticePagingDto.keyword}");
+		$("#pagingForm").submit();
 	});
 	
 });
@@ -67,10 +74,10 @@ $(function(){
 							</tbody>
 						</table>
 							<div style="text-align:right">
-									<button type='button' class='noticeListBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>목록</button>
+									<button type='button' class='noticeCancelBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>취소</button>
 								<c:if test="${loginData.authority == 3}">
 								
-									<button type='button' class='noticeRegistRunBtn btn btn-outline-warning flex-shrink-0 btn-sm'>수정 완료</button>
+									<button type='button' class='noticeModifyRunBtn btn btn-outline-warning flex-shrink-0 btn-sm'>수정 완료</button>
 								</c:if>
 							</div>
 </form>
