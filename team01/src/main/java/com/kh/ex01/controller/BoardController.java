@@ -154,5 +154,128 @@ public class BoardController {
 		return "redirect:/company/board/notice/notice_list";
 	}
 	
+	// 익명게시판 목록
+	@RequestMapping(value = "/board/anonymous/anonymous_list", method = RequestMethod.GET)
+	 public String anonymousList(Model model,PagingDto pagingDto) {
+		 pagingDto.setCount(boardService.getCount_a());
+		 pagingDto.setPage(pagingDto.getPage());
+		 List<BoardVo> list = boardService.anonymousList(pagingDto);
+		 model.addAttribute("list",list);
+		 model.addAttribute("pagingDto", pagingDto);
+		 return "/company/board/anonymous/anonymous_list";
+	 }
 	
+	// 익명게시판 등록
+	@RequestMapping(value = "/board/anonymous/anonymous_regist", method = RequestMethod.GET)
+	public String anonymousRegist() {
+		return "/company/board/anonymous/anonymous_regist";
+	}
+	
+	// 익명게시판 글 상세보기
+	@RequestMapping(value = "/board/anonymous/anonymous_content", method = RequestMethod.GET)
+	 public String anonymousRegistBoard(Model model, int bno) {
+		 BoardVo boardVo = boardService.getBoard(bno);
+		 BoardVo boardMoveVo = boardService.menuMove(bno); // 게시글 이동
+		 List<CommentVo> list = commentService.commentList(bno); // 덧글 리스트
+		 model.addAttribute("boardMoveVo",boardMoveVo);
+		 model.addAttribute("boardVo",boardVo);
+		 model.addAttribute("list",list);
+		 System.out.println("FreeBC, list : " + list);
+		 return "/company/board/anonymous/anonymous_content";
+	 }
+	
+	// 익명게시판 글추가
+	@RequestMapping(value="/board/anonymous/regist_run", method=RequestMethod.GET)
+	public String anonymousBoardRegistRun(BoardVo boardVo) {
+		System.out.println("BoardController, boardRegistRun, boardVo:" + boardVo);
+		boardService.insertAnonymousBoard(boardVo);
+		return "redirect:/company/board/anonymous/anonymous_list";
+	}
+	
+	// 익명게시판 글 삭제
+	@RequestMapping(value="/board/anonymous/anonymous_delete", method=RequestMethod.GET)
+	public String anonymousDeleteBoard(int bno) {
+		commentService.deleteCommentBoard(bno);
+		boardService.deleteBoard(bno);
+		return "redirect:/company/board/anonymous/anonymous_list";
+	}
+	
+	// 익명게시판 글 수정 
+	@RequestMapping(value="/board/anonymous/anonymous_modify_run", method=RequestMethod.GET)
+	public String anonymousModifyBoard(BoardVo boardVo) {
+		boardService.modifyBoard(boardVo);
+		return "redirect:/company/board/anonymous/anonymous_content?bno="+ boardVo.getBno() + 
+				"&title=" + boardVo.getTitle() + "&content=" + boardVo.getContent();
+	}
+	
+	// 익명게시판 글 수정 폼
+	@RequestMapping(value="/board/anonymous/anonymous_modify", method=RequestMethod.GET)
+	public String anonymousSearchByBno(Model model, int bno) {
+		BoardVo boardVo = boardService.getBoard(bno);
+		model.addAttribute("boardVo",boardVo);
+		return "/company/board/anonymous/anonymous_modify";
+	}
+
+	
+	// 자료실 목록
+	@RequestMapping(value = "/board/anonymous/library_list", method = RequestMethod.GET)
+	 public String libraryList(Model model,PagingDto pagingDto) {
+		 pagingDto.setCount(boardService.getCount_a());
+		 pagingDto.setPage(pagingDto.getPage());
+		 List<BoardVo> list = boardService.anonymousList(pagingDto);
+		 model.addAttribute("list",list);
+		 model.addAttribute("pagingDto", pagingDto);
+		 return "/company/board/library/library_list";
+	 }
+	
+	// 자료실 등록
+	@RequestMapping(value = "/board/library/library_regist", method = RequestMethod.GET)
+	public String libraryRegist() {
+		return "/company/board/library/library_regist";
+	}
+	
+	// 자료실 글 상세보기
+	@RequestMapping(value = "/board/library/library_content", method = RequestMethod.GET)
+	 public String libraryRegistBoard(Model model, int bno) {
+		 BoardVo boardVo = boardService.getBoard(bno);
+		 BoardVo boardMoveVo = boardService.menuMove(bno); // 게시글 이동
+		 List<CommentVo> list = commentService.commentList(bno); // 덧글 리스트
+		 model.addAttribute("boardMoveVo",boardMoveVo);
+		 model.addAttribute("boardVo",boardVo);
+		 model.addAttribute("list",list);
+		 System.out.println("FreeBC, list : " + list);
+		 return "/company/board/library/library_content";
+	 }
+	
+	// 자료실 글추가
+	@RequestMapping(value="/board/library/regist_run", method=RequestMethod.GET)
+	public String libraryBoardRegistRun(BoardVo boardVo) {
+		System.out.println("BoardController, boardRegistRun, boardVo:" + boardVo);
+		boardService.insertAnonymousBoard(boardVo);
+		return "redirect:/company/board/library/library_list";
+	}
+	
+	// 자료실 글 삭제
+	@RequestMapping(value="/board/library/library_delete", method=RequestMethod.GET)
+	public String libraryDeleteBoard(int bno) {
+		commentService.deleteCommentBoard(bno);
+		boardService.deleteBoard(bno);
+		return "redirect:/company/board/library/library_list";
+	}
+	
+	// 자료실 글 수정 
+	@RequestMapping(value="/board/library/library_modify_run", method=RequestMethod.GET)
+	public String libraryModifyBoard(BoardVo boardVo) {
+		boardService.modifyBoard(boardVo);
+		return "redirect:/company/board/library/library_content?bno="+ boardVo.getBno() + 
+				"&title=" + boardVo.getTitle() + "&content=" + boardVo.getContent();
+	}
+	
+	// 자료실 글 수정 폼
+	@RequestMapping(value="/board/library/library_modify", method=RequestMethod.GET)
+	public String librarySearchByBno(Model model, int bno) {
+		BoardVo boardVo = boardService.getBoard(bno);
+		model.addAttribute("boardVo",boardVo);
+		return "/company/board/library/library_modify";
+	}
 }
