@@ -18,8 +18,9 @@
 		where bno = #{bno}
 	</select>
 	
-	<select id="getCount" resultType="int">
+	<select id="getCount_f" resultType="int">
 		select count(*) from tbl_board
+		where bcate = 'f'
 	</select>
 	
 	<insert id="insertBoard">
@@ -65,14 +66,19 @@
 	<select id="anonymousList" resultType="BoardVo">
 		select * from
 				(select rownum rnum, a.* from
-				(select * from tbl_board where bcate = 'A' order by bno desc) a) 
+				(select * from tbl_board where bcate = 'a' order by bno desc) a) 
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	
 	<insert id="insertAnonymousBoard">
 		insert into tbl_board(bno, bcate, title, content, userid, regdate, username)
-		values(seq_bno.nextval, 'A', #{title}, #{content}, #{userid}, sysdate, #{username})
+		values(seq_bno.nextval, 'a', #{title}, #{content}, #{userid}, sysdate, #{username})
 	</insert>
+	
+	<select id="getCount_a" resultType="int">
+		select count(*) from tbl_board
+		where bcate = 'a'
+	</select>
 	
 <!-- 채용공고등록 -->	
 	<insert id="insertHireBoard">

@@ -2,24 +2,24 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%> 
-<%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%>
+<%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%> 
 <script>
 $(function(){
 	$("#btnRegist").click(function(){
-		location.href = "/company/board/anonymous/anonymous_regist";
+		location.href = "/company/board/library/library_regist";
 	});
 	
 	$(".title").click(function(e) {
 		e.preventDefault();
 		var bno = $(this).attr("href");
-		location.href = "/company/board/anonymous/anonymous_content?bno="+bno;
+		location.href = "/company/board/library/library_content?bno="+bno;
 	});
 	
 	$(function(){
 		$(".page-link").click(function(e) {
 			e.preventDefault();
 			var page = $(this).attr("href");
-			location.href = "/company/board/anonymous/anonymous_list?page=" + page;
+			location.href = "/company/board/library/library_list?page=" + page;
 		});
 	});
 	
@@ -34,7 +34,7 @@ $(function(){
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 			<!-- 게시판 이름 -->
-			<h1 class="display-5 fw-bolder" id="store">대나무숲</h1></div>
+			<h1 class="display-5 fw-bolder" id="store">자료실</h1></div>
 			<div class="col-md-2"></div>
 			</div>
 				<div class="row">
@@ -55,7 +55,7 @@ $(function(){
 									<tr>
 										<td>${boardVo.bno }</td>
 										<td><a class="title" href="${boardVo.bno}">${boardVo.title}</a></td>
-										<td data-userid="${boardVo.userid}">익명</td>
+										<td style="cursor:pointer" class="btnUsername" data-userid="${boardVo.userid}">${boardVo.username}</td>
 										<td>${boardVo.regdate }</td>
 										<td>${boardVo.viewcnt }</td>
 									</tr>
@@ -75,7 +75,9 @@ $(function(){
 								<li class="page-item">
 									<a class="page-link" href="${pagingDto.startPage - 1}">이전</a>
 								</li>
+
 							</c:if>
+							
 							<c:forEach var="v" begin="${pagingDto.startPage}" 
 											   end="${pagingDto.endPage}">
 							<li 
@@ -91,6 +93,7 @@ $(function(){
 								<a class="page-link" href="${v}">${v}</a>
 							</li>
 							</c:forEach>
+							
 							<c:if test="${pagingDto.endPage < pagingDto.totalPage}">
 								<li class="page-item">
 									<a class="page-link" href="${pagingDto.endPage + 1}">다음</a>
