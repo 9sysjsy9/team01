@@ -8,8 +8,15 @@
 $(function(){
 	$(".noticeRegistRunBtn").click(function(e){
 		e.preventDefault();
-		$("#noticeRegistForm").submit();
-		console.log("게시 버튼 클릭");
+		$("#noticeModifyForm").submit();
+		console.log("수정 완료 버튼 클릭");
+	});
+	
+	//목록 버튼
+	$(".noticeListBtn").click(function(e){
+		console.log("목록 버튼 클릭")
+		e.preventDefault();
+		location.href = "/company/board/notice/notice_list";
 	});
 	
 });
@@ -33,31 +40,37 @@ $(function(){
 
 					<div class="col-md-8">
 					
-<form id="noticeRegistForm" method="POST" action="/company/board/notice/noticeRegistRun">
-					<input type="hidden" name="userid" value="${loginData.userid}">
+<form id="noticeModifyForm" method="POST" action="/company/board/notice/noticeModifyRun">
+<%-- 					<input type="hidden" name="userid" value="${loginData.userid}"> --%>
+					<input type="hidden" name="bno" value="${noticeContent.bno}">
 						<table class="table">
+<!-- 							<thead> -->
+<!-- 								<tr> -->
+<!-- 									<th>제목 -->
+<!-- 									 <input class="form-control" type="text" name="title">  -->
+<!-- 									</th> -->
+<!-- 								</tr> -->
+<!-- 							</thead> -->
 							<tbody>
 								<tr>
 									<td>제목
-									 <input class="form-control" type="text" name="title" placeholder="제목을 입력하세요."> 
+									 <input class="form-control" type="text" name="title" placeholder="제목을 입력하세요." value="${noticeContent.title}"> 
 									</td>
 								</tr>
 								
 								<tr>
 									<td>
 										내용<br>
-										<textarea rows="10" class="form-control" name="content" placeholder="내용을 입력하세요."></textarea>
-									</td>
-								</tr>
-								<tr>
-									<td>첨부파일 : <span></span>
+										<textarea rows="10" class="form-control" name="content" placeholder="내용을 입력하세요.">${noticeContent.content}</textarea>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 							<div style="text-align:right">
+									<button type='button' class='noticeListBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>목록</button>
 								<c:if test="${loginData.authority == 3}">
-									<button type='button' class='noticeRegistRunBtn btn btn-outline-primary flex-shrink-0 btn-sm'>게시</button>
+								
+									<button type='button' class='noticeRegistRunBtn btn btn-outline-warning flex-shrink-0 btn-sm'>수정 완료</button>
 								</c:if>
 							</div>
 </form>

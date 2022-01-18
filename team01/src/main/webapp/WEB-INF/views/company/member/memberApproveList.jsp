@@ -91,7 +91,18 @@ $(function(){
 									<td>${list.eno}</td>
 									<td>${list.userid}</td>
 									<td>${list.username}</td>
-									<td>${list.gender}</td>
+									<td>
+										<c:choose>
+											<c:when test="${list.gender == 'f'}">
+												여
+											</c:when>
+											<c:when test="${list.gender == 'm'}">
+												남
+											</c:when>
+										</c:choose>
+									
+									
+									</td>
 
 									<td>
 										<select class="position" name="position">

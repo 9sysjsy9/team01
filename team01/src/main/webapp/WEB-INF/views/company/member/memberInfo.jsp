@@ -31,7 +31,12 @@ $(function() {
 			console.log(rData);
 			$("#modalUsername").text(rData.username);
 			$("#modalEno").text(rData.eno);
-			$("#modalGender").text(rData.gender);
+			if(rData.gender == 'f'){
+				$("#modalGender").text("여");
+			} else if (rData.gender == 'm'){ 
+				$("#modalGender").text("남");
+			}
+			
 			$("#modalPhone").text(rData.phone);
 			$("#modalPosition").text(rData.position);
 			$("#modalDepartment").text(rData.department);

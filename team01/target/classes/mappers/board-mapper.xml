@@ -80,4 +80,43 @@
 		values(seq_bno.nextval, #{cate}, #{title}, #{content}, sysdate, '관리자')
 	</insert>
 	
+	
+
+<!-- 공지 게시판	 -->
+
+	<!-- 전체 공지 리스트 -->
+	<select id="noticeList" resultType="BoardVo">
+	SELECT B.bno, M.userid AS userid, M.username, B.title, B.content, B.regdate, B.viewcnt, B.bcate, B.cmtcnt
+	FROM ( SELECT rownum rnum, a.* FROM ( SELECT * FROM tbl_board WHERE bcate = 'n' ORDER BY bno DESC) a) B, tbl_member M
+	WHERE rnum between #{startRow} and #{endRow} AND M.userid = B.userid
+	</select>
+	<!-- 공지글 리스트 개수 -->
+	<select id="getNoticeCount" resultType="int">
+		SELECT COUNT(*) FROM tbl_board WHERE bcate = 'n'
+	</select>
+	<!-- 공지 등록 실행 -->
+	<insert id="noticeRegistRun">
+		INSERT INTO tbl_board (bno, bcate, title, content, userid)
+		VALUES (seq_bno.nextval, 'n', #{title}, #{content}, #{userid}) 
+	</insert>
+	<!-- 공지 내용 뷰 -->
+	<select id="noticeContent" resultType="BoardVo">
+		SELECT B.bno, B.bcate, B.title, B.content, B.userid, B.viewcnt, B.re_group, B.re_seq, B.re_level, B.regdate AS regdate, B.updatedate AS updatedate, B.cmtcnt, B.bstate, M.username
+		FROM tbl_board B, tbl_member M
+		WHERE B.bno = #{bno} AND B.userid = M.userid
+	</select>
+	<!-- 공지 삭제 실행 -->
+	<delete id="noticeDeleteRun">
+		DELETE FROM tbl_board
+		WHERE bno = #{bno}
+	</delete>
+	<!-- 공지 내용 수정 -->
+	<update id="noticeModifyRun">
+		UPDATE tbl_board
+		SET content = #{content}, title = #{title}
+		WHERE bno = #{bno}
+	</update>
+	
+	
+	
 </mapper>

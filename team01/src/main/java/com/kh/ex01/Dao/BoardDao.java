@@ -76,4 +76,38 @@ public class BoardDao {
 		sqlSession.insert(NAMESPACE +"insertHireBoard", hireboardVo);
 	}
 	
+//-----------------------공지 게시판-----------------------
+	//공지 글 개수
+	public int getNoticeCount() {
+		int count = sqlSession.selectOne(NAMESPACE + "getNoticeCount");
+		return count;
+	}
+	
+	//공지 목록
+	public List<BoardVo> noticeList(PagingDto pagingDto) {
+		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "noticeList", pagingDto);
+		return list;
+	}
+	
+	//공지게시판 글 작성
+	public void noticeRegistRun (BoardVo boardVo) {
+		sqlSession.insert(NAMESPACE + "noticeRegistRun", boardVo);
+	}
+	
+	
+	//공지 내용
+	public BoardVo noticeContent(int bno) {
+		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "noticeContent", bno);
+		return boardVo;
+	}
+	
+	//공지 삭제
+	public void noticeDeleteRun(int bno) {
+		sqlSession.delete(NAMESPACE + "noticeDeleteRun", bno);
+	}
+	//공지 수정
+	
+	public void noticeModifyRun(BoardVo boardVo) {
+		sqlSession.update(NAMESPACE + "noticeModifyRun", boardVo);
+	}
 }
