@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%>
     
 <link rel="stylesheet"
 	href="/css/calendar.css">
@@ -152,6 +153,11 @@ function renderCalendar(){
 
 //JQuery
 $(function(){
+	
+	var syear  = 0; //조회 및 등록 날짜 데이터
+	var smonth = 0;
+	var sdate = 0;
+	
 	$(".dates").on("click",".date", function(e){
 		
 		var dateVal = $(this).attr("id"); //yyyy_MM_dd
@@ -159,9 +165,9 @@ $(function(){
 		var underIndex1 = dateVal.indexOf("_");
 		var underIndex2 = dateVal.lastIndexOf("_");
 		
-		var syear = dateVal.substring(0,underIndex1);
-		var smonth = dateVal.substring(underIndex1 + 1,underIndex2);
-		var sdate = dateVal.substring(underIndex2 + 1);
+		syear = dateVal.substring(0,underIndex1);
+		smonth = dateVal.substring(underIndex1 + 1,underIndex2);
+		sdate = dateVal.substring(underIndex2 + 1);
 		
 		var url = "/schedule/company/getDateScheduleDataList";
 		var sData = { 
@@ -169,33 +175,108 @@ $(function(){
 				 "smonth" : smonth,
 				 "sdate" : sdate
 		};
-
+		
 		$.post(url, sData, function(rData){
 			 console.log(rData);
 			 $(".contentViewModalTable").empty();
 			 $("#contentViewModalLabel").text(syear+"/"+smonth+"/"+sdate);
 			 for(var i = 0 ; i < rData.length ; i++){
-				 $(".contentViewModalTable").append("<tr><td class='btnUsername table-active' data-userid="+rData[i].userid+">"+ (i+1) +". "+rData[i].username+"</td></tr>");
-				 $(".contentViewModalTable").append("<tr><td>"+rData[i].content+"</td></tr>");
+// 				 $(".contentViewModalTable").append("<tr><td class='btnUsername table-active' data-userid="+rData[i].userid+">"+ (i+1) +". "+rData[i].username+"</td></tr>");
+				 $(".contentViewModalTable").append("<tr><td class='btnUsername table-active' data-userid="+rData[i].userid+" data-dismiss='modal' style='cursor:pointer'>작성자 : "+rData[i].username+"</td></tr>");
+				 $(".contentViewModalTable").append("<tr><td class=''>"+rData[i].content+"</td></tr>");
 				 if(rData[i].userid == "${loginData.userid}"){
 					 	$(".contentViewModalTable").append("<tr><td style='text-align:right' data-sno="+rData[i].sno+">"+ 
-					 			"<button type='button' class='scheduleModifyBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>수정 </button>"+
-					 			"<button type='button' class='schdeuleDeleteBtn btn btn-outline-danger flex-shrink-0 btn-sm'> 삭제</button> </td></tr>");
+					 			"<button type='button' class='scheduleModifyBtn btn btn-outline-warning flex-shrink-0 btn-sm' data-dismiss='modal'>수정 </button>"+
+					 			"<button type='button' class='scheduleDeleteBtn btn btn-outline-danger flex-shrink-0 btn-sm'> 삭제</button> </td></tr>");
 				 };
 
 			 };
 			 $("#modal-contentViewModal").trigger("click");
+			 
+			 //일정 등록 모달 일자 정보 표시
+			 $("#modalRegistDate").text(syear+"/"+smonth+"/"+sdate);
 		});
-
 	});
 
 	
-//일정 등록 버튼
+//일정 추가 버튼
 	$(".scheduleRegistBtn").click(function(){
 		$("#modal-scheduleRegistModal").trigger("click");
+		//내용 작성란 내용 비우기
+		$("#modalRegistContent").val("");
 	});
+	
+	$(".scheduleRegistRunBtn").click(function(){
+		var content = $("#modalRegistContent").val().replace(/(?:\r\n|\r|\n)/g, ' ');
+		var url = "/schedule/company/scheduleRegistRun";
+		var sData = { 
+			"userid" : "${loginData.userid}",
+			"syear" : syear,
+			"smonth" : smonth,
+			"sdate" : sdate,
+			"content" : content
+		};
+		$.post(url, sData, function(rData){
+			console.log(rData);
+			renderCalendar();
+			alert("일정이 추가 되었습니다.");
+		});
+	});
+
 //일정 수정 버튼
+	$(".contentViewModalTable").on("click",".scheduleModifyBtn",function(e){
+		console.log("data-sno : " + $(this).parent().attr("data-sno"));
+		var sno = $(this).parent().attr("data-sno");
+		var url = "/schedule/company/getDateScheduleData/"+sno;
+		$.post(url, function(rData){
+			console.log(rData);
+			$("#modalModifyDate").text(rData.syear+"/"+rData.smonth+"/"+rData.sdate);
+			$("#modalModifyContent").val(rData.content);
+			$(".scheduleModifyRunBtn").attr("data-sno",rData.sno);
+		});
+		
+		$("#modal-scheduleModifyModal").trigger("click");
+	});
+	
+	$(".scheduleModifyRunBtn").click(function(e){
+		var result = confirm("수정 하시겠습니까?");
+		if(result){
+			var url = "/schedule/company/scheduleModifyRun";
+			var content = $("#modalModifyContent").val().replace(/(?:\r\n|\r|\n)/g, ' ');
+			var sData = {
+					"sno" : $(".scheduleModifyRunBtn").attr("data-sno"),
+					"content" : content
+			};
+			
+			$.post(url, sData, function(rData){
+				console.log(rData);
+				if(rData == "success"){
+					alert("수정 되었습니다.");
+					renderCalendar();
+					$("#modal-scheduleModifyModal").trigger("click");
+				};
+			});
+		}
+	});
+
+
 //일정 삭제 버튼
+	$(".contentViewModalTable").on("click",".scheduleDeleteBtn",function(e){
+		console.log("data-sno : " + $(this).parent().attr("data-sno"));
+		var result = confirm("삭제 하시겠습니까?");
+		var sno = $(this).parent().attr("data-sno");
+		if(result){
+			var url = "/schedule/company/scheduleDeleteRun/"+sno;
+			$.post(url, function(rData){
+				if(rData == "success"){
+					alert("삭제 되었습니다.");
+					renderCalendar();
+					$("#modal-contentViewModal").trigger("click");
+				};
+			});
+		};
+	});
+	
 });
 //달력 정보 불러오기 끝
  </script>
@@ -229,7 +310,7 @@ $(function(){
 			</div>
 	</div>
 </div>
-
+<!----------------------------------------------- 모달 태그 리스트 ----------------------------------------------->
 <!-- content 확인 모달 -->
 <div class="container-fluid">
 	<div class="row">
@@ -276,7 +357,7 @@ $(function(){
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			 <a id="modal-scheduleRegistModal" href="#modal-container-scheduleRegistModal" role="button" class="btn" data-toggle="modal" style="display:none">dateModal</a>
+			 <a id="modal-scheduleRegistModal" href="#modal-container-scheduleRegistModal" role="button" class="btn" data-toggle="modal" style="display:none">RegistModal</a>
 			
 			<div class="modal fade" id="modal-container-scheduleRegistModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
@@ -291,18 +372,19 @@ $(function(){
 						</div>
 						
 						<div class="modal-body">
-							<div class="row">
-<!-- 								<div class="col-md-12"> -->
-<!-- 									<table class="table table-bordered"> -->
-<!-- 										<tbody class="contentViewModalTable"> -->
-<!-- 										</tbody> -->
-<!-- 									</table> -->
-<!-- 								</div>						 -->
-							</div>
-						</div>
 						
+						<!--  -->
+							<div class="form-group">
+								<label> 일자  : <span id="modalRegistDate"></span> </label>
+							</div>
+							<div class="form-group">
+								<label> 일정 내용 </label>
+								<textarea id="modalRegistContent" class="form-control" rows="6" placeholder="내용을 입력해주세요." onkeypress="check_enter()"></textarea>
+							</div>
+						<!--  -->
+						</div>
 						<div class="modal-footer">
-							<button type="button" class="scheduleRegistBtn btn btn-outline-primary flex-shrink-0 btn-sm">등록</button> 
+							<button type="button" class="scheduleRegistRunBtn btn btn-outline-primary flex-shrink-0 btn-sm" data-dismiss="modal">등록</button> 
 							<button type="button" class="btn btn-outline-dark flex-shrink-0 btn-sm" data-dismiss="modal">취소</button>
 						</div>
 					</div>
@@ -312,4 +394,46 @@ $(function(){
 	</div>
 </div>
 <!-- /schduleData 추가 끝-->
+
+<!-- schduleData 수정 시작-->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			 <a id="modal-scheduleModifyModal" href="#modal-container-scheduleModifyModal" role="button" class="btn" data-toggle="modal" style="display:none" >ModifyModal</a>
+			
+			<div class="modal fade" id="modal-container-scheduleModifyModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">
+								일정 수정
+							</h5> 
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span>
+							</button><br>
+						</div>
+						
+						<div class="modal-body">
+						
+						<!--  -->
+							<div class="form-group">
+								<label> 일자  : <span id="modalModifyDate"></span> </label>
+							</div>
+							<div class="form-group">
+								<label> 일정 내용 </label>
+								<textarea id="modalModifyContent" class="form-control" rows="6" placeholder="내용을 입력해주세요." onkeypress="check_enter()"></textarea>
+							</div>
+						<!--  -->
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="scheduleModifyRunBtn btn btn-outline-warning flex-shrink-0 btn-sm" data-sno="#">수정</button> 
+							<button type="button" class="btn btn-outline-dark flex-shrink-0 btn-sm" data-dismiss="modal">취소</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /schduleData 수정 끝-->
 <%@ include file="/WEB-INF/views/company/include/footer.jsp"%>

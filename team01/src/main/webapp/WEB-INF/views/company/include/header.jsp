@@ -48,7 +48,7 @@ $(function(){
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/">홈</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="/company/board/notice/notice_list">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/company/search_member">사원찾기</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"

@@ -100,4 +100,14 @@ public class BoardController {
 		boardService.insertHireBoard(hireBoardVo);
 		return "redirect:/hire/company/regist_list";
 	}
+	
+	@RequestMapping(value = "/board/notice/notice_list", method = RequestMethod.GET)
+	public String noticeList() {
+		return "/company/board/notice/notice_list";
+	}
+	
+	@RequestMapping(value = "/board/notice/notice_regist", method = RequestMethod.GET)
+	public String noticeRegist() {
+		return "/company/board/notice/notice_regist";
+	}
 }

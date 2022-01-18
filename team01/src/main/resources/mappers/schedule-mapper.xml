@@ -33,4 +33,26 @@
 	ORDER BY sdate ASC, sno ASC
 </select>
 
+<insert id="scheduleRegistRun">
+	INSERT INTO tbl_schedule (sno, userid, syear, smonth, sdate, authority, content)
+	VALUES(seq_sno.nextval, #{userid}, #{syear}, #{smonth}, #{sdate}, 0, #{content})
+</insert>
+
+<delete id="scheduleDeleteRun">
+	DELETE FROM tbl_schedule
+	WHERE sno = #{sno}
+</delete>
+
+<select id="getDateScheduleData" resultType="ScheduleVo">
+	SELECT S.sno, S.userid, S.syear, S.smonth, S.sdate, S.regdate, S.updatedate, S.authority, S.content, M.username
+	FROM tbl_schedule S, tbl_member M
+	WHERE S.userid = M.userid AND sno = #{sno}
+</select>
+
+<update id="scheduleModifyRun">
+	UPDATE tbl_schedule
+	SET content = #{content}, updatedate = sysdate
+	WHERE sno = #{sno}
+</update>
+
 </mapper>

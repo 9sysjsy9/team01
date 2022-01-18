@@ -28,6 +28,7 @@
 										<td><b>상품번호</b></td>
 										<td><b>상품이름</b></td>
 										<td><b>상품가격</b></td>
+										<td><b>주문갯수</b></td>
 										<td><b>주문날짜</b></td>
 										<td><b>진행상황</b></td>
 									</tr>
@@ -40,6 +41,7 @@
 												<td>${orderProductVo.order_shoescode}</td>
 												<td>${orderProductVo.shoes_name}</td>
 												<td>$ ${orderProductVo.shoes_price}</td>
+												<td>${orderProductVo.order_count}개</td>
 												<td>${orderProductVo.order_regdate}</td>
 											</tr>
 										</c:forEach>
