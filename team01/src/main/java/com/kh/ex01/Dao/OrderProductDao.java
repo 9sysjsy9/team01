@@ -36,4 +36,13 @@ public class OrderProductDao {
 		sqlSession.insert(NAMESAPCE+"insertOrderProduct", orderProductVo);
 	}
 	
+	public void changeBasketCount(UserBasketVo userBasketVo) {
+		sqlSession.update(NAMESAPCE+"changeBasketCount", userBasketVo);
+	}
+	
+	public int getBasketCount(String order_code) {
+		int order_count = sqlSession.selectOne(NAMESAPCE+"getBasketCount", order_code);
+		return order_count;
+	}
+	
 }

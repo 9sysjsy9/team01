@@ -96,7 +96,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/goOrderContent", method = RequestMethod.GET)
-	public String goOrderContent() {
+	public String goOrderContent(UserBasketVo userBasketVo) {
+		System.out.println("goOrderContent, UserBasketVo: "+userBasketVo);
 		return "/user/orderContent";
 	}
 	
@@ -110,6 +111,7 @@ public class UserController {
 			for (String order_code : orderList) {
 				UserBasketVo userBasketVo = orderProductService.getBasket(order_code);
 				list.add(userBasketVo);
+				System.out.println("orderContent, list: "+list);
 				httpSession.setAttribute("list", list);
 			}
 			return list;
@@ -131,6 +133,18 @@ public class UserController {
 			model.addAttribute("list", list);
 		}
 		return "user/user_basket";
+	}
+	
+	@RequestMapping(value = "/changeBasketCount", method = RequestMethod.POST)
+	@ResponseBody
+	public String userBasket(UserBasketVo userBasketVo) {
+		//System.out.println("changeBasketCount, UserBasketVo: "+userBasketVo);
+		orderProductService.changeBasketCount(userBasketVo);
+		int order_count = orderProductService.getBasketCount(userBasketVo.getOrder_code());
+		if (order_count == userBasketVo.getOrder_count()) {
+			return "success";
+		}
+		return "fail";
 	}
 
 	@ResponseBody

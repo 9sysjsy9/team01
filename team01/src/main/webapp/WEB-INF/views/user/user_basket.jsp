@@ -7,7 +7,7 @@
 	<title>이벤트 리스너로 장바구니 수량 변경 및 자동 합계 구하기</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/10-11.css" />
-	<script type="text/javascript" src="/js/10-11.js"></script>  
+<!-- 	<script type="text/javascript" src="/js/10-11.js"></script>   -->
 </head>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <script>
@@ -45,6 +45,39 @@ $(function() {
 		});
 		
 	});
+	
+	$(".up").click(function() {
+		var order_count = $(this).parent().prev().val();
+		var order_code = $(this).attr("data-ordercode");
+		order_count++;
+		$(this).parent().prev().val(order_count);
+		var url = "/user/changeBasketCount";
+		sData = {
+			"order_code" : order_code,
+			"order_count" : order_count
+		};
+		$.post(url, sData, function(rData) {
+			console.log("rData: "+rData);
+		});
+	});
+	
+	$(".down").click(function() {
+		var order_count = $(this).parent().prev().val();
+		var order_code = $(this).attr("data-ordercode");
+		if (order_count > 1) {
+			order_count--;
+		}
+		$(this).parent().prev().val(order_count);
+		var url = "/user/changeBasketCount";
+		sData = {
+			"order_code" : order_code,
+			"order_count" : order_count
+		};
+		$.post(url, sData, function(rData) {
+			console.log("rData: "+rData);
+		});
+	});
+	
 });
 </script>
 <br>
@@ -75,9 +108,15 @@ $(function() {
 		<c:forEach items="${list}" var="userBasketVo" varStatus="loop">
 			<div class="row data">
 				<div class="subdiv">
+					<!-- 				
 					<div class="check">
 						<input type="checkbox" class="check" name="buy" value="${userBasketVo.order_code}" checked="checked"
 							onclick="javascript:basket.checkItem();">&nbsp;
+					</div>
+					-->
+					<div class="check">
+						<input type="checkbox" class="check" name="buy" value="${userBasketVo.order_code}" 
+						checked="checked">&nbsp;
 					</div>
 					<div class="img">
 						<img src="/upload/displayThumbnailImage?fileName=${userBasketVo.shoes_image}">
@@ -92,6 +131,7 @@ $(function() {
 							value="${userBasketVo.shoes_price}">${userBasketVo.shoes_price}원
 					</div>
 					<div class="num">
+						<!-- 						 
 						<div class="updown">
 							<input type="text" name="p_num${loop.count}" id="p_num${loop.count}" size="2"
 								maxlength="4" class="p_num" value="${userBasketVo.order_count}"
@@ -102,6 +142,15 @@ $(function() {
 							<span onclick="javascript:basket.changePNum(${loop.count});">
 								<i class="fas fa-arrow-alt-circle-down down"></i>
 							</span>
+						</div>
+						-->
+						<div class="updown">
+							<input type="text" name="order_count" size="1"
+							 class="order_count" value="${userBasketVo.order_count}"> 
+							<label>
+							<i class="fas fa-arrow-alt-circle-up up" data-ordercode="${userBasketVo.order_code}"></i>
+							<i class="fas fa-arrow-alt-circle-down down" data-ordercode="${userBasketVo.order_code}"></i>
+							</label>
 						</div>
 					</div>
 					<div class="sum">${userBasketVo.shoes_price}원</div>
