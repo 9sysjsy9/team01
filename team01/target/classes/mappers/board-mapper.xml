@@ -18,8 +18,9 @@
 		where bno = #{bno}
 	</select>
 	
-	<select id="getCount" resultType="int">
+	<select id="getCount_f" resultType="int">
 		select count(*) from tbl_board
+		where bcate = 'f'
 	</select>
 	
 	<insert id="insertBoard">
@@ -73,6 +74,11 @@
 		insert into tbl_board(bno, bcate, title, content, userid, regdate, username)
 		values(seq_bno.nextval, 'A', #{title}, #{content}, #{userid}, sysdate, #{username})
 	</insert>
+	
+	<select id="getCount_a" resultType="int">
+		select count(*) from tbl_board
+		where bcate = 'a'
+	</select>
 	
 <!-- 채용공고등록 -->	
 	<insert id="insertHireBoard">

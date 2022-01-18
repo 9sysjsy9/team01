@@ -30,7 +30,7 @@ public class BoardController {
 	// 자유게시판 목록
 	@RequestMapping(value = "/board/free/free_list", method = RequestMethod.GET)
 	 public String freeList(Model model,PagingDto pagingDto) {
-		 pagingDto.setCount(boardService.getCount());
+		 pagingDto.setCount(boardService.getCount_f());
 		 pagingDto.setPage(pagingDto.getPage());
 		 List<BoardVo> list = boardService.freeList(pagingDto);
 		 model.addAttribute("list",list);

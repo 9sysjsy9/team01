@@ -34,8 +34,13 @@ public class BoardService {
 		return boardVo;
 	}
 	
-	public int getCount() {
-		int count = boardDao.getCount();
+	public int getCount_f() {
+		int count = boardDao.getCount_f();
+		return count;
+	}
+	
+	public int getCount_a() {
+		int count = boardDao.getCount_a();
 		return count;
 	}
 	

@@ -31,7 +31,7 @@ public class AnonymousBoardController {
 	// 익명게시판 목록
 	@RequestMapping(value = "/board/anonymous/anonymous_list", method = RequestMethod.GET)
 	 public String anonymousList(Model model,PagingDto pagingDto) {
-		 pagingDto.setCount(boardService.getCount());
+		 pagingDto.setCount(boardService.getCount_a());
 		 pagingDto.setPage(pagingDto.getPage());
 		 List<BoardVo> list = boardService.anonymousList(pagingDto);
 		 model.addAttribute("list",list);

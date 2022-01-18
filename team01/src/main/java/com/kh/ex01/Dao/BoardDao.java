@@ -28,6 +28,11 @@ public class BoardDao {
 		return list;
 	}
 	
+	public int getCount_f() {
+		int count = sqlSession.selectOne(NAMESPACE+"getCount_f");
+		return count;
+	}
+	
 	//익명게시판 리스트
 	public List<BoardVo> anonymousList(PagingDto pagingDto) {
 		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "anonymousList", pagingDto);
@@ -39,8 +44,8 @@ public class BoardDao {
 		return boardVo;
 	}
 	
-	public int getCount() {
-		int count = sqlSession.selectOne(NAMESPACE+"getCount");
+	public int getCount_a() {
+		int count = sqlSession.selectOne(NAMESPACE+"getCount_a");
 		return count;
 	}
 	
