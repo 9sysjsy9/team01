@@ -76,7 +76,7 @@ $(function(){
 					</div>	
 				</div>
 				<div>
-					<c:if test="${loginData.userid == boardVo.userid}">
+					<c:if test="${loginData.userid == boardVo.userid or loginData.authority == '3'}">
 						<div class="btnMD">
 							<a class="btn btn-outline-warning" id="btnModify" data-bno="${boardVo.bno }">수정</a>
 							<a class="btn btn-outline-danger" id="btnDelete" data-bno="${boardVo.bno }">삭제</a>

@@ -209,4 +209,14 @@ public class MemberController {
 		return "/company/member/memberManageList";
 	}
 	
+	// 사원 검색
+	@RequestMapping(value="/company/search_list", method=RequestMethod.GET)
+	public String searchMember(Model model, MemberVo memberVo) {
+		System.out.println("검색 멤버브이오 : " + memberVo);
+		List<MemberVo> list = memberService.searchMember(memberVo);
+		System.out.println("컨트롤러"  + list);
+		model.addAttribute("list", list);
+		return "/company/member/memberSearch";		
+	}
+	
 }

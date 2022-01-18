@@ -74,5 +74,11 @@ public class MemberDao {
 		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "memberManageList");
 		return list;
 	}
+	
+	public List<MemberVo> searchMember(MemberVo memberVo){
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "searchMember", memberVo);
+		System.out.println("다오:" + list);
+		return list;
+	}
 
 }

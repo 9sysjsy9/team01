@@ -95,7 +95,38 @@
 <!-- 		</choose> -->
 <!-- </select> -->
 
-<!-- 인사부검색 -->
+<!-- 검색 조건 -->
+<select id="searchMember" resultType="MemberVo">
+	select * from tbl_member
+	<trim prefix="where" prefixOverrides="and">
+		<if test="department != 'department'">
+			department = #{department}
+		</if>
+		<if test="position != 'position'">
+			and position = #{position}
+		</if>
+		<if test ="en != 'en'">
+			<choose>
+				<when test="en == 'eno'">
+					and eno like #{keyword}
+				</when>
+				<when test="en == 'username'">
+					and username like #{keyword}
+				</when>
+			</choose>
+		</if>
+		
+<!-- 		<if test="eno != 'eno'"> -->
+<!-- 			and eno like #{keyword} -->
+<!-- 		</if> -->
+<!-- 		<if test="username != 'username'"> -->
+<!-- 			and username like #{keyword} -->
+<!-- 		</if> -->
+	</trim>
+</select>
+
+
+<!-- 부서별검색(버튼) -->
 <select id="searchDepartment" resultType="memberVo">
 	select * from tbl_member
 	where department = #{department}
