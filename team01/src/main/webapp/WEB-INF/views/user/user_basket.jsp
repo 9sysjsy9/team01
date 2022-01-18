@@ -12,6 +12,22 @@
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <script>
 $(function() {
+	
+	var sum = 0;
+	$(".checkBasket").each(function(i){
+		if ($(this).is(':checked')) {
+			var loop = $(this).attr("data-loop");
+			console.log("loop: "+loop)
+			var order_count = $(".order_count"+loop).val();
+			console.log("order_count:" + order_count);
+			sum = sum + order_count;
+			console.log("sum:" + sum);
+			$("#sum_p_num").append(sum);
+		}
+		
+		$(".order_count").eq(i);
+	});
+	
 	$(".check").click(function() {
 		if ($(this).is(':checked')) {
 			var userBasketVo = $(this).val();
@@ -49,7 +65,11 @@ $(function() {
 	$(".up").click(function() {
 		var order_count = $(this).parent().prev().val();
 		var order_code = $(this).attr("data-ordercode");
+		var shoes_price = $(this).attr("data-shoesprice");
+		var loop = $(this).attr("data-loop");
+		var sum = $(".sum"+loop).val();
 		order_count++;
+		$(".sum"+loop).val(order_count*shoes_price);
 		$(this).parent().prev().val(order_count);
 		var url = "/user/changeBasketCount";
 		sData = {
@@ -64,8 +84,12 @@ $(function() {
 	$(".down").click(function() {
 		var order_count = $(this).parent().prev().val();
 		var order_code = $(this).attr("data-ordercode");
+		var shoes_price = $(this).attr("data-shoesprice");
+		var loop = $(this).attr("data-loop");
+		var sum = $(".sum"+loop).val();
 		if (order_count > 1) {
 			order_count--;
+			$(".sum"+loop).val(order_count*shoes_price);
 		}
 		$(this).parent().prev().val(order_count);
 		var url = "/user/changeBasketCount";
@@ -115,8 +139,8 @@ $(function() {
 					</div>
 					-->
 					<div class="check">
-						<input type="checkbox" class="check" name="buy" value="${userBasketVo.order_code}" 
-						checked="checked">&nbsp;
+						<input type="checkbox" class="checkBasket" name="buy" value="${userBasketVo.order_code}" 
+						checked="checked" data-loop="${loop.count}">&nbsp;
 					</div>
 					<div class="img">
 						<img src="/upload/displayThumbnailImage?fileName=${userBasketVo.shoes_image}">
@@ -128,7 +152,7 @@ $(function() {
 				<div class="subdiv">
 					<div class="basketprice">
 						<input type="hidden" name="p_price" id="p_price1" class="p_price"
-							value="${userBasketVo.shoes_price}">${userBasketVo.shoes_price}원
+							value="${userBasketVo.shoes_price}">${userBasketVo.shoes_price}
 					</div>
 					<div class="num">
 						<!-- 						 
@@ -145,15 +169,20 @@ $(function() {
 						</div>
 						-->
 						<div class="updown">
-							<input type="text" name="order_count" size="1"
-							 class="order_count" value="${userBasketVo.order_count}"> 
+							<input type="text" name="order_count" size="1" readonly="readonly"
+							 class="order_count${loop.count}" value="${userBasketVo.order_count}"> 
 							<label>
-							<i class="fas fa-arrow-alt-circle-up up" data-ordercode="${userBasketVo.order_code}"></i>
-							<i class="fas fa-arrow-alt-circle-down down" data-ordercode="${userBasketVo.order_code}"></i>
+							<i class="fas fa-arrow-alt-circle-up up" data-ordercode="${userBasketVo.order_code}" 
+								data-shoesprice="${userBasketVo.shoes_price}" data-loop="${loop.count}"></i>
+							<i class="fas fa-arrow-alt-circle-down down" data-ordercode="${userBasketVo.order_code}"
+								data-shoesprice="${userBasketVo.shoes_price}" data-loop="${loop.count}"></i>
 							</label>
 						</div>
 					</div>
-					<div class="sum">${userBasketVo.shoes_price}원</div>
+					<div >
+						<input type="text" size="2" class="sum${loop.count}" 
+							readonly="readonly" value="${userBasketVo.shoes_price*userBasketVo.order_count}">
+					</div>
 				</div>
 				<div class="subdiv">
 					<div class="basketcmd">
@@ -173,7 +202,7 @@ $(function() {
 			onclick="javascript:basket.delAllItem();">장바구니비우기</a>
 	</div>
 
-	<div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: 4개</div>
+	<div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: 개</div>
 	<div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액: 74,200원</div>
 
 	<div id="goorder" class="">
