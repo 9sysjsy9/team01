@@ -10,6 +10,12 @@ $(function(){
 		var page = $(this).attr("href");
 		location.href = "/hire/hire_new?page=" + page;
 	});
+	
+	$(".title").click(function(e) {
+		e.preventDefault();
+		var bno = $(this).attr("href");
+		location.href = "/hire/hire_content?bno="+bno;
+	});
 });
 </script>
 <%@include file="/WEB-INF/views/hire/include/paging_form.jsp" %>
@@ -41,7 +47,7 @@ $(function(){
 									<tr>
 										<td>${hireboardVo.bno }</td>
 										<td>${hireboardVo.cate }</td>
-										<td><a href="${hireboardVo.title }">${hireboardVo.title }</a></td>
+										<td><a class="title" href="${hireboardVo.bno }">${hireboardVo.title }</a></td>
 										<td>${hireboardVo.regdate }</td>
 										<td>${hireboardVo.writer }</td>
 									</tr>

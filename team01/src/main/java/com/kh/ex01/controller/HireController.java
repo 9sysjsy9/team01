@@ -87,6 +87,21 @@ public class HireController {
 		 return "hire/hire_intern";
 	 }
 	 
+	 // 공고 자세히보기
+	 @RequestMapping(value = "/hire_content", method = RequestMethod.GET)
+	 public String hireContent(Model model, int bno) {
+		 HireBoardVo hireBoardVo = hireService.getHireBoard(bno);
+		 model.addAttribute("hireBoardVo", hireBoardVo);
+		 return "hire/hire_content";
+	 }
+	 
+	 // 공고 삭제하기
+	 @RequestMapping(value = "/delete_HireBoard", method = RequestMethod.GET)
+	 public String deleteHireBoard(int bno) {
+		 hireService.deleteHireBoard(bno);
+		 return "redirect:/hire/hire_all";
+	 }
+	 
 	 // 지원자 보기
 	 @RequestMapping(value = "/company/regist_list", method = RequestMethod.GET)
 	 public String registList(Model model) {
@@ -170,6 +185,24 @@ public class HireController {
 		 } else {
 			 return "stay";
 		 }
+	 }
+	 
+	 // 채용공고 리스트
+	 @RequestMapping(value = "/company/companyHire_all", method = RequestMethod.GET)
+	 public String companyHireAll(Model model, PagingDto pagingDto) {
+		 pagingDto.setCount(hireService.getCount());
+		 pagingDto.setPage(pagingDto.getPage());
+		 List<HireBoardVo> list = hireService.listAll(pagingDto);
+		 model.addAttribute("list" , list);
+		 model.addAttribute("pagingDto", pagingDto);
+		 return "/company/hire/companyHire_all";
+	 }
+	 
+	 // 채용공고 삭제
+	 @RequestMapping(value = "/company/delete", method = RequestMethod.GET)
+	 public String companyHireAll(int bno) {
+		 hireService.deleteHireBoard(bno);
+		 return "redirect:/hire/company/companyHire_all";
 	 }
 	 
 }

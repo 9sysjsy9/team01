@@ -37,9 +37,18 @@ public class HireService {
 		return list;
 	}
 	
+	public HireBoardVo getHireBoard(int bno) {
+		HireBoardVo hireBoardVo = hireDao.getHireBoard(bno);
+		return hireBoardVo;
+	}
+	
 	public int getCount() {
 		int count = hireDao.getCount();
 		return count;
+	}
+	
+	public void deleteHireBoard(int bno) {
+		hireDao.deleteHireBoard(bno);
 	}
 	
 	public int getN_Count() {

@@ -4,13 +4,10 @@
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <script>
 $(function(){
-	
 	$(".btnD").click(function() {
 		var department = $(this).val();
 		location.href = "/member/company/search_department?department=" + department;
 	});
-	
-
 });
 </script>
 <style>
