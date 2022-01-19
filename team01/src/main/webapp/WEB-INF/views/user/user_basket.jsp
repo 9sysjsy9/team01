@@ -33,23 +33,38 @@ $(function() {
 	//
 	
 	$(".checkBasket").click(function() {
-		var sum_count = 0;
-	 	var sum_price = 0;
-		$(".checkBasket").each(function(i){
-			
-			if ($(this).is(':checked')) {
-				var order_count = $(".order_count"+(i+1)).val();
-				console.log("order_count:" + order_count);
-				var sum = $(".sum"+(i+1)).val();
-				console.log("sum:" + sum);
-				sum_count = sum_count + parseInt(order_count);
-				sum_price = sum_price + parseInt(sum);
-				console.log("sum:" + sum);
-				$("#sum_p_num").text("상품갯수: "+sum_count+"개");
-				$("#sum_p_price").text("합계금액: "+sum_price+"원");
+		var shoes_code = $(this).val();
+		var checked = $(this).is(':checked');
+		console.log("checked: "+checked);
+		var url = "/user/changeBasketChecked";
+		sData = {
+			"shoes_code" : shoes_code,
+			"checked" : checked
+		};
+		
+		$.post(url, sData, function(rData) {
+			if (rData == 'success') {
+				console.log("rData: "+rData);
+				var sum_count = 0;
+			 	var sum_price = 0;
+				$(".checkBasket").each(function(i){
+					if ($(this).is(':checked')) {
+						var order_count = $(".order_count"+(i+1)).val();
+						console.log("order_count:" + order_count);
+						var sum = $(".sum"+(i+1)).val();
+						console.log("sum:" + sum);
+						sum_count = sum_count + parseInt(order_count);
+						sum_price = sum_price + parseInt(sum);
+						console.log("sum:" + sum);
+						$("#sum_p_num").text("상품갯수: "+sum_count+"개");
+						$("#sum_p_price").text("합계금액: "+sum_price+"원");
+					}
+					
+				});
 			}
 			
 		});
+		
 	});
 	
 	
@@ -63,6 +78,32 @@ $(function() {
 		});
 		$.ajax({
 			  url : "/user/DeleteSelectedBasket",
+			  type : "post",
+			  data : {
+				 orderList : orderList
+			  },
+			  success : function(rData){
+			  	console.log("rData: "+rData);
+			  	if (rData != 'fail') {
+			  		location.href = "/user/user_basket";
+			  	}
+			  	
+			  }
+		});
+		
+	});
+	
+	
+	$(".btnDeleteAll").click(function() {
+		var checkBasket = $(".checkBasket");
+		var orderList = [];
+		$.each(checkBasket, function(i) {
+			var shoes_code = $(this).val();
+			console.log("shoes_code: "+shoes_code);
+			orderList[i] = shoes_code;
+		});
+		$.ajax({
+			  url : "/user/DeleteAllBasket",
 			  type : "post",
 			  data : {
 				 orderList : orderList
@@ -221,7 +262,10 @@ $(function() {
 					-->
 					<div class="check">
 						<input type="checkbox" class="checkBasket" name="buy" value="${userBasketVo.shoes_code}" 
-						checked="checked" data-loop="${loop.count}">&nbsp;
+						<c:if test="${userBasketVo.checked != false}">
+						checked="checked"
+						</c:if> 
+						data-loop="${loop.count}">&nbsp;
 					</div>
 					<div class="img">
 						<img src="/upload/displayThumbnailImage?fileName=${userBasketVo.shoes_image}">

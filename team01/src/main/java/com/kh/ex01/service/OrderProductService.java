@@ -41,6 +41,10 @@ public class OrderProductService {
 		orderProductDao.changeBasketCount(userBasketVo);
 	}
 	
+	public void changeBasketChecked(UserBasketVo userBasketVo) {
+		orderProductDao.changeBasketChecked(userBasketVo);
+	}
+	
 	public int getBasketCount(String order_code) {
 		int order_count = orderProductDao.getBasketCount(order_code);
 		return order_count;

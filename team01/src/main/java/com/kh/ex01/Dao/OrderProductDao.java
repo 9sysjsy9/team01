@@ -40,6 +40,10 @@ public class OrderProductDao {
 		sqlSession.update(NAMESAPCE+"changeBasketCount", userBasketVo);
 	}
 	
+	public void changeBasketChecked(UserBasketVo userBasketVo) {
+		sqlSession.update(NAMESAPCE+"changeBasketChecked", userBasketVo);
+	}
+	
 	public int getBasketCount(String order_code) {
 		int order_count = sqlSession.selectOne(NAMESAPCE+"getBasketCount", order_code);
 		return order_count;

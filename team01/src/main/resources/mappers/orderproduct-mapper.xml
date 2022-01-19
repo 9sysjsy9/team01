@@ -43,6 +43,12 @@
 		where shoes_code = #{shoes_code}
 	</update>
 	
+	<update id="changeBasketChecked">
+		update tbl_basket
+		set checked = #{checked}
+		where shoes_code = #{shoes_code}
+	</update>
+	
 	<select id="getBasketCount" resultType="int">
 		select order_count 
 		from tbl_basket
