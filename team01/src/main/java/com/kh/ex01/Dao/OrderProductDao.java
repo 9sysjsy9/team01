@@ -63,4 +63,8 @@ public class OrderProductDao {
 		sqlSession.insert(NAMESAPCE+"insertBasket", userBasketVo);
 	}
 	
+	public void deleteBasket(String shoes_code) {
+		sqlSession.delete(NAMESAPCE+"deleteBasket", shoes_code);
+	}
+	
 }

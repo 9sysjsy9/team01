@@ -53,6 +53,32 @@ $(function() {
 	});
 	
 	
+	$(".btnDeleteSelect").click(function() {
+		var checkeds = $(".checkBasket:checked");
+		var orderList = [];
+		$.each(checkeds, function(i) {
+			var shoes_code = $(this).val();
+			console.log("shoes_code: "+shoes_code);
+			orderList[i] = shoes_code;
+		});
+		$.ajax({
+			  url : "/user/DeleteSelectedBasket",
+			  type : "post",
+			  data : {
+				 orderList : orderList
+			  },
+			  success : function(rData){
+			  	console.log("rData: "+rData);
+			  	if (rData != 'fail') {
+			  		location.href = "/user/user_basket";
+			  	}
+			  	
+			  }
+		});
+		
+	});
+	
+	
 	$("#btnSelectedOrder").click(function() {
 		var checkeds = $(".checkBasket:checked");
 		var orderList = [];
@@ -245,8 +271,7 @@ $(function() {
 						<a href="javascript:void(0)" class="abutton" 
 						onclick="javascript:basket.delItem();">삭제</a>
 						 -->
-						<button type="button" class="btn btn-outline-dark btn-lg px-4 btnDelete"
-							data-shoescode="${userBasketVo.shoes_code}">삭제</button>
+						<a href="/user/deleteBasket?shoes_code=${userBasketVo.shoes_code}" class="abutton">삭제</a>
 					</div>
 				</div>
 			</div>

@@ -62,8 +62,12 @@ public class OrderProductService {
 	}
 	
 	public void insertBasket(UserBasketVo userBasketVo) {
-		System.out.println("insertBasket 실행됨");
 		orderProductDao.insertBasket(userBasketVo);
 	}
+	
+	public void deleteBasket(String shoes_code) {
+		orderProductDao.deleteBasket(shoes_code);
+	}
+	
 	
 }

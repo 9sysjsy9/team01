@@ -119,6 +119,21 @@ public class UserController {
 		return null;
 	}
 	
+	
+	@RequestMapping(value = "/DeleteSelectedBasket", method = RequestMethod.POST)
+	@ResponseBody
+	public String DeleteSelectedBasket(@RequestParam(value="orderList[]") List<String> orderList,
+			HttpSession httpSession) {
+		System.out.println("DeleteSelectedBasket, orderList: "+orderList);
+		if (orderList != null) {
+			for (String shoes_code : orderList) {
+				orderProductService.deleteBasket(shoes_code);
+			}
+			return "success";
+		} 
+		return "fail";
+	}
+	
 	@RequestMapping(value = "/orderResult", method = RequestMethod.GET)
 	public String orderResult() {
 		return "/user/orderResult";
@@ -168,6 +183,13 @@ public class UserController {
 		}
 		return cart_count;
 	}
+	
+	@RequestMapping(value = "/deleteBasket", method=RequestMethod.GET)
+	public String deleteBasket(String shoes_code) {
+		orderProductService.deleteBasket(shoes_code);
+		return "redirect:/user/user_basket";
+	}
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/checkOrderNum", method=RequestMethod.POST)
