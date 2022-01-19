@@ -2,6 +2,7 @@ package com.kh.ex01.vo;
 
 import java.sql.Timestamp;
 
+
 public class BoardVo {
 
 	private int bno; // NUMBER No 글번호

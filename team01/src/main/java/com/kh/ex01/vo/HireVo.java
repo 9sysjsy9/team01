@@ -14,6 +14,7 @@ public class HireVo {
 	private String result; // 합/불 확인
 	private String fileName; // 파일저장이름
 	private MultipartFile uploadFile;
+	
 	public int getHno() {
 		return hno;
 	}

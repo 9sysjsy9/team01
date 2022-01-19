@@ -24,6 +24,8 @@ import com.kh.ex01.vo.PagingDto;
 @RequestMapping("/company")
 public class BoardController {
 	
+	private static final String UPLOAD_PATH = "//192.168.0.234/upload/";
+	
 	@Inject
 	private BoardService boardService;
 	
@@ -255,9 +257,9 @@ public class BoardController {
 	 }
 	
 	// 자료실 글추가
-	@RequestMapping(value="/board/library/regist_run", method=RequestMethod.GET)
-	public String libraryBoardRegistRun(BoardVo boardVo) {
-		String fileName = null;
+//	@RequestMapping(value="/board/library/regist_run", method=RequestMethod.GET)
+//	public String libraryBoardRegistRun(BoardVo boardVo) {
+//		String fileName = null;
 //		MultipartFile uploadFile = boardVo.getUploadFile();
 //		String originalFileName = uploadFile.getOriginalFilename();
 //		UUID uuid = UUID.randomUUID();	
@@ -266,10 +268,9 @@ public class BoardController {
 //		hireVo.setFilename(fileName);
 //		hireService.registRun(boardVo); 
 //		rttr.addFlashAttribute("message", "regist_success");
-		
-		boardService.insertLibraryBoard(boardVo);
-		return "redirect:/company/board/library/library_list";
-	}
+//		boardService.insertLibraryBoard(boardVo);
+//		return "redirect:/company/board/library/library_list";
+//	}
 	
 	// 자료실 글 삭제
 	@RequestMapping(value="/board/library/library_delete", method=RequestMethod.GET)
