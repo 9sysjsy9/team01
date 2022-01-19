@@ -1,6 +1,7 @@
 package com.kh.ex01.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -28,8 +29,9 @@ import com.kh.ex01.vo.PagingDto;
 @RequestMapping("/company")
 public class BoardController {
 	
+
 	private static final String UPLOAD_PATH = "//192.168.0.234/upload/board";
-	
+
 	@Inject
 	private BoardService boardService;
 	
@@ -304,19 +306,9 @@ public class BoardController {
 	 }
 	
 	// 자료실 글추가
-	@RequestMapping(value="/board/library/regist_run", method=RequestMethod.GET)
-	public String libraryBoardRegistRun(BoardVo boardVo) {
-		String fileName = null;
-//		MultipartFile uploadFile = boardVo.getUploadFile();
-//		String originalFileName = uploadFile.getOriginalFilename();
-//		UUID uuid = UUID.randomUUID();	
-//		fileName = uuid + "_" + originalFileName;
-//		uploadFile.transferTo(new File(UPLOAD_PATH + "resume/" + fileName));
-//		hireVo.setFilename(fileName);
-//		hireService.registRun(boardVo); 
-//		rttr.addFlashAttribute("message", "regist_success");
-		
-		boardService.insertLibraryBoard(boardVo);
+	@RequestMapping(value="/board/library/regist_run", method=RequestMethod.POST)
+	public String libraryBoardRegistRun(BoardVo boardVo) throws IOException {
+		boardService.insertLibraryBoard(boardVo); 
 		return "redirect:/company/board/library/library_list";
 	}
 	

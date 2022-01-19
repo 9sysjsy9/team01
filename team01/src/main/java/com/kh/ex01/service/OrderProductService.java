@@ -41,9 +41,36 @@ public class OrderProductService {
 		orderProductDao.changeBasketCount(userBasketVo);
 	}
 	
+	public void changeBasketChecked(UserBasketVo userBasketVo) {
+		orderProductDao.changeBasketChecked(userBasketVo);
+	}
+	
 	public int getBasketCount(String order_code) {
 		int order_count = orderProductDao.getBasketCount(order_code);
 		return order_count;
+	}
+	
+	public int getUserBasketCount(String user_id) {
+		int cart_count = orderProductDao.getUserBasketCount(user_id);
+		return cart_count;
+	}
+	
+	public int getBasketShoeseCodeCount(String user_id) {
+		int shoescode_count = orderProductDao.getBasketShoeseCodeCount(user_id);
+		return shoescode_count;
+	}
+	
+	public void plusBasketOrdercount(String shoes_count) {
+		System.out.println("plusBasketOrdercount 실행됨");
+		orderProductDao.plusBasketOrdercount(shoes_count);
+	}
+	
+	public void insertBasket(UserBasketVo userBasketVo) {
+		orderProductDao.insertBasket(userBasketVo);
+	}
+	
+	public void deleteBasket(String shoes_code) {
+		orderProductDao.deleteBasket(shoes_code);
 	}
 	
 	

@@ -2,32 +2,49 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
-<header class="bg-dark py-5">
-	<div class="container px-4 px-lg-5 my-5">
-		<div class="text-center text-white">
-			<h1 class="display-4 fw-bolder">Shop in style</h1>
-			<p class="lead fw-normal text-white-50 mb-0">With this shop
-				hompeage template</p>
-		</div>
-	</div>
-</header>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
-	$(function() {
-		$(".page-link").click(function(e) {
-			e.preventDefault();
-			var page = $(this).attr("href");
-			location.href = "/product/company/product_index?page=" + page;
-		});
-
+$(function() {
+	$(".page-link").click(function(e) {
+		e.preventDefault();
+		var page = $(this).attr("href");
+		location.href = "/product/company/product_index?page=" + page;
 	});
+	
+	$(".cart").click(function() {
+		var shoes_code = $(this).attr("data-shoescode");
+		var user_id = $(this).attr("data-userid");
+		console.log("shoes_code: "+shoes_code);
+		console.log("user_id: "+user_id);
+		var url = "/user/insertBasket";
+		var sData = {
+				"shoes_code" : shoes_code,
+				"user_id" : user_id
+		};
+		$.post(url, sData, function(rData) {
+			console.log("rData: "+rData);
+			if (rData != 0) {
+				$(".cartCount").text(rData);
+			}
+		});
+	});
+
+});
 </script>
 <%@include file="/WEB-INF/views/product/include/paging_form.jsp"%>
-<!-- Section-->
+
 <section class="py-5">
 
 	<div class="container px-4 px-lg-5 mt-5">
 
+		<div style="float: right;">
+			<ul class="nav nav-pills">
+				<li class="nav-item"><a href="/user/user_basket"> <img
+						src="/images/cart.png" width="50px"></a> <span
+					class="badge badge-secondary cartCount">${cart_count}</span></li>
+			</ul>
+		</div>
+		<br> <br>
 		<div class="xans-element- xans-product xans-product-normalmenu">
 			<div class="sort">
 				<select id="selArray" name="selArray"
@@ -117,7 +134,7 @@
 			<c:forEach items="${list}" var="productVo">
 				<div class="col mb-5">
 					<div class="card h-100">
-<!-- 						
+						<!-- 						
 						<img class="card-img-top" 
 						src="/product_images/shoes${productVo.shoes_code}.jpg" alt="..." /> 
  -->
@@ -136,8 +153,13 @@
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
 								<a class="btn btn-outline-dark mt-auto"
-									href="/product/product_detail?shoes_code=${productVo.shoes_code}">정보보기</a>
-								<a class="btn btn-outline-dark mt-auto" href="/user/user_basket">장바구니</a>
+									href="/product/product_detail?shoes_code=${productVo.shoes_code}">detail</a>
+								<button class="btn btn-outline-dark mt-auto buy" 
+									data-shoescode="${productVo.shoes_code}" 
+									data-userid="${userData.user_id}">buy</button>
+								<button class="btn btn-outline-dark mt-auto cart"
+									data-shoescode="${productVo.shoes_code}"
+									data-userid="${userData.user_id}">cart</button>
 							</div>
 						</div>
 					</div>

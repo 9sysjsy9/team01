@@ -146,7 +146,7 @@ public class BoardService {
 	}
 	
 	public void insertLibraryBoard(BoardVo boardVo) {
-		boardDao.insertLibraryBoard(boardVo);
+		boardDao.insertLibraryBoard(boardVo); 
 	}
 	
 }

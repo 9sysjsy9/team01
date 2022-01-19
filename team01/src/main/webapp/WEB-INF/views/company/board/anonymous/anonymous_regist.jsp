@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <form action="/company/board/anonymous/regist_run" method="get">
-<input type="hidden" name="bate">
+<input type="hidden" name="bcate">
 <input type="hidden" name="userid" value="${loginData.userid }">
 <input type="hidden" name="username" value="${loginData.username }">
 	<div class="container-fluid">
