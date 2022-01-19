@@ -1,6 +1,8 @@
 package com.kh.ex01.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.ex01.service.BoardService;
 import com.kh.ex01.service.CommentService;
@@ -222,17 +225,17 @@ public class BoardController {
 
 	
 	// 자료실 목록
-	@RequestMapping(value = "/board/anonymous/library_list", method = RequestMethod.GET)
+	@RequestMapping(value = "/board/library/library_list", method = RequestMethod.GET)
 	 public String libraryList(Model model,PagingDto pagingDto) {
 		 pagingDto.setCount(boardService.getCount_a());
 		 pagingDto.setPage(pagingDto.getPage());
-		 List<BoardVo> list = boardService.anonymousList(pagingDto);
+		 List<BoardVo> list = boardService.libraryList(pagingDto);
 		 model.addAttribute("list",list);
 		 model.addAttribute("pagingDto", pagingDto);
 		 return "/company/board/library/library_list";
 	 }
 	
-	// 자료실 등록
+	// 자료실 등록폼
 	@RequestMapping(value = "/board/library/library_regist", method = RequestMethod.GET)
 	public String libraryRegist() {
 		return "/company/board/library/library_regist";
@@ -254,8 +257,17 @@ public class BoardController {
 	// 자료실 글추가
 	@RequestMapping(value="/board/library/regist_run", method=RequestMethod.GET)
 	public String libraryBoardRegistRun(BoardVo boardVo) {
-		System.out.println("BoardController, boardRegistRun, boardVo:" + boardVo);
-		boardService.insertAnonymousBoard(boardVo);
+		String fileName = null;
+//		MultipartFile uploadFile = boardVo.getUploadFile();
+//		String originalFileName = uploadFile.getOriginalFilename();
+//		UUID uuid = UUID.randomUUID();	
+//		fileName = uuid + "_" + originalFileName;
+//		uploadFile.transferTo(new File(UPLOAD_PATH + "resume/" + fileName));
+//		hireVo.setFilename(fileName);
+//		hireService.registRun(boardVo); 
+//		rttr.addFlashAttribute("message", "regist_success");
+		
+		boardService.insertLibraryBoard(boardVo);
 		return "redirect:/company/board/library/library_list";
 	}
 	
