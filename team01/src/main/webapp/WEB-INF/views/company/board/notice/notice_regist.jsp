@@ -3,9 +3,59 @@
 
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/company/board/pagingForm.jsp"%>
 <!-- http://localhost/company/board/notice/notice_regist -->
 <script>
 $(function(){
+	
+//파일 첨부
+
+	var formData = new FormData();
+	 console.log("formData", formData)
+	$("#exportFile1").change(function(e){
+		e.preventDefault();
+		file1 = $("#exportFile1")[0].files[0];
+		console.log("file1 : " + file1);
+		formData.append("file1", file1);
+		/*
+		var url = "/company/board/notice/uploadFileAjax";
+		if(file != null){
+			$.ajax({
+				"processData" : false,
+				"contentType" : false,
+				"method" : "post",
+				"url" : url,
+				"data" : formData,
+				"success" : function(filePath){
+					console.log("filePath : " + filePath);
+				}
+			});
+		}
+		*/
+		console.log("formData : " + formData);
+		console.log("formData", formData);
+	});
+	
+	$("#exportFile2").change(function(e){
+		e.preventDefault();
+		file2 = $("#exportFile2")[0].files[0];
+		console.log("file2 : " + file2);
+		formData.append("file2", file2);
+		console.log("formData : " + formData);
+	});
+	
+	
+	$(".noticeListBtn").click(function(e){
+		e.preventDefault();
+		var bno = $(this).attr("href");
+		$("#pagingForm").attr("action","/company/board/notice/notice_list");
+		$("#pagingForm > input[name=page]").val("${noticePagingDto.page}");
+		$("#pagingForm > input[name=searchType]").val("${noticePagingDto.searchType}");
+		$("#pagingForm > input[name=keyword]").val("${noticePagingDto.keyword}");
+		$("#pagingForm").submit();
+	});
+	
+	
 	$(".noticeRegistRunBtn").click(function(e){
 		e.preventDefault();
 		$("#noticeRegistForm").submit();
@@ -50,12 +100,16 @@ $(function(){
 									</td>
 								</tr>
 								<tr>
-									<td>첨부파일 : <span></span>
+									<td>첨부 1<span></span>
+										<input type="file" class="form-control" id="exportFile1"/>
+										첨부 2
+										<input type="file" class="form-control" id="exportFile2"/>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 							<div style="text-align:right">
+									<button type='button' class='noticeListBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>목록</button>
 								<c:if test="${loginData.authority == 3}">
 									<button type='button' class='noticeRegistRunBtn btn btn-outline-primary flex-shrink-0 btn-sm'>게시</button>
 								</c:if>

@@ -89,21 +89,31 @@
 	
 
 <!-- 공지 게시판	 -->
+	<!-- 시퀀스 얻기 -->
+	<select id="getBnoSeq" resultType="int">
+		SELECT seq_bno.nextval FROM dual
+	</select>
 
 	<!-- 전체 공지 리스트 -->
 	<select id="noticeList" resultType="BoardVo">
 	SELECT B.bno, M.userid AS userid, M.username, B.title, B.content, B.regdate, B.viewcnt, B.bcate, B.cmtcnt
-	FROM ( SELECT rownum rnum, a.* FROM ( SELECT * FROM tbl_board WHERE bcate = 'n' ORDER BY bno DESC) a) B, tbl_member M
-	WHERE rnum between #{startRow} and #{endRow} AND M.userid = B.userid
+	FROM ( SELECT rownum rnum, a.* FROM ( SELECT * FROM tbl_board WHERE bcate = 'n'
+	<include refid="search"></include>
+	ORDER BY bno DESC) a) B, tbl_member M
+	WHERE rnum between #{startRow} and #{endRow}
+	AND M.userid = B.userid
+
+		
 	</select>
 	<!-- 공지글 리스트 개수 -->
 	<select id="getNoticeCount" resultType="int">
 		SELECT COUNT(*) FROM tbl_board WHERE bcate = 'n'
+		<include refid="search"></include>
 	</select>
 	<!-- 공지 등록 실행 -->
 	<insert id="noticeRegistRun">
 		INSERT INTO tbl_board (bno, bcate, title, content, userid)
-		VALUES (seq_bno.nextval, 'n', #{title}, #{content}, #{userid}) 
+		VALUES (#{bno}, 'n', #{title}, #{content}, #{userid}) 
 	</insert>
 	<!-- 공지 내용 뷰 -->
 	<select id="noticeContent" resultType="BoardVo">
@@ -140,6 +150,22 @@
 		select count(*) from tbl_board
 		where bcate = 'l'
 	</select>
-	
+
+	<sql id="search">
+				<if test="keyword != null || searchType != null">
+			<choose>
+				<when test='searchType == "t"'>
+					AND title LIKE '%' || #{keyword} || '%'
+				</when>
+				<when test='searchType == "c"'>
+					AND content LIKE '%' || #{keyword} || '%'
+				</when>
+				<when test='searchType == "tc"'>
+					AND title LIKE '%' || #{keyword} || '%' OR content LIKE '%' || #{keyword} || '%'
+				</when>
+			</choose>
+		</if>
+
+	</sql>
 	
 </mapper>

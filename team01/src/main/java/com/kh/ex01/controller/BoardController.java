@@ -104,57 +104,61 @@ public class BoardController {
 		boardService.insertHireBoard(hireBoardVo);
 		return "redirect:/hire/company/regist_list";
 	}
-	
+//공지사항 게시판 ----------------------------------------------
 	//공지사항 글 리스트
 	@RequestMapping(value = "/board/notice/notice_list", method=RequestMethod.GET)
 	public String noticeList(Model model, PagingDto pagingDto) {
-		
-		pagingDto.setCount(boardService.getNoticeCount()); // 게시판 글 개수 얻어오기
+		pagingDto.setCount(boardService.getNoticeCount(pagingDto)); // 게시판 글 개수 얻어오기
 		pagingDto.setPage(pagingDto.getPage()); //페이지 개수 갱신
-		
 		List<BoardVo> list = boardService.noticeList(pagingDto);
 		model.addAttribute("noticeList", list);
 		model.addAttribute("noticePagingDto", pagingDto);
 		return "/company/board/notice/notice_list";
 	}
+	
 	//공지사항 작성 폼
 	@RequestMapping(value = "/board/notice/notice_regist", method = RequestMethod.GET)
-	public String noticeRegist() {
+	public String noticeRegist(Model model, PagingDto pagingDto) {
+		model.addAttribute("noticePagingDto", pagingDto);
 		return "/company/board/notice/notice_regist";
 	}
 	//공지사항 작성 Run
 	@RequestMapping(value = "/board/notice/noticeRegistRun", method = RequestMethod.POST)
 	public String noticeRegistRun(BoardVo boardVo) {
+		int bno = boardService.getBnoSeq();
+		boardVo.setBno(bno);
 		System.out.println("BoardController, noticeRgistRun, boardVo : " + boardVo);
 		boardService.noticeRegistRun(boardVo);
-		return "redirect:/company/board/notice/notice_list";
+		return "redirect:/company/board/notice/notice_content?bno="+bno;
 	}
 	//공지사항 ContentView
-	@RequestMapping(value = "/board/notice/notice_content/{bno}", method = RequestMethod.GET)
-	public String noticeContent(@PathVariable int bno, Model model) {
+	@RequestMapping(value = "/board/notice/notice_content", method = RequestMethod.GET)
+	public String noticeContent(Model model, int bno, PagingDto pagingDto) {
 		BoardVo boardVo = boardService.noticeContent(bno);
 		model.addAttribute("noticeContent", boardVo);
+		model.addAttribute("noticePagingDto", pagingDto);
 		return "/company/board/notice/notice_content";
 	}
 	
-	@RequestMapping(value = "/board/notice/noticeDeleteRun/{bno}")
+	@RequestMapping(value = "/board/notice/noticeDeleteRun/{bno}", method = RequestMethod.GET, produces = "application/text;charset=utf-8")
 	public String noticeDeleteRun(@PathVariable int bno) {
 		boardService.noticeDeleteRun(bno);
 		return "redirect:/company/board/notice/notice_list";
 	}
 	
-	@RequestMapping(value = "/board/notice/notice_modify/{bno}")
-	public String noticeModify(@PathVariable int bno, Model model) {
+	@RequestMapping(value = "/board/notice/notice_modify", method = RequestMethod.GET)
+	public String noticeModify(Model model, int bno, PagingDto pagingDto)  {
 		System.out.println("BoardController, noticeModifyRun, bno : " + bno);
 		BoardVo boardVo = boardService.noticeContent(bno);
 		model.addAttribute("noticeContent", boardVo);
+		model.addAttribute("noticePagingDto", pagingDto);
 		return "/company/board/notice/notice_modify";
 	}
 	
-	@RequestMapping(value = "/board/notice/noticeModifyRun")
-	public String notiveModifyRun(BoardVo boardVo) {
+	@RequestMapping(value = "/board/notice/noticeModifyRun", method = RequestMethod.POST)
+	public String notiveModifyRun(BoardVo boardVo, PagingDto pagingDto) {
 		boardService.noticeModifyRun(boardVo);
-		return "redirect:/company/board/notice/notice_list";
+		return "redirect:/company/board/notice/notice_content?bno="+boardVo.getBno();
 	}
 	
 	// 익명게시판 목록

@@ -9,7 +9,7 @@ public class PagingDto {
 	private int count; // 게시글 갯수
 	private int totalPage; // 페이지 수
 	private int perPage =10; 
-	private String searchType ="t"; 
+	private String searchType; 
 	private String keyword; 
 
 	//검색종류,키워드,현재페이지

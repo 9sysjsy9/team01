@@ -4,20 +4,21 @@
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%>
+<%@ include file="/WEB-INF/views/company/board/pagingForm.jsp"%>
 <!-- http://localhost/company/board/notice/notice_regist -->
 <script>
 $(function(){
-	$(".noticeRegistRunBtn").click(function(e){
-		e.preventDefault();
-		$("#noticeRegistForm").submit();
-		console.log("게시 버튼 클릭");
-	});
-	
+
 	//목록 버튼
 	$(".noticeListBtn").click(function(e){
 		console.log("목록 버튼 클릭")
 		e.preventDefault();
-		location.href = "/company/board/notice/notice_list";
+// 		location.href = "/company/board/notice/notice_list";
+		$("#pagingForm").attr("action","/company/board/notice/notice_list");
+		$("#pagingForm > input[name=page]").val("${noticePagingDto.page}");
+		$("#pagingForm > input[name=searchType]").val("${noticePagingDto.searchType}");
+		$("#pagingForm > input[name=keyword]").val("${noticePagingDto.keyword}");
+		$("#pagingForm").submit();
 	});
 	
 	//삭제 버튼
@@ -29,7 +30,13 @@ $(function(){
 	});
 	//수정 버튼
 	$(".noticeModifyBtn").click(function(e){
-		location.href = "/company/board/notice/notice_modify/"+${noticeContent.bno};
+// 		location.href = "/company/board/notice/notice_modify/"+${noticeContent.bno};
+		$("#pagingForm").attr("action","/company/board/notice/notice_modify");
+		$("#pagingForm > input[name=bno]").val("${noticeContent.bno}");
+		$("#pagingForm > input[name=page]").val("${noticePagingDto.page}");
+		$("#pagingForm > input[name=searchType]").val("${noticePagingDto.searchType}");
+		$("#pagingForm > input[name=keyword]").val("${noticePagingDto.keyword}");
+		$("#pagingForm").submit();
 	});
 });
 </script>
