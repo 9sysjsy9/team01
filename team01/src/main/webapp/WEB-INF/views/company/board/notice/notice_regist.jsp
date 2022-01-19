@@ -8,43 +8,12 @@
 <script>
 $(function(){
 	
+	
+
+	
 //파일 첨부
 
-	var formData = new FormData();
-	 console.log("formData", formData)
-	$("#exportFile1").change(function(e){
-		e.preventDefault();
-		file1 = $("#exportFile1")[0].files[0];
-		console.log("file1 : " + file1);
-		formData.append("file1", file1);
-		/*
-		var url = "/company/board/notice/uploadFileAjax";
-		if(file != null){
-			$.ajax({
-				"processData" : false,
-				"contentType" : false,
-				"method" : "post",
-				"url" : url,
-				"data" : formData,
-				"success" : function(filePath){
-					console.log("filePath : " + filePath);
-				}
-			});
-		}
-		*/
-		console.log("formData : " + formData);
-		console.log("formData", formData);
-	});
-	
-	$("#exportFile2").change(function(e){
-		e.preventDefault();
-		file2 = $("#exportFile2")[0].files[0];
-		console.log("file2 : " + file2);
-		formData.append("file2", file2);
-		console.log("formData : " + formData);
-	});
-	
-	
+
 	$(".noticeListBtn").click(function(e){
 		e.preventDefault();
 		var bno = $(this).attr("href");
@@ -54,13 +23,61 @@ $(function(){
 		$("#pagingForm > input[name=keyword]").val("${noticePagingDto.keyword}");
 		$("#pagingForm").submit();
 	});
+		
+		
+//파일 첨부 삭제 프로세스-------------------------------------------
+	var file1;
+	var file2;
+	var formData = new FormData();
 	
+	 //1번 파일 담기
+	$("#exportFile1").change(function(e){
+		e.preventDefault();
+		file1 = $(this)[0].files[0];
+		formData.delete("file1"); //기존 등록된 파일이 있다면 삭제
+		formData.append("file1", file1);
+	});
+	 
+	//2번 파일 담기
+	$("#exportFile2").change(function(e){
+		e.preventDefault();
+		file2 = $(this)[0].files[0];
+		formData.delete("file2"); //기존 등록된 파일 이 있다면 삭제
+		formData.append("file2", file2);
+	});
 	
+	//전송 실행 버튼
 	$(".noticeRegistRunBtn").click(function(e){
 		e.preventDefault();
-		$("#noticeRegistForm").submit();
-		console.log("게시 버튼 클릭");
+		console.log("formData(+) : "+ formData);
+		console.log("formData(,) : ", formData);
+		
+		formData.forEach(function(files){ // 파일 갯수만큼
+			console.log(files);
+		});
+		
+		//파일이 둘다 null 이라면 파일은 전송 안함
+		if(file1 == null && file2 == null){
+			console.log("files은 null 임");
+			var url = "/company/board/uploadBoardFileAjax";
+			
+			$.ajax({
+				"processData" : false,
+				"contentType" : false,
+				"method" : "post",
+				"url" : url,
+				"data" : formData,
+				"success" : function(filePath){
+					console.log("filePath : " + filePath);
+				}; //success function(filePath)
+			});//ajax
+		}; //if
 	});
+		
+		
+// 		var url = "/company/board/notice/uploadFileAjax";
+		// 		$("#noticeRegistForm").submit();
+// 		console.log("게시 버튼 클릭");
 	
 });
 </script>
