@@ -29,9 +29,15 @@
 					<div class="form-group">
 						<textarea rows="20" cols="80" placeholder="내용을 입력하세요" name="content"></textarea>
 					</div>
-					<button type="submit" class="btn btn-outline-dark flex-shrink-0" id="btnRegist">
-						등록
-					</button>
+					<div>
+						<label>파일 업로드</label><br>
+						<input type="file" name="uploadFile" required/>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-outline-dark flex-shrink-0" id="btnRegist">
+							등록
+						</button>
+					</div>
 			</div>
 			<div class="col-md-4">
 			</div>
