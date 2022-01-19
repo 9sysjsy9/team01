@@ -1,6 +1,7 @@
 package com.kh.ex01.vo;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 public class BoardVo {
 
@@ -20,7 +21,25 @@ public class BoardVo {
 	private String username;
 	private int next; // 이번게시글의 다음
 	private int prev; // 이번게시글의 이전
+	private String[] files;
+	private String file;
 	
+	public String[] getFiles() {
+		return files;
+	}
+
+	public void setFiles(String[] files) {
+		this.files = files;
+	}
+
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
 	public void setPage() {
 		
 	}
@@ -164,9 +183,8 @@ public class BoardVo {
 		return "BoardVo [bno=" + bno + ", bcate=" + bcate + ", title=" + title + ", content=" + content + ", userid="
 				+ userid + ", viewcnt=" + viewcnt + ", re_group=" + re_group + ", re_seq=" + re_seq + ", re_level="
 				+ re_level + ", regdate=" + regdate + ", updatedate=" + updatedate + ", cmtcnt=" + cmtcnt + ", bstate="
-				+ bstate + ", username=" + username + ", next=" + next + ", prev=" + prev + "]";
+				+ bstate + ", username=" + username + ", next=" + next + ", prev=" + prev + ", files="
+				+ Arrays.toString(files) + ", file=" + file + "]";
 	}
-
-
 	
 }
