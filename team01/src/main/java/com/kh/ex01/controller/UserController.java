@@ -146,6 +146,28 @@ public class UserController {
 		}
 		return "fail";
 	}
+	
+	@RequestMapping(value = "/insertBasket", method = RequestMethod.POST)
+	@ResponseBody
+	public int insertBasket(UserBasketVo userBasketVo) {
+		System.out.println("insertBasket, userBasketVo: "+userBasketVo);
+		String shoes_code = userBasketVo.getShoes_code();
+		String user_id = userBasketVo.getUser_id();
+		int cart_count = 0;
+		if (shoes_code != null && user_id != null) {
+			int shoesecode_count = orderProductService.getBasketShoeseCodeCount(shoes_code);
+			System.out.println("shoesecode_count: "+shoesecode_count);
+			if (shoesecode_count == 1) {
+				orderProductService.plusBasketOrdercount(shoes_code);
+				cart_count = orderProductService.getUserBasketCount(user_id);
+			} else if (shoesecode_count == 0) {
+				orderProductService.insertBasket(userBasketVo);
+				cart_count = orderProductService.getUserBasketCount(user_id);
+			}
+			return cart_count;
+		}
+		return cart_count;
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "/checkOrderNum", method=RequestMethod.POST)

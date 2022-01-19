@@ -45,4 +45,22 @@ public class OrderProductDao {
 		return order_count;
 	}
 	
+	public int getUserBasketCount(String user_id) {
+		int cart_count = sqlSession.selectOne(NAMESAPCE+"getUserBasketCount", user_id);
+		return cart_count;
+	}
+	
+	public int getBasketShoeseCodeCount(String user_id) {
+		int shoescode_count = sqlSession.selectOne(NAMESAPCE+"getBasketShoeseCodeCount", user_id);
+		return shoescode_count;
+	}
+	
+	public void plusBasketOrdercount(String shoes_count) {
+		sqlSession.update(NAMESAPCE+"plusBasketOrdercount", shoes_count);
+	}
+	
+	public void insertBasket(UserBasketVo userBasketVo) {
+		sqlSession.insert(NAMESAPCE+"insertBasket", userBasketVo);
+	}
+	
 }

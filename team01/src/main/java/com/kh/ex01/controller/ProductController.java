@@ -3,12 +3,14 @@ package com.kh.ex01.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kh.ex01.service.OrderProductService;
 import com.kh.ex01.service.ProductService;
 import com.kh.ex01.util.MyFileUploadUtil;
 import com.kh.ex01.vo.PagingDto;
@@ -18,6 +20,7 @@ import com.kh.ex01.vo.ShoesColorVo;
 import com.kh.ex01.vo.ShoesSizeVo;
 import com.kh.ex01.vo.ShoesStateVo;
 import com.kh.ex01.vo.ShoesStyleVo;
+import com.kh.ex01.vo.UserVo;
 
 /**
  * Handles requests for the application home page.
@@ -27,12 +30,19 @@ import com.kh.ex01.vo.ShoesStyleVo;
 public class ProductController {
 	@Inject
 	ProductService productService;
-
+	@Inject
+	OrderProductService orderProductService;
+	
 	@RequestMapping(value = "/product_index", method = RequestMethod.GET)
-	public String productIndex(Model model, PagingDto pt) {
+	public String productIndex(Model model, PagingDto pt, HttpSession httpSession) {
 		pt.setCount(productService.getCount());
 		pt.setPage(pt.getPage());
 		System.out.println("pt: " + pt);
+		UserVo userVo = (UserVo) httpSession.getAttribute("userData");
+		if (userVo.getUser_id() != null && !(userVo.getUser_id().equals(""))) {
+			int cart_count = orderProductService.getUserBasketCount(userVo.getUser_id());
+			model.addAttribute("cart_count", cart_count);
+		}
 		List<ProductVo> list = productService.selectAll(pt);
 		System.out.println("list: " + list);
 		model.addAttribute("list", list);

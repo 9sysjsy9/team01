@@ -32,11 +32,7 @@ $(function() {
 	});
 	//
 	
-	$(".check").click(function() {
-		if ($(this).is(':checked')) {
-			var userBasketVo = $(this).val();
-			console.log(".check, userBasketVo: "+userBasketVo);
-		}
+	$(".checkBasket").click(function() {
 		var sum_count = 0;
 	 	var sum_price = 0;
 		$(".checkBasket").each(function(i){

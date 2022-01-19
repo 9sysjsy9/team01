@@ -49,5 +49,28 @@
 		where shoes_code = #{shoes_code}
 	</select>
 	
+	<select id="getUserBasketCount" resultType="int">
+		select count(shoes_code)  
+		from tbl_basket
+		where user_id = #{user_id}
+	</select>
+	
+	<select id="getBasketShoeseCodeCount" resultType="int">
+		select count(*) 
+		from tbl_basket
+		where shoes_code = #{shoes_code}
+	</select>
+	
+	<update id="plusBasketOrdercount">
+		update tbl_basket
+		set order_count = order_count + 1
+		where shoes_code = #{shoes_code}
+	</update>
+	
+	<insert id="insertBasket">
+		insert into tbl_basket(shoes_code, order_count, user_id)
+		values(#{shoes_code}, 1, #{user_id})
+	</insert>
+	
 	
 </mapper>

@@ -46,5 +46,24 @@ public class OrderProductService {
 		return order_count;
 	}
 	
+	public int getUserBasketCount(String user_id) {
+		int cart_count = orderProductDao.getUserBasketCount(user_id);
+		return cart_count;
+	}
+	
+	public int getBasketShoeseCodeCount(String user_id) {
+		int shoescode_count = orderProductDao.getBasketShoeseCodeCount(user_id);
+		return shoescode_count;
+	}
+	
+	public void plusBasketOrdercount(String shoes_count) {
+		System.out.println("plusBasketOrdercount 실행됨");
+		orderProductDao.plusBasketOrdercount(shoes_count);
+	}
+	
+	public void insertBasket(UserBasketVo userBasketVo) {
+		System.out.println("insertBasket 실행됨");
+		orderProductDao.insertBasket(userBasketVo);
+	}
 	
 }
