@@ -32,40 +32,103 @@ $(function() {
 	});
 	//
 	
-	$(".check").click(function() {
-		if ($(this).is(':checked')) {
-			var userBasketVo = $(this).val();
-			console.log(".check, userBasketVo: "+userBasketVo);
-		}
-		var sum_count = 0;
-	 	var sum_price = 0;
-		$(".checkBasket").each(function(i){
-			
-			if ($(this).is(':checked')) {
-				var order_count = $(".order_count"+(i+1)).val();
-				console.log("order_count:" + order_count);
-				var sum = $(".sum"+(i+1)).val();
-				console.log("sum:" + sum);
-				sum_count = sum_count + parseInt(order_count);
-				sum_price = sum_price + parseInt(sum);
-				console.log("sum:" + sum);
-				$("#sum_p_num").text("상품갯수: "+sum_count+"개");
-				$("#sum_p_price").text("합계금액: "+sum_price+"원");
+	$(".checkBasket").click(function() {
+		var shoes_code = $(this).val();
+		var checked = $(this).is(':checked');
+		console.log("checked: "+checked);
+		var url = "/user/changeBasketChecked";
+		sData = {
+			"shoes_code" : shoes_code,
+			"checked" : checked
+		};
+		
+		$.post(url, sData, function(rData) {
+			if (rData == 'success') {
+				console.log("rData: "+rData);
+				var sum_count = 0;
+			 	var sum_price = 0;
+				$(".checkBasket").each(function(i){
+					if ($(this).is(':checked')) {
+						var order_count = $(".order_count"+(i+1)).val();
+						console.log("order_count:" + order_count);
+						var sum = $(".sum"+(i+1)).val();
+						console.log("sum:" + sum);
+						sum_count = sum_count + parseInt(order_count);
+						sum_price = sum_price + parseInt(sum);
+						console.log("sum:" + sum);
+						$("#sum_p_num").text("상품갯수: "+sum_count+"개");
+						$("#sum_p_price").text("합계금액: "+sum_price+"원");
+					}
+					
+				});
 			}
 			
 		});
+		
 	});
 	
-	$("#btnSelectedOrder").click(function() {
-		var checkeds = $(".check:checked");
-		console.log(checkeds);
+	
+	$(".btnDeleteSelect").click(function() {
+		var checkeds = $(".checkBasket:checked");
 		var orderList = [];
-		
 		$.each(checkeds, function(i) {
-			var order_code = $(this).val();
-			orderList[i] = order_code;
+			var shoes_code = $(this).val();
+			console.log("shoes_code: "+shoes_code);
+			orderList[i] = shoes_code;
+		});
+		$.ajax({
+			  url : "/user/DeleteSelectedBasket",
+			  type : "post",
+			  data : {
+				 orderList : orderList
+			  },
+			  success : function(rData){
+			  	console.log("rData: "+rData);
+			  	if (rData != 'fail') {
+			  		location.href = "/user/user_basket";
+			  	}
+			  	
+			  }
 		});
 		
+	});
+	
+	
+	$(".btnDeleteAll").click(function() {
+		var checkBasket = $(".checkBasket");
+		var orderList = [];
+		$.each(checkBasket, function(i) {
+			var shoes_code = $(this).val();
+			console.log("shoes_code: "+shoes_code);
+			orderList[i] = shoes_code;
+		});
+		$.ajax({
+			  url : "/user/DeleteAllBasket",
+			  type : "post",
+			  data : {
+				 orderList : orderList
+			  },
+			  success : function(rData){
+			  	console.log("rData: "+rData);
+			  	if (rData != 'fail') {
+			  		location.href = "/user/user_basket";
+			  	}
+			  	
+			  }
+		});
+		
+	});
+	
+	
+	$("#btnSelectedOrder").click(function() {
+		var checkeds = $(".checkBasket:checked");
+		var orderList = [];
+		$.each(checkeds, function(i) {
+			var shoes_code = $(this).val();
+			console.log("shoes_code: "+shoes_code);
+			orderList[i] = shoes_code;
+		});
+		console.log(orderList);
 		$.ajax({
 			  url : "/user/orderContent",
 			  type : "post",
@@ -85,7 +148,7 @@ $(function() {
 	
 	$(".up").click(function() {
 		var order_count = $(this).parent().prev().val();
-		var order_code = $(this).attr("data-ordercode");
+		var shoes_code = $(this).attr("data-shoescode");
 		var shoes_price = $(this).attr("data-shoesprice");
 		var loop = $(this).attr("data-loop");
 		var sum = $(".sum"+loop).val();
@@ -94,7 +157,7 @@ $(function() {
 		$(this).parent().prev().val(order_count);
 		var url = "/user/changeBasketCount";
 		sData = {
-			"order_code" : order_code,
+			"shoes_code" : shoes_code,
 			"order_count" : order_count
 		};
 		$.post(url, sData, function(rData) {
@@ -123,7 +186,7 @@ $(function() {
 	
 	$(".down").click(function() {
 		var order_count = $(this).parent().prev().val();
-		var order_code = $(this).attr("data-ordercode");
+		var shoes_code = $(this).attr("data-shoescode");
 		var shoes_price = $(this).attr("data-shoesprice");
 		var loop = $(this).attr("data-loop");
 		var sum = $(".sum"+loop).val();
@@ -134,7 +197,7 @@ $(function() {
 		$(this).parent().prev().val(order_count);
 		var url = "/user/changeBasketCount";
 		sData = {
-			"order_code" : order_code,
+			"shoes_code" : shoes_code,
 			"order_count" : order_count
 		};
 		$.post(url, sData, function(rData) {
@@ -193,13 +256,16 @@ $(function() {
 				<div class="subdiv">
 					<!-- 				
 					<div class="check">
-						<input type="checkbox" class="check" name="buy" value="${userBasketVo.order_code}" checked="checked"
+						<input type="checkbox" class="check" name="buy" value="${userBasketVo.shoes_code}" checked="checked"
 							onclick="javascript:basket.checkItem();">&nbsp;
 					</div>
 					-->
 					<div class="check">
-						<input type="checkbox" class="checkBasket" name="buy" value="${userBasketVo.order_code}" 
-						checked="checked" data-loop="${loop.count}">&nbsp;
+						<input type="checkbox" class="checkBasket" name="buy" value="${userBasketVo.shoes_code}" 
+						<c:if test="${userBasketVo.checked != false}">
+						checked="checked"
+						</c:if> 
+						data-loop="${loop.count}">&nbsp;
 					</div>
 					<div class="img">
 						<img src="/upload/displayThumbnailImage?fileName=${userBasketVo.shoes_image}">
@@ -231,9 +297,9 @@ $(function() {
 							<input type="text" name="order_count" size="1" readonly="readonly"
 							 class="order_count${loop.count}" value="${userBasketVo.order_count}"> 
 							<label>
-							<i class="fas fa-arrow-alt-circle-up up" data-ordercode="${userBasketVo.order_code}" 
+							<i class="fas fa-arrow-alt-circle-up up" data-shoescode="${userBasketVo.shoes_code}" 
 								data-shoesprice="${userBasketVo.shoes_price}" data-loop="${loop.count}"></i>
-							<i class="fas fa-arrow-alt-circle-down down" data-ordercode="${userBasketVo.order_code}"
+							<i class="fas fa-arrow-alt-circle-down down" data-shoescode="${userBasketVo.shoes_code}"
 								data-shoesprice="${userBasketVo.shoes_price}" data-loop="${loop.count}"></i>
 							</label>
 						</div>
@@ -245,8 +311,11 @@ $(function() {
 				</div>
 				<div class="subdiv">
 					<div class="basketcmd">
-						<a href="javascript:void(0)" class="abutton"
-							onclick="javascript:basket.delItem();">삭제</a>
+						<!-- 						
+						<a href="javascript:void(0)" class="abutton" 
+						onclick="javascript:basket.delItem();">삭제</a>
+						 -->
+						<a href="/user/deleteBasket?shoes_code=${userBasketVo.shoes_code}" class="abutton">삭제</a>
 					</div>
 				</div>
 			</div>
@@ -254,11 +323,15 @@ $(function() {
 
 	</div>
 
-	<div class="right-align basketrowcmd">
+ 	<div class="right-align basketrowcmd"> 
+ 		<!--
 		<a href="javascript:void(0)" class="abutton"
 			onclick="javascript:basket.delCheckedItem();">선택상품삭제</a> <a
 			href="javascript:void(0)" class="abutton"
 			onclick="javascript:basket.delAllItem();">장바구니비우기</a>
+		-->
+		<button type="button" class="btn btn-outline-dark btn-lg px-4 btnDeleteSelect">선택상품삭제</button>
+		<button type="button" class="btn btn-outline-dark btn-lg px-4 btnDeleteAll">장바구니비우기</button>
 	</div>
 
 	<div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: 개</div>

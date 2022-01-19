@@ -40,9 +40,35 @@ public class OrderProductDao {
 		sqlSession.update(NAMESAPCE+"changeBasketCount", userBasketVo);
 	}
 	
+	public void changeBasketChecked(UserBasketVo userBasketVo) {
+		sqlSession.update(NAMESAPCE+"changeBasketChecked", userBasketVo);
+	}
+	
 	public int getBasketCount(String order_code) {
 		int order_count = sqlSession.selectOne(NAMESAPCE+"getBasketCount", order_code);
 		return order_count;
+	}
+	
+	public int getUserBasketCount(String user_id) {
+		int cart_count = sqlSession.selectOne(NAMESAPCE+"getUserBasketCount", user_id);
+		return cart_count;
+	}
+	
+	public int getBasketShoeseCodeCount(String user_id) {
+		int shoescode_count = sqlSession.selectOne(NAMESAPCE+"getBasketShoeseCodeCount", user_id);
+		return shoescode_count;
+	}
+	
+	public void plusBasketOrdercount(String shoes_count) {
+		sqlSession.update(NAMESAPCE+"plusBasketOrdercount", shoes_count);
+	}
+	
+	public void insertBasket(UserBasketVo userBasketVo) {
+		sqlSession.insert(NAMESAPCE+"insertBasket", userBasketVo);
+	}
+	
+	public void deleteBasket(String shoes_code) {
+		sqlSession.delete(NAMESAPCE+"deleteBasket", shoes_code);
 	}
 	
 }
