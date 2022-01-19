@@ -3,6 +3,8 @@ package com.kh.ex01.vo;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
+import org.springframework.web.multipart.MultipartFile;
+
 
 public class BoardVo {
 
@@ -178,6 +180,7 @@ public class BoardVo {
 	public void setPrev(int prev) {
 		this.prev = prev;
 	}
+	
 
 	@Override
 	public String toString() {

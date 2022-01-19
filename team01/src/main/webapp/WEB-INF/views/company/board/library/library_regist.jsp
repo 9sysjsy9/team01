@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
-<form action="/company/board/library/regist_run" method="get">
-<input type="hidden" name="bate">
+<form action="/company/board/library/regist_run" method="POST">
+<input type="hidden" name="bcate">
 <input type="hidden" name="userid" value="${loginData.userid }">
 <input type="hidden" name="username" value="${loginData.username }">
 	<div class="container-fluid">

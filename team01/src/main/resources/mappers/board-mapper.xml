@@ -146,6 +146,7 @@
 		values(seq_bno.nextval, 'l', #{title}, #{content}, #{userid}, sysdate, #{username})
 	</insert>
 	
+	
 	<select id="getCount_l" resultType="int">
 		select count(*) from tbl_board
 		where bcate = 'l'

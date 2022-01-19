@@ -1,6 +1,7 @@
 package com.kh.ex01.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -257,20 +258,11 @@ public class BoardController {
 	 }
 	
 	// 자료실 글추가
-//	@RequestMapping(value="/board/library/regist_run", method=RequestMethod.GET)
-//	public String libraryBoardRegistRun(BoardVo boardVo) {
-//		String fileName = null;
-//		MultipartFile uploadFile = boardVo.getUploadFile();
-//		String originalFileName = uploadFile.getOriginalFilename();
-//		UUID uuid = UUID.randomUUID();	
-//		fileName = uuid + "_" + originalFileName;
-//		uploadFile.transferTo(new File(UPLOAD_PATH + "resume/" + fileName));
-//		hireVo.setFilename(fileName);
-//		hireService.registRun(boardVo); 
-//		rttr.addFlashAttribute("message", "regist_success");
-//		boardService.insertLibraryBoard(boardVo);
-//		return "redirect:/company/board/library/library_list";
-//	}
+	@RequestMapping(value="/board/library/regist_run", method=RequestMethod.POST)
+	public String libraryBoardRegistRun(BoardVo boardVo) throws IOException {
+		boardService.insertLibraryBoard(boardVo); 
+		return "redirect:/company/board/library/library_list";
+	}
 	
 	// 자료실 글 삭제
 	@RequestMapping(value="/board/library/library_delete", method=RequestMethod.GET)
