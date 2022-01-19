@@ -115,4 +115,21 @@ public class BoardDao {
 	public void noticeModifyRun(BoardVo boardVo) {
 		sqlSession.update(NAMESPACE + "noticeModifyRun", boardVo);
 	}
+	
+	//자료실
+	public List<BoardVo> libraryList(PagingDto pagingDto) {
+		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "libraryList", pagingDto);
+		return list;
+	}
+	
+	public void insertLibraryBoard(BoardVo boardVo) {
+		sqlSession.insert(NAMESPACE + "insertLibraryBoard", boardVo);
+	}
+	
+	public int getCount_l() {
+		int count = sqlSession.selectOne(NAMESPACE+"getCount_f");
+		return count;
+	}
+	
+	
 }

@@ -39,6 +39,11 @@ public class BoardService {
 		return count;
 	}
 	
+	public int getCount_l() {
+		int count = boardDao.getCount_f();
+		return count;
+	}
+	
 	public int getCount_a() {
 		int count = boardDao.getCount_a();
 		return count;
@@ -108,6 +113,15 @@ public class BoardService {
 	//공지 수정
 	public void noticeModifyRun(BoardVo boardVo) {
 		boardDao.noticeModifyRun(boardVo);
+	}
+	
+	//자료실
+	public List<BoardVo> libraryList(PagingDto pagingDto) {
+		return boardDao.libraryList(pagingDto);
+	}
+	
+	public void insertLibraryBoard(BoardVo boardVo) {
+		boardDao.insertLibraryBoard(boardVo);
 	}
 	
 }

@@ -123,6 +123,23 @@
 		WHERE bno = #{bno}
 	</update>
 	
+<!-- 자료실 -->
+	<select id="libraryList" resultType="BoardVo">
+		select * from
+				(select rownum rnum, a.* from
+				(select * from tbl_board where bcate = 'l' order by bno desc) a) 
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<insert id="insertLibraryBoard">
+		insert into tbl_board(bno, bcate, title, content, userid, regdate, username)
+		values(seq_bno.nextval, 'l', #{title}, #{content}, #{userid}, sysdate, #{username})
+	</insert>
+	
+	<select id="getCount_l" resultType="int">
+		select count(*) from tbl_board
+		where bcate = 'l'
+	</select>
 	
 	
 </mapper>
