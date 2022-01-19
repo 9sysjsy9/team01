@@ -255,5 +255,20 @@ public class MyFileUploadUtil {
 		System.out.println("실패");
 		return false;
 	}
+	
+	//게시판 파일 업로드
+	public static String uploadBoardFile(String uploadPath, String originalName, String seq, byte[] fileData) {
+		String filePath = uploadPath + "/" + seq + "_"+originalName;
+		File target = new File(filePath);
+		System.out.println("filePath :" + filePath);
+		System.out.println("target :" + target);
+		
+		try {
+			FileCopyUtils.copy(fileData, target);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return seq + "_"+originalName;
+	}
 
 }

@@ -88,7 +88,13 @@ $(function(){
 								</tr>
 								
 								<tr>
-									<td>첨부파일 : <span></span>
+									<td>첨부파일 :
+										<c:forEach items="${noticeContent.files}" var="file">
+										
+											<span> <a href="/company/board/fileDownload?filename=${file}">${file}</a></span>
+										
+										</c:forEach>
+									
 									</td>
 								</tr>
 							</tbody>

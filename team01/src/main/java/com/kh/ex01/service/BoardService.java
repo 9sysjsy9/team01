@@ -99,8 +99,14 @@ public class BoardService {
 	}
 	
 	//공지사항 등록
+	@Transactional
 	public void noticeRegistRun(BoardVo boardVo) {
 		boardDao.noticeRegistRun(boardVo);
+		System.out.println("BoardService, noticeRegistRun, boardVo : " + boardVo);
+		String bno = Integer.toString(boardVo.getBno());
+		for(int i = 0 ; i < boardVo.getFiles().length ; i++) {
+			boardDao.uploadBoardFile(bno, boardVo.getFiles()[i]);
+		}
 	}
 	
 	//공지 읽기
@@ -108,11 +114,24 @@ public class BoardService {
 	public BoardVo noticeContent(int bno) {
 		boardDao.updateViewcnt(bno);
 		BoardVo boardVo = boardDao.noticeContent(bno);
+		
+		List<String> filenames = boardDao.downloadBoardFile(bno);
+		System.out.println("filenames : " + filenames);
+		
+		if(0 < filenames.size()) {
+			String[] files = new String[filenames.size()];
+			for(int i = 0 ; i < filenames.size() ; i++) {
+				files[i] = filenames.get(i);
+			}
+			boardVo.setFiles(files);
+		}
 		return boardVo;
 	}
 	
 	//공지 삭제
+	@Transactional
 	public void noticeDeleteRun(int bno) {
+		boardDao.fileDeleteRun(bno);
 		boardDao.noticeDeleteRun(bno);
 	}
 	

@@ -56,7 +56,6 @@ public class UploadController {
 				return "fail";
 			}
 		}
-
 		return filePath.substring(UPLOAD_PATH.length());
 	}
 

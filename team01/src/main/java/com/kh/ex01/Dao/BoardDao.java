@@ -1,6 +1,8 @@
 package com.kh.ex01.Dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -106,6 +108,19 @@ public class BoardDao {
 		sqlSession.insert(NAMESPACE + "noticeRegistRun", boardVo);
 	}
 	
+	//파일 업로드
+	public void uploadBoardFile (String bno, String filename) {
+		Map<String, String> map = new HashMap<>();
+		map.put("bno", bno);
+		map.put("filename", filename);
+		sqlSession.insert(NAMESPACE + "uploadBoardFile", map);
+	}
+	
+	//파일 다운로드
+	public List<String> downloadBoardFile(int bno) {
+		List<String> filenames = sqlSession.selectList(NAMESPACE + "downloadBoardFile", bno);
+		return filenames;
+	}
 	
 	//공지 내용
 	public BoardVo noticeContent(int bno) {
@@ -117,12 +132,16 @@ public class BoardDao {
 	public void noticeDeleteRun(int bno) {
 		sqlSession.delete(NAMESPACE + "noticeDeleteRun", bno);
 	}
-	//공지 수정
 	
+	public void fileDeleteRun(int bno) {
+		sqlSession.delete(NAMESPACE + "fileDeleteRun", bno);
+	}
+	
+	//공지 수정
 	public void noticeModifyRun(BoardVo boardVo) {
 		sqlSession.update(NAMESPACE + "noticeModifyRun", boardVo);
 	}
-	
+//-------공지사항 끝
 	//자료실
 	public List<BoardVo> libraryList(PagingDto pagingDto) {
 		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "libraryList", pagingDto);

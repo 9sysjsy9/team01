@@ -1,20 +1,24 @@
 package com.kh.ex01.controller;
 
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.List;
-import java.util.UUID;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.ex01.service.BoardService;
 import com.kh.ex01.service.CommentService;
+import com.kh.ex01.util.MyFileUploadUtil;
 import com.kh.ex01.vo.BoardVo;
 import com.kh.ex01.vo.CommentVo;
 import com.kh.ex01.vo.HireBoardVo;
@@ -23,6 +27,8 @@ import com.kh.ex01.vo.PagingDto;
 @Controller
 @RequestMapping("/company")
 public class BoardController {
+	
+	private static final String UPLOAD_PATH = "//192.168.0.234/upload/board";
 	
 	@Inject
 	private BoardService boardService;
@@ -124,10 +130,26 @@ public class BoardController {
 	}
 	//공지사항 작성 Run
 	@RequestMapping(value = "/board/notice/noticeRegistRun", method = RequestMethod.POST)
-	public String noticeRegistRun(BoardVo boardVo) {
+	public String noticeRegistRun(MultipartHttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		BoardVo boardVo = new BoardVo();
 		int bno = boardService.getBnoSeq();
 		boardVo.setBno(bno);
+		boardVo.setTitle(request.getParameter("title"));
+		boardVo.setContent(request.getParameter("content"));
+		boardVo.setUserid(request.getParameter("userid"));
+		List<MultipartFile> files = request.getFiles("files");
 		System.out.println("BoardController, noticeRgistRun, boardVo : " + boardVo);
+		System.out.println("BoardController, noticeRgistRun, files : " + files);
+		String[] fileNames = new String[files.size()];
+		
+		for(int i = 0 ; i < files.size() ; i++) {
+			String originalName = files.get(i).getOriginalFilename();
+			System.out.println("BoardController, noticeRgistRun, orifinalName : " + originalName);
+			String seq = bno + "_" + i;
+			fileNames[i] = MyFileUploadUtil.uploadBoardFile(UPLOAD_PATH, originalName, seq, files.get(i).getBytes());
+		}
+		boardVo.setFiles(fileNames);
 		boardService.noticeRegistRun(boardVo);
 		return "redirect:/company/board/notice/notice_content?bno="+bno;
 	}
@@ -140,12 +162,20 @@ public class BoardController {
 		return "/company/board/notice/notice_content";
 	}
 	
+	
+	//공지사항 삭제
 	@RequestMapping(value = "/board/notice/noticeDeleteRun/{bno}", method = RequestMethod.GET, produces = "application/text;charset=utf-8")
-	public String noticeDeleteRun(@PathVariable int bno) {
+	public String noticeDeleteRun(@PathVariable int bno) throws Exception{
+		BoardVo boardVo = boardService.noticeContent(bno);
+		String[] fileNames = boardVo.getFiles();
+		for(int i = 0 ; i < fileNames.length ; i++) {
+			MyFileUploadUtil.deleteFile(UPLOAD_PATH + "/" + fileNames[i]);
+		}
 		boardService.noticeDeleteRun(bno);
 		return "redirect:/company/board/notice/notice_list";
 	}
 	
+	//공지사항 수정
 	@RequestMapping(value = "/board/notice/notice_modify", method = RequestMethod.GET)
 	public String noticeModify(Model model, int bno, PagingDto pagingDto)  {
 		System.out.println("BoardController, noticeModifyRun, bno : " + bno);
@@ -155,12 +185,31 @@ public class BoardController {
 		return "/company/board/notice/notice_modify";
 	}
 	
+	//공지사항 수정 실행
 	@RequestMapping(value = "/board/notice/noticeModifyRun", method = RequestMethod.POST)
-	public String notiveModifyRun(BoardVo boardVo, PagingDto pagingDto) {
+	public String noticeModifyRun(BoardVo boardVo, PagingDto pagingDto) {
 		boardService.noticeModifyRun(boardVo);
 		return "redirect:/company/board/notice/notice_content?bno="+boardVo.getBno();
 	}
 	
+	
+	@RequestMapping(value = "/board/fileDownload", method = RequestMethod.GET)
+	public void fileDownLoad(HttpServletResponse response, String filename) throws Exception{
+		String filePath = UPLOAD_PATH + "/" + filename;
+		System.out.println("BoardController, fileDownLoad, filePath : " + filePath);
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(filePath));
+		response.setContentType("application/octet-stream");
+	    response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(""+filename+"", "UTF-8")+"\";");
+	    response.setHeader("Content-Transfer-Encoding", "binary");
+
+	    response.getOutputStream().write(fileByte);
+	    response.getOutputStream().flush();
+	    response.getOutputStream().close();
+	}
+
+
+//------------------------ 공지 게시판 끝
+//------------------------ 익명 게시판
 	// 익명게시판 목록
 	@RequestMapping(value = "/board/anonymous/anonymous_list", method = RequestMethod.GET)
 	 public String anonymousList(Model model,PagingDto pagingDto) {
@@ -294,5 +343,7 @@ public class BoardController {
 		model.addAttribute("boardVo",boardVo);
 		return "/company/board/library/library_modify";
 	}
+	
+
 	
 }
