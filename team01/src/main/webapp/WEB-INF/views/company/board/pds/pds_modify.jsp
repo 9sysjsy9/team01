@@ -7,31 +7,24 @@
 <!-- http://localhost/company/board/notice/notice_regist -->
 <script>
 $(function(){
-
-//파일 첨부
-
-	$(".listBtn").click(function(e){
+	$(".modifyRunBtn").click(function(e){
 		e.preventDefault();
-		var bno = $(this).attr("href");
-		$("#pagingForm").attr("action","/company/board/notice/notice_list");
+		$("#modifyForm").submit();
+		console.log("수정 완료 버튼 클릭");
+	});
+	
+	//목록 버튼
+	$(".cancelBtn").click(function(e){
+		console.log("취소 버튼 클릭")
+		e.preventDefault();
+		$("#pagingForm").attr("action","/company/board/pds/pds_content");
+		$("#pagingForm > input[name=bno]").val("${content.bno}");
 		$("#pagingForm > input[name=page]").val("${pagingDto.page}");
 		$("#pagingForm > input[name=searchType]").val("${pagingDto.searchType}");
 		$("#pagingForm > input[name=keyword]").val("${pagingDto.keyword}");
 		$("#pagingForm").submit();
 	});
-		
-//파일 첨부 삭제 프로세스-------------------------------------------
-	$("#noticeRegistForm").submit(function(e) {
-		
-		$(".files").each(function(i) {
-			var file = $(this)[0].files[0];
-			if(file != null){
-				console.log("file : ", file);
-				$(this).attr("name", "files");
-			}
-		});
-	});
-
+	
 });
 </script>
 <!-- Product section-->
@@ -43,7 +36,7 @@ $(function(){
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
 						<!-- 게시판 이름 -->
-						<h1 class="display-5 fw-bolder" id="store">공지사항</h1>
+						<h1 class="display-5 fw-bolder" id="store">자료실</h1>
 					</div>
 					<div class="col-md-2"></div>
 
@@ -53,36 +46,35 @@ $(function(){
 
 					<div class="col-md-8">
 					
-<form id="noticeRegistForm" method="POST" action="/company/board/notice/noticeRegistRun" enctype="multipart/form-data">
-					<input type="hidden" name="userid" value="${loginData.userid}">
+<form id="modifyForm" method="POST" action="/company/board/pds/pdsModifyRun">
+<%-- 					<input type="hidden" name="userid" value="${loginData.userid}"> --%>
+					<input type="hidden" name="bno" value="${content.bno}">
 						<table class="table">
+<!-- 							<thead> -->
+<!-- 								<tr> -->
+<!-- 									<th>제목 -->
+<!-- 									 <input class="form-control" type="text" name="title">  -->
+<!-- 									</th> -->
+<!-- 								</tr> -->
+<!-- 							</thead> -->
 							<tbody>
 								<tr>
 									<td>제목
-									 <input class="form-control" type="text" name="title" placeholder="제목을 입력하세요."> 
+									 <input class="form-control" type="text" name="title" placeholder="제목을 입력하세요." value="${content.title}"> 
 									</td>
 								</tr>
 								
 								<tr>
 									<td>
 										내용<br>
-										<textarea rows="10" class="form-control" name="content" placeholder="내용을 입력하세요."></textarea>
-									</td>
-								</tr>
-								<tr>
-									<td>첨부 1<span></span>
-										<input type="file" class="form-control files"/>
-										첨부 2
-										<input type="file" class="form-control files"/>
+										<textarea rows="10" class="form-control" name="content" placeholder="내용을 입력하세요.">${content.content}</textarea>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 							<div style="text-align:right">
-									<button type='button' class='listBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>목록</button>
-								<c:if test="${loginData.authority == 3}">
-									<button type='submit' class='registRunBtn btn btn-outline-primary flex-shrink-0 btn-sm'>게시</button>
-								</c:if>
+									<button type='button' class='cancelBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>취소</button>
+									<button type='button' class='modifyRunBtn btn btn-outline-warning flex-shrink-0 btn-sm'>수정 완료</button>
 							</div>
 </form>
 					</div>

@@ -13,9 +13,6 @@ import com.kh.ex01.vo.BoardVo;
 import com.kh.ex01.vo.HireBoardVo;
 import com.kh.ex01.vo.PagingDto;
 
-
-
-
 @Repository
 public class BoardDao {
 		
@@ -83,21 +80,52 @@ public class BoardDao {
 		sqlSession.insert(NAMESPACE +"insertHireBoard", hireboardVo);
 	}
 	
-//-----------------------공지 게시판-----------------------
+//	//자료실
+//	public List<BoardVo> libraryList(PagingDto pagingDto) {
+//		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "libraryList", pagingDto);
+//		return list;
+//	}
+//	
+//	public void insertLibraryBoard(BoardVo boardVo) {
+//		sqlSession.insert(NAMESPACE + "insertLibraryBoard", boardVo);
+//	}
+//	
+//	public int getCount_l() {
+//		int count = sqlSession.selectOne(NAMESPACE+"getCount_f");
+//		return count;
+//	}
 	
+//------------------------ 게시판 공통 시작
 	//글 시퀀스 얻기
 	public int getBnoSeq() {
 		int bno = sqlSession.selectOne(NAMESPACE + "getBnoSeq");
 		return bno;
 	}
 	
+	//글 내용
+	public BoardVo boardContent(int bno) {
+		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "boardContent", bno);
+		return boardVo;
+	}
+	
+	//글 수정
+	public void boardModifyRun(BoardVo boardVo) {
+		sqlSession.update(NAMESPACE + "boardModifyRun", boardVo);
+	}
+	
+	//글 삭제
+	public void boardDeleteRun(int bno) {
+		sqlSession.delete(NAMESPACE + "boardDeleteRun", bno);
+	}
+//------------------------ 게시판 공통 끝
+//------------------------ 공지사항 시작
 	//공지 글 개수
 	public int getNoticeCount(PagingDto pagingDto) {
 		int count = sqlSession.selectOne(NAMESPACE + "getNoticeCount", pagingDto);
 		return count;
 	}
 	
-	//공지 목록
+	//공지 리스트
 	public List<BoardVo> noticeList(PagingDto pagingDto) {
 		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "noticeList", pagingDto);
 		return list;
@@ -122,40 +150,35 @@ public class BoardDao {
 		return filenames;
 	}
 	
-	//공지 내용
-	public BoardVo noticeContent(int bno) {
-		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "noticeContent", bno);
-		return boardVo;
-	}
-	
-	//공지 삭제
-	public void noticeDeleteRun(int bno) {
-		sqlSession.delete(NAMESPACE + "noticeDeleteRun", bno);
-	}
-	
+	//첨부파일 삭제
 	public void fileDeleteRun(int bno) {
 		sqlSession.delete(NAMESPACE + "fileDeleteRun", bno);
 	}
-	
-	//공지 수정
-	public void noticeModifyRun(BoardVo boardVo) {
-		sqlSession.update(NAMESPACE + "noticeModifyRun", boardVo);
-	}
-//-------공지사항 끝
-	//자료실
-	public List<BoardVo> libraryList(PagingDto pagingDto) {
-		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "libraryList", pagingDto);
-		return list;
-	}
-	
-	public void insertLibraryBoard(BoardVo boardVo) {
-		sqlSession.insert(NAMESPACE + "insertLibraryBoard", boardVo);
-	}
-	
-	public int getCount_l() {
-		int count = sqlSession.selectOne(NAMESPACE+"getCount_f");
+//------------------------ 공지사항 끝
+//------------------------ 자료실 시작
+	//자료실 글 개수
+	public int getPdsCount(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE + "getPdsCount", pagingDto);
 		return count;
 	}
 	
+	//자료실 목록
+	public List<BoardVo> pdsList(PagingDto pagingDto) {
+		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "pdsList", pagingDto);
+		return list;
+	}
 	
+	//자료실 글 작성
+	public void pdsRegistRun (BoardVo boardVo) {
+		sqlSession.insert(NAMESPACE + "pdsRegistRun", boardVo);
+	}
+//------------------------ 자료실 끝
+//------------------------ 메인 화면 조회
+	public List<BoardVo> mainBoardList(String bcate) {
+		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "mainBoardList", bcate);
+		return list;
+	};
+//------------------------ 메인 화면 끝
+	
+
 }

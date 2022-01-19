@@ -34,10 +34,56 @@ if("${msg}" == "fail"){
 } else if ("${msg}" == "logout"){
 	alert("로그아웃 되었습니다.")
 }
-	
+
+$(function(){
+	var cookie_user_id = getLogin();
+	if(cookie_user_id != "") {
+		$("#userid").val(cookie_user_id);
+		$("#idSaveCheck").attr("checked", true);
+	}
+
+	$("#loginBtn").on("click", function(){
+		if($("#idSaveCheck").is(":checked")){
+			saveLogin($("#userid").val());
+		}else{
+			saveLogin("");
+		}
+	});
+});
+
+function saveLogin(id) {
+	if(id != "") {
+		setSave("userid", id, 7);
+	}else{
+		setSave("userid", id, -1);
+	}
+}
+
+function setSave(name, value, expiredays) {
+	var today = new Date();
+	today.setDate( today.getDate() + expiredays );
+	document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + today.toGMTString() + ";"
+}
+
+function getLogin() {
+	var cook = document.cookie + ";";
+	var idx = cook.indexOf("userid", 0);
+	var val = "";
+
+	if(idx != -1) {
+		cook = cook.substring(idx, cook.length);
+		begin = cook.indexOf("=", 0) + 1;
+		end = cook.indexOf(";", begin);
+		val = unescape(cook.substring(begin, end));
+	}
+	return val;
+}
+
 </script>
 </head>
 <body>
+
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="#">사내 페이지</a>
@@ -84,11 +130,15 @@ if("${msg}" == "fail"){
 								</div>
 
 								<div class="checkbox">
-									<label> <input type="checkbox" /> 기억하기
+									<label> 
+<!-- 									<input type="text" name="id"> -->
+									<input type="checkbox" id="idSaveCheck"/> 기억하기
+									
+<!-- 									<input type="checkbox" /> 기억하기 -->
 									</label>
 								</div>
 								<button type="submit"
-									class="btn btn-outline-primary flex-shrink-0">로그인</button>
+									class="btn btn-outline-primary flex-shrink-0" id="loginBtn">로그인</button>
 								<a href="/member/registForm" 
 									class="btn btn-outline-primary flex-shrink-0">가입요청</a>
 							</form>

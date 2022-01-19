@@ -1,7 +1,6 @@
 package com.kh.ex01.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -30,7 +29,7 @@ import com.kh.ex01.vo.PagingDto;
 public class BoardController {
 	
 
-	private static final String UPLOAD_PATH = "//192.168.0.234/upload/board";
+	private static final String UPLOAD_PATH = "D:/upload/board";
 
 	@Inject
 	private BoardService boardService;
@@ -112,105 +111,7 @@ public class BoardController {
 		boardService.insertHireBoard(hireBoardVo);
 		return "redirect:/hire/company/regist_list";
 	}
-//공지사항 게시판 ----------------------------------------------
-	//공지사항 글 리스트
-	@RequestMapping(value = "/board/notice/notice_list", method=RequestMethod.GET)
-	public String noticeList(Model model, PagingDto pagingDto) {
-		pagingDto.setCount(boardService.getNoticeCount(pagingDto)); // 게시판 글 개수 얻어오기
-		pagingDto.setPage(pagingDto.getPage()); //페이지 개수 갱신
-		List<BoardVo> list = boardService.noticeList(pagingDto);
-		model.addAttribute("noticeList", list);
-		model.addAttribute("noticePagingDto", pagingDto);
-		return "/company/board/notice/notice_list";
-	}
-	
-	//공지사항 작성 폼
-	@RequestMapping(value = "/board/notice/notice_regist", method = RequestMethod.GET)
-	public String noticeRegist(Model model, PagingDto pagingDto) {
-		model.addAttribute("noticePagingDto", pagingDto);
-		return "/company/board/notice/notice_regist";
-	}
-	//공지사항 작성 Run
-	@RequestMapping(value = "/board/notice/noticeRegistRun", method = RequestMethod.POST)
-	public String noticeRegistRun(MultipartHttpServletRequest request) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		BoardVo boardVo = new BoardVo();
-		int bno = boardService.getBnoSeq();
-		boardVo.setBno(bno);
-		boardVo.setTitle(request.getParameter("title"));
-		boardVo.setContent(request.getParameter("content"));
-		boardVo.setUserid(request.getParameter("userid"));
-		List<MultipartFile> files = request.getFiles("files");
-		System.out.println("BoardController, noticeRgistRun, boardVo : " + boardVo);
-		System.out.println("BoardController, noticeRgistRun, files : " + files);
-		String[] fileNames = new String[files.size()];
-		
-		for(int i = 0 ; i < files.size() ; i++) {
-			String originalName = files.get(i).getOriginalFilename();
-			System.out.println("BoardController, noticeRgistRun, orifinalName : " + originalName);
-			String seq = bno + "_" + i;
-			fileNames[i] = MyFileUploadUtil.uploadBoardFile(UPLOAD_PATH, originalName, seq, files.get(i).getBytes());
-		}
-		boardVo.setFiles(fileNames);
-		boardService.noticeRegistRun(boardVo);
-		return "redirect:/company/board/notice/notice_content?bno="+bno;
-	}
-	//공지사항 ContentView
-	@RequestMapping(value = "/board/notice/notice_content", method = RequestMethod.GET)
-	public String noticeContent(Model model, int bno, PagingDto pagingDto) {
-		BoardVo boardVo = boardService.noticeContent(bno);
-		model.addAttribute("noticeContent", boardVo);
-		model.addAttribute("noticePagingDto", pagingDto);
-		return "/company/board/notice/notice_content";
-	}
-	
-	
-	//공지사항 삭제
-	@RequestMapping(value = "/board/notice/noticeDeleteRun/{bno}", method = RequestMethod.GET, produces = "application/text;charset=utf-8")
-	public String noticeDeleteRun(@PathVariable int bno) throws Exception{
-		BoardVo boardVo = boardService.noticeContent(bno);
-		String[] fileNames = boardVo.getFiles();
-		for(int i = 0 ; i < fileNames.length ; i++) {
-			MyFileUploadUtil.deleteFile(UPLOAD_PATH + "/" + fileNames[i]);
-		}
-		boardService.noticeDeleteRun(bno);
-		return "redirect:/company/board/notice/notice_list";
-	}
-	
-	//공지사항 수정
-	@RequestMapping(value = "/board/notice/notice_modify", method = RequestMethod.GET)
-	public String noticeModify(Model model, int bno, PagingDto pagingDto)  {
-		System.out.println("BoardController, noticeModifyRun, bno : " + bno);
-		BoardVo boardVo = boardService.noticeContent(bno);
-		model.addAttribute("noticeContent", boardVo);
-		model.addAttribute("noticePagingDto", pagingDto);
-		return "/company/board/notice/notice_modify";
-	}
-	
-	//공지사항 수정 실행
-	@RequestMapping(value = "/board/notice/noticeModifyRun", method = RequestMethod.POST)
-	public String noticeModifyRun(BoardVo boardVo, PagingDto pagingDto) {
-		boardService.noticeModifyRun(boardVo);
-		return "redirect:/company/board/notice/notice_content?bno="+boardVo.getBno();
-	}
-	
-	
-	@RequestMapping(value = "/board/fileDownload", method = RequestMethod.GET)
-	public void fileDownLoad(HttpServletResponse response, String filename) throws Exception{
-		String filePath = UPLOAD_PATH + "/" + filename;
-		System.out.println("BoardController, fileDownLoad, filePath : " + filePath);
-		byte[] fileByte = FileUtils.readFileToByteArray(new File(filePath));
-		response.setContentType("application/octet-stream");
-	    response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(""+filename+"", "UTF-8")+"\";");
-	    response.setHeader("Content-Transfer-Encoding", "binary");
 
-	    response.getOutputStream().write(fileByte);
-	    response.getOutputStream().flush();
-	    response.getOutputStream().close();
-	}
-
-
-//------------------------ 공지 게시판 끝
 //------------------------ 익명 게시판
 	// 익명게시판 목록
 	@RequestMapping(value = "/board/anonymous/anonymous_list", method = RequestMethod.GET)
@@ -275,67 +176,250 @@ public class BoardController {
 	}
 
 	
-	// 자료실 목록
-	@RequestMapping(value = "/board/library/library_list", method = RequestMethod.GET)
-	 public String libraryList(Model model,PagingDto pagingDto) {
-		 pagingDto.setCount(boardService.getCount_a());
-		 pagingDto.setPage(pagingDto.getPage());
-		 List<BoardVo> list = boardService.libraryList(pagingDto);
-		 model.addAttribute("list",list);
-		 model.addAttribute("pagingDto", pagingDto);
-		 return "/company/board/library/library_list";
-	 }
+//	// 자료실 목록
+//	@RequestMapping(value = "/board/library/library_list", method = RequestMethod.GET)
+//	public String libraryList(Model model, PagingDto pagingDto) {
+//		pagingDto.setCount(boardService.getCount_a());
+//		pagingDto.setPage(pagingDto.getPage());
+//		List<BoardVo> list = boardService.libraryList(pagingDto);
+//		model.addAttribute("list", list);
+//		model.addAttribute("pagingDto", pagingDto);
+//		return "/company/board/library/library_list";
+//	}
+//
+//	// 자료실 등록폼
+//	@RequestMapping(value = "/board/library/library_regist", method = RequestMethod.GET)
+//	public String libraryRegist() {
+//		return "/company/board/library/library_regist";
+//	}
+//
+//	// 자료실 글 상세보기
+//	@RequestMapping(value = "/board/library/library_content", method = RequestMethod.GET)
+//	public String libraryRegistBoard(Model model, int bno) {
+//		BoardVo boardVo = boardService.getBoard(bno);
+//		BoardVo boardMoveVo = boardService.menuMove(bno); // 게시글 이동
+//		List<CommentVo> list = commentService.commentList(bno); // 덧글 리스트
+//		model.addAttribute("boardMoveVo", boardMoveVo);
+//		model.addAttribute("boardVo", boardVo);
+//		model.addAttribute("list", list);
+//		System.out.println("FreeBC, list : " + list);
+//		return "/company/board/library/library_content";
+//	}
+//
+//	// 자료실 글추가
+//	@RequestMapping(value = "/board/library/regist_run", method = RequestMethod.POST)
+//	public String libraryBoardRegistRun(BoardVo boardVo) throws IOException {
+//		boardService.insertLibraryBoard(boardVo);
+//		return "redirect:/company/board/library/library_list";
+//	}
+//
+//	// 자료실 글 삭제
+//	@RequestMapping(value = "/board/library/library_delete", method = RequestMethod.GET)
+//	public String libraryDeleteBoard(int bno) {
+//		commentService.deleteCommentBoard(bno);
+//		boardService.deleteBoard(bno);
+//		return "redirect:/company/board/library/library_list";
+//	}
+//
+//	// 자료실 글 수정
+//	@RequestMapping(value = "/board/library/library_modify_run", method = RequestMethod.GET)
+//	public String libraryModifyBoard(BoardVo boardVo) {
+//		boardService.modifyBoard(boardVo);
+//		return "redirect:/company/board/library/library_content?bno=" + boardVo.getBno() + "&title="
+//				+ boardVo.getTitle() + "&content=" + boardVo.getContent();
+//	}
+//
+//	// 자료실 글 수정 폼
+//	@RequestMapping(value = "/board/library/library_modify", method = RequestMethod.GET)
+//	public String librarySearchByBno(Model model, int bno) {
+//		BoardVo boardVo = boardService.getBoard(bno);
+//		model.addAttribute("boardVo", boardVo);
+//		return "/company/board/library/library_modify";
+//	}
 	
-	// 자료실 등록폼
-	@RequestMapping(value = "/board/library/library_regist", method = RequestMethod.GET)
-	public String libraryRegist() {
-		return "/company/board/library/library_regist";
+	
+//------------------------ 게시판 공통 시작
+	//파일 다운로드
+	@RequestMapping(value = "/board/fileDownload", method = RequestMethod.GET)
+	public void fileDownLoad(HttpServletResponse response, String filename) throws Exception{
+		String filePath = UPLOAD_PATH + "/" + filename;
+		System.out.println("BoardController, fileDownLoad, filePath : " + filePath);
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(filePath));
+		response.setContentType("application/octet-stream");
+	    response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(""+filename+"", "UTF-8")+"\";");
+	    response.setHeader("Content-Transfer-Encoding", "binary");
+	    response.getOutputStream().write(fileByte);
+	    response.getOutputStream().flush();
+	    response.getOutputStream().close();
+	}
+//------------------------ 공지 게시판 시작
+	//공지사항 글 목록
+	@RequestMapping(value = "/board/notice/notice_list", method=RequestMethod.GET)
+	public String noticeList(Model model, PagingDto pagingDto) {
+		pagingDto.setCount(boardService.getNoticeCount(pagingDto)); // 게시판 글 개수 얻어오기
+		pagingDto.setPage(pagingDto.getPage()); //페이지 개수 갱신
+		List<BoardVo> list = boardService.noticeList(pagingDto);
+		model.addAttribute("boardList", list);
+		model.addAttribute("pagingDto", pagingDto);
+		return "/company/board/notice/notice_list";
 	}
 	
-	// 자료실 글 상세보기
-	@RequestMapping(value = "/board/library/library_content", method = RequestMethod.GET)
-	 public String libraryRegistBoard(Model model, int bno) {
-		 BoardVo boardVo = boardService.getBoard(bno);
-		 BoardVo boardMoveVo = boardService.menuMove(bno); // 게시글 이동
-		 List<CommentVo> list = commentService.commentList(bno); // 덧글 리스트
-		 model.addAttribute("boardMoveVo",boardMoveVo);
-		 model.addAttribute("boardVo",boardVo);
-		 model.addAttribute("list",list);
-		 System.out.println("FreeBC, list : " + list);
-		 return "/company/board/library/library_content";
-	 }
-	
-	// 자료실 글추가
-	@RequestMapping(value="/board/library/regist_run", method=RequestMethod.POST)
-	public String libraryBoardRegistRun(BoardVo boardVo) throws IOException {
-		boardService.insertLibraryBoard(boardVo); 
-		return "redirect:/company/board/library/library_list";
+	//공지사항 글 작성 폼
+	@RequestMapping(value = "/board/notice/notice_regist", method = RequestMethod.GET)
+	public String noticeRegist(Model model, PagingDto pagingDto) {
+		model.addAttribute("pagingDto", pagingDto);
+		return "/company/board/notice/notice_regist";
 	}
 	
-	// 자료실 글 삭제
-	@RequestMapping(value="/board/library/library_delete", method=RequestMethod.GET)
-	public String libraryDeleteBoard(int bno) {
-		commentService.deleteCommentBoard(bno);
-		boardService.deleteBoard(bno);
-		return "redirect:/company/board/library/library_list";
+	//공지사항 글 작성 실행
+	@RequestMapping(value = "/board/notice/noticeRegistRun", method = RequestMethod.POST)
+	public String noticeRegistRun(MultipartHttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		BoardVo boardVo = new BoardVo();
+		int bno = boardService.getBnoSeq();
+		boardVo.setBno(bno);
+		boardVo.setTitle(request.getParameter("title"));
+		boardVo.setContent(request.getParameter("content"));
+		boardVo.setUserid(request.getParameter("userid"));
+		List<MultipartFile> files = request.getFiles("files");
+		System.out.println("BoardController, noticeRgistRun, boardVo : " + boardVo);
+		System.out.println("BoardController, noticeRgistRun, files : " + files);
+		String[] fileNames = new String[files.size()];
+		
+		for(int i = 0 ; i < files.size() ; i++) {
+			String originalName = files.get(i).getOriginalFilename();
+			System.out.println("BoardController, noticeRgistRun, orifinalName : " + originalName);
+			String seq = bno + "_" + i;
+			fileNames[i] = MyFileUploadUtil.uploadBoardFile(UPLOAD_PATH, originalName, seq, files.get(i).getBytes());
+		}
+		boardVo.setFiles(fileNames);
+		boardService.noticeRegistRun(boardVo);
+		return "redirect:/company/board/notice/notice_content?bno="+bno;
 	}
 	
-	// 자료실 글 수정 
-	@RequestMapping(value="/board/library/library_modify_run", method=RequestMethod.GET)
-	public String libraryModifyBoard(BoardVo boardVo) {
-		boardService.modifyBoard(boardVo);
-		return "redirect:/company/board/library/library_content?bno="+ boardVo.getBno() + 
-				"&title=" + boardVo.getTitle() + "&content=" + boardVo.getContent();
+	//공지사항 글 내용
+	@RequestMapping(value = "/board/notice/notice_content", method = RequestMethod.GET)
+	public String noticeContent(Model model, int bno, PagingDto pagingDto) {
+		BoardVo boardVo = boardService.boardContent(bno);
+		model.addAttribute("content", boardVo);
+		model.addAttribute("pagingDto", pagingDto);
+		return "/company/board/notice/notice_content";
 	}
 	
-	// 자료실 글 수정 폼
-	@RequestMapping(value="/board/library/library_modify", method=RequestMethod.GET)
-	public String librarySearchByBno(Model model, int bno) {
-		BoardVo boardVo = boardService.getBoard(bno);
-		model.addAttribute("boardVo",boardVo);
-		return "/company/board/library/library_modify";
+	//공지사항 수정
+	@RequestMapping(value = "/board/notice/notice_modify", method = RequestMethod.GET)
+	public String noticeModify(Model model, int bno, PagingDto pagingDto)  {
+		System.out.println("BoardController, noticeModifyRun, bno : " + bno);
+		BoardVo boardVo = boardService.boardContent(bno);
+		model.addAttribute("content", boardVo);
+		model.addAttribute("pagingDto", pagingDto);
+		return "/company/board/notice/notice_modify";
 	}
 	
+	//공지사항 글 수정 실행
+	@RequestMapping(value = "/board/notice/noticeModifyRun", method = RequestMethod.POST)
+	public String noticeModifyRun(BoardVo boardVo, PagingDto pagingDto) {
+		boardService.boardModifyRun(boardVo);
+		return "redirect:/company/board/notice/notice_content?bno="+boardVo.getBno();
+	}
+	
+	//공지사항 글 삭제
+	@RequestMapping(value = "/board/notice/noticeDeleteRun/{bno}", method = RequestMethod.GET, produces = "application/text;charset=utf-8")
+	public String noticeDeleteRun(@PathVariable int bno) throws Exception{
+		BoardVo boardVo = boardService.boardContent(bno);
+		String[] fileNames = boardVo.getFiles();
+		if(fileNames != null) {
+			for(int i = 0 ; i < fileNames.length ; i++) {
+				MyFileUploadUtil.deleteFile(UPLOAD_PATH + "/" + fileNames[i]);
+			}
+		}
+		boardService.boardDeleteRun(bno);
+		return "redirect:/company/board/notice/notice_list";
+	}
+//------------------------ 공지 게시판 끝
+//------------------------ 자료실 시작
+	//자료실 글 목록
+	@RequestMapping(value = "/board/pds/pds_list", method=RequestMethod.GET)
+	public String pdsList(Model model, PagingDto pagingDto) {
+		pagingDto.setCount(boardService.getPdsCount(pagingDto)); // 게시판 글 개수 얻어오기
+		pagingDto.setPage(pagingDto.getPage()); //페이지 개수 갱신
+		List<BoardVo> list = boardService.pdsList(pagingDto);
+		model.addAttribute("boardList", list);
+		model.addAttribute("pagingDto", pagingDto);
+		return "/company/board/pds/pds_list";
+	}
+	//자료실 글 작성 폼
+	@RequestMapping(value = "/board/pds/pds_regist", method = RequestMethod.GET)
+	public String pdsRegist(Model model, PagingDto pagingDto) {
+		model.addAttribute("pagingDto", pagingDto);
+		return "/company/board/pds/pds_regist";
+	}
+	
+	//자료실 글 작성 실행
+	@RequestMapping(value = "/board/pds/pdsRegistRun", method = RequestMethod.POST)
+	public String pdsRegistRun(MultipartHttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		BoardVo boardVo = new BoardVo();
+		int bno = boardService.getBnoSeq();
+		boardVo.setBno(bno);
+		boardVo.setTitle(request.getParameter("title"));
+		boardVo.setContent(request.getParameter("content"));
+		boardVo.setUserid(request.getParameter("userid"));
+		List<MultipartFile> files = request.getFiles("files");
+		System.out.println("BoardController, pdsRgistRun, boardVo : " + boardVo);
+		System.out.println("BoardController, pdsRgistRun, files : " + files);
+		String[] fileNames = new String[files.size()];
+		
+		for(int i = 0 ; i < files.size() ; i++) {
+			String originalName = files.get(i).getOriginalFilename();
+			System.out.println("BoardController, noticeRgistRun, orifinalName : " + originalName);
+			String seq = bno + "_" + i;
+			fileNames[i] = MyFileUploadUtil.uploadBoardFile(UPLOAD_PATH, originalName, seq, files.get(i).getBytes());
+		}
+		boardVo.setFiles(fileNames);
+		boardService.pdsRegistRun(boardVo);
+		return "redirect:/company/board/pds/pds_content?bno="+bno;
+	}
+	
+	//자료실 글 내용
+	@RequestMapping(value = "/board/pds/pds_content", method = RequestMethod.GET)
+	public String pdsContent(Model model, int bno, PagingDto pagingDto) {
+		BoardVo boardVo = boardService.boardContent(bno);
+		model.addAttribute("content", boardVo);
+		model.addAttribute("pagingDto", pagingDto);
+		return "/company/board/pds/pds_content";
+	}
+	
+	//자료실 글 수정 폼
+	@RequestMapping(value = "/board/pds/pds_modify", method = RequestMethod.GET)
+	public String pdsModify(Model model, int bno, PagingDto pagingDto)  {
+		System.out.println("BoardController, pdsModifyRun, bno : " + bno);
+		BoardVo boardVo = boardService.boardContent(bno);
+		model.addAttribute("content", boardVo);
+		model.addAttribute("pagingDto", pagingDto);
+		return "/company/board/pds/pds_modify";
+	}
+	
+	//자료실 글 수정 실행
+	@RequestMapping(value = "/board/pds/pdsModifyRun", method = RequestMethod.POST)
+	public String pdsModifyRun(BoardVo boardVo, PagingDto pagingDto) {
+		boardService.boardModifyRun(boardVo);
+		return "redirect:/company/board/pds/pds_content?bno="+boardVo.getBno();
+	}
+	
+	//자료실 글 삭제 실행
+	@RequestMapping(value = "/board/pds/pdsDeleteRun/{bno}", method = RequestMethod.GET, produces = "application/text;charset=utf-8")
+	public String pdsDeleteRun(@PathVariable int bno) throws Exception{
+		BoardVo boardVo = boardService.boardContent(bno);
+		String[] fileNames = boardVo.getFiles();
+		if(fileNames != null) {
+			for(int i = 0 ; i < fileNames.length ; i++) {
+				MyFileUploadUtil.deleteFile(UPLOAD_PATH + "/" + fileNames[i]);
+			}
+		}
+		boardService.boardDeleteRun(bno);
+		return "redirect:/company/board/pds/pds_list";
+	}
 
 	
 }

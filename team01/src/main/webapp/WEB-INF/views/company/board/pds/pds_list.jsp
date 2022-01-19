@@ -9,7 +9,7 @@
 $(function(){
 	$("#registForm").click(function(e){
 		e.preventDefault();
-		$("#pagingForm").attr("action","/company/board/notice/notice_regist");
+		$("#pagingForm").attr("action","/company/board/pds/pds_regist");
 		$("#pagingForm > input[name=page]").val("${pagingDto.page}");
 		$("#pagingForm > input[name=searchType]").val("${pagingDto.searchType}");
 		$("#pagingForm > input[name=keyword]").val("${pagingDto.keyword}");
@@ -20,7 +20,7 @@ $(function(){
 		e.preventDefault();
 		var bno = $(this).attr("href");
 // 		location.href = "/company/board/notice/notice_content/"+bno;
-		$("#pagingForm").attr("action","/company/board/notice/notice_content");
+		$("#pagingForm").attr("action","/company/board/pds/pds_content");
 		$("#pagingForm > input[name=bno]").val(bno);
 		$("#pagingForm > input[name=page]").val("${pagingDto.page}");
 		$("#pagingForm > input[name=searchType]").val("${pagingDto.searchType}");
@@ -32,7 +32,7 @@ $(function(){
 		e.preventDefault();
 		var page = $(this).attr("href");
 // 		location.href = "/company/board/notice/notice_list?page="+page;
-		$("#pagingForm").attr("action","/company/board/notice/notice_list");
+		$("#pagingForm").attr("action","/company/board/pds/pds_list");
 		$("#pagingForm > input[name=page]").val(page);
 		$("#pagingForm > input[name=searchType]").val("${pagingDto.searchType}");
 		$("#pagingForm > input[name=keyword]").val("${pagingDto.keyword}");
@@ -51,7 +51,7 @@ $(function(){
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
 						<!-- 게시판 이름 -->
-						<h1 class="display-5 fw-bolder" id="store">공지사항</h1>
+						<h1 class="display-5 fw-bolder" id="store">자료실</h1>
 					</div>
 					<div class="col-md-2"></div>
 
@@ -83,9 +83,7 @@ $(function(){
 							</tbody>
 						</table>
 							<div style="text-align:right">
-								<c:if test="${loginData.authority == 3}">
 									<button id="registForm" type='button' class='btn btn-outline-primary flex-shrink-0 btn-sm'>글쓰기</button>
-								</c:if>
 							</div>
 					</div>
 					
@@ -137,7 +135,7 @@ $(function(){
 <div class="row">
 <div class="col-md-2"></div>
 	<div class="col-md-8" >
-		<form class="form-inline justify-content-center" action="/company/board/notice/notice_list" method="get">
+		<form class="form-inline justify-content-center" action="/company/board/pds/pds_list" method="get">
 			<select class="form-control mr-sm-2" name="searchType">
 				<option value="t">제목</option>
 				<option value="c">내용</option>
