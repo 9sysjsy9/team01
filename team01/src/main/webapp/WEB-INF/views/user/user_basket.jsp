@@ -13,26 +13,47 @@
 <script>
 $(function() {
 	
-	var sum = 0;
+ 	var sum_count = 0;
+ 	var sum_price = 0;
 	$(".checkBasket").each(function(i){
+		
 		if ($(this).is(':checked')) {
-			var loop = $(this).attr("data-loop");
-			console.log("loop: "+loop)
-			var order_count = $(".order_count"+loop).val();
+			var order_count = $(".order_count"+(i+1)).val();
 			console.log("order_count:" + order_count);
-			sum = sum + order_count;
+			var sum = $(".sum"+(i+1)).val();
 			console.log("sum:" + sum);
-			$("#sum_p_num").append(sum);
+			sum_count = sum_count + parseInt(order_count);
+			sum_price = sum_price + parseInt(sum);
+			console.log("sum:" + sum);
+			$("#sum_p_num").text("상품갯수: "+sum_count+"개");
+			$("#sum_p_price").text("합계금액: "+sum_price+"원");
 		}
 		
-		$(".order_count").eq(i);
 	});
+	//
 	
 	$(".check").click(function() {
 		if ($(this).is(':checked')) {
 			var userBasketVo = $(this).val();
 			console.log(".check, userBasketVo: "+userBasketVo);
 		}
+		var sum_count = 0;
+	 	var sum_price = 0;
+		$(".checkBasket").each(function(i){
+			
+			if ($(this).is(':checked')) {
+				var order_count = $(".order_count"+(i+1)).val();
+				console.log("order_count:" + order_count);
+				var sum = $(".sum"+(i+1)).val();
+				console.log("sum:" + sum);
+				sum_count = sum_count + parseInt(order_count);
+				sum_price = sum_price + parseInt(sum);
+				console.log("sum:" + sum);
+				$("#sum_p_num").text("상품갯수: "+sum_count+"개");
+				$("#sum_p_price").text("합계금액: "+sum_price+"원");
+			}
+			
+		});
 	});
 	
 	$("#btnSelectedOrder").click(function() {
@@ -78,6 +99,25 @@ $(function() {
 		};
 		$.post(url, sData, function(rData) {
 			console.log("rData: "+rData);
+			if (rData == 'success') {
+				var sum_count = 0;
+			 	var sum_price = 0;
+				$(".checkBasket").each(function(i){
+					
+					if ($(this).is(':checked')) {
+						var order_count = $(".order_count"+(i+1)).val();
+						console.log("order_count:" + order_count);
+						var sum = $(".sum"+(i+1)).val();
+						console.log("sum:" + sum);
+						sum_count = sum_count + parseInt(order_count);
+						sum_price = sum_price + parseInt(sum);
+						console.log("sum:" + sum);
+						$("#sum_p_num").text("상품갯수: "+sum_count+"개");
+						$("#sum_p_price").text("합계금액: "+sum_price+"원");
+					}
+					
+				});
+			}
 		});
 	});
 	
@@ -99,6 +139,25 @@ $(function() {
 		};
 		$.post(url, sData, function(rData) {
 			console.log("rData: "+rData);
+			if (rData == 'success') {
+				var sum_count = 0;
+			 	var sum_price = 0;
+				$(".checkBasket").each(function(i){
+					
+					if ($(this).is(':checked')) {
+						var order_count = $(".order_count"+(i+1)).val();
+						console.log("order_count:" + order_count);
+						var sum = $(".sum"+(i+1)).val();
+						console.log("sum:" + sum);
+						sum_count = sum_count + parseInt(order_count);
+						sum_price = sum_price + parseInt(sum);
+						console.log("sum:" + sum);
+						$("#sum_p_num").text("상품갯수: "+sum_count+"개");
+						$("#sum_p_price").text("합계금액: "+sum_price+"원");
+					}
+					
+				});
+			}
 		});
 	});
 	
@@ -203,7 +262,7 @@ $(function() {
 	</div>
 
 	<div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: 개</div>
-	<div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액: 74,200원</div>
+	<div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액: 원</div>
 
 	<div id="goorder" class="">
 		<div class="clear"></div>
