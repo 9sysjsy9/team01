@@ -14,22 +14,22 @@
 			var shoes_code = $(this).attr("data-shoes_code");
 			var user_id = $(this).attr("data-user_id");
 			var order_count = $("#count").val();
-			console.log("shoes_code: "+shoes_code);
-			console.log("user_id: "+user_id);
+			console.log("shoes_code: " + shoes_code);
+			console.log("user_id: " + user_id);
 			console.log("order_count: " + order_count);
 			var url = "/user/insertBasket";
 			var sData = {
-					"shoes_code" : shoes_code,
-					"user_id" : user_id,
-					"order_count" : order_count
+				"shoes_code" : shoes_code,
+				"user_id" : user_id,
+				"order_count" : order_count
 			};
 			$.post(url, sData, function(rData) {
-				console.log("rData: "+rData);
+				console.log("rData: " + rData);
 				if (rData != 0) {
 					$(".cartCount").text(rData);
 				}
 			});
-			
+
 		});
 
 		$(".order").click(
@@ -55,19 +55,23 @@
 	});
 </script>
 
-<c:if test="${!empty cart_count}">
-	<div style="float: right;">
-		<ul class="nav nav-pills">
-			<li class="nav-item"><a href="/user/user_basket"> <img
-					src="/images/cart.png" width="50px"></a> <span
-				class="badge badge-secondary cartCount"> ${cart_count} </span></li>
-		</ul>
-	</div>
-</c:if>
+
 
 <!-- Product section-->
 <section class="py-5">
+
 	<div class="container px-4 px-lg-5 my-5">
+
+		<c:if test="${!empty cart_count}">
+			<div style="float: right; margin-right: 50px;">
+				<ul class="nav nav-pills">
+					<li class="nav-item"><a href="/user/user_basket"> <img
+							src="/images/cart.png" width="50px"></a> <span
+						class="badge badge-secondary cartCount"> ${cart_count} </span></li>
+				</ul>
+			</div>
+		</c:if>
+		<br><br><br>
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
 				<img class="card-img-top mb-5 mb-md-0"
