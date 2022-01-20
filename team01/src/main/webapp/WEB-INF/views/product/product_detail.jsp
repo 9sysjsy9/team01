@@ -4,78 +4,78 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Navigation-->
 <script>
-$(function() {
-	$("#count").change(function() {
-		var order_count = $(this).val();
-		console.log("order_count: "+order_count);
+	$(function() {
+		$("#count").change(function() {
+			var order_count = $(this).val();
+			console.log("order_count: " + order_count);
+		});
+
+		$(".cart").click(function() {
+			var shoes_code = $(this).attr("data-shoes_code");
+			var user_id = $(this).attr("data-user_id");
+			var order_count = $("#count").val();
+			console.log("shoes_code: " + shoes_code);
+			console.log("user_id: " + user_id);
+			console.log("order_count: " + order_count);
+			var url = "/user/insertBasket";
+			var sData = {
+				"shoes_code" : shoes_code,
+				"user_id" : user_id,
+				"order_count" : order_count
+			};
+			$.post(url, sData, function(rData) {
+				console.log("rData: " + rData);
+				if (rData != 0) {
+					$(".cartCount").text(rData);
+				}
+			});
+
+		});
+
+		$(".order").click(
+				function() {
+					var shoes_code = $(this).attr("data-shoes_code");
+					var user_id = $(this).attr("data-user_id");
+					var order_count = $("#count").val();
+					console.log("shoes_code: " + shoes_code);
+					console.log("user_id: " + user_id);
+					console.log("order_count: " + order_count);
+
+					if (user_id == null || user_id == "") {
+						alert("로그인 정보가 필요합니다");
+						location.href = "/user/login";
+					} else {
+						location.href = "/user/orderContent?shoes_code="
+								+ shoes_code + "&user_id=" + user_id
+								+ "&order_count=" + order_count;
+					}
+
+				});
+
 	});
-	
-	$(".cart").click(function() {
-		
-	});
-	
-	$(".basket").click(function() {
-		location.href = "/user/user_basket";
-	});
-	
-	$(".order").click(function() {
-		var shoes_code = $(this).attr("data-shoes_code");
-		var user_id = $(this).attr("data-user_id");
-		var order_count = $("#count").val();
-		console.log("shoes_code: "+shoes_code);
-		console.log("user_id: "+user_id);
-		console.log("order_count: "+order_count);
-		
-		if (user_id == null || user_id == "") {
-			alert("로그인 정보가 필요합니다");
-			location.href = "/user/login";
-		} else {
-			location.href = "/user/orderContent?shoes_code="+shoes_code+
-					"&user_id="+user_id+"&order_count="+order_count;
-		}
-		
-	});
-	
-});
 </script>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<div class="container px-4 px-lg-5">
-		<a class="navbar-brand" href="#!">Start Bootstrap</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			data-bs-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="#!">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-					role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<li><a class="dropdown-item" href="#!">All Products</a></li>
-						<li><hr class="dropdown-divider" /></li>
-						<li><a class="dropdown-item" href="#!">Popular Items</a></li>
-						<li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-					</ul></li>
-			</ul>
-				<button class="btn btn-outline-dark basket" type="button">
-					<i class="bi-cart-fill me-1"></i> Cart <span
-						class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-				</button>
-		</div>
-	</div>
-</nav>
+
+
+
 <!-- Product section-->
 <section class="py-5">
+
 	<div class="container px-4 px-lg-5 my-5">
+
+		<c:if test="${!empty cart_count}">
+			<div style="float: right; margin-right: 50px;">
+				<ul class="nav nav-pills">
+					<li class="nav-item"><a href="/user/user_basket"> <img
+							src="/images/cart.png" width="50px"></a> <span
+						class="badge badge-secondary cartCount"> ${cart_count} </span></li>
+				</ul>
+			</div>
+		</c:if>
+		<br><br><br>
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
 				<img class="card-img-top mb-5 mb-md-0"
-					src="/upload/displayImage?fileName=${productVo.shoes_image}"/>
+					src="/upload/displayImage?fileName=${productVo.shoes_image}" />
 			</div>
 			<div class="col-md-6">
 				<div class="small mb-1">SKU: BST-498</div>
@@ -93,13 +93,17 @@ $(function() {
 							<option value="${i}">${i}</option>
 						</c:forEach>
 					</select><i class="bi-cart-fill me-2"></i>
-					
-					<button class="btn btn-outline-dark flex-shrink-0 cart" type="button"
-						data-shoes_code="${productVo.shoes_code}" data-user_id="${userData.user_id}">장바구니 담기</button>
-						<i class="bi-cart-fill me-2"></i>
-					<button class="btn btn-outline-dark flex-shrink-0 order" type="button"
-						data-shoes_code="${productVo.shoes_code}" data-user_id="${userData.user_id}">주문하기</button>
-						<i class="bi-cart-fill me-2"></i>
+
+					<c:if test="${!empty userData.user_id}">
+						<button class="btn btn-outline-dark flex-shrink-0 cart"
+							type="button" data-shoes_code="${productVo.shoes_code}"
+							data-user_id="${userData.user_id}">장바구니 담기</button>
+					</c:if>
+					<i class="bi-cart-fill me-2"></i>
+					<button class="btn btn-outline-dark flex-shrink-0 order"
+						type="button" data-shoes_code="${productVo.shoes_code}"
+						data-user_id="${userData.user_id}">주문하기</button>
+					<i class="bi-cart-fill me-2"></i>
 				</div>
 			</div>
 		</div>

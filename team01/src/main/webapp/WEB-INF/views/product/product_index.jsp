@@ -15,12 +15,14 @@ $(function() {
 	$(".buy").click(function() {
 		var shoes_code = $(this).attr("data-shoescode");
 		var user_id = $(this).attr("data-userid");
-		console.log("user_id: "+user_id);
+		
 		if (user_id == null) {
 			location.href = "/user/login";
 		} else {
-			
+			location.href = "/user/orderContent?shoes_code="+shoes_code+
+			"&user_id="+user_id+"&order_count="+1;
 		}
+		
 	});
 	
 	

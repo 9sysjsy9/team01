@@ -65,8 +65,8 @@ public class OrderProductDao {
 		return shoescode_count;
 	}
 	
-	public void plusBasketOrdercount(String shoes_count) {
-		sqlSession.update(NAMESAPCE+"plusBasketOrdercount", shoes_count);
+	public void plusBasketOrdercount(UserBasketVo userBasketVo) {
+		sqlSession.update(NAMESAPCE+"plusBasketOrdercount", userBasketVo);
 	}
 	
 	public void insertBasket(UserBasketVo userBasketVo) {
