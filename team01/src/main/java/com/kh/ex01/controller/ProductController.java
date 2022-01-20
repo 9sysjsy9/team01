@@ -39,10 +39,11 @@ public class ProductController {
 		pt.setPage(pt.getPage());
 		System.out.println("pt: " + pt);
 		UserVo userVo = (UserVo) httpSession.getAttribute("userData");
-		if (userVo.getUser_id() != null && !(userVo.getUser_id().equals(""))) {
+		System.out.println("userVo: "+userVo);
+		if (userVo != null) {
 			int cart_count = orderProductService.getUserBasketCount(userVo.getUser_id());
 			model.addAttribute("cart_count", cart_count);
-		}
+		} 
 		List<ProductVo> list = productService.selectAll(pt);
 		System.out.println("list: " + list);
 		model.addAttribute("list", list);
