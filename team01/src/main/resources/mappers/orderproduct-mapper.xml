@@ -77,13 +77,13 @@
 	
 	<update id="plusBasketOrdercount">
 		update tbl_basket
-		set order_count = order_count + 1
+		set order_count = order_count + #{order_count}
 		where shoes_code = #{shoes_code}
 	</update>
 	
 	<insert id="insertBasket">
 		insert into tbl_basket(shoes_code, order_count, user_id)
-		values(#{shoes_code}, 1, #{user_id})
+		values(#{shoes_code}, #{order_count}, #{user_id})
 	</insert>
 	
 	<delete id="deleteBasket">

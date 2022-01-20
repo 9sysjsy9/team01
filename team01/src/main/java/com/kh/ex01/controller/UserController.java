@@ -214,9 +214,15 @@ public class UserController {
 			int shoesecode_count = orderProductService.getBasketShoeseCodeCount(shoes_code);
 			System.out.println("shoesecode_count: " + shoesecode_count);
 			if (shoesecode_count == 1) {
-				orderProductService.plusBasketOrdercount(shoes_code);
+				if (userBasketVo.getOrder_count() == 0) {
+					userBasketVo.setOrder_count(1);
+				}
+				orderProductService.plusBasketOrdercount(userBasketVo);
 				cart_count = orderProductService.getUserBasketCount(user_id);
 			} else if (shoesecode_count == 0) {
+				if (userBasketVo.getOrder_count() == 0) {
+					userBasketVo.setOrder_count(1);
+				}
 				orderProductService.insertBasket(userBasketVo);
 				cart_count = orderProductService.getUserBasketCount(user_id);
 			}

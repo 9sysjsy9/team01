@@ -66,9 +66,9 @@ public class OrderProductService {
 		return shoescode_count;
 	}
 	
-	public void plusBasketOrdercount(String shoes_count) {
+	public void plusBasketOrdercount(UserBasketVo userBasketVo) {
 		System.out.println("plusBasketOrdercount 실행됨");
-		orderProductDao.plusBasketOrdercount(shoes_count);
+		orderProductDao.plusBasketOrdercount(userBasketVo);
 	}
 	
 	public void insertBasket(UserBasketVo userBasketVo) {
