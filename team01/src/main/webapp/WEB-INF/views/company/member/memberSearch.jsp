@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
+<%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%>
 <script>
 $(function(){
 	$(".btnD").click(function() {
@@ -82,7 +83,7 @@ $(function(){
 						<c:forEach items="${list }" var="memberVo">
 							<tr>
 								<td>${memberVo.eno }</td>
-								<td>${memberVo.username }</td>
+								<td class="btnUsername" style="cursor:pointer" data-userid="${memberVo.userid}">${memberVo.username}</td>
 								<td>${memberVo.userid }</td>
 								<td>${memberVo.phone }</td>
 								<td>${memberVo.email }</td>

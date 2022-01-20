@@ -14,8 +14,25 @@ import com.kh.ex01.vo.PagingDto;
 @Service
 public class BoardService {
 	
+
+	
 	@Inject
 	BoardDao boardDao;
+	
+	
+	//공지사항 글 개수
+	public int getMyBoardCount(PagingDto pagingDto) {
+		int count = boardDao.getMyBoardCount(pagingDto);
+		return count;
+	}
+	
+	
+	//내 게시판 리스트
+	public List<BoardVo> myBoardList(PagingDto pagingDto){
+		List<BoardVo> list = boardDao.myBoardList(pagingDto);
+		return list;
+	}
+/////////
 	
 	//자유게시판 리스트
 	public List<BoardVo> freeList(PagingDto pagingDto) {

@@ -31,6 +31,13 @@ $(function() {
 			console.log(rData);
 			$("#modalUsername").text(rData.username);
 			$("#modalEno").text(rData.eno);
+			
+			if(rData.authority == 0){
+				$("#sendMessageFormBtn").hide();
+			} else {
+				$("#sendMessageFormBtn").show();
+			}
+			
 			if(rData.gender == 'f'){
 				$("#modalGender").text("여");
 			} else if (rData.gender == 'm'){ 
@@ -62,11 +69,13 @@ $(function() {
 		e.preventDefault();
 		
 		var url = "/message/company/sendMessageRun";
-		var content = $("#modalReceivername").attr("data-receiver").replace(/(?:\r\n|\n|\n)/g, ' ');
+// 		var content = $("#modalReceivername").attr("data-receiver").replace(/(?:\r\n|\n|\n)/g, ' ');
+		var receiver = $("#modalReceivername").attr("data-receiver");
+		var content = $("#modalMessageContent").val().replace(/(?:\r\n|\n|\n)/g, ' ');
 		var sData = {
 				"sender" : "${loginData.userid}",
-				"receiver" : content,
-				"content" : $("#modalMessageContent").val()
+				"receiver" : receiver,
+				"content" : content
 		};
 		$.post(url, sData, function(rData){
 			if(rData = "success"){

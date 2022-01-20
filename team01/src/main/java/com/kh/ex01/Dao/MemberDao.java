@@ -46,8 +46,8 @@ public class MemberDao {
 		return list;
 	}
 	
-	public void memberApproveRun(MemberVo memberVo) {
-		sqlSession.update(NAMESPACE + "memberApproveRun", memberVo);
+	public void memberManageRun(MemberVo memberVo) {
+		sqlSession.update(NAMESPACE + "memberManageRun", memberVo);
 	}
 	
 	public MemberVo getMemberData(String userid) {
@@ -69,7 +69,7 @@ public class MemberDao {
 		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "searchDepartment",department);
 		return list;
 	}
-
+	
 	public List<MemberVo> memberManageList() {
 		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "memberManageList");
 		return list;
@@ -78,6 +78,11 @@ public class MemberDao {
 	public List<MemberVo> searchMember(MemberVo memberVo){
 		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "searchMember", memberVo);
 		return list;
+	}
+	
+	public int mainApproveCount() {
+		int count = sqlSession.selectOne(NAMESPACE + "mainApproveCount");
+		return count;
 	}
 
 }

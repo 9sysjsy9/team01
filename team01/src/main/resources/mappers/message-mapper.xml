@@ -59,5 +59,11 @@
 	where mno = #{mno}
 </update>
 
+<select id="mainMessageCount" resultType="int">
+	SELECT COUNT(*) FROM tbl_message
+	WHERE readstate = 'n'
+	AND receiver = #{userid}
+</select>
+
 
 </mapper>

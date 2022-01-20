@@ -3,9 +3,16 @@
 
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% String replyState = request.getParameter("replyState"); %>
 
 <script>
 	$(function() {
+		
+		$("#replyState").val("<%=replyState%>").prop("selected", true);
+
+		$("#replyState").change(function(e){
+			location.href = "/store/company/applyFranList?replyState="+$("#replyState").val();
+		});
 		
 		$("th").click(function(){
 			alert("test");
@@ -133,12 +140,11 @@
 					<div class="col-md-2"></div>
 
 					<div class="col-md-8">
-						<select>
+						<select id="replyState">
 							<option value="a" selected>전체</option>
 							<option value="y">완료</option>
 							<option value="n">미완료</option>
 						</select>
-
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -157,7 +163,16 @@
 										<td><a href="${list.fno}" class="applyInquiryLink">${list.email}</a></td>
 										<td>${list.phone}</td>
 										<td>${list.regDate}</td>
-										<td>${list.replyState}</td>
+										<td>
+											<c:choose>
+												<c:when test="${list.replyState == 'n'}">
+													미완료
+												</c:when>
+												<c:when test="${list.replyState == 'y'}">
+													완료
+												</c:when>
+											</c:choose>
+										</td>
 										<td>${list.replyDate}</td>
 									</tr>
 								</c:forEach>

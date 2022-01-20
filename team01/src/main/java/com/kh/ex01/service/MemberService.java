@@ -39,8 +39,8 @@ public class MemberService {
 		return list;
 	}
 	
-	public void memberApproveRun(MemberVo memberVo) {
-		memberDao.memberApproveRun(memberVo);
+	public void memberManageRun(MemberVo memberVo) {
+		memberDao.memberManageRun(memberVo);
 	}
 	
 	public MemberVo getMemberData(String userid) {
@@ -70,6 +70,11 @@ public class MemberService {
 	public List<MemberVo> searchMember(MemberVo memberVo){
 		List<MemberVo> list = memberDao.searchMember(memberVo);
 		return list;
+	}
+	
+	public int mainApproveCount() {
+		int count = memberDao.mainApproveCount();
+		return count;
 	}
 	
 }

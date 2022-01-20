@@ -11,11 +11,22 @@ public class PagingDto {
 	private int perPage =10; 
 	private String searchType; 
 	private String keyword; 
+	private String userid;
 
 	//검색종류,키워드,현재페이지
+	
+	
 
 	public PagingDto() {
 		super();
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	public int getPage() {
@@ -125,11 +136,8 @@ public class PagingDto {
 	public String toString() {
 		return "PagingDto [page=" + page + ", startRow=" + startRow + ", endRow=" + endRow + ", startPage=" + startPage
 				+ ", endPage=" + endPage + ", count=" + count + ", totalPage=" + totalPage + ", perPage=" + perPage
-				+ ", searchType=" + searchType + ", keyword=" + keyword + "]";
+				+ ", searchType=" + searchType + ", keyword=" + keyword + ", userid=" + userid + "]";
 	}
-	
-	
-
 
 	
 }

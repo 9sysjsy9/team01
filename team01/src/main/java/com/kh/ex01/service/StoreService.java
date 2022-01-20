@@ -32,8 +32,8 @@ public class StoreService {
 		return result;
 	}
 //사내 페이지	
-	public List<FranApplyVo> applyFranList(){
-		List<FranApplyVo> list = storeDao.applyFranList();
+	public List<FranApplyVo> applyFranList(FranApplyVo franApplyVo){
+		List<FranApplyVo> list = storeDao.applyFranList(franApplyVo);
 		return list;
 	}
 	
@@ -44,5 +44,10 @@ public class StoreService {
 	
 	public void replyRegistRun(FranApplyVo franApplyVo) {
 		storeDao.replyRegistRun(franApplyVo);
+	}
+	
+	public int mainApplyCount() {
+		int count = storeDao.mainApplyCount();
+		return count;
 	}
 }

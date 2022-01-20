@@ -5,7 +5,9 @@ import java.net.URLEncoder;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import com.kh.ex01.util.MyFileUploadUtil;
 import com.kh.ex01.vo.BoardVo;
 import com.kh.ex01.vo.CommentVo;
 import com.kh.ex01.vo.HireBoardVo;
+import com.kh.ex01.vo.MemberVo;
 import com.kh.ex01.vo.PagingDto;
 
 @Controller
@@ -29,13 +32,34 @@ import com.kh.ex01.vo.PagingDto;
 public class BoardController {
 	
 
-	private static final String UPLOAD_PATH = "D:/upload/board";
+	private static final String UPLOAD_PATH = "//192.168.0.234/upload/board";
 
 	@Inject
 	private BoardService boardService;
 	
 	@Inject
 	private CommentService commentService;
+	
+	
+
+//------------------------ 내 게시글 시작
+	//공지사항 글 목록
+	@RequestMapping(value = "/board/myboard/myboard_list", method=RequestMethod.GET)
+	public String myBoardList(Model model, PagingDto pagingDto, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberVo loginData = (MemberVo)session.getAttribute("loginData");
+		pagingDto.setUserid(loginData.getUserid());
+		pagingDto.setCount(boardService.getMyBoardCount(pagingDto)); // 게시판 글 개수 얻어오기
+		pagingDto.setPage(pagingDto.getPage()); //페이지 개수 갱신
+		List<BoardVo> list = boardService.myBoardList(pagingDto);
+		model.addAttribute("boardList", list);
+		model.addAttribute("pagingDto", pagingDto);
+		return "/company/board/myboard/myboard_list";
+	}
+//------------------------ 내 게시글 끝
+	
+	
+	
 	
 	// 자유게시판 목록
 	@RequestMapping(value = "/board/free/free_list", method = RequestMethod.GET)

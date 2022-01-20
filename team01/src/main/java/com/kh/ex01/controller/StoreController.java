@@ -87,8 +87,8 @@ public class StoreController {
 	
 	// 가맹점 문의 리스트
 	@RequestMapping(value = "/company/applyFranList", method = RequestMethod.GET)
-	public String applyFranList(Model model) {
-		List<FranApplyVo> list = storeService.applyFranList();
+	public String applyFranList(Model model, FranApplyVo franApplyVo) {
+		List<FranApplyVo> list = storeService.applyFranList(franApplyVo);
 		model.addAttribute("applyList", list);
 		return "/company/store/applyFranList";
 	}

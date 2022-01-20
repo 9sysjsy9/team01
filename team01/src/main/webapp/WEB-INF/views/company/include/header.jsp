@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <head>
@@ -47,7 +47,7 @@ $(function(){
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="/">홈</a></li>
+						aria-current="page" href="/company/main">홈</a></li>
 					<li class="nav-item"><a class="nav-link" href="/company/board/notice/notice_list">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/company/search_member">사원찾기</a></li>
 					<li class="nav-item dropdown"><a
@@ -60,7 +60,7 @@ $(function(){
 							<li><a class="dropdown-item" href="/company/board/anonymous/anonymous_list">대나무 숲</a></li>
 							<li><a class="dropdown-item" href="/company/board/pds/pds_list">자료실</a></li>
 						</ul></li>
-					
+			<c:if test="${loginData.authority >= 2}">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">제품관리</a>
@@ -80,6 +80,8 @@ $(function(){
 							<li><a class="dropdown-item" href="#">제품문의 관리</a></li>
 							<li><a class="dropdown-item" href="/customer/company/csList">CS문의 관리</a></li>
 						</ul></li>
+			</c:if>
+			<c:if test="${loginData.authority >= 3}">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">관리자메뉴</a>
@@ -88,6 +90,7 @@ $(function(){
 							<li><a class="dropdown-item" href="/member/company/memberApproveList">가입 승인</a></li>
 							<li><a class="dropdown-item" href="/member/company/memberManageList">사원 관리</a></li>
 						</ul></li>
+			</c:if>
 					<li class="nav-item"><a class="nav-link" href="/schedule/company/scheduleCalendar">회사일정</a></li>
 					<li class="nav-item">
 						<a class="nav-link active" href="/member/company/myPage">${loginData.username}<img src="/images/msgoff.png" style="width:20px" id="msgimg"></a>

@@ -20,6 +20,21 @@ public class BoardDao {
 	private SqlSession sqlSession;
 	
 	private static final String NAMESPACE = "com.kh.ex01.mappers.board.";
+	//내 게시글 개수
+	public int getMyBoardCount(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE + "getMyBoardCount", pagingDto);
+		return count;
+	}
+	
+	//내 게시판 리스트
+	
+	public List<BoardVo> myBoardList(PagingDto pagingDto) {
+		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "myBoardList", pagingDto);
+		return list;
+	}
+	
+	
+///////////////////////////////////////
 	
 	//자유게시판 리스트
 	public List<BoardVo> freeList(PagingDto pagingDto) {

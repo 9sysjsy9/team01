@@ -86,6 +86,11 @@ $(function(){
 			}
 		});
 	});
+	
+	$("#myBoardList").click(function(e){
+		e.preventDefault();
+			location.href = "/company/board/myboard/myboard_list";
+	});
 });
 </script>
 
@@ -104,7 +109,7 @@ $(function(){
 					class="btn btn-outline-dark flex-shrink-0 btn-sm" id="infoModifyBtn">회원 정보 수정</button>
 				<br> <br>
 				<button type="button"
-					class="btn btn-outline-dark flex-shrink-0 btn-sm">내가 작성한 글</button>
+					class="btn btn-outline-dark flex-shrink-0 btn-sm" id="myBoardList">내가 작성한 글</button>
 					<br> <br>
 				<a href="/message/company/receiveMessageList" type="button"
 					class="btn btn-outline-primary flex-shrink-0 btn-sm">메시지 함</a>

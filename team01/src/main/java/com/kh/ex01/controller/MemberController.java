@@ -27,7 +27,7 @@ import com.kh.ex01.vo.MemberVo;
 @RequestMapping("/member")
 public class MemberController {
 
-	private static final String UPLOAD_PATH = "D:/upload/profile";
+	private static final String UPLOAD_PATH = "//192.168.0.234/upload/profile";
 		
 	@Inject
 	private MemberService memberService;
@@ -112,7 +112,7 @@ public class MemberController {
 	@RequestMapping(value = "/company/memberApproveRun")
 	public String memberApproveRun(MemberVo memberVo) {
 		System.out.println("MemberControler, memberApproveRun, memberVo : " + memberVo);
-		memberService.memberApproveRun(memberVo);
+		memberService.memberManageRun(memberVo);
 		return "success";
 	}
 	
@@ -200,15 +200,6 @@ public class MemberController {
 		model.addAttribute("list", list);
 		return "/company/member/memberSearch";
 	}
-
-//회원 관리
-	@RequestMapping(value="/company/memberManageList")
-	public String memberManageList(Model model) {
-		List<MemberVo> list = memberService.memberManageList();
-		model.addAttribute("memberManageList", list);
-		return "/company/member/memberManageList";
-	}
-	
 	// 사원 검색
 	@RequestMapping(value="/company/search_list", method=RequestMethod.GET)
 	public String searchMember(Model model, MemberVo memberVo) {
@@ -219,5 +210,20 @@ public class MemberController {
 		return "/company/member/memberSearch";		
 	}
 	
+
+//회원 관리
+	@RequestMapping(value="/company/memberManageList")
+	public String memberManageList(Model model) {
+		List<MemberVo> list = memberService.memberManageList();
+		model.addAttribute("memberManageList", list);
+		return "/company/member/memberManageList";
+	}
+	
+	@RequestMapping(value="/company/manageRun", method=RequestMethod.POST)
+	public String manageRun(MemberVo memberVo) {
+		System.out.println("MemeberController, manageRun, memberVo : " + memberVo);
+		memberService.memberManageRun(memberVo);
+		return "redirect:/member/company/memberManageList";
+	}
 	
 }

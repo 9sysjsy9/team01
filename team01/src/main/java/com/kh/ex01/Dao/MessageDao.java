@@ -55,4 +55,9 @@ public class MessageDao {
 		sqlSession.update(NAMESPACE + "messageSendCancel", mno);
 	}
 	
+	public int mainMessageCount(String userid) {
+		int count = sqlSession.selectOne(NAMESPACE + "mainMessageCount", userid);
+		return count;
+	}
+	
 }

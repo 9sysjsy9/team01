@@ -40,8 +40,8 @@ public class StoreDao {
 	
 //사내페이지
 	
-	public List<FranApplyVo> applyFranList() {
-		List<FranApplyVo> list = sqlSession.selectList(NAMESPACE + "applyFranList");
+	public List<FranApplyVo> applyFranList(FranApplyVo franApplyVo) {
+		List<FranApplyVo> list = sqlSession.selectList(NAMESPACE + "applyFranList", franApplyVo);
 		return list;
 		
 	}
@@ -53,5 +53,10 @@ public class StoreDao {
 	
 	public void replyRegistRun(FranApplyVo franApplyVo) {
 		sqlSession.update(NAMESPACE + "replyRegistRun",franApplyVo);
+	}
+	
+	public int mainApplyCount() {
+		int count = sqlSession.selectOne(NAMESPACE + "mainApplyCount");
+		return count;
 	}
 }

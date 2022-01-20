@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
+<%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%>
 
 <script>
 
@@ -14,6 +14,7 @@ $(function(){
 	$(".approveBtn").click(function(e){
 		e.preventDefault();
 		var eno = $(this).attr("data-eno");
+		var userid = $(this).attr("data-userid");
 		var parent1 = $(this).parent(); //td
 		var tr = $(this).parent().parent(); //tr
 		
@@ -24,6 +25,7 @@ $(function(){
 		var url = "/member/company/memberApproveRun";
 		var sData = {
 				"eno" : eno,
+				"userid" : userid,
 				"position" : position,
 				"department" : department,
 				"authority" : authority
@@ -90,7 +92,7 @@ $(function(){
 							<tr>
 									<td>${list.eno}</td>
 									<td>${list.userid}</td>
-									<td>${list.username}</td>
+									<td class="btnUsername" style="cursor:pointer" data-userid="${list.userid}">${list.username}</td>
 									<td>
 										<c:choose>
 											<c:when test="${list.gender == 'f'}">
@@ -113,9 +115,9 @@ $(function(){
 									</td>
 									<td>
 										<select class="department" name="department">
-											<option value="영업">영업</option>
-											<option value="인사">인사</option>
-											<option value="감사">감사</option>
+											<option value="영업부">영업부</option>
+											<option value="인사부">인사부</option>
+											<option value="감사부">감사부</option>
 											<option value="품질관리">품질관리</option>
 										</select>
 									</td>
@@ -128,8 +130,7 @@ $(function(){
 									</td>
 									<td>${list.regdate}</td>
 									<td>
-										<button type="submit" data-eno="${list.eno}" class="approveBtn btn btn-outline-dark flex-shrink-0 btn-sm" >승인</button>
-										<button type="button" data-eno="${list.eno}" class="rejectBtn btn btn-outline-danger flex-shrink-0 btn-sm">거절</button>
+										<button type="submit" data-eno="${list.eno}"  data-userid="${list.userid}" class="approveBtn btn btn-outline-dark flex-shrink-0 btn-sm" >승인</button>
 									</td>
 								</tr>
 								
@@ -143,19 +144,6 @@ $(function(){
 
 				<div class="row">
 					<div class="col-md-12">
-						<nav class="pagination-sm">
-							<ul class="pagination justify-content-center">
-								<li class="page-item"><a class="page-link" href="#">Previous</a>
-								</li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">4</a></li>
-								<li class="page-item"><a class="page-link" href="#">5</a></li>
-								<li class="page-item"><a class="page-link" href="#">Next</a>
-								</li>
-							</ul>
-						</nav>
 					</div>
 				</div>
 

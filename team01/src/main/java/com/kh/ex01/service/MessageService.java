@@ -49,4 +49,9 @@ public class MessageService {
 		messageDao.messageSendCancel(mno);
 	}
 	
+	public int mainMessageCount(String userid) {
+		int count = messageDao.mainMessageCount(userid);
+		return count;
+	}
+	
 }
