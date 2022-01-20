@@ -95,6 +95,8 @@ $(function(){
 									<button type='button' class='listBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>목록</button>
 								<c:if test="${loginData.userid == content.userid}">
 									<button type='button' class='modifyBtn btn btn-outline-warning flex-shrink-0 btn-sm'>수정</button>
+								</c:if>
+								<c:if test="${loginData.userid == content.userid || loginData.authority >= 3}">
 									<button type='button' class='deleteRunBtn btn btn-outline-danger flex-shrink-0 btn-sm'>삭제</button>
 								</c:if>
 							</div>

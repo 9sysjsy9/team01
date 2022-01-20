@@ -82,9 +82,7 @@ $("#registForm").submit(function(e) {
 						</table>
 							<div style="text-align:right">
 									<button type='button' class='listBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>목록</button>
-								<c:if test="${loginData.authority == 3}">
 									<button type='submit' class='registRunBtn btn btn-outline-primary flex-shrink-0 btn-sm'>게시</button>
-								</c:if>
 							</div>
 </form>
 					</div>
