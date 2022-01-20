@@ -2,12 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
+<script>
+$(function(){
+	$("#btnBack").click(function(){
+		location.href = "/hire/hire_all";
+	});
+});
+</script>
 <style>
 	.tag{
 	   text-align: right;
 	}
 	.tag2{
 	   text-align: center;
+	}
+	.btnBack{
+		text-align: right;
 	}
 </style>
 <div class="container-fluid">
@@ -25,6 +35,9 @@
 					<input type="text" class="form-control" readonly value="${hireBoardVo.content }"/>
 				</div>
 			</form>
+			<div class="btnBack">
+				<a class="btn btn-outline-primary" id="btnBack">이전</a>
+			</div>
 		</div>
 		<div class="col-md-3">
 		</div>

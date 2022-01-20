@@ -79,7 +79,7 @@
 					and eno like #{keyword}
 				</when>
 				<when test="en == 'username'">
-					and username like #{keyword}
+					and username like '%' || #{keyword} || '%'
 				</when>
 			</choose>
 		</if>
