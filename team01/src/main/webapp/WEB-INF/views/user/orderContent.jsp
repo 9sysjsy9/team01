@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/header.jsp"%> 
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
 <style type="text/css">
 #text_in_the_image {
 	float: left;
@@ -44,34 +44,8 @@
 	cursor: pointer;
 }
 </style>
-<div id="gnb">
-	<div class="text-right">
-		<c:choose>
-			<c:when test="${login.userid != null}">
-				<span class="glyphicon glyphicon-heart-empty" style="color: white;"
-					aria-hidden="true"></span>
-				<span id="login_log" style="border-bottom: 1px solid white;">${login.userid}
-					님, 환영합니다.</span>
-				<span class="glyphicon glyphicon-heart-empty" style="color: white;"
-					aria-hidden="true"></span>
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<c:if test="${login.userid == 'admin'}">
-					<button id="go_to_adminPage">관리자 페이지</button>
-				</c:if>
-				<button id="mycart_btn">장바구니</button>
-				<button id="mypage_btn">마이페이지</button>
-				<button id="logout_btn">로그아웃</button>
-				<input type="hidden" value="${login.userid}" id="login_userid">
-			</c:when>
-
-			<c:otherwise>
-				<button onclick="location.href='/member/login'">로그인</button>
-				<button onclick="location.href='/member/insert'">회원가입</button>
-			</c:otherwise>
-		</c:choose>
-
-	</div>
-</div>
+<br>
+<br>
 <br>
 <div class="container">
 	<form action="/order/orderResult" method="post">
@@ -90,19 +64,29 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:if test="${list != null}">
-				<c:forEach items="${list}" var="userBasketVo">
-					<tr>
-						<td><img alt="thumbnail"
-							src="/upload/displayThumbnailImage?fileName=${userBasketVo.shoes_image}" width="40%"> 
-							<input type="hidden" value="${dto.productId}" name="productId" id="productId">
-						</td>
-						<td>${userBasketVo.shoes_name}</td>
-						<td>${userBasketVo.shoes_price}원</td>
-						<td>${userBasketVo.order_count}</td>
-					</tr>
-				</c:forEach>
-				</c:if>
+					<c:if test="${!empty list}">
+						<c:forEach items="${list}" var="userBasketVo">
+							<tr>
+								<td>
+									<img alt="thumbnail"
+									src="/upload/displayThumbnailImage?fileName=${userBasketVo.shoes_image}">
+								</td>
+								<td>${userBasketVo.shoes_name}</td>
+								<td>${userBasketVo.shoes_price}원</td>
+								<td>${userBasketVo.order_count}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${!empty orderContentVo2}">
+						<tr>
+							<td><img alt="thumbnail"
+								src="/upload/displayThumbnailImage?fileName=${orderContentVo2.shoes_image}">
+							</td>
+							<td>${orderContentVo2.shoes_name}</td>
+							<td>${orderContentVo2.shoes_price}원</td>
+							<td>${orderContentVo2.order_count}</td>
+						</tr>
+					</c:if>
 				</tbody>
 			</table>
 		</div>
@@ -156,8 +140,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputTel" class="col-sm-2 control-label">배송
-						메세지</label>
+					<label for="inputTel" class="col-sm-2 control-label">배송 메세지</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="deliver_msg"
 							placeholder="배송 메세지" name="deliver_msg">
@@ -169,7 +152,7 @@
 
 		<div class="row" style="text-align: center; margin: 80px 0;">
 			<h1 class="page-header">결제수단 확인</h1>
-			<div style="text-align:center;">
+			<div style="text-align: center;">
 				<input type="radio" name="cal_info" value="transfer"><label
 					style="margin-right: 50px;">&nbsp;계좌이체</label> <input type="radio"
 					name="cal_info" value="no_bankingBook"><label
@@ -182,8 +165,8 @@
 			<hr>
 			<div class="row" style="text-align: center; margin: 50px 0;">
 				<label>상품가격 :&nbsp; <span id="price"></span>&nbsp;원
-				</label> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				<label>배송비 :&nbsp;<span id="del_fee"></span>&nbsp;원
+				</label> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <label>배송비
+					:&nbsp;<span id="del_fee"></span>&nbsp;원
 				</label> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
 				<label style="font-size: 1.5em;">총 결제금액 : <span
 					id="totalprice"></span>&nbsp;원 <input type="hidden" id="amount"

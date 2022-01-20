@@ -130,7 +130,7 @@ $(function() {
 		});
 		console.log(orderList);
 		$.ajax({
-			  url : "/user/orderContent",
+			  url : "/user/selectedBasket",
 			  type : "post",
 			  data : {
 				 orderList : orderList
@@ -138,7 +138,7 @@ $(function() {
 			  success : function(rData){
 			  	console.log("rData: "+rData);
 			  	if (rData != null) {
-			  		location.href = "/user/goOrderContent";
+			  		location.href = "/user/orderContent";
 			  	}
 			  	
 			  }

@@ -28,19 +28,10 @@ $(function() {
 		
 		if (user_id == null || user_id == "") {
 			alert("로그인 정보가 필요합니다");
+			location.href = "/user/login";
 		} else {
-			var url = "/orderProduct/insertOrderProduct";
-			var sData = {
-				"order_shoescode" : shoes_code,
-				"user_id" : user_id,
-				"order_count" : order_count
-			};
-			$.post(url, sData, function(rData) {
-				console.log("rData: "+ rData);
-				if (rData == "success") {
-					alert("주문에 성공했습니다");
-				} 
-			});
+			location.href = "/user/orderContent?shoes_code="+shoes_code+
+					"&user_id="+user_id+"&order_count="+order_count;
 		}
 		
 	});

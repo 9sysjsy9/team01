@@ -11,6 +11,19 @@ $(function() {
 		location.href = "/product/company/product_index?page=" + page;
 	});
 	
+	
+	$(".buy").click(function() {
+		var shoes_code = $(this).attr("data-shoescode");
+		var user_id = $(this).attr("data-userid");
+		console.log("user_id: "+user_id);
+		if (user_id == null) {
+			location.href = "/user/login";
+		} else {
+			
+		}
+	});
+	
+	
 	$(".cart").click(function() {
 		var shoes_code = $(this).attr("data-shoescode");
 		var user_id = $(this).attr("data-userid");
