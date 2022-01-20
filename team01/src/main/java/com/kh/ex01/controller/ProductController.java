@@ -39,10 +39,11 @@ public class ProductController {
 		pt.setPage(pt.getPage());
 		System.out.println("pt: " + pt);
 		UserVo userVo = (UserVo) httpSession.getAttribute("userData");
-		if (userVo.getUser_id() != null && !(userVo.getUser_id().equals(""))) {
+		System.out.println("product_index, userVo: "+userVo);
+		if (userVo != null) {
 			int cart_count = orderProductService.getUserBasketCount(userVo.getUser_id());
 			model.addAttribute("cart_count", cart_count);
-		}
+		} 
 		List<ProductVo> list = productService.selectAll(pt);
 		System.out.println("list: " + list);
 		model.addAttribute("list", list);
@@ -78,7 +79,13 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/product_detail", method = RequestMethod.GET)
-	public String productDetail(String shoes_code, Model model) {
+	public String productDetail(String shoes_code, Model model, HttpSession httpSession) {
+		UserVo userVo = (UserVo) httpSession.getAttribute("userData");
+		System.out.println("product_detail, userVo: "+userVo);
+		if (userVo != null) {
+			int cart_count = orderProductService.getUserBasketCount(userVo.getUser_id());
+			model.addAttribute("cart_count", cart_count);
+		} 
 		ProductVo productVo = productService.getContent(shoes_code);
 		model.addAttribute("productVo", productVo);
 		return "/product/product_detail";

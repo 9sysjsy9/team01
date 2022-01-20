@@ -22,6 +22,14 @@
 		values(seq_ordercode.nextval, #{order_shoescode}, #{user_id}, #{order_count})
 	</insert>
 	
+	
+	<select id="getOrderContent" resultType="OrderContentVo">
+		select shoes_code, shoes_price, shoes_name, shoes_image
+		from tbl_shoes 
+        where shoes_code = #{shoes_code}
+	</select>
+	
+	
 	<select id="selectBasket" resultType="UserBasketVo">
 		select a.shoes_code, b.user_id, b.order_count, b.checked, a.shoes_price, a.shoes_name, a.shoes_image
 		from tbl_shoes a, tbl_basket b, tbl_user c
@@ -69,13 +77,13 @@
 	
 	<update id="plusBasketOrdercount">
 		update tbl_basket
-		set order_count = order_count + 1
+		set order_count = order_count + #{order_count}
 		where shoes_code = #{shoes_code}
 	</update>
 	
 	<insert id="insertBasket">
 		insert into tbl_basket(shoes_code, order_count, user_id)
-		values(#{shoes_code}, 1, #{user_id})
+		values(#{shoes_code}, #{order_count}, #{user_id})
 	</insert>
 	
 	<delete id="deleteBasket">

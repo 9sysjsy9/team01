@@ -55,7 +55,6 @@ $(function(){
 									<th>삭제</th>
 								</tr>
 							</thead>
-							<thead>
 								<c:forEach  items="${list}" var="hireboardVo">
 									<tr>
 										<td>${hireboardVo.bno }</td>
@@ -66,7 +65,6 @@ $(function(){
 										<td><a class="delete" href="${hireboardVo.bno }">삭제</a></td>
 									</tr>
 								</c:forEach>
-							</thead>
 						</table>
 					<nav>
 						<ul class="pagination justify-content-center">

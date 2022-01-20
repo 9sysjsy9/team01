@@ -52,6 +52,16 @@ $(function() {
 			</div>
 			<table class="table">
 				<thead>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>이름</th>
+							<th>이메일</th>
+							<th>전화번호</th>
+							<th>분류</th>
+							<th>확인</th>
+						</tr>
+					</thead>
 					<c:forEach items="${list}" var="hireVo">
 						<tr>
 							<td>${hireVo.hno }</td>
@@ -62,7 +72,6 @@ $(function() {
 							<td>${hireVo.result }</td>
 						</tr>
 					</c:forEach>
-				</thead>
 			</table>
 		</div>
 		<div class="col-md-3"></div>

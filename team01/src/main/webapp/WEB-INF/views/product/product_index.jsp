@@ -11,6 +11,21 @@ $(function() {
 		location.href = "/product/company/product_index?page=" + page;
 	});
 	
+	
+	$(".buy").click(function() {
+		var shoes_code = $(this).attr("data-shoescode");
+		var user_id = $(this).attr("data-userid");
+		
+		if (user_id == null) {
+			location.href = "/user/login";
+		} else {
+			location.href = "/user/orderContent?shoes_code="+shoes_code+
+			"&user_id="+user_id+"&order_count="+1;
+		}
+		
+	});
+	
+	
 	$(".cart").click(function() {
 		var shoes_code = $(this).attr("data-shoescode");
 		var user_id = $(this).attr("data-userid");
@@ -32,18 +47,18 @@ $(function() {
 });
 </script>
 <%@include file="/WEB-INF/views/product/include/paging_form.jsp"%>
-
 <section class="py-5">
 
 	<div class="container px-4 px-lg-5 mt-5">
-
-		<div style="float: right;">
-			<ul class="nav nav-pills">
-				<li class="nav-item"><a href="/user/user_basket"> <img
-						src="/images/cart.png" width="50px"></a> <span
-					class="badge badge-secondary cartCount">${cart_count}</span></li>
-			</ul>
-		</div>
+		<c:if test="${!empty cart_count}">
+			<div style="float: right;">
+				<ul class="nav nav-pills">
+					<li class="nav-item"><a href="/user/user_basket"> <img
+							src="/images/cart.png" width="50px"></a> <span
+						class="badge badge-secondary cartCount"> ${cart_count} </span></li>
+				</ul>
+			</div>
+		</c:if>
 		<br> <br>
 		<div class="xans-element- xans-product xans-product-normalmenu">
 			<div class="sort">
@@ -154,12 +169,18 @@ $(function() {
 							<div class="text-center">
 								<a class="btn btn-outline-dark mt-auto"
 									href="/product/product_detail?shoes_code=${productVo.shoes_code}">detail</a>
-								<button class="btn btn-outline-dark mt-auto buy" 
-									data-shoescode="${productVo.shoes_code}" 
-									data-userid="${userData.user_id}">buy</button>
-								<button class="btn btn-outline-dark mt-auto cart"
+								
+								<button class="btn btn-outline-dark mt-auto buy"
 									data-shoescode="${productVo.shoes_code}"
-									data-userid="${userData.user_id}">cart</button>
+									<c:if test="${!empty userData.user_id}">
+										data-userid="${userData.user_id}"
+									</c:if>>buy</button>
+
+								<c:if test="${!empty userData.user_id}">
+									<button class="btn btn-outline-dark mt-auto cart"
+										data-shoescode="${productVo.shoes_code}"
+										data-userid="${userData.user_id}">cart</button>
+								</c:if>
 							</div>
 						</div>
 					</div>

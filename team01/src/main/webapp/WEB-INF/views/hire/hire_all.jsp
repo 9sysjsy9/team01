@@ -43,7 +43,15 @@ $(function(){
 					<div class="col-md-8">
 						<table class="table">
 							<thead>
-								<c:forEach  items="${list}" var="hireboardVo">
+								<tr>
+									<th>#</th>
+									<th>분류</th>
+									<th>제목</th>
+									<th>등록일</th>
+									<th>등록자</th>
+								</tr>
+							</thead>
+							<c:forEach  items="${list}" var="hireboardVo">
 									<tr>
 										<td>${hireboardVo.bno }</td>
 										<td>${hireboardVo.cate }</td>
@@ -52,7 +60,6 @@ $(function(){
 										<td>${hireboardVo.writer }</td>
 									</tr>
 								</c:forEach>
-							</thead>
 						</table>
 					<nav>
 						<ul class="pagination justify-content-center">

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.ex01.Dao.AskProductDao;
 import com.kh.ex01.Dao.OrderProductDao;
 import com.kh.ex01.vo.AskProductVo;
+import com.kh.ex01.vo.OrderContentVo;
 import com.kh.ex01.vo.OrderProductVo;
 import com.kh.ex01.vo.PagingDto;
 import com.kh.ex01.vo.UserBasketVo;
@@ -21,6 +22,11 @@ public class OrderProductService {
 	public List<OrderProductVo> selectOrder(String order_shoescode) {
 		List<OrderProductVo> list = orderProductDao.selectOrder(order_shoescode);
 		return list;
+	}
+	
+	public OrderContentVo getOrderContent(String shoes_code) {
+		OrderContentVo orderContentVo = orderProductDao.getOrderContent(shoes_code);
+		return orderContentVo;
 	}
 	
 	public List<UserBasketVo> selectBasket(String order_shoescode) {
@@ -60,9 +66,9 @@ public class OrderProductService {
 		return shoescode_count;
 	}
 	
-	public void plusBasketOrdercount(String shoes_count) {
+	public void plusBasketOrdercount(UserBasketVo userBasketVo) {
 		System.out.println("plusBasketOrdercount 실행됨");
-		orderProductDao.plusBasketOrdercount(shoes_count);
+		orderProductDao.plusBasketOrdercount(userBasketVo);
 	}
 	
 	public void insertBasket(UserBasketVo userBasketVo) {
