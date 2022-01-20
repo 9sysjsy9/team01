@@ -7,22 +7,22 @@
 <!-- http://localhost/company/board/notice/notice_regist -->
 <script>
 $(function(){
-	$(".noticeModifyRunBtn").click(function(e){
+	$(".modifyRunBtn").click(function(e){
 		e.preventDefault();
-		$("#noticeModifyForm").submit();
+		$("#modifyForm").submit();
 		console.log("수정 완료 버튼 클릭");
 	});
 	
 	//목록 버튼
-	$(".noticeCancelBtn").click(function(e){
+	$(".cancelBtn").click(function(e){
 		console.log("취소 버튼 클릭")
 		e.preventDefault();
 // 		location.href = "/company/board/notice/notice_list";
 		$("#pagingForm").attr("action","/company/board/notice/notice_content");
-		$("#pagingForm > input[name=bno]").val("${noticeContent.bno}");
-		$("#pagingForm > input[name=page]").val("${noticePagingDto.page}");
-		$("#pagingForm > input[name=searchType]").val("${noticePagingDto.searchType}");
-		$("#pagingForm > input[name=keyword]").val("${noticePagingDto.keyword}");
+		$("#pagingForm > input[name=bno]").val("${content.bno}");
+		$("#pagingForm > input[name=page]").val("${pagingDto.page}");
+		$("#pagingForm > input[name=searchType]").val("${pagingDto.searchType}");
+		$("#pagingForm > input[name=keyword]").val("${pagingDto.keyword}");
 		$("#pagingForm").submit();
 	});
 	
@@ -47,9 +47,9 @@ $(function(){
 
 					<div class="col-md-8">
 					
-<form id="noticeModifyForm" method="POST" action="/company/board/notice/noticeModifyRun">
+<form id="modifyForm" method="POST" action="/company/board/notice/noticeModifyRun">
 <%-- 					<input type="hidden" name="userid" value="${loginData.userid}"> --%>
-					<input type="hidden" name="bno" value="${noticeContent.bno}">
+					<input type="hidden" name="bno" value="${content.bno}">
 						<table class="table">
 <!-- 							<thead> -->
 <!-- 								<tr> -->
@@ -61,23 +61,23 @@ $(function(){
 							<tbody>
 								<tr>
 									<td>제목
-									 <input class="form-control" type="text" name="title" placeholder="제목을 입력하세요." value="${noticeContent.title}"> 
+									 <input class="form-control" type="text" name="title" placeholder="제목을 입력하세요." value="${content.title}"> 
 									</td>
 								</tr>
 								
 								<tr>
 									<td>
 										내용<br>
-										<textarea rows="10" class="form-control" name="content" placeholder="내용을 입력하세요.">${noticeContent.content}</textarea>
+										<textarea rows="10" class="form-control" name="content" placeholder="내용을 입력하세요.">${content.content}</textarea>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 							<div style="text-align:right">
-									<button type='button' class='noticeCancelBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>취소</button>
+									<button type='button' class='cancelBtn btn btn-outline-secondary flex-shrink-0 btn-sm'>취소</button>
 								<c:if test="${loginData.authority == 3}">
 								
-									<button type='button' class='noticeModifyRunBtn btn btn-outline-warning flex-shrink-0 btn-sm'>수정 완료</button>
+									<button type='button' class='modifyRunBtn btn btn-outline-warning flex-shrink-0 btn-sm'>수정 완료</button>
 								</c:if>
 							</div>
 </form>

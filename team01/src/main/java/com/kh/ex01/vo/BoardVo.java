@@ -3,10 +3,11 @@ package com.kh.ex01.vo;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
+
 public class BoardVo {
 
 	private int bno; // NUMBER No 글번호
-	private String bcate; // VARCHAR2(2 BYTE) No 게시판 종류 F:자유게시판 A:익명게시판 L:자료실 O:건의사항 N:공지사항
+	private String bcate; // VARCHAR2(2 BYTE) No 게시판 종류 F:자유게시판 P:익명게시판 L:자료실 O:건의사항 N:공지사항
 	private String title; // VARCHAR2(100 BYTE) No
 	private String content; // VARCHAR2(1000 BYTE) No
 	private String userid; // VARCHAR2(10 BYTE) Yes
@@ -177,6 +178,7 @@ public class BoardVo {
 	public void setPrev(int prev) {
 		this.prev = prev;
 	}
+	
 
 	@Override
 	public String toString() {

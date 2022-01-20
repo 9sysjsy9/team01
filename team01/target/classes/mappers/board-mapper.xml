@@ -126,12 +126,27 @@
 		DELETE FROM tbl_board
 		WHERE bno = #{bno}
 	</delete>
+	<!-- 첨부 파일 삭제 -->
+	<delete id="fileDeleteRun">
+		DELETE FROM tbl_uploadfile
+		WHERE bno = #{bno}
+	</delete>
 	<!-- 공지 내용 수정 -->
 	<update id="noticeModifyRun">
 		UPDATE tbl_board
 		SET content = #{content}, title = #{title}
 		WHERE bno = #{bno}
 	</update>
+	<!-- 파일 업로드 -->
+	<insert id="uploadBoardFile">
+		INSERT INTO tbl_uploadfile (bno, filename)
+		VALUES (#{bno}, #{filename})
+	</insert>
+	
+	<select id="downloadBoardFile" resultType="String">
+		SELECT filename FROM tbl_uploadfile
+		WHERE bno = #{bno}
+	</select>
 	
 <!-- 자료실 -->
 	<select id="libraryList" resultType="BoardVo">
@@ -146,10 +161,12 @@
 		values(seq_bno.nextval, 'l', #{title}, #{content}, #{userid}, sysdate, #{username})
 	</insert>
 	
+	
 	<select id="getCount_l" resultType="int">
 		select count(*) from tbl_board
 		where bcate = 'l'
 	</select>
+	
 
 	<sql id="search">
 				<if test="keyword != null || searchType != null">

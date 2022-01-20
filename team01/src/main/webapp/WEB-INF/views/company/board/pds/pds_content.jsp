@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%>
 <%@ include file="/WEB-INF/views/company/board/pagingForm.jsp"%>
-<!-- http://localhost/company/board/notice/notice_regist -->
+
 <script>
 $(function(){
 
@@ -13,8 +13,7 @@ $(function(){
 	$(".listBtn").click(function(e){
 		console.log("목록 버튼 클릭")
 		e.preventDefault();
-// 		location.href = "/company/board/notice/notice_list";
-		$("#pagingForm").attr("action","/company/board/notice/notice_list");
+		$("#pagingForm").attr("action","/company/board/pds/pds_list");
 		$("#pagingForm > input[name=page]").val("${pagingDto.page}");
 		$("#pagingForm > input[name=searchType]").val("${pagingDto.searchType}");
 		$("#pagingForm > input[name=keyword]").val("${pagingDto.keyword}");
@@ -25,13 +24,13 @@ $(function(){
 	$(".deleteRunBtn").click(function(e){
 		var result = confirm("삭제 하시겠습니까?");
 		if(result){
-			location.href = "/company/board/notice/noticeDeleteRun/"+${content.bno};
+			location.href = "/company/board/pds/pdsDeleteRun/"+${content.bno};
 		};
 	});
 	//수정 버튼
 	$(".modifyBtn").click(function(e){
 // 		location.href = "/company/board/notice/notice_modify/"+${noticeContent.bno};
-		$("#pagingForm").attr("action","/company/board/notice/notice_modify");
+		$("#pagingForm").attr("action","/company/board/pds/pds_modify");
 		$("#pagingForm > input[name=bno]").val("${content.bno}");
 		$("#pagingForm > input[name=page]").val("${pagingDto.page}");
 		$("#pagingForm > input[name=searchType]").val("${pagingDto.searchType}");
@@ -49,7 +48,7 @@ $(function(){
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
 						<!-- 게시판 이름 -->
-						<h1 class="display-5 fw-bolder" id="store">공지사항</h1>
+						<h1 class="display-5 fw-bolder" id="store">자료실</h1>
 					</div>
 					<div class="col-md-2"></div>
 
@@ -59,9 +58,10 @@ $(function(){
 
 					<div class="col-md-8">
 					
-<form id="noticeRegistForm" method="POST" action="/company/board/notice/noticeRegistRun">
+<form id="contentForm" method="POST" action="/company/board/pds/pdsRegistRun">
 					<input type="hidden" name="userid" value="${loginData.userid}">
 						<table class="table">
+
 							<tbody>
 								<tr>
 									<td>

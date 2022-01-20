@@ -13,7 +13,7 @@ $(function(){
 	$(".listBtn").click(function(e){
 		e.preventDefault();
 		var bno = $(this).attr("href");
-		$("#pagingForm").attr("action","/company/board/notice/notice_list");
+		$("#pagingForm").attr("action","/company/board/pds/pds_list");
 		$("#pagingForm > input[name=page]").val("${pagingDto.page}");
 		$("#pagingForm > input[name=searchType]").val("${pagingDto.searchType}");
 		$("#pagingForm > input[name=keyword]").val("${pagingDto.keyword}");
@@ -21,16 +21,18 @@ $(function(){
 	});
 		
 //파일 첨부 삭제 프로세스-------------------------------------------
-	$("#noticeRegistForm").submit(function(e) {
+
+$("#registForm").submit(function(e) {
 		
-		$(".files").each(function(i) {
-			var file = $(this)[0].files[0];
-			if(file != null){
-				console.log("file : ", file);
-				$(this).attr("name", "files");
-			}
-		});
+	$(".files").each(function(i) {
+		var file = $(this)[0].files[0];
+		if(file != null){
+			console.log("file : ", file);
+			$(this).attr("name", "files");
+		}
 	});
+});
+
 
 });
 </script>
@@ -43,7 +45,7 @@ $(function(){
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
 						<!-- 게시판 이름 -->
-						<h1 class="display-5 fw-bolder" id="store">공지사항</h1>
+						<h1 class="display-5 fw-bolder" id="store">자료실</h1>
 					</div>
 					<div class="col-md-2"></div>
 
@@ -53,7 +55,7 @@ $(function(){
 
 					<div class="col-md-8">
 					
-<form id="noticeRegistForm" method="POST" action="/company/board/notice/noticeRegistRun" enctype="multipart/form-data">
+<form id="registForm" method="POST" action="/company/board/pds/pdsRegistRun" enctype="multipart/form-data">
 					<input type="hidden" name="userid" value="${loginData.userid}">
 						<table class="table">
 							<tbody>
