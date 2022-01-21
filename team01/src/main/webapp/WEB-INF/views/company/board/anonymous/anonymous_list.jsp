@@ -55,7 +55,7 @@ $(function(){
 									<tr>
 										<td>${boardVo.bno }</td>
 										<td><a class="title" href="${boardVo.bno}">${boardVo.title}</a></td>
-										<td data-userid="${boardVo.userid}">익명</td>
+										<td>익명</td>
 										<td>${boardVo.regdate }</td>
 										<td>${boardVo.viewcnt }</td>
 									</tr>

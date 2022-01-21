@@ -181,14 +181,33 @@ $(function(){
 			 $(".contentViewModalTable").empty();
 			 $("#contentViewModalLabel").text(syear+"/"+smonth+"/"+sdate);
 			 for(var i = 0 ; i < rData.length ; i++){
-// 				 $(".contentViewModalTable").append("<tr><td class='btnUsername table-active' data-userid="+rData[i].userid+">"+ (i+1) +". "+rData[i].username+"</td></tr>");
 				 $(".contentViewModalTable").append("<tr><td class='btnUsername table-active' data-userid="+rData[i].userid+" data-dismiss='modal' style='cursor:pointer'>작성자 : "+rData[i].username+"</td></tr>");
 				 $(".contentViewModalTable").append("<tr><td class=''>"+rData[i].content+"</td></tr>");
-				 if(rData[i].userid == "${loginData.userid}"){
-					 	$(".contentViewModalTable").append("<tr><td style='text-align:right' data-sno="+rData[i].sno+">"+ 
-					 			"<button type='button' class='scheduleModifyBtn btn btn-outline-warning flex-shrink-0 btn-sm' data-dismiss='modal'>수정 </button>"+
-					 			"<button type='button' class='scheduleDeleteBtn btn btn-outline-danger flex-shrink-0 btn-sm'> 삭제</button> </td></tr>");
-				 };
+				//로그인 정보가 일치할 경우, 권한이 3이상일경우  수정, 삭제 버튼 활성화
+				
+				
+				
+				//작성자가 일치하거나, 로그인 권한이 3이상인 경우
+				if(rData[i].userid == "${loginData.userid}" || ${loginData.authority >= 3}){
+					var tr = "";
+					
+					//작성자가 일치할 경우 수정버튼 추가
+				 	if(rData[i].userid == "${loginData.userid}"){
+				 		tr += "<button type='button' class='scheduleModifyBtn btn btn-outline-warning flex-shrink-0 btn-sm' data-dismiss='modal'>수정 </button>";
+				 	};
+				 	
+				 	//삭제 버튼 추가
+				 	$(".contentViewModalTable").append("<tr><td style='text-align:right' data-sno="+rData[i].sno+">"+ tr +
+				 			"<button type='button' class='scheduleDeleteBtn btn btn-outline-danger flex-shrink-0 btn-sm'> 삭제</button></td></tr>"
+				 	);
+				};
+				 
+// 				 if(rData[i].userid == "${loginData.userid}"){
+// 					 	$(".contentViewModalTable").append("<tr><td style='text-align:right' data-sno="+rData[i].sno+">"+ 
+// 					 			"<button type='button' class='scheduleModifyBtn btn btn-outline-warning flex-shrink-0 btn-sm' data-dismiss='modal'>수정 </button>"+
+// 					 			"<button type='button' class='scheduleDeleteBtn btn btn-outline-danger flex-shrink-0 btn-sm'> 삭제</button> </td></tr>"
+// 					 	);
+// 				 };
 
 			 };
 			 $("#modal-contentViewModal").trigger("click");

@@ -61,7 +61,7 @@ $(function(){
 						</div>
 					</c:if>
 				</div>
-				<div class="form-group" data-userid="${boardVo.userid}">익명</div>
+				<div class="form-group" >익명</div>
 				<hr>
 				<div>${boardVo.content}</div>
 				<hr>

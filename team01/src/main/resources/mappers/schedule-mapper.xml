@@ -10,13 +10,15 @@
 	S.userid = M.userid
 	AND
 	<choose>
-		<when test='syear == 1'>
-			syear = #{syear} AND smonth BETWEEN #{smonth} AND #{smonth}+1
-			OR syear = #{syear}-1 AND smonth = 12
+		<when test='smonth == 1'>
+			syear = #{syear} 
+			AND smonth BETWEEN #{smonth} AND #{smonth}+1
+			OR S.userid = M.userid AND syear = #{syear}-1 AND smonth = 12
 		</when>
-		<when test='syear == 12'>
-			syear = #{syear} AND smonth BETWEEN #{smonth}-1 AND #{smonth}
-			OR syear = #{syear}+1 AND smonth = 1
+		<when test='smonth == 12'>
+			syear = #{syear} 
+			AND smonth BETWEEN #{smonth}-1 AND #{smonth}
+			OR S.userid = M.userid AND syear = #{syear}+1 AND smonth = 1
 		</when>
 		<otherwise>
 			syear = #{syear} AND smonth BETWEEN #{smonth}-1 AND #{smonth}+1

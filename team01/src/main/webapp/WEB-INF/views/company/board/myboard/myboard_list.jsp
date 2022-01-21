@@ -17,17 +17,6 @@
  		$("#pagingForm").submit();
  	});
 	
-//  	$(".aTitle").click(function(e){
-//  		e.preventDefault();
-//  		var bno = $(this).attr("href");
-//  		$("#pagingForm").attr("action","/company/board/myboard/myboard_list");
-//  		$("#pagingForm > input[name=bno]").val(bno);
-//  		$("#pagingForm > input[name=page]").val("${pagingDto.page}");
-//  		$("#pagingForm > input[name=searchType]").val("${pagingDto.searchType}");
-//  		$("#pagingForm > input[name=keyword]").val("${pagingDto.keyword}");
-//  		$("#pagingForm").submit();
-//  	});
-	
  	$(".page-link").click(function(e){
  		e.preventDefault();
  		var page = $(this).attr("href");
@@ -136,7 +125,6 @@
 					</li>
 					
 					<c:forEach var="page" begin="${pagingDto.startPage}" end="${pagingDto.endPage}">
-					
 						<li 
 							<c:choose>
 								<c:when test="${pagingDto.page == page}">
@@ -149,7 +137,6 @@
 						>
 								<a class="page-link" href="${page}">${page}</a>
 							</li>
-							
 					</c:forEach>
 					
 					<li class="page-item">
@@ -182,9 +169,6 @@
 </div>
 <!-- 검색 끝-->
 
-
-
-					
 				</div>
 			</div>
 		</div>

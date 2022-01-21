@@ -94,22 +94,6 @@ public class BoardDao {
 	public void insertHireBoard (HireBoardVo hireboardVo) {
 		sqlSession.insert(NAMESPACE +"insertHireBoard", hireboardVo);
 	}
-	
-//	//자료실
-//	public List<BoardVo> libraryList(PagingDto pagingDto) {
-//		List<BoardVo> list = sqlSession.selectList(NAMESPACE + "libraryList", pagingDto);
-//		return list;
-//	}
-//	
-//	public void insertLibraryBoard(BoardVo boardVo) {
-//		sqlSession.insert(NAMESPACE + "insertLibraryBoard", boardVo);
-//	}
-//	
-//	public int getCount_l() {
-//		int count = sqlSession.selectOne(NAMESPACE+"getCount_f");
-//		return count;
-//	}
-	
 //------------------------ 게시판 공통 시작
 	//글 시퀀스 얻기
 	public int getBnoSeq() {
