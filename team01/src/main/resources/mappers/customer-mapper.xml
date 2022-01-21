@@ -5,11 +5,17 @@
 <mapper namespace="com.kh.ex01.mappers.customer">
 
 	<select id="noticeList" resultType="NoticeVo">
-		select * from tbl_notice 
+		<![CDATA[
+		select notice_no, notice_title, notice_date, replace(notice_content,'△','<br>△')  notice_content
+		from tbl_notice
+		]]> 
 	</select>
 	
 	<select id="qnaList" resultType="QnaVo">
 		select * from tbl_qna
+		<if test='keyword != null'>
+		where qna_title like '%' || #{keyword} || '%'
+		</if>
 		order by qna_no
 	</select>
 	
@@ -19,15 +25,39 @@
 	</select>
 	
 	<select id="csList" resultType="AskProductVo">
-		SELECT A.ano, A.order_code, A.ask_contnet, A.ask_title, A.ask_date, B.user_id
+		SELECT A.ano, A.order_code, A.ask_content, A.ask_title, A.ask_date, A.ask_cate, B.user_id, A.ask_reply
 		FROM tbl_askproduct A, tbl_orderproduct B
 		WHERE A.order_code = B.order_code
 	</select>
-	
+
 	<select id="csCheck" resultType="CsCheckVo">
 		select * from tbl_csCheck
 		order by csCheck_order
 	</select>
+	
+	<!-- 답변 업데이트 -->
+	<update id="csUpdate">
+		update tbl_askproduct set
+		    ask_reply = #{ask_reply}
+		where ano = #{ano}
+	</update>
+	
+	<insert id="askRegistRun">
+		INSERT INTO tbl_csreceive(ano, order_code, ask_cate, ask_content, ask_title)
+		VALUES (seq_ano.nextval, #{order_code}, #{ask_cate}, #{ask_content}, #{ask_title})
+	</insert>
+	
+	<select id="checkOrderCode" resultType="int">
+		select count(*)
+		from tbl_orderproduct
+		where  order_code = #{order_code}
+	</select>
+	
+	<insert id="insertCsReceive">
+		insert into tbl_csreceive (cs_num, title, content, user_id, cate, order_code)
+		values (seq_cs_num.nextval, #{title}, #{content}, #{user_id}, #{cate}, #{order_code})
+
+	</insert>
 	
 
 </mapper>

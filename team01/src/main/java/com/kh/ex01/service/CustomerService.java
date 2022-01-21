@@ -22,8 +22,9 @@ public class CustomerService {
 		List<NoticeVo> list = customerDao.noticeList();
 		return list;
 	}
-	public List<QnaVo> qnaList() {
-		List<QnaVo> list = customerDao.qnaList();
+	public List<QnaVo> qnaList(String keyword) {
+		System.out.println("CustomerService, qnaList, keyword: " + keyword);
+		List<QnaVo> list = customerDao.qnaList(keyword);
 		return list;
 	}
 	public List<CsreceiveVo> csreceiveList() {
@@ -39,4 +40,20 @@ public class CustomerService {
 		return list;
 	}
 	
+	public void csUpdate(int ano, String ask_reply) {
+		customerDao.csUpdate(ano, ask_reply);
+	}
+	
+	public void askRegistRun(AskProductVo askProductVo) {
+		customerDao.askRegistRun(askProductVo);
+	}
+	
+	public int checkOrderCode(String order_code) {
+		int count = customerDao.checkOrderCode(order_code);
+		return count;
+	}
+	
+	public void insertCsReceive(CsreceiveVo csreceiveVo) {
+		customerDao.insertCsReceive(csreceiveVo);
+	}
 }
