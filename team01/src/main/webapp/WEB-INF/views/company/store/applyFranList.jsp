@@ -38,7 +38,7 @@
 					$("#applyRegistRunBtn").show();
 					$("#applyRegistModifyBtn").hide();
 				}
-				$("#applyForm").find("#fno").text("#" + rData.fno);
+				$("#applyForm").find("#fnoLabel").text("#" + rData.fno);
 				$("#applyForm").find("#fno").val(rData.fno);
 				$("#applyForm").find("#phone").val(rData.phone);
 				$("#applyForm").find("#email").val(rData.email);
@@ -85,7 +85,7 @@
 							<!-- form 시작 -->
 							<div class="modal-body">
 								<div class="form-group">
-									<label id="fno"># </label>
+									<label id="fnoLabel"># </label>
 								</div>
 								<div class="form-group">
 									<label for="phone"> 연락처 </label> <input type="text"
@@ -109,9 +109,9 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button id="applyRegistRunBtn" type="button" class="btn btn-primary">답변등록</button>
-								<button id="applyRegistModifyBtn" type="button" class="btn btn-primary">답변수정</button>
-								<button type="button" class="btn btn-secondary"
+								<button id="applyRegistRunBtn" type="button" class="btn btn-outline-primary btn-sm">답변등록</button>
+								<button id="applyRegistModifyBtn" type="button" class="btn btn-outline-primary btn-sm">답변수정</button>
+								<button type="button" class="btn btn-outline-secondary btn-sm"
 									data-dismiss="modal">닫기</button>
 							</div>
 						</form>

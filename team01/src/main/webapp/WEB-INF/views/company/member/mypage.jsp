@@ -113,9 +113,6 @@ $(function(){
 					<br> <br>
 				<a href="/message/company/receiveMessageList" type="button"
 					class="btn btn-outline-primary flex-shrink-0 btn-sm">메시지 함</a>
-					<br> <br>
-				<button type="button"
-					class="btn btn-outline-danger flex-shrink-0 btn-sm">탈퇴하기</button>
 			</div>
 			<div class="col-md-6">
 				<h1 class="display-5 fw-bolder">내 정보</h1>
@@ -213,10 +210,10 @@ $(function(){
 							
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="modifyRunBtn">
+							<button type="button" class="btn btn-outline-primary btn-sm" id="modifyRunBtn">
 								수정
 							</button> 
-							<button type="button" class="btn btn-secondary" id="modifyCancelBtn" data-dismiss="modal">
+							<button type="button" class="btn btn-outline-secondary btn-sm" id="modifyCancelBtn" data-dismiss="modal">
 								취소
 							</button>
 						</div>

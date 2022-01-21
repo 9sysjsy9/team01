@@ -99,17 +99,7 @@ public class BoardService {
 	public void insertHireBoard(HireBoardVo hireBoardVo) {
 		boardDao.insertHireBoard(hireBoardVo);
 	}
-	
-//	//자료실
-//	public List<BoardVo> libraryList(PagingDto pagingDto) {
-//		return boardDao.libraryList(pagingDto);
-//	}
-//	
-//	public void insertLibraryBoard(BoardVo boardVo) {
-//		boardDao.insertLibraryBoard(boardVo); 
-//	}
-//	
-	
+
 //------------------------ 게시판 공통 시작
 	//시퀀스 얻기
 	public int getBnoSeq() {

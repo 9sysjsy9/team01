@@ -22,6 +22,16 @@ $(function(){
 		
 //파일 첨부 삭제 프로세스-------------------------------------------
 	$("#noticeRegistForm").submit(function(e) {
+		var title = $("input[name=title]").val();
+		var content = $("textarea[name=content]").val();
+		
+		if(title == null || title == ""){
+			alert("제목을 입력해주세요.");
+			e.preventDefault();
+		} else if (content == null || content == ""){
+			alert("내용을 입력해주세요.");
+			e.preventDefault();
+		}
 		
 		$(".files").each(function(i) {
 			var file = $(this)[0].files[0];
@@ -30,9 +40,9 @@ $(function(){
 				$(this).attr("name", "files");
 			}
 		});
+		
 	});
-
-});
+});//ready
 </script>
 <!-- Product section-->
 <section class="py-5">
@@ -46,7 +56,6 @@ $(function(){
 						<h1 class="display-5 fw-bolder" id="store">공지사항</h1>
 					</div>
 					<div class="col-md-2"></div>
-
 				</div>
 				<div class="row">
 					<div class="col-md-2"></div>
@@ -89,7 +98,6 @@ $(function(){
 					<div class="col-md-2">
 					</div>
 				</div>
-
 
 			</div>
 		</div>

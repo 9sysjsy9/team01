@@ -238,15 +238,10 @@ public class MyFileUploadUtil {
 		
 		if(sampleFilePath.exists() == true) {
 			profileFilePath = new File(uploadPath +"/profile_"+ eno +"." + extName);
-			
+			if(profileFilePath.exists() == true) {
+				profileFilePath.delete();
+			}
 			sampleFilePath.renameTo(profileFilePath);
-
-//			try {
-//				Files.copy(sampleFilePath.toPath(), profileFilePath.toPath(), StandardCopyOption.REPLACE_EXISTING);
-//				System.out.println("성공");
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
 			sampleFilePath.delete();
 			return true;
 		}

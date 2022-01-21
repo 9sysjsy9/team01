@@ -99,11 +99,11 @@ public class StoreController {
 		FranApplyVo franApplyVo = storeService.applyInquiry(fno);
 		return franApplyVo;
 	}
-	
+
 	@RequestMapping(value="/company/replyRegistRun", method = RequestMethod.POST)
 	public String replyRegistRun(FranApplyVo franApplyVo) {
 		System.out.println("StoreController, applyRegistRun, franApplyVo : " + franApplyVo);
 		storeService.replyRegistRun(franApplyVo);
-		return "redirect:/store/company/applyFranList";
+		return "redirect:/store/company/applyFranList?replyState=a";
 	}
 }
