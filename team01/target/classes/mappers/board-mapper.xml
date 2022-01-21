@@ -28,12 +28,14 @@
 		values(seq_bno.nextval, 'f', #{title}, #{content}, #{userid}, sysdate, #{username})
 	</insert>
 	
-	<select id="menuMove" resultType="BoardVo">
+	<select id="menuMove_f" resultType="BoardVo">
 		select next,prev 
 			from (
 			    select bno, 
 			    lead(bno,1) over(order by bno) as next, 
-			    lag(bno,1) over(order by bno) as prev from tbl_board
+			    lag(bno,1) over(order by bno) as prev
+			    from tbl_board
+        		where bcate = 'f'
 			)
 		where bno = #{bno}
 	</select>
@@ -78,6 +80,18 @@
 	<select id="getCount_a" resultType="int">
 		select count(*) from tbl_board
 		where bcate = 'a'
+	</select>
+	
+	<select id="menuMove_a" resultType="BoardVo">
+		select next,prev 
+			from (
+			    select bno, 
+			    lead(bno,1) over(order by bno) as next, 
+			    lag(bno,1) over(order by bno) as prev
+			    from tbl_board
+        		where bcate = 'a'
+			)
+		where bno = #{bno}
 	</select>
 	
 <!-- 채용공고등록 -->	
@@ -159,7 +173,6 @@
 		DELETE FROM tbl_uploadfile
 		WHERE bno = #{bno}
 	</delete>
-<<<<<<< HEAD
 	
 <!-- 내 게시물 게시판 시작 -->
 	<!-- 내 게시물 개수 -->
@@ -179,8 +192,6 @@
 	</select>
 <!-- 내 게시물 게시판 끝 -->
 
-=======
->>>>>>> branch 'master' of https://github.com/9sysjsy9/team01.git
 <!-- 자료실 게시판 시작 -->
 	<!-- 자료실 리스트 개수 -->
 	<select id="getPdsCount" resultType="int">

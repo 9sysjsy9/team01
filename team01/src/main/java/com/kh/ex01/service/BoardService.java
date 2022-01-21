@@ -73,8 +73,13 @@ public class BoardService {
 		boardDao.insertAnonymousBoard(boardVo);
 	}
 	
-	public BoardVo menuMove(int bno) {
-		BoardVo boardVo = boardDao.menuMove(bno);
+	public BoardVo menuMove_f(int bno) {
+		BoardVo boardVo = boardDao.menuMove_f(bno);
+		return boardVo;
+	}
+	
+	public BoardVo menuMove_a(int bno) {
+		BoardVo boardVo = boardDao.menuMove_a(bno);
 		return boardVo;
 	}
 	

@@ -9,6 +9,10 @@
 	.btnMD{
 		text-align: right;
 	}
+	
+	a:hover {
+		color : red;
+	}
  	   
 </style>
 <script>
@@ -37,6 +41,18 @@ $(function(){
 	
 	$("#btnMenu").click(function(){
 		location.href = "/company/board/anonymous/anonymous_list";
+	});
+	
+	$(".btnCommentDelet").click(function(){
+		var cno = $(this).attr("data-cno");
+		var bno = "${boardVo.bno}";
+		var writer = $(this).attr("data-userid");
+		var loginId = "${loginData.userid }";
+		if(writer == loginId || ${loginData.authority} == "3"){
+			location.href = "/comment/deleteFreeComment?cno=" + cno + "&bno=" + bno; 
+		} else {
+			alert("직접 작성한 댓글이 아닙니다.");
+		};
 	});
 	
 });
@@ -84,7 +100,8 @@ $(function(){
 														${commentVo.content}
 													</dd>
 													<dd>
-														${commentVo.regdate}
+														${commentVo.regdate} <a class="btnCommentDelet" 
+														data-cno="${commentVo.cno }" data-userid="${commentVo.userid}">댓글삭제</a>
 													</dd>
 												</dl>
 											</td>
@@ -117,11 +134,11 @@ $(function(){
 					<div class="row">
 						<div class="col-md-6">
 							<div>
-								<a class="btn btn-outline-primary" id="btnMenu">목록</a>
+								<a class="btn btn-outline-primary" id="btnMenu" style="margin-top: 20px;">목록</a>
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="move">
+							<div class="move" style="margin-top: 20px;">
 								<a class="btnMove btn btn-outline-primary" id="btnPrev" href="${boardMoveVo.prev}">이전</a>
 								<a class="btnMove btn btn-outline-primary" id="btnNext" href="${boardMoveVo.next}">다음</a>
 							</div>
