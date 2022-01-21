@@ -160,7 +160,6 @@
 						<th>content</th>
 						<th>regdate</th>
 						<th>name</th>
-						<th>email</th>
 						<th>목록 보기</th>
 					</tr>
 				</thead>
@@ -168,11 +167,19 @@
 					<c:forEach items="${list}" var="askproductVo">
 						<tr>
 							<th>${askproductVo.ano}</th>
-							<td>${askproductVo.title}</td>
-							<td>${askproductVo.content}</td>
-							<td class="td regdate">${askproductVo.regdate}</td>
-							<td>${askproductVo.name}</td>
-							<td>${askproductVo.email}</td>
+							<td>${askproductVo.ask_title}</td>
+							<td>${askproductVo.ask_content}</td>
+							<td class="td regdate">${askproductVo.ask_date}</td>
+							<td>
+							<c:choose>
+							<c:when test="${userData.user_id == askproductVo.user_id}">
+							${askproductVo.user_id}
+							</c:when>
+							<c:otherwise>
+							********
+							</c:otherwise>
+							</c:choose>
+							</td> 
 							<td><button type="button"
 									class="btn btn-outline-dark btn-lg px-7 askContent"
 									data-ano="${askproductVo.ano}">자세히 보기</button></td>
