@@ -9,6 +9,8 @@ public class AskProductVo {
 	private String ask_title;
 	private Date ask_date;
 	private String user_id;
+	private String ask_cate;
+	
 	public int getAno() {
 		return ano;
 	}
@@ -45,10 +47,17 @@ public class AskProductVo {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
+	public String getAsk_cate() {
+		return ask_cate;
+	}
+	public void setAsk_cate(String ask_cate) {
+		this.ask_cate = ask_cate;
+	}
 	@Override
 	public String toString() {
 		return "AskProductVo [ano=" + ano + ", order_code=" + order_code + ", ask_content=" + ask_content
-				+ ", ask_title=" + ask_title + ", ask_date=" + ask_date + ", user_id=" + user_id + "]";
+				+ ", ask_title=" + ask_title + ", ask_date=" + ask_date + ", user_id=" + user_id + ", ask_cate="
+				+ ask_cate + "]";
 	}
 	
 	

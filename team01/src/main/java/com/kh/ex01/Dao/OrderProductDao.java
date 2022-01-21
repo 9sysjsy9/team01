@@ -28,6 +28,11 @@ public class OrderProductDao {
 		return orderContentVo;
 	}
 	
+	public int getOrderCodeCount(String order_code) {
+		int count = sqlSession.selectOne(NAMESAPCE+"getOrderCodeCount", order_code);
+		return count;
+	}
+	
 	public List<UserBasketVo> selectBasket(String order_shoescode) {
 		List<UserBasketVo> list = sqlSession.selectList(NAMESAPCE+"selectBasket", order_shoescode);
 		return list;
