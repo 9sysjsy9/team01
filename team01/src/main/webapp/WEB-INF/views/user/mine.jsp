@@ -7,66 +7,68 @@
 <script>
 $(function() {
 	//조회 버튼을 눌렀을때
-	$("#checkOrderNum").click(
-			function() {
-				var order_code = $("input[name=order_code]").val();
+// 	$("#checkOrderNum").click(
+// 			function() {
+// 				var order_code = $("input[name=order_code]").val();
 
-				var url = "/user/checkOrderNum";
+// 				var url = "/user/checkOrderNum";
 
-				var sData = {
-					"order_code" : order_code
-				};
+// 				var sData = {
+// 					"order_code" : order_code
+// 				};
 
-				$.post(url, sData, function(rData) {
+// 				$.post(url, sData, function(rData) {
 
-					if (rData.user_id != null) {
-						//조회 상태 표시
-						$("#spanMsg").text(
-								rData.user_id + "/" + rData.order_regdate
-										+ "/" + rData.order_shoescode);
-						//주문 번호 데이터 저장
-						$("#checkOrderNum").attr("data-orderNum",
-								order_code);
-						//휴대전화, 이메일 표시
-						$("#phone").val(rData.user_phone);
-						$("#email").val(rData.user_email);
+// 					if (rData.user_id != null) {
+// 						//조회 상태 표시
+// // 						$("#spanMsg").text(
+// // 								rData.user_id + "/" + rData.order_regdate
+// // 										+ "/" + rData.order_shoescode);
+// 						//주문 번호 데이터 저장
+// // 						$("#checkOrderNum").attr("data-orderNum",
+// // 								order_code);
+// 						//휴대전화, 이메일 표시
+// 						$("#phone").val(rData.user_phone);
+// 						$("#email").val(rData.user_email);
 
-						console.log(rData);
+// 						console.log(rData);
 
-					} else {
-						$("#spanMsg").text("주문 번호를 확인해 주세요");
-						$("#phone").val("");
-						$("#email").val("");
-					}
+// 					} else {
+// 						$("#spanMsg").text("주문 번호를 확인해 주세요");
+// 						$("#phone").val("");
+// 						$("#email").val("");
+// 					}
 
-				});
-			});
+// 				});
+// 			});
 
-	//문의하기 버튼 눌렀을때
-	$("#askCsBtn").click(function(e) {
-		//전송할 데이터
-		//주문번호, 문의카테고리, 문의내용, 문의제목
-		var ask_title = $("#title").val(); //제목
-		var ask_content = $("#content").val(); //내용
-		var ask_cate = $("#cs_cate").val(); //카테고리
-		var order_code = $("#checkOrderNum").attr("data-orderNum");
+// 	//문의하기 버튼 눌렀을때
+// 	$("#askCsBtn").click(function(e) {
+// 		//전송할 데이터
+// 		//주문번호, 문의카테고리, 문의내용, 문의제목
+// 		var ask_title = $("#title").val(); //제목
+// 		var ask_content = $("#content").val(); //내용
+// 		var ask_cate = $("#cs_cate").val(); //카테고리
+// 		var order_code = $("#checkOrderNum").attr("data-orderNum");
 
-		var url = "/user/askRegistRun";
+// 		var url = "/user/askRegistRun";
 
-		var sData = {
-			"ask_title" : ask_title,
-			"ask_content" : ask_content,
-			"ask_cate" : ask_cate,
-			"order_code" : order_code,
+// 		var sData = {
+// 			"ask_title" : ask_title,
+// 			"ask_content" : ask_content,
+// 			"ask_cate" : ask_cate,
+// 			"order_code" : order_code,
 
-		};//JSON 키:값 (값을 어떤이름(키) 로 보낼거냐)
+// 		};//JSON 키:값 (값을 어떤이름(키) 로 보낼거냐)
 
-		$.post(url, sData, function(rData) {
-			console.log(rData);
-		});
+// 		$.post(url, sData, function(rData) {
+// 			console.log(rData);
+// 		});
 
-	});
+// 	});
 	
+	
+// 	비밀번호 인증 버튼 눌렀을때
 	$("#btnPwChk").click(function() {
 		var pw = $("#pw").val();
 		console.log("pw:" + pw);
@@ -88,7 +90,6 @@ $(function() {
 				$("#phone2").val(nums[1]);
 				$("#phone3").val(nums[2]);
 				
-				
 				$("#divForm").slideDown(1000);
 				$("#divPwChk").slideUp(1000);
 			}
@@ -96,14 +97,19 @@ $(function() {
 		
 	});
 	
-	$("#updateForm").submit(function() {
-		alert('폼전송전');
+// 	수정완료 버튼 눌렀을때
+	$("#userModifyRunBtn").click(function(e) {
+		e.preventDefault();
 		var phone1 = $("#phone1").val();
 		var phone2 = $("#phone2").val();
 		var phone3 = $("#phone3").val();
 		var user_phone = phone1 + "-" + phone2 + "-" + phone3;
-		var input_form = "<input type='hidden' name='user_phone' value='" + user_phone + "'>";
-		$("#updateForm").prepend(input_form);
+		console.log(user_phone);
+		$("#user_phone").val(user_phone);
+ 		
+		$("#updateForm").submit();
+// 		var input_form = "<input type='hidden' name='user_phone' value='" + user_phone + "'>";
+// 		$("#updateForm").prepend(input_form);
 // 		return false;
 	});
 
@@ -149,13 +155,6 @@ $(function() {
 					</td>
 								
 				</tr>
-<!-- 						<td style="text-align: center"> -->
-<!-- 							<label for="checkOrderNum">기존비밀번호</label></td> -->
-<!-- 						<td><input type="password" size="12" name="pw" /> -->
-<!-- 							<input type="button" class="btn btn-sm btn-primary my-2 my-sm-0" -->
-<!-- 								value="로그인" onclick="pwChk()">인증</button> <span -->
-<!-- 							id="spanMsg"></span></td> -->
-						
 			</table>
 		</div>
 	</div>
@@ -163,6 +162,7 @@ $(function() {
 		<div class="col-md-12" id="divForm" style="display:none;">
 			<form id="updateForm" method="post" action="/user/changeUserInfo">
    				<input type="hidden" name="user_id" value="${sessionScope.userData.user_id}">
+   				<input type="hidden" name="user_phone" id="user_phone">
 		      <table style="padding: 5px 0 5px 0;">
 		         <tbody><tr height="2" bgcolor="#FFC8C3">
 		            <td colspan="2"></td>
@@ -213,7 +213,7 @@ $(function() {
 		         <tr>
 		            <td colspan="2" align="center"><br> 
 		            
-		            	<button type="submit" class="btn btn-warning" id="userModifyRunBtn">수정 완료</button>
+		            	<button type="button" class="btn btn-warning" id="userModifyRunBtn">수정 완료</button>
 		            	<a type="reset" class="btn btn-secondary" href="/">수정 취소</a>
 		           	</td>
 		         </tr>

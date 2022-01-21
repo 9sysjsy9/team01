@@ -48,8 +48,8 @@ $(function(){
 				<ul class="navbar-nav">
 										
 				</ul>
-				<form class="form-inline">
-					<input class="form-control mr-sm-2" type="text" />
+				<form class="form-inline" action="/customer/qna">
+					<input class="form-control mr-sm-2" type="text" name="keyword"/>
 					<button class="btn btn-primary my-2 my-sm-0" type="submit">
 						검색</button>
 				</form>
@@ -66,10 +66,12 @@ $(function(){
 				<tr class="table-warning title">
 					<th>${qnaVo.qna_no}</th>
 					<th>${qnaVo.qna_title}</th>
+					
 				</tr>
 				<tr>
-					<td style="padding-left: 130px; padding-right: 130px;" class="content">
-						${qnaVo.qna_content}</td>
+					
+					<td class="content" colspan="3" style="padding: 0px 200px;" 
+						>${qnaVo.qna_content}</td>
 				</tr>
 			</c:forEach>
 			</tbody>

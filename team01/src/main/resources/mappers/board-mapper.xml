@@ -28,12 +28,14 @@
 		values(seq_bno.nextval, 'f', #{title}, #{content}, #{userid}, sysdate, #{username})
 	</insert>
 	
-	<select id="menuMove" resultType="BoardVo">
+	<select id="menuMove_f" resultType="BoardVo">
 		select next,prev 
 			from (
 			    select bno, 
 			    lead(bno,1) over(order by bno) as next, 
-			    lag(bno,1) over(order by bno) as prev from tbl_board
+			    lag(bno,1) over(order by bno) as prev
+			    from tbl_board
+        		where bcate = 'f'
 			)
 		where bno = #{bno}
 	</select>
@@ -72,6 +74,18 @@
 	<select id="getCount_a" resultType="int">
 		select count(*) from tbl_board
 		where bcate = 'a'
+	</select>
+	
+	<select id="menuMove_a" resultType="BoardVo">
+		select next,prev 
+			from (
+			    select bno, 
+			    lead(bno,1) over(order by bno) as next, 
+			    lag(bno,1) over(order by bno) as prev
+			    from tbl_board
+        		where bcate = 'a'
+			)
+		where bno = #{bno}
 	</select>
 	
 <!-- 채용공고등록 -->	

@@ -83,7 +83,7 @@ public class BoardController {
 	@RequestMapping(value = "/board/free/free_content", method = RequestMethod.GET)
 	 public String registBoard(Model model, int bno) {
 		 BoardVo boardVo = boardService.getBoard(bno);
-		 BoardVo boardMoveVo = boardService.menuMove(bno); // 게시글 이동
+		 BoardVo boardMoveVo = boardService.menuMove_f(bno); // 게시글 이동
 		 List<CommentVo> list = commentService.commentList(bno); // 덧글 리스트
 		 model.addAttribute("boardMoveVo",boardMoveVo);
 		 model.addAttribute("boardVo",boardVo);
@@ -158,7 +158,7 @@ public class BoardController {
 	@RequestMapping(value = "/board/anonymous/anonymous_content", method = RequestMethod.GET)
 	 public String anonymousRegistBoard(Model model, int bno) {
 		 BoardVo boardVo = boardService.getBoard(bno);
-		 BoardVo boardMoveVo = boardService.menuMove(bno); // 게시글 이동
+		 BoardVo boardMoveVo = boardService.menuMove_a(bno); // 게시글 이동
 		 List<CommentVo> list = commentService.commentList(bno); // 덧글 리스트
 		 model.addAttribute("boardMoveVo",boardMoveVo);
 		 model.addAttribute("boardVo",boardVo);

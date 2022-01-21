@@ -1,6 +1,8 @@
 package com.kh.ex01.Dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -24,8 +26,11 @@ public class CustomerDao {
 		List<NoticeVo> list = sqlSession.selectList(NAMESAPCE + "noticeList" );
 		return list;
 	}
-	public List<QnaVo> qnaList() {
-		List<QnaVo> list = sqlSession.selectList(NAMESAPCE+"qnaList");
+	public List<QnaVo> qnaList(String keyword) {
+		System.out.println("CustomerDao, qnaList, keyword: " + keyword);
+		Map<String, String> map = new HashMap<>();
+		map.put("keyword", keyword);
+		List<QnaVo> list = sqlSession.selectList(NAMESAPCE+"qnaList", map);
 		return list;
 	}
 	
@@ -40,7 +45,27 @@ public class CustomerDao {
 	}
 	public List<CsCheckVo> csCheck() {
 		List<CsCheckVo> list = sqlSession.selectList(NAMESAPCE+"csCheck"); 
-		return null;
+		return list;
+	}
+	public void csUpdate(int ano, String ask_reply) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("ano", ano);
+		map.put("ask_reply", ask_reply);
+		sqlSession.update(NAMESAPCE+"csUpdate", map); 
+	}
+	
+	public void askRegistRun(AskProductVo askProductVo) {
+		sqlSession.insert(NAMESAPCE + "askRegistRun", askProductVo);
+	}
+	
+	public int checkOrderCode(String order_code) {
+		System.out.println("order_code : " + order_code);
+		int count = sqlSession.selectOne(NAMESAPCE + "checkOrderCode",order_code);
+		return count;
+	}
+	
+	public void insertCsReceive(CsreceiveVo csreceiveVo) {
+		sqlSession.insert(NAMESAPCE + "insertCsReceive", csreceiveVo);
 	}
 	
 }

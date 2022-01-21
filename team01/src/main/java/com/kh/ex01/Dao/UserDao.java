@@ -46,4 +46,9 @@ public class UserDao {
 		sqlSession.insert(NAMESPACE + "askRegistRun", askProductVo);
 	}
 	
+	// 사용자 정보 수정
+	public void updateUser(UserVo userVo) {
+		sqlSession.update(NAMESPACE + "updateUser", userVo);
+	}
+	
 }

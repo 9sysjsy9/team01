@@ -41,4 +41,9 @@ public class UserService {
 	public void askRegistRun(AskProductVo askProductVo) {
 		userDao.askRegistRun(askProductVo);
 	}
+	
+	// 사용자 정보 수정
+	public void updateUser(UserVo userVo) {
+		userDao.updateUser(userVo);
+	}
 }

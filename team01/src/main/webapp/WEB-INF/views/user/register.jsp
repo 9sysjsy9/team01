@@ -89,7 +89,7 @@ $(function() {
          <tr>
             <th>아이디</th>
             <td><input type="text" name="cursor:pointer" id="user_id"> 
-            <button id="btnCheck" class="btn btn-info m-btn-air btn-sm"
+            <button id="btnUserIdCheck" class="btn btn-info m-btn-air btn-sm" type="button"
             	>아이디 중복체크</button></td>
          </tr>
          <tr>

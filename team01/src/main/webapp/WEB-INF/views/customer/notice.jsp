@@ -2,17 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <style>
 	.title {
 			cursor: pointer;
 		}
-	.content {
-		display: none
-	}
+ 	.content { 
+ 		display: none 
+ 	} 
 	.title > th, .content > td {
 		padding-left: 110px;
 	}
+
 </style>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -36,26 +39,25 @@ $(function(){
 <!-- 					</p> -->
 					
 			</div>
-			<table class="table">
-			
-			<tbody>
-			<c:forEach items="${list}" var="noticeVo">
-				<tr class="table-warning title">
-					<th style="padding-left: 130px">
-						${noticeVo.notice_no}</th>
-					<th>${noticeVo.notice_title}</th>
-					<th style="padding-right: 130px">
-						${noticeVo.notice_date}</th>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td class="content">${noticeVo.notice_content}</td>
-				</tr>
-			</c:forEach>
-			</tbody>
-			</table>
-			<div class="col-md-12">
+				<table class="table">
+				
+				<tbody>
+				<c:forEach items="${list}" var="noticeVo">
+					<tr class="table-warning title">
+						<th style="padding-left: 130px">
+							${noticeVo.notice_no}</th>
+						<th>${noticeVo.notice_title}</th>
+						<th style="padding-right: 130px">
+							${fn:substring(noticeVo.notice_date, 0, 10)}</th>
+					</tr>
+					<tr>
+						<td class="content" colspan="3" style="padding: 0px 200px"
+							>${noticeVo.notice_content}</td>
+					</tr>
+				</c:forEach>
+				</tbody>
+				</table>
+			<div class="col-md-12" id="div_paging">
 				<ul class="pagination justify-content-center">
 					<li class="page-item"><a class="page-link" href="#">이전</a>
 					</li>

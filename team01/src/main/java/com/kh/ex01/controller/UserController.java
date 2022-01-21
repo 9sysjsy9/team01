@@ -276,9 +276,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/changeUserInfo", method = RequestMethod.POST)
-	public void changeUserInfo(UserVo userVo) {
-		System.out.println("changeUserInfo �����");
+	public String changeUserInfo(UserVo userVo) {
 		System.out.println("UserController, changeUserInfo, userVo: " + userVo);
+		userService.updateUser(userVo);
+		return "redirect:/";
 	}
 
 }
