@@ -26,22 +26,30 @@ $(function() {
 				<div class="form-group">
 					<label for="title">글제목</label>
 					<input type="text" class="form-control" 
-						id="title" name="title" required="required"/>
+						id="title" name="ask_title" required="required"/>
 				</div>
 				<div class="form-group">
 					<label for="content">글내용</label>
 					<textarea class="form-control" 
-						id="content" name="content"></textarea>
+						id="content" name="ask_content"></textarea>
 				</div>
 				<div class="form-group">
 					<label for="content">이름</label>
 					<input type="text" class="form-control" 
-						id="name" name="name">
+						id="name" name="user_name" 
+						<c:if test="${!empty userData.user_name}">
+						value="${userData.user_name}" readonly="readonly"
+						</c:if>
+						>
 				</div>
 				<div class="form-group">
 					<label for="content">이메일</label>
 					<input type="text" class="form-control" 
-						id="email" name="email">
+						id="email" name="user_email"
+						<c:if test="${!empty userData.user_email}">
+						value="${userData.user_email}" readonly="readonly"
+						</c:if>
+						>
 				</div>
 				<div style="clear:both;">
 					<button type="submit" class="btn btn-primary">

@@ -71,7 +71,9 @@
 				</ul>
 			</div>
 		</c:if>
-		<br><br><br>
+		<br>
+		<br>
+		<br>
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
 				<img class="card-img-top mb-5 mb-md-0"
@@ -83,10 +85,11 @@
 				<div class="fs-5 mb-5">
 					<span class="text-decoration-line-through">$45.00</span> <span>$40.00</span>
 				</div>
-				<p class="lead">Lorem ipsum dolor sit amet consectetur
-					adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi
-					consequatur obcaecati excepturi alias magni, accusamus eius
-					blanditiis delectus ipsam minima ea iste laborum vero?</p>
+				<p >위험이 크고 압박감을 느끼는 상황에서 뛰어난 퍼포먼스를 보여줍니다. 르브론 19는 발을
+					꼭 잡아주는 핏과 새로워진 쿠셔닝 시스템으로 이 에너지를 십분 활용합니다. 신발 끈이 끼워진 성형 오버레이가 발에 꼭
+					맞는 내부 슬리브를 모아주며 신발 안에서의 발 움직임을 막아줍니다. 카라와 설포 주변의 쿠션감 있는 포드는 편안함을
+					더해주고 무게는 줄여주어, 긴장감 넘치는 경기 중 선수들이 최대의 역량을 발휘할 수 있는 안정적인 착화감과 자신감을
+					선사합니다.</p>
 				<div class="d-flex">
 					<select id="count">
 						<c:forEach begin="1" end="${productVo.shoes_count}" var="i">

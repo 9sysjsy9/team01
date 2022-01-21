@@ -8,7 +8,7 @@ $(function() {
 	$(".page-link").click(function(e) {
 		e.preventDefault();
 		var page = $(this).attr("href");
-		location.href = "/product/company/product_index?page=" + page;
+		location.href = "/product/product_index?page=" + page;
 	});
 	
 	
@@ -104,8 +104,7 @@ $(function() {
 								</li>
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="http://example.com"
-									id="navbarDropdownMenuLink" data-toggle="dropdown">Dropdown
-										link</a>
+									id="navbarDropdownMenuLink" data-toggle="dropdown">Search</a>
 									<div class="dropdown-menu"
 										aria-labelledby="navbarDropdownMenuLink">
 										<a class="dropdown-item" href="#">Action</a> <a
