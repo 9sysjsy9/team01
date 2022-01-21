@@ -141,11 +141,11 @@ $(function(){
 					<div class="row">
 						<div class="col-md-6">
 							<div>
-								<a class="btn btn-outline-primary" id="btnMenu">목록</a>
+								<a class="btn btn-outline-primary" id="btnMenu" style="margin-top: 20px;">목록</a>
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="move">
+							<div class="move"  style="margin-top: 20px;">
 								<a class="btnMove btn btn-outline-primary" id="btnPrev" href="${boardMoveVo.prev}">이전</a>
 								<a class="btnMove btn btn-outline-primary" id="btnNext" href="${boardMoveVo.next}">다음</a>
 							</div>

@@ -73,8 +73,13 @@ public class BoardDao {
 		sqlSession.insert(NAMESPACE + "insertAnonymousBoard", boardVo);
 	}
 	
-	public BoardVo menuMove(int bno) {
-		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "menuMove",bno);
+	public BoardVo menuMove_f(int bno) {
+		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "menuMove_f",bno);
+		return boardVo;
+	}
+	
+	public BoardVo menuMove_a(int bno) {
+		BoardVo boardVo = sqlSession.selectOne(NAMESPACE + "menuMove_a",bno);
 		return boardVo;
 	}
 	

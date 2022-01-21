@@ -35,7 +35,7 @@ $(function(){
 				<div style="text-align: center; margin-bottom: 30px;margin-top: 30px;">
 					<button class="btnD btn btn-outline-dark flex-shrink-0" type="button" value="인사부">인사부</button>
 					<button class="btnD btn btn-outline-dark flex-shrink-0" type="button" value="영업부">영업부</button>
-					<button class="btnD btn btn-outline-dark flex-shrink-0" type="button" value="품질관리부">품질관리부</button>
+					<button class="btnD btn btn-outline-dark flex-shrink-0" type="button" value="품질관리">품질관리부</button>
 					<button class="btnD btn btn-outline-dark flex-shrink-0" type="button" value="감사부">감사부</button>
 				</div>
 			<form id="frmSearch" action="/member/company/search_list" method="get">
