@@ -106,7 +106,7 @@ $(function() {
 		var user_phone = phone1 + "-" + phone2 + "-" + phone3;
 		console.log(user_phone);
 		$("#user_phone").val(user_phone);
- 		alert('수정 완료');
+ 		
 		$("#updateForm").submit();
 // 		var input_form = "<input type='hidden' name='user_phone' value='" + user_phone + "'>";
 // 		$("#updateForm").prepend(input_form);

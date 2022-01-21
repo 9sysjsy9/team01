@@ -38,5 +38,15 @@
 	INSERT INTO tbl_askproduct(ano, order_code, ask_cate, ask_content, ask_title)
 	VALUES (seq_ano.nextval, #{order_code}, #{ask_cate}, #{ask_content}, #{ask_title})
 </insert>
+<!-- 사용자 정보 수정 -->
+<update id="updateUser">
+	update tbl_user set 
+	    user_pw = #{user_pw},
+	    user_name = #{user_name},
+	    user_phone = #{user_phone},
+	    user_email = #{user_email},
+	    user_addr = #{user_addr}
+	where user_id = #{user_id}
+</update>
 
 </mapper>

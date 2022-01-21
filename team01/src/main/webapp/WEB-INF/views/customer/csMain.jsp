@@ -8,8 +8,8 @@
 	<h1 style="padding-left: 110px;"><b>CS센터</b></h1>
 	<p><h5 style="padding-left: 110px;">서비스 접수 전 아래의 공지사항을 확인해주세요.</h5></p>
 </div>
-<div style="background-color:#ffcc99; padding:1px;"><br>
-	<h4 style="padding-left: 130px;"><b>[ 교환, 반품 및 환불이 불가능한 경우 ]</b></h4><br>
+<div style="background-color:#ffcc99; padding:10px;">
+	<h4 style="padding-left: 130px;"><b>[ 교환, 반품 및 환불이 불가능한 경우 ]</b></h4>
 	<p style="padding-left: 130px;">- 고객님의 책임 있는 사유로 상품등이 멸실 또는 훼손된 경우</p>  
 	<p style="padding-left: 150px;">단,상품의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외</p>
 	<p style="padding-left: 130px;">- 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우</p>
