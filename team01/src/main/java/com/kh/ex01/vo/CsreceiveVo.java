@@ -10,6 +10,15 @@ public class CsreceiveVo {
 	private String user_id;
 	private String cate;
 	private String order_code;
+	private String reply;
+
+	public String getReply() {
+		return reply;
+	}
+
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
 
 	public int getCs_num() {
 		return cs_num;
@@ -62,7 +71,8 @@ public class CsreceiveVo {
 	@Override
 	public String toString() {
 		return "CsreceiveVo [cs_num=" + cs_num + ", title=" + title + ", content=" + content + ", user_id=" + user_id
-				+ ", cate=" + cate + ", order_code=" + order_code + "]";
+				+ ", cate=" + cate + ", order_code=" + order_code + ", reply=" + reply + "]";
 	}
+
 
 }

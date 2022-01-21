@@ -39,12 +39,12 @@ public class CustomerDao {
 		return list;
 	}
 	
-	public List<AskProductVo> csList(){
-		List<AskProductVo> list = sqlSession.selectList(NAMESAPCE+"csList"); 
+	public List<CsreceiveVo> csList(){
+		List<CsreceiveVo> list = sqlSession.selectList(NAMESAPCE+"csList"); 
 		return list;
 	}
-	public List<CsCheckVo> csCheck() {
-		List<CsCheckVo> list = sqlSession.selectList(NAMESAPCE+"csCheck"); 
+	public List<CsreceiveVo> csCheck() {
+		List<CsreceiveVo> list = sqlSession.selectList(NAMESAPCE+"csCheck"); 
 		return list;
 	}
 	public void csUpdate(int ano, String ask_reply) {

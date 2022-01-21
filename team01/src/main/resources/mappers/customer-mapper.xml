@@ -20,19 +20,20 @@
 	</select>
 	
 	<select id="csreceiveList" resultType="CsreceiveVo">
-		select * from tbl_csReceive
-		order by csReceive_order
+		select * from tbl_csreceive
+		order by order_code
 	</select>
 	
-	<select id="csList" resultType="AskProductVo">
-		SELECT A.ano, A.order_code, A.ask_content, A.ask_title, A.ask_date, A.ask_cate, B.user_id, A.ask_reply
-		FROM tbl_askproduct A, tbl_orderproduct B
-		WHERE A.order_code = B.order_code
+	<select id="csList" resultType="CsreceiveVo">
+		SELECT * FROM tbl_csreceive
+	
+<!-- 		SELECT A.ano, A.order_code, A.ask_content, A.ask_title, A.ask_date, A.ask_cate, B.user_id, A.ask_reply -->
+<!-- 		FROM tbl_askproduct A, tbl_orderproduct B -->
+<!-- 		WHERE A.order_code = B.order_code -->
 	</select>
 
-	<select id="csCheck" resultType="CsCheckVo">
-		select * from tbl_csCheck
-		order by csCheck_order
+	<select id="csCheck" resultType="CsreceiveVo">
+		SELECT * FROM tbl_csreceive
 	</select>
 	
 	<!-- 답변 업데이트 -->

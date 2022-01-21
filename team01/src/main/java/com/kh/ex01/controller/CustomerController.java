@@ -81,7 +81,7 @@ public class CustomerController {
 	
 	@RequestMapping(value = "/company/csList")
 	public String csList(Model model) {
-		List<AskProductVo> list = customerService.csList();
+		List<CsreceiveVo> list = customerService.csList();
 		System.out.println("AskProductlist: "+list);
 		model.addAttribute("csList", list);
 		return "/company/csManage/csList";
@@ -89,7 +89,7 @@ public class CustomerController {
 	
 	@RequestMapping(value = "/csCheck")
 	public String csCheck(Model model) {
-		List<AskProductVo> list = customerService.csList();
+		List<CsreceiveVo> list = customerService.csList();
 		System.out.println("AskProductVo list: "+list);
 		model.addAttribute("list", list);
 		return "/customer/csCheck";

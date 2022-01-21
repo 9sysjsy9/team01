@@ -31,12 +31,12 @@ public class CustomerService {
 		List<CsreceiveVo> list = customerDao.csreceiveList();
 		return list;
 	}
-	public List<AskProductVo> csList() {
-		List<AskProductVo> list = customerDao.csList();
+	public List<CsreceiveVo> csList() {
+		List<CsreceiveVo> list = customerDao.csList();
 		return list;
 	}
-	public List<CsCheckVo> csCheck() {
-		List<CsCheckVo> list = customerDao.csCheck();
+	public List<CsreceiveVo> csCheck() {
+		List<CsreceiveVo> list = customerDao.csCheck();
 		return list;
 	}
 	

@@ -35,7 +35,6 @@ ${csList}
 									<th>카테고리</th>
 									<th>문의자</th>
 									<th>문의제목</th>
-									<th>문의일시</th>
 								</tr>
 							</thead>
 							
@@ -44,11 +43,10 @@ ${csList}
 							<c:forEach items="${csList}" var="list">
 							
 								<tr>
-									<td>${list.ano}</td>
-									<td>${list.ask_cate}</td>
-									<td>홍길동</td>
-									<td>제품이 이상합니다.</td>
-									<td>2010/10/10</td>
+									<td>${list.cs_num}</td>
+									<td>${list.cate}</td>
+									<td>이름</td>
+									<td>${list.content}</td>
 								</tr>
 								
 							</c:forEach>

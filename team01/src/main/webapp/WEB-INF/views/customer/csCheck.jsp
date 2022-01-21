@@ -40,24 +40,28 @@ $(function(){
 										<td><b>No</b></td>
 										<td><b>항목</b></td>
 										<td><b>제목</b></td>
-										<td><b>작성일</b></td>
+										<td><b>내용</b></td>
+										<td><b>작성자</b></td>
+										<td><b>주문번호</b></td>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${list}" var="askProductVo">
+									<c:forEach items="${list}" var="csreceiveVo">
 										<tr class="table-success listTitle">
-											<td>${askProductVo.ano}</td>
-											<td>${askProductVo.ask_cate}</td>
-											<td>${askProductVo.ask_title}</td>
-											<td>${askProductVo.ask_date}</td>
+											<td>${csreceiveVo.cs_num}</td>
+											<td>${csreceiveVo.cate}</td>
+											<td>${csreceiveVo.title}</td>
+											<td>${csreceiveVo.content}</td>
+											<td>${csreceiveVo.user_id}</td>
+											<td>${csreceiveVo.order_code}</td>
 										</tr>
 							
 										<tr style="display:none" class="content">
-											<td colspan="4">문의 내용 : ${askProductVo.ask_content}</td>
+											<td colspan="4">문의 내용 : ${csreceiveVo.content}</td>
 										</tr>
 										
 										<tr style="display:none" class="title">
-											<td colspan="4">답변 내용 : ${askProductVo.ask_reply}</td>
+											<td colspan="4">답변 내용 : ${csreceiveVo.reply}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
