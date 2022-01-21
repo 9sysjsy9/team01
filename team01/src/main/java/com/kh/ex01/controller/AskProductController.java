@@ -54,7 +54,7 @@ public class AskProductController {
    }
    @RequestMapping(value = "/ask_regist_run", method = RequestMethod.POST)
    public String askRegistRun(AskProductVo askProductVo) {
-	   System.out.println("askProductVo: "+askProductVo);
+	   System.out.println("ask_regist_run, askProductVo: "+askProductVo);
 	   askProductService.insertContent(askProductVo);
 	   return "redirect:/ask/ask_list";
    }

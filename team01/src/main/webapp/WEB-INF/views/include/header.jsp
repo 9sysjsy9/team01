@@ -66,7 +66,7 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/product/product_index">제품정보</a></li>
-							<li><a class="dropdown-item" href="/product/product_ask">제품문의</a></li>
+							<li><a class="dropdown-item" href="/ask/ask_list">제품문의</a></li>
 						</ul></li>
 
 					<li class="nav-item dropdown"><a

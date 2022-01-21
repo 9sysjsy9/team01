@@ -29,6 +29,10 @@
         where shoes_code = #{shoes_code}
 	</select>
 	
+	<select id="getOrderCodeCount" resultType="int">
+		select count(*) from tbl_orderproduct
+		where order_code = #{order_code}
+	</select>
 	
 	<select id="selectBasket" resultType="UserBasketVo">
 		select a.shoes_code, b.user_id, b.order_count, b.checked, a.shoes_price, a.shoes_name, a.shoes_image

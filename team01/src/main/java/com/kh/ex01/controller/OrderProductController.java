@@ -28,5 +28,19 @@ public class OrderProductController {
 		}
 		return "fail";
 	}
+	
+	@RequestMapping(value = "/getOrderCodeCount", method = RequestMethod.POST)
+	@ResponseBody
+	public int getOrderCodeCount(OrderProductVo orderProductVo) {
+		int count = 0;
+		System.out.println("orderProductVo: "+orderProductVo);	
+		String order_code = orderProductVo.getOrder_code();
+		if (order_code != null ) {
+			count = orderProductService.getOrderCodeCount(order_code);
+			return count;
+		}
+			
+		return count;
+	}
 
 }

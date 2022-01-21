@@ -29,6 +29,11 @@ public class OrderProductService {
 		return orderContentVo;
 	}
 	
+	public int getOrderCodeCount(String order_code) {
+		int count = orderProductDao.getOrderCodeCount(order_code);
+		return count;
+	}
+	
 	public List<UserBasketVo> selectBasket(String order_shoescode) {
 		List<UserBasketVo> list = orderProductDao.selectBasket(order_shoescode);
 		return list;

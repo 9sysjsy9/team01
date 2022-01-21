@@ -27,8 +27,8 @@
 	</update>
 	
 	<insert id="insertContent">
-		insert into tbl_askproduct(ano,title,content,name,email)
-		values(seq_askano.nextval,#{title},#{content},#{name},#{email})
+		insert into tbl_askproduct(ano, ask_title, ask_content, user_id, ask_cate)
+		values(seq_askano.nextval, #{ask_title}, #{ask_content}, #{user_id}, #{ask_cate})
 	</insert>
 	
 	<delete id="deleteContent">
