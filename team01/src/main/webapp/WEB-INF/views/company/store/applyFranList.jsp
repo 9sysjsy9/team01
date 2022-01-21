@@ -11,6 +11,7 @@
 		$("#replyState").val("<%=replyState%>").prop("selected", true);
 
 		$("#replyState").change(function(e){
+			
 			location.href = "/store/company/applyFranList?replyState="+$("#replyState").val();
 		});
 		
