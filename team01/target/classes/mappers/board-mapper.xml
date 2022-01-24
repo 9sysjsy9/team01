@@ -178,6 +178,11 @@
 		where bno = #{bno}
 	</delete>
 	
+	<delete id="deleteCommentBoard">
+		delete from tbl_comment
+		where bno = #{bno}
+	</delete>
+	
 	<update id="modifyBoard">
 		update tbl_board set
 			title = #{title},

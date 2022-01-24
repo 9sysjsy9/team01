@@ -121,6 +121,10 @@ public class BoardDao {
 	public void boardDeleteRun(int bno) {
 		sqlSession.delete(NAMESPACE + "boardDeleteRun", bno);
 	}
+	
+	public void deleteCommentBoard(int bno) {
+		sqlSession.delete(NAMESPACE + "deleteCommentBoard", bno);
+	}
 //------------------------ 게시판 공통 끝
 //------------------------ 공지사항 시작
 	//공지 글 개수

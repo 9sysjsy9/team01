@@ -33,7 +33,7 @@ public class CommentService {
 		commentDao.insertComment(commentVo);
 	}
 	
-	public void deleteCommentBoard(int cno) {
+	public void deleteComment(int cno) {
 		commentDao.deleteComment(cno);
 	}
 	
