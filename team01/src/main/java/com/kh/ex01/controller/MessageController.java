@@ -20,9 +20,12 @@ import com.kh.ex01.vo.MessageVo;
 @RequestMapping("/message")
 public class MessageController {
 	
+	// 기능 담당자 : 고만재
+	
 	@Inject
 	private MessageService messageService;
 
+//수신 메시지 리스트
 	@RequestMapping(value = "/company/receiveMessageList")
 	public String receiveMessageList(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -32,7 +35,8 @@ public class MessageController {
 		model.addAttribute("receiveMessageList", list);
 		return "/company/message/receiveMessageList";
 	}
-	
+
+//발신 메시지 리스트	
 	@RequestMapping(value = "/company/sendMessageList")
 	public String sendMessageList(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -43,18 +47,20 @@ public class MessageController {
 		return "/company/message/sendMessageList";
 	}
 	
+//메시지 보내기
 	@ResponseBody
 	@RequestMapping(value = "/company/sendMessageRun", method=RequestMethod.POST)
 	public String sendMessageRun(MessageVo messageVo) {
-		System.out.println("MessageController, snedMesageRun, messageVo : " + messageVo);
+//		System.out.println("MessageController, snedMesageRun, messageVo : " + messageVo);
 		messageService.sendMessageRun(messageVo);
 		return "success";
 	}
 	
+//메시지 내용 데이터
 	@ResponseBody
 	@RequestMapping(value = "/company/getMessageData", method=RequestMethod.POST)
 	public MessageVo getMessageData(int mno, String reader) {
-		System.out.println("reader : " + reader);
+//		System.out.println("reader : " + reader);
 		if(reader.equals("receiver")) {
 			System.out.println("수신자 읽음");
 			messageService.readStateChange(mno);
@@ -65,6 +71,7 @@ public class MessageController {
 		return messageVo ;
 	}
 	
+//메시지 삭제
 	@ResponseBody
 	@RequestMapping(value = "/company/messageDeleteRun", method = RequestMethod.POST)
 	public String messageDeleteRun(int mno, String reader) {
@@ -77,6 +84,7 @@ public class MessageController {
 		return "success";
 	};
 	
+//메시지 발신 취소
 	@ResponseBody
 	@RequestMapping(value = "/company/messageSendCancel", method = RequestMethod.POST)
 	public String messageSendCancel(int mno) {

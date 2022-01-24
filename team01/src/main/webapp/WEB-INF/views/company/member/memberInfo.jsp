@@ -1,3 +1,4 @@
+<!-- 기능 담당자 : 고만재 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -10,9 +11,7 @@ function check_enter(){
 
 $(function() {
 	//멤버 이름 버튼 > 멤버 정보 모달 표시 시작
-	
 	$("*").on("click",".btnUsername",function(e){
-// 	$(".btnUsername").click(function(e){
 		e.preventDefault();
 		console.log("클릭됨");
 		console.log($(this).attr("data-userid"));
@@ -69,7 +68,6 @@ $(function() {
 		e.preventDefault();
 		
 		var url = "/message/company/sendMessageRun";
-// 		var content = $("#modalReceivername").attr("data-receiver").replace(/(?:\r\n|\n|\n)/g, ' ');
 		var receiver = $("#modalReceivername").attr("data-receiver");
 		var content = $("#modalMessageContent").val().replace(/(?:\r\n|\n|\n)/g, ' ');
 		var sData = {

@@ -22,6 +22,8 @@ import com.kh.ex01.vo.MemberVo;
 @RequestMapping("/company")
 public class CompanyController {
 	
+	// 기능 담당자 : 고만재
+	
 	@Inject
 	private BoardService boardService;
 	
@@ -34,6 +36,7 @@ public class CompanyController {
 	@Inject
 	private MemberService memberService;
 
+//메인 페이지 모아보기
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String mainPage(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();

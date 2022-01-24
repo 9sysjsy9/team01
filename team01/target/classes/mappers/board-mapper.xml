@@ -4,96 +4,10 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.ex01.mappers.board">
 
-<!-- 자유게시판 -->
+<!-- 기능 담장자 : 고만재 ,심재중 -->
 
-	<select id="freeList" resultType="BoardVo">
-		select * from
-				(select rownum rnum, a.* from
-				(select * from tbl_board where bcate = 'f' order by bno desc) a) 
-		where rnum between #{startRow} and #{endRow}
-	</select>
-	
-	<select id="getBoard" resultType="BoardVo">
-		select * from tbl_board
-		where bno = #{bno}
-	</select>
-	
-	<select id="getCount_f" resultType="int">
-		select count(*) from tbl_board
-		where bcate = 'f'
-	</select>
-	
-	<insert id="insertBoard">
-		insert into tbl_board(bno, bcate, title, content, userid, regdate, username)
-		values(seq_bno.nextval, 'f', #{title}, #{content}, #{userid}, sysdate, #{username})
-	</insert>
-	
-	<select id="menuMove_f" resultType="BoardVo">
-		select next,prev 
-			from (
-			    select bno, 
-			    lead(bno,1) over(order by bno) as next, 
-			    lag(bno,1) over(order by bno) as prev
-			    from tbl_board
-        		where bcate = 'f'
-			)
-		where bno = #{bno}
-	</select>
-	
-	<delete id="deleteBoard">
-		delete from tbl_board
-		where bno = #{bno}
-	</delete>
-	
-	<update id="modifyBoard">
-		update tbl_board set
-			title = #{title},
-			content = #{content}
-		where bno = #{bno}
-	</update>
-	
-	<update id="updateViewcnt">
-		update tbl_board set
-			viewcnt = viewcnt + 1
-		where bno = #{bno}
-	</update>
-	
-<!-- 익명게시판 -->
-	<select id="anonymousList" resultType="BoardVo">
-		select * from
-				(select rownum rnum, a.* from
-				(select * from tbl_board where bcate = 'a' order by bno desc) a) 
-		where rnum between #{startRow} and #{endRow}
-	</select>
-	
-	<insert id="insertAnonymousBoard">
-		insert into tbl_board(bno, bcate, title, content, userid, regdate, username)
-		values(seq_bno.nextval, 'a', #{title}, #{content}, #{userid}, sysdate, #{username})
-	</insert>
-	
-	<select id="getCount_a" resultType="int">
-		select count(*) from tbl_board
-		where bcate = 'a'
-	</select>
-	
-	<select id="menuMove_a" resultType="BoardVo">
-		select next,prev 
-			from (
-			    select bno, 
-			    lead(bno,1) over(order by bno) as next, 
-			    lag(bno,1) over(order by bno) as prev
-			    from tbl_board
-        		where bcate = 'a'
-			)
-		where bno = #{bno}
-	</select>
-	
-<!-- 채용공고등록 -->	
-	<insert id="insertHireBoard">
-		insert into tbl_hireboard(bno, cate, title, content, regdate, writer)
-		values(seq_bno.nextval, #{cate}, #{title}, #{content}, sysdate, '관리자')
-	</insert>
-	
+<!-- 고만재 담당 쿼리 시작 -->
+
 <!-- 게시판 공통 (시퀀스,내용 불러오기, 파일 업로드, 파일 다운로드, 게시판 삭제) -->
 <!-- 게시물 검색 쿼리 타이틀, 내용, 타이틀+내용 시작-->
 	<sql id="search">
@@ -220,5 +134,97 @@
 	ORDER BY bno desc
 	]]>
 </select>
+
+<!-- 고만재 담당 쿼리 끝 -->
+
+<!-- 자유게시판 -->
+
+	<select id="freeList" resultType="BoardVo">
+		select * from
+				(select rownum rnum, a.* from
+				(select * from tbl_board where bcate = 'f' order by bno desc) a) 
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getBoard" resultType="BoardVo">
+		select * from tbl_board
+		where bno = #{bno}
+	</select>
+	
+	<select id="getCount_f" resultType="int">
+		select count(*) from tbl_board
+		where bcate = 'f'
+	</select>
+	
+	<insert id="insertBoard">
+		insert into tbl_board(bno, bcate, title, content, userid, regdate, username)
+		values(seq_bno.nextval, 'f', #{title}, #{content}, #{userid}, sysdate, #{username})
+	</insert>
+	
+	<select id="menuMove_f" resultType="BoardVo">
+		select next,prev 
+			from (
+			    select bno, 
+			    lead(bno,1) over(order by bno) as next, 
+			    lag(bno,1) over(order by bno) as prev
+			    from tbl_board
+        		where bcate = 'f'
+			)
+		where bno = #{bno}
+	</select>
+	
+	<delete id="deleteBoard">
+		delete from tbl_board
+		where bno = #{bno}
+	</delete>
+	
+	<update id="modifyBoard">
+		update tbl_board set
+			title = #{title},
+			content = #{content}
+		where bno = #{bno}
+	</update>
+	
+	<update id="updateViewcnt">
+		update tbl_board set
+			viewcnt = viewcnt + 1
+		where bno = #{bno}
+	</update>
+	
+<!-- 익명게시판 -->
+	<select id="anonymousList" resultType="BoardVo">
+		select * from
+				(select rownum rnum, a.* from
+				(select * from tbl_board where bcate = 'a' order by bno desc) a) 
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<insert id="insertAnonymousBoard">
+		insert into tbl_board(bno, bcate, title, content, userid, regdate, username)
+		values(seq_bno.nextval, 'a', #{title}, #{content}, #{userid}, sysdate, #{username})
+	</insert>
+	
+	<select id="getCount_a" resultType="int">
+		select count(*) from tbl_board
+		where bcate = 'a'
+	</select>
+	
+	<select id="menuMove_a" resultType="BoardVo">
+		select next,prev 
+			from (
+			    select bno, 
+			    lead(bno,1) over(order by bno) as next, 
+			    lag(bno,1) over(order by bno) as prev
+			    from tbl_board
+        		where bcate = 'a'
+			)
+		where bno = #{bno}
+	</select>
+	
+<!-- 채용공고등록 -->	
+	<insert id="insertHireBoard">
+		insert into tbl_hireboard(bno, cate, title, content, regdate, writer)
+		values(seq_bno.nextval, #{cate}, #{title}, #{content}, sysdate, '관리자')
+	</insert>
 
 </mapper>

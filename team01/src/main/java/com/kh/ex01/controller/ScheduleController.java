@@ -17,26 +17,18 @@ import com.kh.ex01.vo.ScheduleVo;
 @RequestMapping("/schedule")
 public class ScheduleController {
 	
+	// 기능 담당자 : 고만재
+	
 	@Inject
 	private ScheduleService scheduleService;
 
+//회사일정 페이지
 	@RequestMapping(value = "/company/scheduleCalendar")
 	public String scheduleCalendar() {
-		
-//		LocalDateTime nowDate = LocalDateTime.now();
-//	    DateTimeFormatter yearFormatter = DateTimeFormatter.ofPattern("yyyy");
-//	    DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("MM");
-//
-//	    int syear = Integer.parseInt(nowDate.format(yearFormatter));
-//	    int smonth = Integer.parseInt(nowDate.format(monthFormatter));
-//		
-//	    List<ScheduleVo> list =  scheduleService.scheduleDataList(syear, smonth);
-//	    model.addAttribute("scheduleDatalist", list);
-//	    System.out.println("ScheduleController, scheduleCalendar, list : " + list);
-	    
 		return "/company/schedule/scheduleCalendar";
 	}
 	
+//회사일정 월 데이터
 	@ResponseBody
 	@RequestMapping(value = "/company/getMonthScheduleDataList", method=RequestMethod.POST)
 	public List<ScheduleVo> getMonthScheduleDataList(ScheduleVo scheduleVo) {
@@ -44,15 +36,17 @@ public class ScheduleController {
 		return list;
 	}
 	
+//회사일정 일 데이터
 	@ResponseBody
 	@RequestMapping(value = "/company/getDateScheduleDataList", method=RequestMethod.POST)
 	public List<ScheduleVo> getDateScheduleDataList(ScheduleVo scheduleVo) {
 		List<ScheduleVo> list =  scheduleService.getDateScheduleDataList(scheduleVo);
-		System.out.println("ScheduleController, getDateScheduleDataList, scheduleVo : " + scheduleVo);
-		System.out.println("ScheduleController, getDateScheduleDataList, list : " + list);
+//		System.out.println("ScheduleController, getDateScheduleDataList, scheduleVo : " + scheduleVo);
+//		System.out.println("ScheduleController, getDateScheduleDataList, list : " + list);
 		return list;
 	}
 	
+//회사일정 단위 단위데이터
 	@ResponseBody
 	@RequestMapping(value = "/company/getDateScheduleData/{sno}", method=RequestMethod.POST)
 	public ScheduleVo getDateScheduleData(@PathVariable int sno) {
@@ -61,6 +55,7 @@ public class ScheduleController {
 		return scheduleVo;
 	}
 	
+//회사일정 등록
 	@ResponseBody
 	@RequestMapping(value = "/company/scheduleRegistRun", method=RequestMethod.POST)
 	public String scheduleRegistRun(ScheduleVo scheduleVo) {
@@ -70,16 +65,16 @@ public class ScheduleController {
 		return "success";
 	}
 	
+//회사일정 수정
 	@ResponseBody
 	@RequestMapping(value = "/company/scheduleModifyRun", method=RequestMethod.POST)
 	public String scheduleModifyRun(ScheduleVo scheduleVo) {
 		System.out.println("ScheduleController, scheduleModifyRun, scheduleVo : " + scheduleVo);
 		scheduleService.scheduleModifyRun(scheduleVo);
 		return "success";
-		
 	}
 	
-	
+//회사일정 삭제
 	@ResponseBody
 	@RequestMapping(value = "/company/scheduleDeleteRun/{sno}", method=RequestMethod.POST)
 	public String scheduleDeleteRun(@PathVariable int sno) {
@@ -87,8 +82,5 @@ public class ScheduleController {
 		scheduleService.scheduleDeleteRun(sno);
 		return "success";
 	}
-	
-
-	
 	
 }

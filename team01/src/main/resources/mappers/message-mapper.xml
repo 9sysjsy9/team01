@@ -4,11 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.ex01.mappers.message">
 	
-<!-- <select id="receiveMessageList" resultType="MessageVo"> -->
-<!-- 	SELECT * FROM tbl_message -->
-<!-- 	WHERE receiver = #{receiver} -->
-<!-- 	ORDER BY mno desc -->
-<!-- </select> -->
+<!-- 기능 담당자 : 고만재 -->
 
 <select id="receiveMessageList" resultType="MessageVo">
 	SELECT mes.mno, mes.sender, mes.receiver, SUBSTR(mes.content, 0, 10) AS content, mes.readstate, mes.senddate, mes.readdate, mem.username AS sendername

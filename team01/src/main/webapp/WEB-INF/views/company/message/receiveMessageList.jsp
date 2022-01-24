@@ -7,21 +7,18 @@
 
 <script>
 $(function(){
+	//내용 상세 보기
 	$(".btnContent").click(function(e){
-		
 		$(this).nextAll(".readState").text("읽음");
-		
 		$("#messageReceiveRunBtn").hide();
 		var url = "/message/company/getMessageData";
-		
 		var sData = {
 				"mno" : $(this).attr("data-mno"),
 				"reader" : "receiver"
 		};
 		
 		$.post(url, sData, function(rData){
-			console.log(rData);
-			
+// 			console.log(rData);
 			$("#modalSendername").text("${loginData.username}")
 			$("#modalReceivername").text(rData.receivername);
 			$("#modalMessageContent").val(rData.content).prop("readonly",true);
@@ -30,6 +27,7 @@ $(function(){
 		});
 	});
 	
+	//메시지 삭제 버튼
 	$(".btnDelete").click(function(e){
 		var mno = $(this).attr("data-mno");
 		console.log("mno:" + mno);
@@ -56,7 +54,7 @@ $(function(){
 	
 });
 </script>  
-<!-- Product section-->
+<!-- section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
@@ -80,9 +78,7 @@ $(function(){
 
 								</div>
 							</div>
-							<!-- Page content wrapper-->
-							<!-- 							<div id="page-content-wrapper"> -->
-							<!-- Page content-->
+							
 							<div class="container-fluid">
 								<h1 class="display-5 fw-bolder">받은 메시지</h1>
 
@@ -123,7 +119,6 @@ $(function(){
 									</div>
 								</div>
 							</div>
-							<!-- 							</div> -->
 						</div>
 					</div>
 					<div class="col-md-2"></div>
@@ -132,8 +127,5 @@ $(function(){
 		</div>
 	</div>
 </section>
-
-
-
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

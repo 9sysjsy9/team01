@@ -7,6 +7,7 @@
 
 <script>
 $(function(){
+	//내용 상세 보기
 	$(".btnContent").click(function(e){
 		$("#messageReceiveRunBtn").hide();
 		var url = "/message/company/getMessageData"
@@ -26,6 +27,7 @@ $(function(){
 		});
 	});
 	
+	//삭제 보기
 	$(".btnDelete").click(function(e){
 		var mno = $(this).attr("data-mno");
 		console.log("mno:" + mno);
@@ -45,6 +47,7 @@ $(function(){
 		});
 	});
 	
+	//발신취소 버튼
 	$(".btnSendCancel").click(function(e){
 		var thisbtn = $(this);
 		var mno = $(this).attr("data-mno");
@@ -90,11 +93,9 @@ $(function(){
 
 								</div>
 							</div>
-							<!-- Page content wrapper-->
-							<!-- Page content-->
+							
 							<div class="container-fluid">
 								<h1 class="display-5 fw-bolder">보낸 메시지</h1>
-
 
 								<div class="row">
 									<div class="col-md-12">
@@ -143,7 +144,6 @@ $(function(){
 														<td>
 															<button type="button" data-mno="${messageVoData.mno}" class="btnDelete btn btn-outline-danger flex-shrink-0 btn-sm">삭제</button>
 														</td>
-														
 
 													</tr>
 													</c:forEach>
@@ -160,8 +160,5 @@ $(function(){
 		</div>
 	</div>
 </section>
-
-
-
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

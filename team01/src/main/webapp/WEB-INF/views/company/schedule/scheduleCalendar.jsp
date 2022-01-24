@@ -1,11 +1,11 @@
+<!-- 기능 담당자 : 고만재 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%>
     
-<link rel="stylesheet"
-	href="/css/calendar.css">
+<link rel="stylesheet" href="/css/calendar.css">
 
 <script>
 var date = new Date();
@@ -49,22 +49,10 @@ function renderCalendar(){
 
 	var prevDates = []; //이전달의 날자들을 담아둘 배열
 
-	
  	var thisDates = [...Array(TLDate + 1).keys()].slice(1);
 
-				//Array(n)으로 배열을 만들면 길이가 n인 배열이 생성됨 (이때 모든 요소들은 undefined)
-				//모든 요소들이 empty 값이기 때문에 keys() 메서드를 이용하면 0 ~ n-1 까지의 Array Iterator가 생성됨
-				//전개 구문을 통해 이 Array Iterator 를 배열로 만들어 내면 0부터 n-1까지의 배열을 얻어 낼수 있음
-				//그래서 이번 달 마지막 날짜 + 1 을 n 에 전달해주고
-				//제일 앞에 있는 0을 없에기위해 slice 메서드를 활용
-				
 	var nextDates = []; //다음달의 날자들을 담아둘 배열
 
-	
-// 	console.log("thisDates : " + thisDates);
-	
-	//이전 달을 표현할 날짜들을 생성하는데 지난달의 마지막 요일이 토요일(6)이라면 생성할 필요 없으므로 조건문 작성
-	//0 부터 시작, 지난달 마지막 요일이 될 때까지 반복, 지난달의 마지막 날짜부터 1씩 줄어든 값을 unshift 메서드를 통해 prevDates 배열에 앞쪽으로 계속 채워넣는 방식
 	if(PLDay != 6){
 		for(var i = 0; i<PLDay + 1 ; i++){
 			prevDates.unshift(PLDate - i);
@@ -72,7 +60,6 @@ function renderCalendar(){
 	}
 // 	console.log("prevDates : " + prevDates);
 
-	//다음 달은 이번 달 마지막 날짜의 요일을 기준으로 필요한 개수를 파악해서 1부터 1씩 증가시키며 nextDates 배열에 하나씩 채워 넣는 방식
 	for(var i = 1 ; i < 7 - TLDay ; i++){
 		nextDates.push(i);
 	}
@@ -128,7 +115,6 @@ function renderCalendar(){
 		
 		//달력 일자 클릭
 	});
-	
 
 	var url = "/schedule/company/getMonthScheduleDataList";
 	var syear = date.getFullYear();
@@ -140,7 +126,7 @@ function renderCalendar(){
 	};
 
 	$.post(url, sData, function(rData){
-		 console.log(rData);
+// 		 console.log(rData);
 		 
 		 $(function(){	
 			for(var i = 0 ; i < rData.length ; i++){
@@ -148,7 +134,6 @@ function renderCalendar(){
 			};
 		});
 	});
-	
 }
 
 //JQuery
@@ -177,7 +162,7 @@ $(function(){
 		};
 		
 		$.post(url, sData, function(rData){
-			 console.log(rData);
+// 			 console.log(rData);
 			 $(".contentViewModalTable").empty();
 			 $("#contentViewModalLabel").text(syear+"/"+smonth+"/"+sdate);
 			 for(var i = 0 ; i < rData.length ; i++){
@@ -201,15 +186,8 @@ $(function(){
 				 			"<button type='button' class='scheduleDeleteBtn btn btn-outline-danger flex-shrink-0 btn-sm'> 삭제</button></td></tr>"
 				 	);
 				};
-				 
-// 				 if(rData[i].userid == "${loginData.userid}"){
-// 					 	$(".contentViewModalTable").append("<tr><td style='text-align:right' data-sno="+rData[i].sno+">"+ 
-// 					 			"<button type='button' class='scheduleModifyBtn btn btn-outline-warning flex-shrink-0 btn-sm' data-dismiss='modal'>수정 </button>"+
-// 					 			"<button type='button' class='scheduleDeleteBtn btn btn-outline-danger flex-shrink-0 btn-sm'> 삭제</button> </td></tr>"
-// 					 	);
-// 				 };
-
 			 };
+			 
 			 $("#modal-contentViewModal").trigger("click");
 			 
 			 //일정 등록 모달 일자 정보 표시
@@ -236,7 +214,7 @@ $(function(){
 			"content" : content
 		};
 		$.post(url, sData, function(rData){
-			console.log(rData);
+// 			console.log(rData);
 			renderCalendar();
 			alert("일정이 추가 되었습니다.");
 		});
@@ -244,11 +222,11 @@ $(function(){
 
 //일정 수정 버튼
 	$(".contentViewModalTable").on("click",".scheduleModifyBtn",function(e){
-		console.log("data-sno : " + $(this).parent().attr("data-sno"));
+// 		console.log("data-sno : " + $(this).parent().attr("data-sno"));
 		var sno = $(this).parent().attr("data-sno");
 		var url = "/schedule/company/getDateScheduleData/"+sno;
 		$.post(url, function(rData){
-			console.log(rData);
+// 			console.log(rData);
 			$("#modalModifyDate").text(rData.syear+"/"+rData.smonth+"/"+rData.sdate);
 			$("#modalModifyContent").val(rData.content);
 			$(".scheduleModifyRunBtn").attr("data-sno",rData.sno);
@@ -281,7 +259,7 @@ $(function(){
 
 //일정 삭제 버튼
 	$(".contentViewModalTable").on("click",".scheduleDeleteBtn",function(e){
-		console.log("data-sno : " + $(this).parent().attr("data-sno"));
+// 		console.log("data-sno : " + $(this).parent().attr("data-sno"));
 		var result = confirm("삭제 하시겠습니까?");
 		var sno = $(this).parent().attr("data-sno");
 		if(result){

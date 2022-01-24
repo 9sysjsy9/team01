@@ -1,3 +1,4 @@
+<!-- 기능 담당자 : 고만재 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -13,7 +14,6 @@ $(function(){
 	$(".listBtn").click(function(e){
 		console.log("목록 버튼 클릭")
 		e.preventDefault();
-// 		location.href = "/company/board/notice/notice_list";
 		$("#pagingForm").attr("action","/company/board/notice/notice_list");
 		$("#pagingForm > input[name=page]").val("${pagingDto.page}");
 		$("#pagingForm > input[name=searchType]").val("${pagingDto.searchType}");
@@ -30,7 +30,6 @@ $(function(){
 	});
 	//수정 버튼
 	$(".modifyBtn").click(function(e){
-// 		location.href = "/company/board/notice/notice_modify/"+${noticeContent.bno};
 		$("#pagingForm").attr("action","/company/board/notice/notice_modify");
 		$("#pagingForm > input[name=bno]").val("${content.bno}");
 		$("#pagingForm > input[name=page]").val("${pagingDto.page}");
@@ -40,7 +39,7 @@ $(function(){
 	});
 });
 </script>
-<!-- Product section-->
+<!-- section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
@@ -58,7 +57,7 @@ $(function(){
 					<div class="col-md-2"></div>
 
 					<div class="col-md-8">
-					
+<!-- 게시물 내용 폼 -->
 <form id="noticeRegistForm" method="POST" action="/company/board/notice/noticeRegistRun">
 					<input type="hidden" name="userid" value="${loginData.userid}">
 						<table class="table">
@@ -69,24 +68,17 @@ $(function(){
 									 	<div><span style="cursor: pointer" class="btnUsername" data-userid="${content.userid}">${content.username}</span> | <span>${content.regdate}</span></div> 
 									</td>
 								</tr>
-								
-
-								
 								<tr>
 									<td>
 										
 										<textarea rows="10" class="form-control" name="content" placeholder="내용이 없습니다." readonly>${content.content}</textarea>
 									</td>
 								</tr>
-								
 								<tr>
 									<td>첨부파일 :
 										<c:forEach items="${content.files}" var="file">
-										
 											<span> <a href="/company/board/fileDownload?filename=${file}">${file}</a></span>
-										
 										</c:forEach>
-									
 									</td>
 								</tr>
 							</tbody>
@@ -104,11 +96,7 @@ $(function(){
 					</div>
 					<div class="col-md-2">
 					</div>
-					
-					
 				</div>
-
-
 			</div>
 		</div>
 	</div>

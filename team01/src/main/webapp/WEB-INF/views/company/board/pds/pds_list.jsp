@@ -1,3 +1,4 @@
+<!-- 기능 담당자 : 고만재 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -7,6 +8,7 @@
 <%@ include file="/WEB-INF/views/company/board/pagingForm.jsp"%>
 <script>
 $(function(){
+	//페이징
 	$("#registForm").click(function(e){
 		e.preventDefault();
 		$("#pagingForm").attr("action","/company/board/pds/pds_regist");
@@ -148,9 +150,6 @@ $(function(){
 <div class="col-md-2"></div>
 </div>
 <!-- 검색 끝-->
-
-
-
 					
 				</div>
 			</div>

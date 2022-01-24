@@ -1,12 +1,15 @@
+<!-- 기능 담당자 : 고만재 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 사원 정보 폼 -->
 <%@ include file="/WEB-INF/views/company/member/memberInfo.jsp"%>
 <%@ include file="/WEB-INF/views/company/board/pagingForm.jsp"%>
 <script>
 $(function(){
+//페이징
 	$("#registForm").click(function(e){
 		e.preventDefault();
 		$("#pagingForm").attr("action","/company/board/notice/notice_regist");
@@ -19,7 +22,6 @@ $(function(){
 	$(".aTitle").click(function(e){
 		e.preventDefault();
 		var bno = $(this).attr("href");
-// 		location.href = "/company/board/notice/notice_content/"+bno;
 		$("#pagingForm").attr("action","/company/board/notice/notice_content");
 		$("#pagingForm > input[name=bno]").val(bno);
 		$("#pagingForm > input[name=page]").val("${pagingDto.page}");
@@ -28,10 +30,10 @@ $(function(){
 		$("#pagingForm").submit();
 	});
 	
+	//
 	$(".page-link").click(function(e){
 		e.preventDefault();
 		var page = $(this).attr("href");
-// 		location.href = "/company/board/notice/notice_list?page="+page;
 		$("#pagingForm").attr("action","/company/board/notice/notice_list");
 		$("#pagingForm > input[name=page]").val(page);
 		$("#pagingForm > input[name=searchType]").val("${pagingDto.searchType}");
@@ -41,9 +43,9 @@ $(function(){
 	
 });
 </script>
-<!-- Product section-->
+<!--section-->
+<!-- 게시글 리스트 시작 -->
 <section class="py-5">
-
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="container-fluid">
@@ -88,9 +90,8 @@ $(function(){
 								</c:if>
 							</div>
 					</div>
-					
 					<div class="col-md-2"></div>
-					
+<!-- 게시글 리스트 끝 -->
 <!-- 페이징 시작 -->
 	<div class="row">
 		<div class="col-md-12">
@@ -151,9 +152,6 @@ $(function(){
 </div>
 <!-- 검색 끝-->
 
-
-
-					
 				</div>
 			</div>
 		</div>

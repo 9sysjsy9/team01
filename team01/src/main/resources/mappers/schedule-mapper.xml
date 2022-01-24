@@ -3,8 +3,11 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"			
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.ex01.mappers.schedule">
+
+<!-- 기능 담당자 : 고만재 -->
+
 <select id="getMonthScheduleDataList" resultType="ScheduleVo">
-	SELECT  S.sno, S.userid, S.syear, S.smonth, S.sdate, S.regdate, S.updatedate, S.authority, SUBSTR(S.content, 0, 8) AS content, M.username
+	SELECT  S.sno, S.userid, S.syear, S.smonth, S.sdate, S.regdate, S.authority, SUBSTR(S.content, 0, 8) AS content, M.username
 	FROM tbl_schedule S, tbl_member M
 	WHERE
 	S.userid = M.userid
@@ -29,7 +32,7 @@
 </select>
 
 <select id="getDateScheduleDataList" resultType="ScheduleVo">
-	SELECT S.sno, S.userid, S.syear, S.smonth, S.sdate, S.regdate, S.updatedate, S.authority, S.content, M.username
+	SELECT S.sno, S.userid, S.syear, S.smonth, S.sdate, S.regdate, S.authority, S.content, M.username
 	FROM tbl_schedule S, tbl_member M
 	WHERE syear = #{syear} AND smonth = #{smonth} AND sdate = #{sdate} AND S.userid = M.userid
 	ORDER BY sdate ASC, sno ASC
@@ -46,14 +49,14 @@
 </delete>
 
 <select id="getDateScheduleData" resultType="ScheduleVo">
-	SELECT S.sno, S.userid, S.syear, S.smonth, S.sdate, S.regdate, S.updatedate, S.authority, S.content, M.username
+	SELECT S.sno, S.userid, S.syear, S.smonth, S.sdate, S.regdate, S.authority, S.content, M.username
 	FROM tbl_schedule S, tbl_member M
 	WHERE S.userid = M.userid AND sno = #{sno}
 </select>
 
 <update id="scheduleModifyRun">
 	UPDATE tbl_schedule
-	SET content = #{content}, updatedate = sysdate
+	SET content = #{content}
 	WHERE sno = #{sno}
 </update>
 
