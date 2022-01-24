@@ -118,7 +118,7 @@
 	</select>
 	<!-- 내용 불러오기 -->
 	<select id="boardContent" resultType="BoardVo">
-		SELECT B.bno, B.bcate, B.title, B.content, B.userid, B.viewcnt, B.re_group, B.re_seq, B.re_level, B.regdate AS regdate, B.updatedate AS updatedate, B.cmtcnt, B.bstate, M.username
+		SELECT B.bno, B.bcate, B.title, B.content, B.userid, B.viewcnt, B.regdate AS regdate, M.username
 		FROM tbl_board B, tbl_member M
 		WHERE B.bno = #{bno} AND B.userid = M.userid
 	</select>
@@ -156,7 +156,7 @@
 	</select>
 	<!-- 내 게시물 리스트 -->
 	<select id="myBoardList" resultType="BoardVo">
-		SELECT B.bno, M.userid AS userid, M.username, B.title, B.content, B.regdate, B.viewcnt, B.bcate, B.cmtcnt
+		SELECT B.bno, M.userid AS userid, M.username, B.title, B.content, B.regdate, B.viewcnt, B.bcate
 		FROM ( SELECT rownum rnum, a.* FROM ( SELECT * FROM tbl_board WHERE userid = #{userid}
 	<include refid="search"></include>
 		ORDER BY bno DESC) a) B, tbl_member M
@@ -174,7 +174,7 @@
 	</select>
 	<!-- 전체 자료실 리스트 -->
 	<select id="pdsList" resultType="BoardVo">
-		SELECT B.bno, M.userid AS userid, M.username, B.title, B.content, B.regdate, B.viewcnt, B.bcate, B.cmtcnt
+		SELECT B.bno, M.userid AS userid, M.username, B.title, B.content, B.regdate, B.viewcnt, B.bcate
 		FROM ( SELECT rownum rnum, a.* FROM ( SELECT * FROM tbl_board WHERE bcate = 'p'
 	<include refid="search"></include>
 		ORDER BY bno DESC) a) B, tbl_member M
@@ -195,7 +195,7 @@
 	</select>
 	<!-- 전체 공지 리스트 -->
 	<select id="noticeList" resultType="BoardVo">
-		SELECT B.bno, M.userid AS userid, M.username, B.title, B.content, B.regdate, B.viewcnt, B.bcate, B.cmtcnt
+		SELECT B.bno, M.userid AS userid, M.username, B.title, B.content, B.regdate, B.viewcnt, B.bcate
 		FROM ( SELECT rownum rnum, a.* FROM ( SELECT * FROM tbl_board WHERE bcate = 'n'
 	<include refid="search"></include>
 		ORDER BY bno DESC) a) B, tbl_member M
