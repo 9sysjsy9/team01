@@ -67,8 +67,8 @@
 	</select>
 	
 	<insert id="registRun">
-		insert into tbl_hire(hno, name, email, phonnum, career, content, filename)
-		values(seq_hno.nextval, #{name}, #{email}, #{phonnum}, #{career}, #{content}, #{filename})
+		insert into tbl_hire(hno, name, email, phonenum, career, content, filename)
+		values(seq_hno.nextval, #{name}, #{email}, #{phonenum}, #{career}, #{content}, #{filename})
 	</insert>
 	
 	<select id="getBoard" resultType="HireVo">
