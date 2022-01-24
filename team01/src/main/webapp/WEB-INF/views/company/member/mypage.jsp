@@ -1,4 +1,4 @@
-
+<!-- 기능 담당자 : 고만재 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,8 +6,8 @@
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <script>
 $(function(){
+	//프로필 이미지 존재 여부
 	if("${memberData.profileimg}" == 'y'){
-		
 	$("#profileImg").attr("src","/member/company/profileImgLoad?eno=${loginData.eno}");
 	
 	}
@@ -65,7 +65,7 @@ $(function(){
 		}
 	});
 	
-		
+//정보 수정 버트		
 	$("#modifyRunBtn").click(function(e){
 		e.preventDefault();
 		var phone = $("#phone1").val() + '-' + $("#phone2").val() + '-' + $("#phone3").val();
@@ -87,6 +87,7 @@ $(function(){
 		});
 	});
 	
+//내 게시판 리스트
 	$("#myBoardList").click(function(e){
 		e.preventDefault();
 			location.href = "/company/board/myboard/myboard_list";
@@ -94,7 +95,7 @@ $(function(){
 });
 </script>
 
-<!-- Product section-->
+<!-- section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">

@@ -12,6 +12,8 @@ import com.kh.ex01.vo.MemberVo;
 @Service
 public class MemberService {
 	
+//	기능 담당자 : 고만재
+	
 	@Inject
 	private MemberDao memberDao;
 	

@@ -18,6 +18,8 @@ import org.imgscalr.Scalr;
 import org.springframework.util.FileCopyUtils;
 
 public class MyFileUploadUtil {
+	
+//	기능 담당자 : 고만재, 정수영
 
 	public static String uploadFile(String uploadPath, String originalName, byte[] fileData) {
 		UUID uuid = UUID.randomUUID();
@@ -35,15 +37,15 @@ public class MyFileUploadUtil {
 	public static boolean makeThumbnail(String filePath) {
 		int slashIndex = filePath.lastIndexOf("/");
 		String front = filePath.substring(0, slashIndex + 1);
-		System.out.println("MyFileUploadUtil, makeThumbnail, front: " + front);
+//		System.out.println("MyFileUploadUtil, makeThumbnail, front: " + front);
 		String rear = filePath.substring(slashIndex + 1);
-		System.out.println("MyFileUploadUtil, makeThumbnail, rear: " + rear);
+//		System.out.println("MyFileUploadUtil, makeThumbnail, rear: " + rear);
 		String thumbnailPath = front + "sm_" + rear;
 
 		File orgFile = new File(filePath);
-		System.out.println("MyFileUploadUtil, orgFile:" + orgFile);
+//		System.out.println("MyFileUploadUtil, orgFile:" + orgFile);
 		File thumbFile = new File(thumbnailPath);
-		System.out.println("MyFileUploadUtil, thumbFile:" + thumbnailPath);
+//		System.out.println("MyFileUploadUtil, thumbFile:" + thumbnailPath);
 
 		try {
 			BufferedImage srcImage = ImageIO.read(orgFile);
@@ -70,19 +72,7 @@ public class MyFileUploadUtil {
 				File f2 = new File(thumbnailPath);
 				if (f2.exists()) {
 					f2.delete();
-					/*
-					while (true) {
-						boolean b = f2.delete();
-						if (b == true) {
-							System.out.println("썸네일 파일 삭제됨.");
-							return true;
-						}
-						Thread.sleep(500);
-						
-					}
-					*/
 				}
-				
 			}
 			return true;
 		}
@@ -105,15 +95,6 @@ public class MyFileUploadUtil {
 			System.out.println("deleteThumbnailFile: "+thumbnailPath);
 			File f2 = new File(thumbnailPath);
 			if (f2.exists()) {
-				/*
-				while (true) {
-					boolean b = f2.delete();
-					if (b == true) {
-						System.out.println("썸네일 파일 삭제됨.");
-					}
-					Thread.sleep(500);
-				}
-				*/
 			}
 			return true;
 		}
@@ -203,10 +184,6 @@ public class MyFileUploadUtil {
 		System.out.println("MyFileUploadUtil, orgFile:"+orgFile);
 		File sampleFile = new File(samplePath);
 		System.out.println("MyFileUploadUtil, sampleFile:"+ sampleFile);
-//		InputStream srcStream = null;
-//		BufferedImage srcImage = null;
-//		OutputStream descStream = null;
-//		BufferedImage descImage = null;
 		try {
 			InputStream srcStream = new FileInputStream(orgFile);
 			BufferedImage srcImage = ImageIO.read(srcStream);
@@ -245,9 +222,6 @@ public class MyFileUploadUtil {
 			sampleFilePath.delete();
 			return true;
 		}
-		System.out.println("MyFileUploadUtil profileImgChange, sampleFilePath : " + sampleFilePath);
-		System.out.println("MyFileUploadUtil profileImgChange, profileFilePath : " + profileFilePath);
-		System.out.println("실패");
 		return false;
 	}
 	

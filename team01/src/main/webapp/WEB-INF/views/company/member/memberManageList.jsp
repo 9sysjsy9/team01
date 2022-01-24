@@ -1,3 +1,4 @@
+<!-- 기능 담당자 : 고만재 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,6 +8,7 @@
 <script>
 
 $(function(){
+	//관리 버튼
 	$(".manageBtn").click(function(){
 			var url = "/member/company/memberInfo";
 			var sData = {
@@ -27,10 +29,9 @@ $(function(){
 				
 				$("#modal-memberManage").trigger("click");
 			});
-			
-
 	});
 	
+	//정보 수정 버튼
 	$("#sendManageRunBtn").click(function(e){
 		var result = confirm("변경하시겠습니까?");
 		if(result){
@@ -39,14 +40,12 @@ $(function(){
 			e.preventDefault();
 		}
 	});
-	
 });
 
 </script>
 
-<!-- Product section-->
+<!-- section-->
 <section class="py-5">
-
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="container-fluid">
@@ -58,13 +57,10 @@ $(function(){
 						<br>
 					</div>
 					<div class="col-md-2"></div>
-
 				</div>
 				<div class="row">
 					<div class="col-md-2"></div>
-
 					<div class="col-md-8">
-
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -79,10 +75,7 @@ $(function(){
 								</tr>
 							</thead>
 							<tbody>
-							
-							 
 							<c:forEach items="${memberManageList}" var="list">
-							
 							<tr>
 									<td>${list.eno}</td>
 									<td class="btnUsername" style="cursor:pointer" data-userid="${list.userid}">${list.username}</td>
@@ -115,30 +108,23 @@ $(function(){
 										</c:choose>
 									</td>
 									<td>${list.regdate}</td>
-									
 									<td>
 										<button type="button" data-userid="${list.userid}" class="manageBtn btn btn-outline-dark flex-shrink-0 btn-sm" >관리</button>
 									</td>
 								</tr>
-								
 							</c:forEach>
-								
 							</tbody>
 						</table>
 					</div>
 					<div class="col-md-2"></div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
 </section>
-<!-- 관리 모달 시작 -->
-			<a id="modal-memberManage" href="#modal-container-memberManage"
-				role="button" class="btn" data-toggle="modal"  style="display:none">memberManageModal</a>
-			<div class="modal fade" id="modal-container-memberManage" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- 관리 모달 시작 --> 
+			<a id="modal-memberManage" href="#modal-container-memberManage" role="button" class="btn" data-toggle="modal"  style="display:none">memberManageModal</a>
+			<div class="modal fade" id="modal-container-memberManage" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 <form id="sendManageForm" action="/member/company/manageRun" method="POST">
@@ -211,6 +197,4 @@ $(function(){
 					</div>
 				</div>
 			</div>
-
-
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

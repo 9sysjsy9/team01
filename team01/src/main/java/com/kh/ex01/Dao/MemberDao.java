@@ -13,6 +13,8 @@ import com.kh.ex01.vo.MemberVo;
 
 @Repository
 public class MemberDao {
+	
+//	기능 담당자 : 고만재
 
 	private static final String NAMESPACE = "com.kh.ex01.mappers.member.";
 

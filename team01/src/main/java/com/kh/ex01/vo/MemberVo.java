@@ -3,6 +3,9 @@ package com.kh.ex01.vo;
 import java.sql.Timestamp;
 
 public class MemberVo {
+	
+//	기능 담당자 : 고만재
+	
 	// TYPE NULLABLE DEFAULT
 	private String userid; // VARCHAR2(10 BYTE) No 아아디 PRIMARY KEY
 	private String userpw; // VARCHAR2(10 BYTE) No 비밀번호
@@ -16,11 +19,10 @@ public class MemberVo {
 	private int authority; // NUMBER(1,0) Yes 0 사이트 이용권한
 	private String department; // VARCHAR2(14 BYTE) Yes 부서
 	private Timestamp regdate; // TIMESTAMP(6) Yes sysdate 가입일
-	private Timestamp udpatedate; // TIMESTAMP(6) Yes 회원정보 수정일
-	private String profileimg;
+	private String profileimg; //프로필이미지 등록 여부
 
-	private String keyword;
-	private String en; // 사원검색시에
+	private String keyword; //사원 검색 키워드
+	private String en; // 사원검색 조건
 
 	public String getKeyword() {
 		return keyword;
@@ -139,13 +141,6 @@ public class MemberVo {
 		this.regdate = regdate;
 	}
 
-	public Timestamp getUdpatedate() {
-		return udpatedate;
-	}
-
-	public void setUdpatedate(Timestamp udpatedate) {
-		this.udpatedate = udpatedate;
-	}
 
 	public String getProfileimg() {
 		return profileimg;
@@ -160,7 +155,7 @@ public class MemberVo {
 		return "MemberVo [userid=" + userid + ", userpw=" + userpw + ", username=" + username + ", eno=" + eno
 				+ ", gender=" + gender + ", phone=" + phone + ", email=" + email + ", introduce=" + introduce
 				+ ", position=" + position + ", authority=" + authority + ", department=" + department + ", regdate="
-				+ regdate + ", udpatedate=" + udpatedate + ", profileimg=" + profileimg + ", keyword=" + keyword
+				+ regdate + ", profileimg=" + profileimg + ", keyword=" + keyword
 				+ ", en=" + en + "]";
 	}
 

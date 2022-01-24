@@ -1,15 +1,15 @@
+<!-- 기능 담당자 : 고만재 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/company/board/pagingForm.jsp"%>
-<!-- http://localhost/company/board/notice/notice_regist -->
 <script>
 $(function(){
 
 //파일 첨부
-
+//목록 버튼 페이징
 	$(".listBtn").click(function(e){
 		e.preventDefault();
 		var bno = $(this).attr("href");
@@ -20,7 +20,7 @@ $(function(){
 		$("#pagingForm").submit();
 	});
 		
-//파일 첨부 삭제 프로세스-------------------------------------------
+
 	$("#noticeRegistForm").submit(function(e) {
 		var title = $("input[name=title]").val();
 		var content = $("textarea[name=content]").val();
@@ -33,6 +33,7 @@ $(function(){
 			e.preventDefault();
 		}
 		
+//파일 첨부 프로세스-------------------------------------------
 		$(".files").each(function(i) {
 			var file = $(this)[0].files[0];
 			if(file != null){
@@ -61,7 +62,6 @@ $(function(){
 					<div class="col-md-2"></div>
 
 					<div class="col-md-8">
-					
 <form id="noticeRegistForm" method="POST" action="/company/board/notice/noticeRegistRun" enctype="multipart/form-data">
 					<input type="hidden" name="userid" value="${loginData.userid}">
 						<table class="table">
@@ -71,7 +71,6 @@ $(function(){
 									 <input class="form-control" type="text" name="title" placeholder="제목을 입력하세요."> 
 									</td>
 								</tr>
-								
 								<tr>
 									<td>
 										내용<br>
@@ -103,6 +102,4 @@ $(function(){
 		</div>
 	</div>
 </section>
-
-
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

@@ -1,25 +1,26 @@
+<!-- 기능 담당자 : 고만재 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ include file="/WEB-INF/views/company/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- Product section-->
+<!--section-->
 <style>
 a{
 text-decoration:none;
 }
 </style>
+
 <section class="py-5">
 	<div class="container">
 		<div class="rowalign-items-center">
 			<div class="container-fluid">
 				<div class="container-fluid">
-<!-- 세번쨰열 시작 -->	
-
             <div class="text-center">
                 <h1>사내 페이지</h1>
                 <p class="lead">수영 슈즈의 사원 전용 페이지 입니다.</p>
             </div>
+<!-- 첫번째 열 시작 -->
+<!-- 마이 메뉴, 관리자 메뉴 모아보기 -->
 					<div class="row">
 						<div class="col-md-2"></div>
 						
@@ -42,11 +43,10 @@ text-decoration:none;
 						<div class="col-md-8"><hr></div>
 						<div class="col-md-2"></div>
 					</div>
-					
-<!-- 세번째열 끝 -->						
-<!-- 첫번째 열 시작 -->
+<!-- 첫번째 열 끝 -->						
+<!-- 두번째 열 시작 -->
+<!-- 게시판 모아보기1 -->
 					<div class="row">
-					
 						<div class="col-md-2"></div>
 						<div class="col-md-4">
 						<h4>공지사항</h4>
@@ -85,8 +85,9 @@ text-decoration:none;
 						<div class="col-md-2"></div>
 					</div>
 					
-<!-- 첫번째 열 끝 -->					
-<!-- 두번째 열 시작 -->					
+<!-- 두번째 열 끝 -->					
+<!-- 두번째 열 시작 -->		
+<!-- 게시판 모아보기2 -->			
 					<div class="row">
 						<div class="col-md-2"></div>
 						<div class="col-md-4">

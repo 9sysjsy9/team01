@@ -10,6 +10,11 @@ import com.kh.ex01.vo.MemberVo;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter{
 	
+//	기능 담당자 : 고만재
+	
+	//사내 페이지 로그인 상태 인터셉터 
+	// /company/**
+	// **/company/**
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {

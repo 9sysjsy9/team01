@@ -26,6 +26,8 @@ import com.kh.ex01.vo.MemberVo;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
+	
+//	기능 담당자 : 고만재
 
 	private static final String UPLOAD_PATH = "//192.168.0.234/upload/profile";
 		
@@ -37,6 +39,7 @@ public class MemberController {
 		return "/company/member/login";
 	}
 
+//사내 페이지 로그인 실행
 	@RequestMapping(value = "/loginRun", method = RequestMethod.POST)
 	public String loginRun(String userid, String userpw, HttpServletRequest request, RedirectAttributes rttr) {
 		MemberVo memberVo = memberService.loginRun(userid, userpw);
@@ -65,11 +68,13 @@ public class MemberController {
 		return "redirect:/company/main";
 	}
 
+//사원 멤버 가입 폼
 	@RequestMapping(value = "/registForm")
 	public String registForm() {
 		return "/company/member/memberRegistForm";
 	}
 
+//아이디, 사번 중복 체크
 	@ResponseBody
 	@RequestMapping(value = "/checkState", method = RequestMethod.POST)
 	public Map<String, Integer> chekcState(String userid, int eno) {
@@ -84,7 +89,8 @@ public class MemberController {
 		result.put("checkEno", checkEno);
 		return result;
 	}
-	
+
+//회원 가입 신청 실행
 	@RequestMapping(value = "/registRun", method = RequestMethod.POST)
 	public String registRun(MemberVo memberVo, RedirectAttributes rttr) {
 		System.out.println("MemberController, registRun, memberVo : " +memberVo);
@@ -92,7 +98,8 @@ public class MemberController {
 		rttr.addFlashAttribute("msg", "registSuccess");
 		return "redirect:/member/login";
 	}
-	
+
+//로그아웃 구현
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request, RedirectAttributes rttr) {
 		HttpSession session = request.getSession();
@@ -101,6 +108,7 @@ public class MemberController {
 		return "redirect:/member/login";
 	}
 	
+//가입 승인 대기 리스트
 	@RequestMapping(value = "/company/memberApproveList")
 	public String memberApproveList(Model model) {
 		List<MemberVo> list = memberService.memberApproveList();
@@ -108,6 +116,7 @@ public class MemberController {
 		return "/company/member/memberApproveList";
 	}
 	
+//멤버 사용 승인
 	@ResponseBody
 	@RequestMapping(value = "/company/memberApproveRun")
 	public String memberApproveRun(MemberVo memberVo) {
@@ -115,7 +124,8 @@ public class MemberController {
 		memberService.memberManageRun(memberVo);
 		return "success";
 	}
-	
+
+//마이페이지
 	@RequestMapping(value = "/company/myPage")
 	public String myPage(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -125,7 +135,8 @@ public class MemberController {
 		model.addAttribute("memberData", memberVo);
 		return "/company/member/mypage";
 	}
-	
+
+//프로필 데이터 수정
 	@ResponseBody
 	@RequestMapping(value = "/company/myDataModifyRun", method = RequestMethod.POST)
 	public String myDataModifyRun(MemberVo memberVo) {
@@ -139,15 +150,14 @@ public class MemberController {
 		return "success";
 	}
 	
+//프로필 사진 업로드
 	@ResponseBody
 	@RequestMapping(value = "/company/profileImgAjax", method = RequestMethod.POST, produces = "application/text;charset=utf-8")
 	public String profileImgAjax(MultipartFile file, int eno) throws IOException {
-		System.out.println("MemberController, profileImgAjax, eno : " + eno);
-		System.out.println("MemberController, profileImgAjax, file : " + file);
-		
+//		System.out.println("MemberController, profileImgAjax, eno : " + eno);
+//		System.out.println("MemberController, profileImgAjax, file : " + file);
 		String originalName = file.getOriginalFilename();
 		System.out.println("MemberController, profileImgAjax, originalName : " + originalName);
-		
 		String filePath = 
 				MyFileUploadUtil.uploadProfileImg(UPLOAD_PATH, originalName, eno, file.getBytes());
 		System.out.println("UploadController, filePath: "+ filePath);
@@ -155,6 +165,7 @@ public class MemberController {
 		return filePath;
 	}
 	
+//프로필 사진 샘플 보이기
 	@ResponseBody
 	@RequestMapping(value="/company/displaySample", method=RequestMethod.GET)
 	public byte[] displaySample(String fileName) throws Exception {
@@ -167,6 +178,7 @@ public class MemberController {
 		return bytes;
 	}
 	
+//프로필 사진 불러오기
 	@ResponseBody
 	@RequestMapping(value="/company/profileImgLoad", method=RequestMethod.GET)
 	public byte[] profileImgLoad(int eno) throws Exception {
@@ -193,14 +205,14 @@ public class MemberController {
 		return "/company/member/memberSearch";
 	}
 	
-	// 부서별 사원 검색
+// 부서별 사원 검색
 	@RequestMapping(value="/company/search_department", method=RequestMethod.GET)
 	public String searchDepartment(Model model, String department) {
 		List<MemberVo> list = memberService.searchDepartment(department);
 		model.addAttribute("list", list);
 		return "/company/member/memberSearch";
 	}
-	// 사원 검색
+// 사원 검색
 	@RequestMapping(value="/company/search_list", method=RequestMethod.GET)
 	public String searchMember(Model model, MemberVo memberVo) {
 		System.out.println("검색 멤버브이오 : " + memberVo);
@@ -219,6 +231,7 @@ public class MemberController {
 		return "/company/member/memberManageList";
 	}
 	
+//사원 관리 정보변경 실행
 	@RequestMapping(value="/company/manageRun", method=RequestMethod.POST)
 	public String manageRun(MemberVo memberVo) {
 		System.out.println("MemeberController, manageRun, memberVo : " + memberVo);
