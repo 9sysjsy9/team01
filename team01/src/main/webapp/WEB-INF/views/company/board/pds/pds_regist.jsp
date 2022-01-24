@@ -19,10 +19,23 @@ $(function(){
 		$("#pagingForm > input[name=keyword]").val("${pagingDto.keyword}");
 		$("#pagingForm").submit();
 	});
+	
+	
 		
 //파일 첨부 삭제 프로세스-------------------------------------------
 
 $("#registForm").submit(function(e) {
+	
+	var title = $("input[name=title]").val();
+	var content = $("textarea[name=content]").val();
+	
+	if(title == null || title == ""){
+		alert("제목을 입력해주세요.");
+		e.preventDefault();
+	} else if (content == null || content == ""){
+		alert("내용을 입력해주세요.");
+		e.preventDefault();
+	}
 		
 	$(".files").each(function(i) {
 		var file = $(this)[0].files[0];

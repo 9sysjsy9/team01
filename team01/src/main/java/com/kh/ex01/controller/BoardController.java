@@ -33,7 +33,7 @@ public class BoardController {
 	
 // 기능 담당자 : 고만재, 심재중
 
-	private static final String UPLOAD_PATH = "//192.168.0.234/upload/board";
+	private static final String UPLOAD_PATH = "//192.168.0.234/upload";
 
 	@Inject
 	private BoardService boardService;

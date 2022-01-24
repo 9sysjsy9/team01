@@ -15,11 +15,8 @@ import com.kh.ex01.vo.PagingDto;
 @Service
 public class BoardService {
 	
-
-	
 	@Inject
 	BoardDao boardDao;
-	
 	
 	//공지사항 글 개수
 	public int getMyBoardCount(PagingDto pagingDto) {
@@ -33,7 +30,6 @@ public class BoardService {
 		List<BoardVo> list = boardDao.myBoardList(pagingDto);
 		return list;
 	}
-/////////
 	
 	//자유게시판 리스트
 	public List<BoardVo> freeList(PagingDto pagingDto) {
@@ -84,7 +80,7 @@ public class BoardService {
 		return boardVo;
 	}
 	
-	@Transactional
+//	@Transactional
 	public void deleteBoard(int bno) {
 		boardDao.deleteCommentBoard(bno);
 		boardDao.deleteBoard(bno);
@@ -111,7 +107,7 @@ public class BoardService {
 	}
 	
 	//글 내용
-//	@Transactional
+	@Transactional
 	public BoardVo boardContent(int bno) {
 		boardDao.updateViewcnt(bno);
 		BoardVo boardVo = boardDao.boardContent(bno);
@@ -133,42 +129,42 @@ public class BoardService {
 	}
 	
 	//글 삭제 실행
-//	@Transactional
+	@Transactional
 	public void boardDeleteRun(int bno) {
 		boardDao.fileDeleteRun(bno);
 		boardDao.boardDeleteRun(bno);
 	}
 //------------------------ 게시판 공통 끝
 //------------------------ 공지사항 시작
-		//공지사항 글 개수
-		public int getNoticeCount(PagingDto pagingDto) {
-			int count = boardDao.getNoticeCount(pagingDto);
-			return count;
+	//공지사항 글 개수
+	public int getNoticeCount(PagingDto pagingDto) {
+		int count = boardDao.getNoticeCount(pagingDto);
+		return count;
+	}
+	
+	//공지사항 글 목록
+	public List<BoardVo> noticeList(PagingDto pagingDto){
+		List<BoardVo> list = boardDao.noticeList(pagingDto);
+		return list;
+	}
+	
+	//공지사항 글 장성 실행
+	@Transactional
+	public void noticeRegistRun(BoardVo boardVo) {
+		boardDao.noticeRegistRun(boardVo);
+		System.out.println("BoardService, noticeRegistRun, boardVo : " + boardVo);
+		String bno = Integer.toString(boardVo.getBno());
+		for(int i = 0 ; i < boardVo.getFiles().length ; i++) {
+			boardDao.uploadBoardFile(bno, boardVo.getFiles()[i]);
 		}
-		
-		//공지사항 글 목록
-		public List<BoardVo> noticeList(PagingDto pagingDto){
-			List<BoardVo> list = boardDao.noticeList(pagingDto);
-			return list;
-		}
-		
-		//공지사항 글 장성 실행
-//		@Transactional
-		public void noticeRegistRun(BoardVo boardVo) {
-			boardDao.noticeRegistRun(boardVo);
-			System.out.println("BoardService, noticeRegistRun, boardVo : " + boardVo);
-			String bno = Integer.toString(boardVo.getBno());
-			for(int i = 0 ; i < boardVo.getFiles().length ; i++) {
-				boardDao.uploadBoardFile(bno, boardVo.getFiles()[i]);
-			}
-		}
+	}
 
-		//공지사항 글 삭제
-//		@Transactional
-		public void noticeDeleteRun(int bno) {
-			boardDao.fileDeleteRun(bno);
-			boardDao.boardDeleteRun(bno);
-		}
+	//공지사항 글 삭제
+	@Transactional
+	public void noticeDeleteRun(int bno) {
+		boardDao.fileDeleteRun(bno);
+		boardDao.boardDeleteRun(bno);
+	}
 //------------------------ 공지사항 끝	
 //------------------------ 자료실 시작
 	//자료실 글 개수
@@ -184,7 +180,7 @@ public class BoardService {
 	}
 	
 	//자료실 글 작성 실행
-//	@Transactional
+	@Transactional
 	public void pdsRegistRun(BoardVo boardVo) {
 		boardDao.pdsRegistRun(boardVo);
 		System.out.println("BoardService, pdsRegistRun, boardVo : " + boardVo);
@@ -200,6 +196,5 @@ public class BoardService {
 		return list;
 	}
 //------------------------ 메인 화면 끝
-
 
 }

@@ -21,7 +21,7 @@ $(function(){
 	});
 		
 
-	$("#noticeRegistForm").submit(function(e) {
+	$("#registForm").submit(function(e) {
 		var title = $("input[name=title]").val();
 		var content = $("textarea[name=content]").val();
 		
@@ -62,7 +62,7 @@ $(function(){
 					<div class="col-md-2"></div>
 
 					<div class="col-md-8">
-<form id="noticeRegistForm" method="POST" action="/company/board/notice/noticeRegistRun" enctype="multipart/form-data">
+<form id="registForm" method="POST" action="/company/board/notice/noticeRegistRun" enctype="multipart/form-data">
 					<input type="hidden" name="userid" value="${loginData.userid}">
 						<table class="table">
 							<tbody>
