@@ -42,10 +42,20 @@ public class CommentController {
 	//자유게시판 댓글 삭제
 	@RequestMapping(value="/deleteFreeComment", method=RequestMethod.GET)
 	public String deleteFreeComment(int cno, int bno) {
-		commentService.deleteCommentBoard(cno);
+		commentService.deleteComment(cno);
 		boardService.getBoard(bno);
 		System.out.println("cno: "+ cno);
 		System.out.println("bno: "+ bno);
 		return "redirect:/company/board/free/free_content?bno=" + bno;
+	}
+	
+	//익명게시판 댓글 삭제
+	@RequestMapping(value="/deleteAnonymousComment", method=RequestMethod.GET)
+	public String deleteAnonymousComment(int cno, int bno) {
+		commentService.deleteComment(cno);
+		boardService.getBoard(bno);
+		System.out.println("cno: "+ cno);
+		System.out.println("bno: "+ bno);
+		return "redirect:/company/board/anonymous/anonymous_content?bno=" + bno;
 	}
 }

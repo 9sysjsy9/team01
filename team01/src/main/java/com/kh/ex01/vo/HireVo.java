@@ -7,7 +7,7 @@ public class HireVo {
 	private int hno;
 	private String name;
 	private String email;
-	private String phonnum;
+	private String phonenum;
 	private String career;
 	private String content;
 	private String state;
@@ -34,10 +34,10 @@ public class HireVo {
 		this.email = email;
 	}
 	public String getPhonnum() {
-		return phonnum;
+		return phonenum;
 	}
 	public void setPhonnum(String phonnum) {
-		this.phonnum = phonnum;
+		this.phonenum = phonnum;
 	}
 	public String getCareer() {
 		return career;
@@ -77,7 +77,7 @@ public class HireVo {
 	}
 	@Override
 	public String toString() {
-		return "HireVo [hno=" + hno + ", name=" + name + ", email=" + email + ", phonnum=" + phonnum + ", career="
+		return "HireVo [hno=" + hno + ", name=" + name + ", email=" + email + ", phonenum=" + phonenum + ", career="
 				+ career + ", content=" + content + ", state=" + state + ", result=" + result + ", fileName=" + fileName
 				+ ", uploadFile=" + uploadFile + "]";
 	}

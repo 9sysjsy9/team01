@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.ex01.Dao.BoardDao;
 import com.kh.ex01.vo.BoardVo;
@@ -83,7 +84,9 @@ public class BoardService {
 		return boardVo;
 	}
 	
+	@Transactional
 	public void deleteBoard(int bno) {
+		boardDao.deleteCommentBoard(bno);
 		boardDao.deleteBoard(bno);
 	}
 	

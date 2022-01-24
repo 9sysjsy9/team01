@@ -9,7 +9,12 @@
 	.btnMD{
 		text-align: right;
 	}
-	
+	.btnCommentDelet {
+   		margin-left: 500px;
+    	text-decoration-line : none;
+    	cursor : pointer;
+   		color : grey;
+	}
 	a:hover {
 		color : red;
 	}
@@ -49,7 +54,7 @@ $(function(){
 		var writer = $(this).attr("data-userid");
 		var loginId = "${loginData.userid }";
 		if(writer == loginId || ${loginData.authority} == "3"){
-			location.href = "/comment/deleteFreeComment?cno=" + cno + "&bno=" + bno; 
+			location.href = "/comment/deleteAnonymousComment?cno=" + cno + "&bno=" + bno; 
 		} else {
 			alert("직접 작성한 댓글이 아닙니다.");
 		};

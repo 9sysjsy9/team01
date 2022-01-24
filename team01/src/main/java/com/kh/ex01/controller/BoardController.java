@@ -286,7 +286,6 @@ public class BoardController {
 	// 자유게시판 글 삭제
 	@RequestMapping(value="/board/free/free_delete", method=RequestMethod.GET)
 	public String deleteBoard(int bno) {
-		commentService.deleteCommentBoard(bno);
 		boardService.deleteBoard(bno);
 		return "redirect:/company/board/free/free_list";
 	}
@@ -362,7 +361,6 @@ public class BoardController {
 	// 익명게시판 글 삭제
 	@RequestMapping(value="/board/anonymous/anonymous_delete", method=RequestMethod.GET)
 	public String anonymousDeleteBoard(int bno) {
-		commentService.deleteCommentBoard(bno);
 		boardService.deleteBoard(bno);
 		return "redirect:/company/board/anonymous/anonymous_list";
 	}
