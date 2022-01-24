@@ -43,7 +43,7 @@ $(function(){
 			if(rData == "success"){
 				alert("메시지가 메시지함에서 삭제 되었습니다.")
 			}
-			location.href = "/message/company/sendMessageList";
+			location.href = "/message/company/receiveMessageList";
 			
 		});
 	});

@@ -31,7 +31,9 @@ text-decoration:none;
 						<div class="col-md-4">
 							<c:if test="${loginData.authority >= 2}">
 							<h4>관리자 메뉴</h4>
-							<div class="form-control"><a href="/store/company/applyFranList">답변하지 않은 가맹 지원이 <b>${applyCount}</b>건 있습니다.</a></div>
+							<div class="form-control"><a href="/store/company/applyFranList?replyState=n">답변하지 않은 가맹 지원이 <b>${applyCount}</b>건 있습니다.</a></div>
+							</c:if>
+							<c:if test="${loginData.authority >= 3}">
 							<div class="form-control"><a href="/member/company/memberApproveList">확인하지 않은 가입 신청이 <b>${memberApproveCount}</b>건 있습니다.</a></div>
 							</c:if>
 						</div>
